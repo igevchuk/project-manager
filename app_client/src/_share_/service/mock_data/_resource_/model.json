@@ -1,0 +1,2413 @@
+{
+  "id": 1,
+  "name": "Fixture Form 1",
+  "checked_out": false,
+  "summary_page": true,
+  "updater": " ",
+  "creator": " ",
+  "action": "N",
+  "pages": [
+    {
+      "id": 1,
+      "name": "FA Page 1",
+      "sequence": 1,
+      "summary_page": false,
+      "columns": 2,
+      "action": "N",
+      "questions": [
+        {
+          "id": 1,
+          "label": "Does the Respondent have an ongoing arrangement with a client?",
+          "sequence": 1,
+          "help_text": "Please check if the respondent has an ongoing arrangement",
+          "is_default": true,
+          "placeholder_text": "Please check if the respondent has an ongoing arrangement",
+          "question_type": 1,
+          "question_type_property": null,
+          "required": true,
+          "other_option": false,
+          "comment_field": false,
+          "database_table": false,
+          "database_table_name": "custtable",
+          "database_column_type": "boolean",
+          "database_column_format": "9",
+          "database_column_length": "1",
+          "questionhtml": "<div class=\"inline fields\"><label>Does the Respondent have an ongoing arrangement with a client?</label><div class=\"field\"><div class=\"ui radio checkbox\"><input class=\"hidden\" readonly=\"\" tabindex=\"0\" type=\"radio\" value=\"Yes\"<label>Yes</label></div></div><div class=\"field\"><div class=\"ui radio checkbox\"><input class=\"hidden\" readonly=\"\" tabindex=\"0\" type=\"radio\" value=\"No\"<label>No</label></div></div><div class=\"grouped fields\"><label>HTML radios</label><div class=\"field\"><label><input name=\"htmlRadios\" type=\"radio\">Yes</label></div><div class=\"field\"><label><input name=\"htmlRadios\" type=\"radio\">No</label></div></div>",
+          "action": "N",
+          "options": [
+            {
+              "id": 1,
+              "label": "Yes",
+              "sequence": 1,
+              "is_default": true,
+              "value": "Yes",
+              "action": "N"
+            },
+            {
+              "id": 2,
+              "label": "No",
+              "sequence": 2,
+              "is_default": false,
+              "value": "No",
+              "action": "N"
+            }
+          ],
+          "logics": [
+            {
+              "id": 1,
+              "from_question": 1,
+              "to_question": 2,
+              "display_condition": "",
+              "logic_operator": "",
+              "logic_connector": "",
+              "value": "Yes",
+              "option": 1,
+              "action": "N"
+            },
+            {
+              "id": 2,
+              "from_question": 1,
+              "to_question": 5,
+              "display_condition": "",
+              "logic_operator": "",
+              "logic_connector": "",
+              "value": "No",
+              "option": 2,
+              "action": "N"
+            }
+          ],
+          "default_text": "default_text",
+          "text__multiple_lines_of_text": "text__multiple_lines_of_text",
+          "text__number_lines_of_text": 0,
+          "select__dropdown": false,
+          "select__label_text": "select__label_text",
+          "date__date_format": "date__date_format",
+          "date__time_format": "date__time_format",
+          "heading__font": "heading__font",
+          "heading__font_size": -1,
+          "heading__is_bold": false,
+          "heading__is_underscore": false,
+          "heading__is_italic": false,
+          "heading__related_questions": [0, 0],
+          "validation": {
+            "text": {
+              "action": "N",
+              "rule_value": {
+                "rule": "",
+                "value": ""
+              },
+              "length": {
+                "min": 4,
+                "max": 16
+              }
+            },
+            "select": {
+              "action": "N",
+              "number_of_choices_permitted": {
+                "min": 0,
+                "max": 0
+              }
+            },
+            "date": {
+              "action": "N",
+              "only_allow_dates_in_the": {
+                "value": false
+              },
+              "date_range": {
+                "value": ""
+              },
+              "range": {
+                "from": "",
+                "to": ""
+              },
+              "custome_script": ""
+            }
+          }
+        },
+        {
+          "id": 2,
+          "label": "Please enter the name of the Client entity",
+          "sequence": 2,
+          "help_text": "Enter the Client entity name",
+          "is_default": false,
+          "placeholder_text": "Enter the Client entity name",
+          "question_type": 3,
+          "question_type_property": null,
+          "required": true,
+          "other_option": false,
+          "comment_field": false,
+          "database_table": false,
+          "database_table_name": "custtable",
+          "database_column_type": "string",
+          "database_column_format": "x(100)",
+          "database_column_length": "100",
+          "questionhtml": "<div class=\"field\"><label>Please enter the name of the Client entity</label><input placeholder=\"Enter the Client entity name\"</div>",
+          "action": "N",
+          "options": [],
+          "logics": [],
+          "default_text": "default_text",
+          "text__multiple_lines_of_text": "text__multiple_lines_of_text",
+          "text__number_lines_of_text": 0,
+          "select__dropdown": false,
+          "select__label_text": "select__label_text",
+          "date__date_format": "date__date_format",
+          "date__time_format": "date__time_format",
+          "heading__font": "heading__font",
+          "heading__font_size": -1,
+          "heading__is_bold": false,
+          "heading__is_underscore": false,
+          "heading__is_italic": false,
+          "heading__related_questions": [0, 0],
+          "validation": {
+            "text": {
+              "action": "N",
+              "rule_value": {
+                "rule": "",
+                "value": ""
+              },
+              "length": {
+                "min": 4,
+                "max": 16
+              }
+            },
+            "select": {
+              "action": "N",
+              "number_of_choices_permitted": {
+                "min": 0,
+                "max": 0
+              }
+            },
+            "date": {
+              "action": "N",
+              "only_allow_dates_in_the": {
+                "value": false
+              },
+              "date_range": {
+                "value": ""
+              },
+              "range": {
+                "from": "",
+                "to": ""
+              },
+              "custome_script": ""
+            }
+          }
+        }
+      ],
+      "valueObject": {
+        "question": {
+          "type_text": {
+            "labels": {
+              "multiple_lines_of_text": "MULTIPLE LINES OF TEXT",
+              "number_lines_of_text": "NUMBER LINES OF TEXT",
+              "label_for_default": "DEFAULT",
+              "label_for_plaseholder": "PLACEHOLDER",
+              "label_for_description": "DESCRIPTION",
+              "plaseholder_for_default": "Pre-filled default response",
+              "plaseholder_for_plaseholder": "Text that appears in the field until the user starts typing",
+              "plaseholder_for_description": "Help text that appears next to the field"
+            },
+            "option_source": {
+              "rules": [
+                {
+                  "value": "contains",
+                  "text": "Contains"
+                },
+                {
+                  "value": "notContains",
+                  "text": "Not Contain"
+                },
+                {
+                  "value": "startsWith",
+                  "text": "Starts With"
+                },
+                {
+                  "value": "equals",
+                  "text": "Equals"
+                },
+                {
+                  "value": "notEquals",
+                  "text": "Not Equals"
+                },
+                {
+                  "value": "advanced",
+                  "text": "Advanced"
+                }
+              ]
+            }
+          },
+          "type_select": {
+            "labels": {
+              "drowdown": "DROPDOWN",
+              "default": "DEFAULT",
+              "options": "OPTIONS",
+              "label": "LABEL",
+              "add_an_other_option": "ADD AN OTHER OPTION",
+              "include_a_comment_field": "INCLUDE A COMMENT FIELD",
+              "plaseholder_for_label": "Other",
+              "label_for_plaseholder": "PLACEHOLDER",
+              "label_for_description": "DESCRIPTION",
+              "plaseholder_for_plaseholder": "Please enter a comment",
+              "plaseholder_for_description": "Help text that appears next to the field"
+            },
+            "logics": {}
+          },
+          "type_checkbox": {
+            "labels_edit": {
+              "default": "DEFAULT",
+              "options": "OPTIONS",
+              "label": "LABEL",
+              "add_an_other_option": "ADD AN OTHER OPTION",
+              "include_a_comment_field": "INCLUDE A COMMENT FIELD",
+              "plaseholder_for_label": "Other",
+              "label_for_plaseholder": "PLACEHOLDER",
+              "label_for_description": "DESCRIPTION",
+              "plaseholder_for_plaseholder": "Please enter a comment",
+              "plaseholder_for_description": "Help text that appears next to the field"
+            },
+            "labels_validation": {
+              "number_of_choices_permitted": "NUNMBER OF CHOICES PERMITTED",
+              "mix": "MIX",
+              "max": "MAX"
+            },
+            "labels_logic": {
+              "show": "SHOW",
+              "only_if": "ONLY IF",
+              "skip": "SKIP",
+              "if": "IF"
+            },
+            "option_source": {
+              "mix_max": [
+                {
+                  "value": 0,
+                  "text": "0"
+                },
+                {
+                  "value": 1,
+                  "text": "1"
+                },
+                {
+                  "value": 2,
+                  "text": "2"
+                },
+                {
+                  "value": 3,
+                  "text": "3"
+                },
+                {
+                  "value": 4,
+                  "text": "4"
+                },
+                {
+                  "value": 5,
+                  "text": "ALL"
+                }
+              ]
+            }
+          },
+          "type_datetime": {
+            "labels_edit": {
+              "date_format": "DATE FORMAT",
+              "time_format": "TIME FORMAT",
+              "plaseholder_for_default": "Pre-filled default response",
+              "plaseholder_for_plaseholder": "Text that appears in the field until the user starts typing",
+              "plaseholder_for_description": "Help text that appears next to the field"
+            },
+            "labels_validation": {
+              "only_allow_dates_in_the": "ONLY ALLOW DATES IN THE:",
+              "past": "PAST",
+              "future": "FUTURE",
+              "range": "RANGE",
+              "from": "FROM",
+              "plaseholder_for_from": "Select a date",
+              "to": "TO",
+              "plaseholder_for_to": "Select a date",
+              "advanced": "(ADVANCED)",
+              "custom_script": "CUSTOM SCRIPT",
+              "plaseholder_for_custom_script": "Date format using allowed script format"
+            },
+            "labels_logic": {
+              "show": "SHOW",
+              "only_if": "ONLY IF",
+              "skip": "SKIP",
+              "if": "IF"
+            }
+          },
+          "type_headings": {
+            "labels": {},
+            "option_source": {}
+          }
+        },
+        "page_source": {
+          "type_options": [
+            {
+              "flag": "af",
+              "key": "text",
+              "value": 0,
+              "text": "Text"
+            },
+            {
+              "flag": "af",
+              "key": "select",
+              "value": 8,
+              "text": "Single Select"
+            },
+            {
+              "flag": "af",
+              "key": "checkboxes",
+              "value": 9,
+              "text": "Checkboxes"
+            },
+            {
+              "flag": "af",
+              "key": "datetime",
+              "value": 10,
+              "text": "Date/Time"
+            },
+            {
+              "flag": "af",
+              "key": "heading",
+              "value": 11,
+              "text": "Heading/Markup"
+            },
+            {
+              "flag": "af",
+              "key": "select_h",
+              "value": 1,
+              "text": "Radio Set Horizontal"
+            },
+            {
+              "flag": "af",
+              "key": "select_v",
+              "value": 2,
+              "text": "Radio Set Vertical"
+            },
+            {
+              "flag": "af",
+              "key": "text",
+              "value": 3,
+              "text": "Text Field"
+            },
+            {
+              "flag": "af",
+              "key": "text_Area",
+              "value": 4,
+              "text": "Text Area"
+            },
+            {
+              "flag": "af",
+              "key": "date",
+              "value": 5,
+              "text": "Date"
+            },
+            {
+              "flag": "af",
+              "key": "checkbox",
+              "value": 6,
+              "text": "Checkbox"
+            },
+            {
+              "flag": "af",
+              "key": "confirm",
+              "value": 7,
+              "text": "Final Confirmation Checkbox"
+            }
+          ],
+          "option_options": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 1,
+              "text": "1"
+            },
+            {
+              "value": 2,
+              "text": "2"
+            },
+            {
+              "value": 3,
+              "text": "3"
+            },
+            {
+              "value": 4,
+              "text": "4"
+            },
+            {
+              "value": 5,
+              "text": "ALL"
+            }
+          ],
+          "length_options": [
+            {
+              "value": 4,
+              "text": "4"
+            },
+            {
+              "value": 6,
+              "text": "6"
+            },
+            {
+              "value": 8,
+              "text": "8"
+            },
+            {
+              "value": 10,
+              "text": "10"
+            },
+            {
+              "value": 12,
+              "text": "12"
+            },
+            {
+              "value": 16,
+              "text": "16"
+            }
+          ],
+          "logic_operator_options": [
+            {
+              "value": "is",
+              "text": "is"
+            },
+            {
+              "value": "isNot",
+              "text": "is not"
+            },
+            {
+              "value": "contains",
+              "text": "contains"
+            },
+            {
+              "value": "notContains",
+              "text": "does not contain"
+            }
+          ],
+          "rule_options": [
+            {
+              "value": "contains",
+              "text": "Contains"
+            },
+            {
+              "value": "notContains",
+              "text": "Not Contain"
+            },
+            {
+              "value": "startsWith",
+              "text": "Starts With"
+            },
+            {
+              "value": "equals",
+              "text": "Equals"
+            },
+            {
+              "value": "notEquals",
+              "text": "Not Equals"
+            },
+            {
+              "value": "advanced",
+              "text": "Advanced"
+            }
+          ]
+        },
+        "dialog_labels": {
+          "operation": {
+            "page": "PAGE",
+            "question": "QUESTION",
+            "position": "POSITION",
+            "positionOptions": [
+              {
+                "value": "before",
+                "text": "Before"
+              },
+              {
+                "value": "after",
+                "text": "After"
+              }
+            ],
+            "insert": {
+              "title": "Insert Question",
+              "subtitle": "Insert Reference to the Response of a Previous Question",
+              "cancel_button": "Cancel",
+              "confirm_button": "Insert"
+            },
+            "delete": {
+              "title": "Delete Question",
+              "subtitle": "Are you sure you want to delete the this question?",
+              "cancel_button": "Cancel",
+              "confirm_button": "Delete"
+            },
+            "copy": {
+              "title": "Copy Question",
+              "subtitle": "Where would you like to paste the current Copy?",
+              "cancel_button": "Cancel",
+              "confirm_button": "Copy"
+            },
+            "move": {
+              "title": "Move Question",
+              "subtitle": "Where would you like to move the current question?",
+              "cancel_button": "Cancel",
+              "confirm_button": "Move"
+            }
+          },
+          "other_dialog": {}
+        }
+      }
+    },
+    {
+      "id": 2,
+      "name": "FA Page 2",
+      "sequence": 2,
+      "summary_page": false,
+      "columns": 2,
+      "action": "N",
+      "questions": [
+        {
+          "id": 3,
+          "label": "Please confirm that the Client will be requiring a contract",
+          "sequence": 3,
+          "help_text": "Confirmation of client contract",
+          "is_default": false,
+          "placeholder_text": "Client confirmation",
+          "question_type": 2,
+          "question_type_property": null,
+          "required": true,
+          "other_option": false,
+          "comment_field": false,
+          "database_table": false,
+          "database_table_name": "custtable",
+          "database_column_type": "boolean",
+          "database_column_format": "9",
+          "database_column_length": "1",
+          "questionhtml": "<div class=\"inline fields\"><label>Please confirm that the Client will be requiring a contract</label><div class=\"field\"><div class=\"ui radio checkbox\"><input class=\"hidden\" readonly=\"\" tabindex=\"0\" type=\"radio\" value=\"Yes\"<label>Yes</label></div></div><div class=\"field\"><div class=\"ui radio checkbox\"><input class=\"hidden\" readonly=\"\" tabindex=\"0\" type=\"radio\" value=\"No\"<label>No</label></div></div><div class=\"grouped fields\"><label>HTML radios</label><div class=\"field\"><label><input name=\"htmlRadios\" type=\"radio\">Yes</label></div><div class=\"field\"><label><input name=\"htmlRadios\" type=\"radio\">No</label></div></div>",
+          "action": "N",
+          "validations": [],
+          "options": [
+            {
+              "id": 3,
+              "label": "Yes",
+              "sequence": 1,
+              "is_default": true,
+              "value": "Yes",
+              "action": "N"
+            },
+            {
+              "id": 4,
+              "label": "No",
+              "sequence": 2,
+              "is_default": false,
+              "value": "No",
+              "action": "N"
+            }
+          ],
+          "logics": [
+            {
+              "id": 3,
+              "from_question": 3,
+              "to_question": 4,
+              "display_condition": "",
+              "logic_operator": "",
+              "logic_connector": "",
+              "value": "Yes",
+              "option": 1,
+              "action": "N"
+            },
+            {
+              "id": 4,
+              "from_question": 3,
+              "to_question": 5,
+              "display_condition": "",
+              "logic_operator": "",
+              "logic_connector": "",
+              "value": "No",
+              "option": 2,
+              "action": "N"
+            }
+          ],
+          "default_text": "default_text",
+          "text__multiple_lines_of_text": "text__multiple_lines_of_text",
+          "text__number_lines_of_text": 0,
+          "select__dropdown": false,
+          "select__label_text": "select__label_text",
+          "date__date_format": "date__date_format",
+          "date__time_format": "date__time_format",
+          "heading__font": "heading__font",
+          "heading__font_size": -1,
+          "heading__is_bold": false,
+          "heading__is_underscore": false,
+          "heading__is_italic": false,
+          "heading__related_questions": [0, 0],
+          "validation": {
+            "text": {
+              "action": "N",
+              "rule_value": {
+                "rule": "",
+                "value": ""
+              },
+              "length": {
+                "min": 4,
+                "max": 16
+              }
+            },
+            "select": {
+              "action": "N",
+              "number_of_choices_permitted": {
+                "min": 0,
+                "max": 0
+              }
+            },
+            "date": {
+              "action": "N",
+              "only_allow_dates_in_the": {
+                "value": false
+              },
+              "date_range": {
+                "value": ""
+              },
+              "range": {
+                "from": "",
+                "to": ""
+              },
+              "custome_script": ""
+            }
+          },
+          "isInitial": true,
+          "onSettings": false,
+          "viewModel": {
+            "question_id": 3,
+            "question_action": "N",
+            "question_label": "Please confirm that the Client will be requiring a contract",
+            "question_type": 2,
+            "validation": {
+              "text": {
+                "action": "N",
+                "rule_value": {
+                  "rule": "",
+                  "value": ""
+                },
+                "length": {
+                  "min": 4,
+                  "max": 16
+                }
+              },
+              "select": {
+                "action": "N",
+                "number_of_choices_permitted": {
+                  "label": "NUNMBER OF CHOICES PERMITTED",
+                  "min": 0,
+                  "max": 0
+                }
+              },
+              "date": {
+                "action": "N",
+                "only_allow_dates_in_the": {
+                  "label": "ONLY ALLOW DATES IN THE:",
+                  "value": false
+                },
+                "date_range": {
+                  "labels": ["PAST", "FUTURE", "RANGE", "(ADVANGED)"],
+                  "value": ""
+                },
+                "range": {
+                  "from": "",
+                  "to": ""
+                },
+                "custome_script": ""
+              }
+            },
+            "options": [
+              {
+                "id": 3,
+                "label": "Yes",
+                "sequence": 1,
+                "is_default": true,
+                "value": "Yes",
+                "action": "N"
+              },
+              {
+                "id": 4,
+                "label": "No",
+                "sequence": 2,
+                "is_default": false,
+                "value": "No",
+                "action": "N"
+              },
+              {
+                "id": 102,
+                "label": "",
+                "sequence": -1,
+                "is_default": false,
+                "value": "",
+                "action": "I"
+              }
+            ],
+            "logics": {
+              "show": {
+                "show": "",
+                "showLogics": []
+              },
+              "skip": {
+                "skip": "",
+                "skipLogics": []
+              },
+              "all": {
+                "all": "",
+                "allLogics": [
+                  {
+                    "id": 3,
+                    "from_question": 3,
+                    "to_question": 4,
+                    "display_condition": "",
+                    "logic_operator": "",
+                    "logic_connector": "",
+                    "value": "Yes",
+                    "option": 1,
+                    "action": "N"
+                  },
+                  {
+                    "id": 4,
+                    "from_question": 3,
+                    "to_question": 5,
+                    "display_condition": "",
+                    "logic_operator": "",
+                    "logic_connector": "",
+                    "value": "No",
+                    "option": 2,
+                    "action": "N"
+                  }
+                ]
+              }
+            },
+            "questionTypeText": {
+              "multiLine": true,
+              "numberLine": "",
+              "default": {
+                "value": ""
+              },
+              "plaseholder": {
+                "value": "Client confirmation"
+              },
+              "description": {
+                "value": "Confirmation of client contract"
+              }
+            },
+            "questionTypeSelect": {
+              "optionType": {
+                "value": true
+              },
+              "addAnOtherOption": {
+                "option": true,
+                "label": {
+                  "value": "Other",
+                  "plaseholder": ""
+                }
+              },
+              "includeACommentField": {
+                "option": true,
+                "plaseholder": {
+                  "value": "",
+                  "plaseholder": "Please enter a comment"
+                }
+              },
+              "description": {
+                "value": "Confirmation of client contract"
+              }
+            },
+            "questionTypeCheckbox": {
+              "addAnOtherOption": {
+                "option": true,
+                "label": {
+                  "value": "Other",
+                  "plaseholder": ""
+                }
+              },
+              "includeACommentField": {
+                "option": true,
+                "plaseholder": {
+                  "value": "",
+                  "plaseholder": "Please enter a comment"
+                }
+              },
+              "description": {
+                "value": "Confirmation of client contract",
+                "plaseholder": "Help text that appears next to the field"
+              }
+            },
+            "questionTypeDatetime": {
+              "dateFormat": "",
+              "timeFormat": "",
+              "default": {
+                "value": "",
+                "plaseholder": "Pre-filled default response"
+              },
+              "plaseholder": {
+                "value": "",
+                "plaseholder": "Text that appears in the field until the user starts typing"
+              },
+              "description": {
+                "value": "Confirmation of client contract",
+                "plaseholder": "Help text that appears next to the field"
+              }
+            },
+            "questionTypeHeading": {}
+          }
+        },
+        {
+          "id": 4,
+          "label": "Effective date of Contract",
+          "sequence": 4,
+          "help_text": "Effective date of Contract",
+          "is_default": false,
+          "placeholder_text": "Effective Date",
+          "question_type": 5,
+          "question_type_property": null,
+          "required": true,
+          "other_option": false,
+          "comment_field": false,
+          "database_table": false,
+          "database_table_name": "custtable",
+          "database_column_type": "date",
+          "database_column_format": "YYYY-MM-DD",
+          "database_column_length": "20",
+          "questionhtml": "HTML not available at this time",
+          "action": "N",
+          "validations": [],
+          "options": [],
+          "logics": [],
+          "default_text": "default_text",
+          "text__multiple_lines_of_text": "text__multiple_lines_of_text",
+          "text__number_lines_of_text": 0,
+          "select__dropdown": false,
+          "select__label_text": "select__label_text",
+          "date__date_format": "date__date_format",
+          "date__time_format": "date__time_format",
+          "heading__font": "heading__font",
+          "heading__font_size": -1,
+          "heading__is_bold": false,
+          "heading__is_underscore": false,
+          "heading__is_italic": false,
+          "heading__related_questions": [0, 0],
+          "validation": {
+            "text": {
+              "action": "N",
+              "rule_value": {
+                "rule": "",
+                "value": ""
+              },
+              "length": {
+                "min": 4,
+                "max": 16
+              }
+            },
+            "select": {
+              "action": "N",
+              "number_of_choices_permitted": {
+                "min": 0,
+                "max": 0
+              }
+            },
+            "date": {
+              "action": "N",
+              "only_allow_dates_in_the": {
+                "value": false
+              },
+              "date_range": {
+                "value": ""
+              },
+              "range": {
+                "from": "",
+                "to": ""
+              },
+              "custome_script": ""
+            }
+          },
+          "isInitial": true,
+          "onSettings": false,
+          "viewModel": {
+            "question_id": 4,
+            "question_action": "N",
+            "question_label": "Effective date of Contract",
+            "question_type": 5,
+            "validation": {
+              "text": {
+                "action": "N",
+                "rule_value": {
+                  "rule": "",
+                  "value": ""
+                },
+                "length": {
+                  "min": 4,
+                  "max": 16
+                }
+              },
+              "select": {
+                "action": "N",
+                "number_of_choices_permitted": {
+                  "label": "NUNMBER OF CHOICES PERMITTED",
+                  "min": 0,
+                  "max": 0
+                }
+              },
+              "date": {
+                "action": "N",
+                "only_allow_dates_in_the": {
+                  "label": "ONLY ALLOW DATES IN THE:",
+                  "value": false
+                },
+                "date_range": {
+                  "labels": ["PAST", "FUTURE", "RANGE", "(ADVANGED)"],
+                  "value": ""
+                },
+                "range": {
+                  "from": "",
+                  "to": ""
+                },
+                "custome_script": ""
+              }
+            },
+            "options": [
+              {
+                "id": 100,
+                "label": "",
+                "sequence": -1,
+                "is_default": false,
+                "value": "",
+                "action": "I"
+              }
+            ],
+            "logics": {
+              "show": {
+                "show": "",
+                "showLogics": []
+              },
+              "skip": {
+                "skip": "",
+                "skipLogics": []
+              },
+              "all": {
+                "all": "",
+                "allLogics": []
+              }
+            },
+            "questionTypeText": {
+              "multiLine": true,
+              "numberLine": "",
+              "default": {
+                "value": ""
+              },
+              "plaseholder": {
+                "value": "Effective Date"
+              },
+              "description": {
+                "value": "Effective date of Contract"
+              }
+            },
+            "questionTypeSelect": {
+              "optionType": {
+                "value": true
+              },
+              "addAnOtherOption": {
+                "option": true,
+                "label": {
+                  "value": "Other",
+                  "plaseholder": ""
+                }
+              },
+              "includeACommentField": {
+                "option": true,
+                "plaseholder": {
+                  "value": "",
+                  "plaseholder": "Please enter a comment"
+                }
+              },
+              "description": {
+                "value": "Effective date of Contract"
+              }
+            },
+            "questionTypeCheckbox": {
+              "addAnOtherOption": {
+                "option": true,
+                "label": {
+                  "value": "Other",
+                  "plaseholder": ""
+                }
+              },
+              "includeACommentField": {
+                "option": true,
+                "plaseholder": {
+                  "value": "",
+                  "plaseholder": "Please enter a comment"
+                }
+              },
+              "description": {
+                "value": "Effective date of Contract",
+                "plaseholder": "Help text that appears next to the field"
+              }
+            },
+            "questionTypeDatetime": {
+              "dateFormat": "",
+              "timeFormat": "",
+              "default": {
+                "value": "",
+                "plaseholder": "Pre-filled default response"
+              },
+              "plaseholder": {
+                "value": "",
+                "plaseholder": "Text that appears in the field until the user starts typing"
+              },
+              "description": {
+                "value": "Effective date of Contract",
+                "plaseholder": "Help text that appears next to the field"
+              }
+            },
+            "questionTypeHeading": {}
+          }
+        }
+      ],
+      "valueObject": {
+        "question": {
+          "type_text": {
+            "labels": {
+              "multiple_lines_of_text": "MULTIPLE LINES OF TEXT",
+              "number_lines_of_text": "NUMBER LINES OF TEXT",
+              "label_for_default": "DEFAULT",
+              "label_for_plaseholder": "PLACEHOLDER",
+              "label_for_description": "DESCRIPTION",
+              "plaseholder_for_default": "Pre-filled default response",
+              "plaseholder_for_plaseholder": "Text that appears in the field until the user starts typing",
+              "plaseholder_for_description": "Help text that appears next to the field"
+            },
+            "option_source": {
+              "rules": [
+                {
+                  "value": "contains",
+                  "text": "Contains"
+                },
+                {
+                  "value": "notContains",
+                  "text": "Not Contain"
+                },
+                {
+                  "value": "startsWith",
+                  "text": "Starts With"
+                },
+                {
+                  "value": "equals",
+                  "text": "Equals"
+                },
+                {
+                  "value": "notEquals",
+                  "text": "Not Equals"
+                },
+                {
+                  "value": "advanced",
+                  "text": "Advanced"
+                }
+              ]
+            }
+          },
+          "type_select": {
+            "labels": {
+              "drowdown": "DROPDOWN",
+              "default": "DEFAULT",
+              "options": "OPTIONS",
+              "label": "LABEL",
+              "add_an_other_option": "ADD AN OTHER OPTION",
+              "include_a_comment_field": "INCLUDE A COMMENT FIELD",
+              "plaseholder_for_label": "Other",
+              "label_for_plaseholder": "PLACEHOLDER",
+              "label_for_description": "DESCRIPTION",
+              "plaseholder_for_plaseholder": "Please enter a comment",
+              "plaseholder_for_description": "Help text that appears next to the field"
+            },
+            "logics": {}
+          },
+          "type_checkbox": {
+            "labels_edit": {
+              "default": "DEFAULT",
+              "options": "OPTIONS",
+              "label": "LABEL",
+              "add_an_other_option": "ADD AN OTHER OPTION",
+              "include_a_comment_field": "INCLUDE A COMMENT FIELD",
+              "plaseholder_for_label": "Other",
+              "label_for_plaseholder": "PLACEHOLDER",
+              "label_for_description": "DESCRIPTION",
+              "plaseholder_for_plaseholder": "Please enter a comment",
+              "plaseholder_for_description": "Help text that appears next to the field"
+            },
+            "labels_validation": {
+              "number_of_choices_permitted": "NUNMBER OF CHOICES PERMITTED",
+              "mix": "MIX",
+              "max": "MAX"
+            },
+            "labels_logic": {
+              "show": "SHOW",
+              "only_if": "ONLY IF",
+              "skip": "SKIP",
+              "if": "IF"
+            },
+            "option_source": {
+              "mix_max": [
+                {
+                  "value": 0,
+                  "text": "0"
+                },
+                {
+                  "value": 1,
+                  "text": "1"
+                },
+                {
+                  "value": 2,
+                  "text": "2"
+                },
+                {
+                  "value": 3,
+                  "text": "3"
+                },
+                {
+                  "value": 4,
+                  "text": "4"
+                },
+                {
+                  "value": 5,
+                  "text": "ALL"
+                }
+              ]
+            }
+          },
+          "type_datetime": {
+            "labels_edit": {
+              "date_format": "DATE FORMAT",
+              "time_format": "TIME FORMAT",
+              "plaseholder_for_default": "Pre-filled default response",
+              "plaseholder_for_plaseholder": "Text that appears in the field until the user starts typing",
+              "plaseholder_for_description": "Help text that appears next to the field"
+            },
+            "labels_validation": {
+              "only_allow_dates_in_the": "ONLY ALLOW DATES IN THE:",
+              "past": "PAST",
+              "future": "FUTURE",
+              "range": "RANGE",
+              "from": "FROM",
+              "plaseholder_for_from": "Select a date",
+              "to": "TO",
+              "plaseholder_for_to": "Select a date",
+              "advanced": "(ADVANCED)",
+              "custom_script": "CUSTOM SCRIPT",
+              "plaseholder_for_custom_script": "Date format using allowed script format"
+            },
+            "labels_logic": {
+              "show": "SHOW",
+              "only_if": "ONLY IF",
+              "skip": "SKIP",
+              "if": "IF"
+            }
+          },
+          "type_headings": {
+            "labels": {},
+            "option_source": {}
+          }
+        },
+        "page_source": {
+          "type_options": [
+            {
+              "flag": "af",
+              "key": "text",
+              "value": 0,
+              "text": "Text"
+            },
+            {
+              "flag": "af",
+              "key": "select",
+              "value": 8,
+              "text": "Single Select"
+            },
+            {
+              "flag": "af",
+              "key": "checkboxes",
+              "value": 9,
+              "text": "Checkboxes"
+            },
+            {
+              "flag": "af",
+              "key": "datetime",
+              "value": 10,
+              "text": "Date/Time"
+            },
+            {
+              "flag": "af",
+              "key": "heading",
+              "value": 11,
+              "text": "Heading/Markup"
+            },
+            {
+              "flag": "af",
+              "key": "select_h",
+              "value": 1,
+              "text": "Radio Set Horizontal"
+            },
+            {
+              "flag": "af",
+              "key": "select_v",
+              "value": 2,
+              "text": "Radio Set Vertical"
+            },
+            {
+              "flag": "af",
+              "key": "text",
+              "value": 3,
+              "text": "Text Field"
+            },
+            {
+              "flag": "af",
+              "key": "text_Area",
+              "value": 4,
+              "text": "Text Area"
+            },
+            {
+              "flag": "af",
+              "key": "date",
+              "value": 5,
+              "text": "Date"
+            },
+            {
+              "flag": "af",
+              "key": "checkbox",
+              "value": 6,
+              "text": "Checkbox"
+            },
+            {
+              "flag": "af",
+              "key": "confirm",
+              "value": 7,
+              "text": "Final Confirmation Checkbox"
+            }
+          ],
+          "option_options": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 1,
+              "text": "1"
+            },
+            {
+              "value": 2,
+              "text": "2"
+            },
+            {
+              "value": 3,
+              "text": "3"
+            },
+            {
+              "value": 4,
+              "text": "4"
+            },
+            {
+              "value": 5,
+              "text": "ALL"
+            }
+          ],
+          "length_options": [
+            {
+              "value": 4,
+              "text": "4"
+            },
+            {
+              "value": 6,
+              "text": "6"
+            },
+            {
+              "value": 8,
+              "text": "8"
+            },
+            {
+              "value": 10,
+              "text": "10"
+            },
+            {
+              "value": 12,
+              "text": "12"
+            },
+            {
+              "value": 16,
+              "text": "16"
+            }
+          ],
+          "logic_operator_options": [
+            {
+              "value": "is",
+              "text": "is"
+            },
+            {
+              "value": "isNot",
+              "text": "is not"
+            },
+            {
+              "value": "contains",
+              "text": "contains"
+            },
+            {
+              "value": "notContains",
+              "text": "does not contain"
+            }
+          ],
+          "rule_options": [
+            {
+              "value": "contains",
+              "text": "Contains"
+            },
+            {
+              "value": "notContains",
+              "text": "Not Contain"
+            },
+            {
+              "value": "startsWith",
+              "text": "Starts With"
+            },
+            {
+              "value": "equals",
+              "text": "Equals"
+            },
+            {
+              "value": "notEquals",
+              "text": "Not Equals"
+            },
+            {
+              "value": "advanced",
+              "text": "Advanced"
+            }
+          ]
+        },
+        "dialog_labels": {
+          "operation": {
+            "page": "PAGE",
+            "question": "QUESTION",
+            "position": "POSITION",
+            "positionOptions": [
+              {
+                "value": "before",
+                "text": "Before"
+              },
+              {
+                "value": "after",
+                "text": "After"
+              }
+            ],
+            "insert": {
+              "title": "Insert Question",
+              "subtitle": "Insert Reference to the Response of a Previous Question",
+              "cancel_button": "Cancel",
+              "confirm_button": "Insert"
+            },
+            "delete": {
+              "title": "Delete Question",
+              "subtitle": "Are you sure you want to delete the this question?",
+              "cancel_button": "Cancel",
+              "confirm_button": "Delete"
+            },
+            "copy": {
+              "title": "Copy Question",
+              "subtitle": "Where would you like to paste the current Copy?",
+              "cancel_button": "Cancel",
+              "confirm_button": "Copy"
+            },
+            "move": {
+              "title": "Move Question",
+              "subtitle": "Where would you like to move the current question?",
+              "cancel_button": "Cancel",
+              "confirm_button": "Move"
+            }
+          },
+          "other_dialog": {}
+        }
+      }
+    },
+    {
+      "id": 3,
+      "name": "FA Page 3",
+      "sequence": 3,
+      "summary_page": true,
+      "columns": 2,
+      "action": "N",
+      "questions": [
+        {
+          "id": 5,
+          "label": "Please confirm and accept this intake form",
+          "sequence": 5,
+          "help_text": "Please confirm and accept this intake form",
+          "is_default": false,
+          "placeholder_text": "Please confirm and accept this intake form",
+          "question_type": 7,
+          "question_type_property": null,
+          "required": true,
+          "other_option": false,
+          "comment_field": false,
+          "database_table": false,
+          "database_table_name": "custtable",
+          "database_column_type": "boolean",
+          "database_column_format": "9",
+          "database_column_length": "1",
+          "questionhtml": "<div class=\"field\"><div class=\"ui checkbox\"><input class=\"hidden\" readonly=\"\" tabindex=\"0\" type=\"checkbox\" value=\"\"><label>Please confirm and accept this intake form</label></div>",
+          "action": "N",
+          "options": [],
+          "logics": [],
+          "default_text": "default_text",
+          "text__multiple_lines_of_text": "text__multiple_lines_of_text",
+          "text__number_lines_of_text": 0,
+          "select__dropdown": false,
+          "select__label_text": "select__label_text",
+          "date__date_format": "date__date_format",
+          "date__time_format": "date__time_format",
+          "heading__font": "heading__font",
+          "heading__font_size": -1,
+          "heading__is_bold": false,
+          "heading__is_underscore": false,
+          "heading__is_italic": false,
+          "heading__related_questions": [0, 0],
+          "validation": {
+            "text": {
+              "action": "N",
+              "rule_value": {
+                "rule": "",
+                "value": ""
+              },
+              "length": {
+                "min": 4,
+                "max": 16
+              }
+            },
+            "select": {
+              "action": "N",
+              "number_of_choices_permitted": {
+                "min": 0,
+                "max": 0
+              }
+            },
+            "date": {
+              "action": "N",
+              "only_allow_dates_in_the": {
+                "value": false
+              },
+              "date_range": {
+                "value": ""
+              },
+              "range": {
+                "from": "",
+                "to": ""
+              },
+              "custome_script": ""
+            }
+          }
+        }
+      ],
+      "valueObject": {
+        "question": {
+          "type_text": {
+            "labels": {
+              "multiple_lines_of_text": "MULTIPLE LINES OF TEXT",
+              "number_lines_of_text": "NUMBER LINES OF TEXT",
+              "label_for_default": "DEFAULT",
+              "label_for_plaseholder": "PLACEHOLDER",
+              "label_for_description": "DESCRIPTION",
+              "plaseholder_for_default": "Pre-filled default response",
+              "plaseholder_for_plaseholder": "Text that appears in the field until the user starts typing",
+              "plaseholder_for_description": "Help text that appears next to the field"
+            },
+            "option_source": {
+              "rules": [
+                {
+                  "value": "contains",
+                  "text": "Contains"
+                },
+                {
+                  "value": "notContains",
+                  "text": "Not Contain"
+                },
+                {
+                  "value": "startsWith",
+                  "text": "Starts With"
+                },
+                {
+                  "value": "equals",
+                  "text": "Equals"
+                },
+                {
+                  "value": "notEquals",
+                  "text": "Not Equals"
+                },
+                {
+                  "value": "advanced",
+                  "text": "Advanced"
+                }
+              ]
+            }
+          },
+          "type_select": {
+            "labels": {
+              "drowdown": "DROPDOWN",
+              "default": "DEFAULT",
+              "options": "OPTIONS",
+              "label": "LABEL",
+              "add_an_other_option": "ADD AN OTHER OPTION",
+              "include_a_comment_field": "INCLUDE A COMMENT FIELD",
+              "plaseholder_for_label": "Other",
+              "label_for_plaseholder": "PLACEHOLDER",
+              "label_for_description": "DESCRIPTION",
+              "plaseholder_for_plaseholder": "Please enter a comment",
+              "plaseholder_for_description": "Help text that appears next to the field"
+            },
+            "logics": {}
+          },
+          "type_checkbox": {
+            "labels_edit": {
+              "default": "DEFAULT",
+              "options": "OPTIONS",
+              "label": "LABEL",
+              "add_an_other_option": "ADD AN OTHER OPTION",
+              "include_a_comment_field": "INCLUDE A COMMENT FIELD",
+              "plaseholder_for_label": "Other",
+              "label_for_plaseholder": "PLACEHOLDER",
+              "label_for_description": "DESCRIPTION",
+              "plaseholder_for_plaseholder": "Please enter a comment",
+              "plaseholder_for_description": "Help text that appears next to the field"
+            },
+            "labels_validation": {
+              "number_of_choices_permitted": "NUNMBER OF CHOICES PERMITTED",
+              "mix": "MIX",
+              "max": "MAX"
+            },
+            "labels_logic": {
+              "show": "SHOW",
+              "only_if": "ONLY IF",
+              "skip": "SKIP",
+              "if": "IF"
+            },
+            "option_source": {
+              "mix_max": [
+                {
+                  "value": 0,
+                  "text": "0"
+                },
+                {
+                  "value": 1,
+                  "text": "1"
+                },
+                {
+                  "value": 2,
+                  "text": "2"
+                },
+                {
+                  "value": 3,
+                  "text": "3"
+                },
+                {
+                  "value": 4,
+                  "text": "4"
+                },
+                {
+                  "value": 5,
+                  "text": "ALL"
+                }
+              ]
+            }
+          },
+          "type_datetime": {
+            "labels_edit": {
+              "date_format": "DATE FORMAT",
+              "time_format": "TIME FORMAT",
+              "plaseholder_for_default": "Pre-filled default response",
+              "plaseholder_for_plaseholder": "Text that appears in the field until the user starts typing",
+              "plaseholder_for_description": "Help text that appears next to the field"
+            },
+            "labels_validation": {
+              "only_allow_dates_in_the": "ONLY ALLOW DATES IN THE:",
+              "past": "PAST",
+              "future": "FUTURE",
+              "range": "RANGE",
+              "from": "FROM",
+              "plaseholder_for_from": "Select a date",
+              "to": "TO",
+              "plaseholder_for_to": "Select a date",
+              "advanced": "(ADVANCED)",
+              "custom_script": "CUSTOM SCRIPT",
+              "plaseholder_for_custom_script": "Date format using allowed script format"
+            },
+            "labels_logic": {
+              "show": "SHOW",
+              "only_if": "ONLY IF",
+              "skip": "SKIP",
+              "if": "IF"
+            }
+          },
+          "type_headings": {
+            "labels": {},
+            "option_source": {}
+          }
+        },
+        "page_source": {
+          "type_options": [
+            {
+              "flag": "af",
+              "key": "text",
+              "value": 0,
+              "text": "Text"
+            },
+            {
+              "flag": "af",
+              "key": "select",
+              "value": 8,
+              "text": "Single Select"
+            },
+            {
+              "flag": "af",
+              "key": "checkboxes",
+              "value": 9,
+              "text": "Checkboxes"
+            },
+            {
+              "flag": "af",
+              "key": "datetime",
+              "value": 10,
+              "text": "Date/Time"
+            },
+            {
+              "flag": "af",
+              "key": "heading",
+              "value": 11,
+              "text": "Heading/Markup"
+            },
+            {
+              "flag": "af",
+              "key": "select_h",
+              "value": 1,
+              "text": "Radio Set Horizontal"
+            },
+            {
+              "flag": "af",
+              "key": "select_v",
+              "value": 2,
+              "text": "Radio Set Vertical"
+            },
+            {
+              "flag": "af",
+              "key": "text",
+              "value": 3,
+              "text": "Text Field"
+            },
+            {
+              "flag": "af",
+              "key": "text_Area",
+              "value": 4,
+              "text": "Text Area"
+            },
+            {
+              "flag": "af",
+              "key": "date",
+              "value": 5,
+              "text": "Date"
+            },
+            {
+              "flag": "af",
+              "key": "checkbox",
+              "value": 6,
+              "text": "Checkbox"
+            },
+            {
+              "flag": "af",
+              "key": "confirm",
+              "value": 7,
+              "text": "Final Confirmation Checkbox"
+            }
+          ],
+          "option_options": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 1,
+              "text": "1"
+            },
+            {
+              "value": 2,
+              "text": "2"
+            },
+            {
+              "value": 3,
+              "text": "3"
+            },
+            {
+              "value": 4,
+              "text": "4"
+            },
+            {
+              "value": 5,
+              "text": "ALL"
+            }
+          ],
+          "length_options": [
+            {
+              "value": 4,
+              "text": "4"
+            },
+            {
+              "value": 6,
+              "text": "6"
+            },
+            {
+              "value": 8,
+              "text": "8"
+            },
+            {
+              "value": 10,
+              "text": "10"
+            },
+            {
+              "value": 12,
+              "text": "12"
+            },
+            {
+              "value": 16,
+              "text": "16"
+            }
+          ],
+          "logic_operator_options": [
+            {
+              "value": "is",
+              "text": "is"
+            },
+            {
+              "value": "isNot",
+              "text": "is not"
+            },
+            {
+              "value": "contains",
+              "text": "contains"
+            },
+            {
+              "value": "notContains",
+              "text": "does not contain"
+            }
+          ],
+          "rule_options": [
+            {
+              "value": "contains",
+              "text": "Contains"
+            },
+            {
+              "value": "notContains",
+              "text": "Not Contain"
+            },
+            {
+              "value": "startsWith",
+              "text": "Starts With"
+            },
+            {
+              "value": "equals",
+              "text": "Equals"
+            },
+            {
+              "value": "notEquals",
+              "text": "Not Equals"
+            },
+            {
+              "value": "advanced",
+              "text": "Advanced"
+            }
+          ]
+        },
+        "dialog_labels": {
+          "operation": {
+            "page": "PAGE",
+            "question": "QUESTION",
+            "position": "POSITION",
+            "positionOptions": [
+              {
+                "value": "before",
+                "text": "Before"
+              },
+              {
+                "value": "after",
+                "text": "After"
+              }
+            ],
+            "insert": {
+              "title": "Insert Question",
+              "subtitle": "Insert Reference to the Response of a Previous Question",
+              "cancel_button": "Cancel",
+              "confirm_button": "Insert"
+            },
+            "delete": {
+              "title": "Delete Question",
+              "subtitle": "Are you sure you want to delete the this question?",
+              "cancel_button": "Cancel",
+              "confirm_button": "Delete"
+            },
+            "copy": {
+              "title": "Copy Question",
+              "subtitle": "Where would you like to paste the current Copy?",
+              "cancel_button": "Cancel",
+              "confirm_button": "Copy"
+            },
+            "move": {
+              "title": "Move Question",
+              "subtitle": "Where would you like to move the current question?",
+              "cancel_button": "Cancel",
+              "confirm_button": "Move"
+            }
+          },
+          "other_dialog": {}
+        }
+      }
+    }
+  ],
+  "activePage": {
+    "id": 1,
+    "name": "FA Page 1",
+    "sequence": 1,
+    "summary_page": false,
+    "columns": 2,
+    "action": "N",
+    "questions": [
+      {
+        "id": 1,
+        "label": "Does the Respondent have an ongoing arrangement with a client?",
+        "sequence": 1,
+        "help_text": "Please check if the respondent has an ongoing arrangement",
+        "is_default": true,
+        "placeholder_text": "Please check if the respondent has an ongoing arrangement",
+        "question_type": 1,
+        "question_type_property": null,
+        "required": true,
+        "other_option": false,
+        "comment_field": false,
+        "database_table": false,
+        "database_table_name": "custtable",
+        "database_column_type": "boolean",
+        "database_column_format": "9",
+        "database_column_length": "1",
+        "questionhtml": "<div class=\"inline fields\"><label>Does the Respondent have an ongoing arrangement with a client?</label><div class=\"field\"><div class=\"ui radio checkbox\"><input class=\"hidden\" readonly=\"\" tabindex=\"0\" type=\"radio\" value=\"Yes\"<label>Yes</label></div></div><div class=\"field\"><div class=\"ui radio checkbox\"><input class=\"hidden\" readonly=\"\" tabindex=\"0\" type=\"radio\" value=\"No\"<label>No</label></div></div><div class=\"grouped fields\"><label>HTML radios</label><div class=\"field\"><label><input name=\"htmlRadios\" type=\"radio\">Yes</label></div><div class=\"field\"><label><input name=\"htmlRadios\" type=\"radio\">No</label></div></div>",
+        "action": "N",
+        "options": [
+          {
+            "id": 1,
+            "label": "Yes",
+            "sequence": 1,
+            "is_default": true,
+            "value": "Yes",
+            "action": "N"
+          },
+          {
+            "id": 2,
+            "label": "No",
+            "sequence": 2,
+            "is_default": false,
+            "value": "No",
+            "action": "N"
+          }
+        ],
+        "logics": [
+          {
+            "id": 1,
+            "from_question": 1,
+            "to_question": 2,
+            "display_condition": "",
+            "logic_operator": "",
+            "logic_connector": "",
+            "value": "Yes",
+            "option": 1,
+            "action": "N"
+          },
+          {
+            "id": 2,
+            "from_question": 1,
+            "to_question": 5,
+            "display_condition": "",
+            "logic_operator": "",
+            "logic_connector": "",
+            "value": "No",
+            "option": 2,
+            "action": "N"
+          }
+        ],
+        "default_text": "default_text",
+        "text__multiple_lines_of_text": "text__multiple_lines_of_text",
+        "text__number_lines_of_text": 0,
+        "select__dropdown": false,
+        "select__label_text": "select__label_text",
+        "date__date_format": "date__date_format",
+        "date__time_format": "date__time_format",
+        "heading__font": "heading__font",
+        "heading__font_size": -1,
+        "heading__is_bold": false,
+        "heading__is_underscore": false,
+        "heading__is_italic": false,
+        "heading__related_questions": [0, 0],
+        "validation": {
+          "text": {
+            "action": "N",
+            "rule_value": {
+              "rule": "",
+              "value": ""
+            },
+            "length": {
+              "min": 4,
+              "max": 16
+            }
+          },
+          "select": {
+            "action": "N",
+            "number_of_choices_permitted": {
+              "min": 0,
+              "max": 0
+            }
+          },
+          "date": {
+            "action": "N",
+            "only_allow_dates_in_the": {
+              "value": false
+            },
+            "date_range": {
+              "value": ""
+            },
+            "range": {
+              "from": "",
+              "to": ""
+            },
+            "custome_script": ""
+          }
+        }
+      },
+      {
+        "id": 2,
+        "label": "Please enter the name of the Client entity",
+        "sequence": 2,
+        "help_text": "Enter the Client entity name",
+        "is_default": false,
+        "placeholder_text": "Enter the Client entity name",
+        "question_type": 3,
+        "question_type_property": null,
+        "required": true,
+        "other_option": false,
+        "comment_field": false,
+        "database_table": false,
+        "database_table_name": "custtable",
+        "database_column_type": "string",
+        "database_column_format": "x(100)",
+        "database_column_length": "100",
+        "questionhtml": "<div class=\"field\"><label>Please enter the name of the Client entity</label><input placeholder=\"Enter the Client entity name\"</div>",
+        "action": "N",
+        "options": [],
+        "logics": [],
+        "default_text": "default_text",
+        "text__multiple_lines_of_text": "text__multiple_lines_of_text",
+        "text__number_lines_of_text": 0,
+        "select__dropdown": false,
+        "select__label_text": "select__label_text",
+        "date__date_format": "date__date_format",
+        "date__time_format": "date__time_format",
+        "heading__font": "heading__font",
+        "heading__font_size": -1,
+        "heading__is_bold": false,
+        "heading__is_underscore": false,
+        "heading__is_italic": false,
+        "heading__related_questions": [0, 0],
+        "validation": {
+          "text": {
+            "action": "N",
+            "rule_value": {
+              "rule": "",
+              "value": ""
+            },
+            "length": {
+              "min": 4,
+              "max": 16
+            }
+          },
+          "select": {
+            "action": "N",
+            "number_of_choices_permitted": {
+              "min": 0,
+              "max": 0
+            }
+          },
+          "date": {
+            "action": "N",
+            "only_allow_dates_in_the": {
+              "value": false
+            },
+            "date_range": {
+              "value": ""
+            },
+            "range": {
+              "from": "",
+              "to": ""
+            },
+            "custome_script": ""
+          }
+        }
+      }
+    ],
+    "valueObject": {
+      "question": {
+        "type_text": {
+          "labels": {
+            "multiple_lines_of_text": "MULTIPLE LINES OF TEXT",
+            "number_lines_of_text": "NUMBER LINES OF TEXT",
+            "label_for_default": "DEFAULT",
+            "label_for_plaseholder": "PLACEHOLDER",
+            "label_for_description": "DESCRIPTION",
+            "plaseholder_for_default": "Pre-filled default response",
+            "plaseholder_for_plaseholder": "Text that appears in the field until the user starts typing",
+            "plaseholder_for_description": "Help text that appears next to the field"
+          },
+          "option_source": {
+            "rules": [
+              {
+                "value": "contains",
+                "text": "Contains"
+              },
+              {
+                "value": "notContains",
+                "text": "Not Contain"
+              },
+              {
+                "value": "startsWith",
+                "text": "Starts With"
+              },
+              {
+                "value": "equals",
+                "text": "Equals"
+              },
+              {
+                "value": "notEquals",
+                "text": "Not Equals"
+              },
+              {
+                "value": "advanced",
+                "text": "Advanced"
+              }
+            ]
+          }
+        },
+        "type_select": {
+          "labels": {
+            "drowdown": "DROPDOWN",
+            "default": "DEFAULT",
+            "options": "OPTIONS",
+            "label": "LABEL",
+            "add_an_other_option": "ADD AN OTHER OPTION",
+            "include_a_comment_field": "INCLUDE A COMMENT FIELD",
+            "plaseholder_for_label": "Other",
+            "label_for_plaseholder": "PLACEHOLDER",
+            "label_for_description": "DESCRIPTION",
+            "plaseholder_for_plaseholder": "Please enter a comment",
+            "plaseholder_for_description": "Help text that appears next to the field"
+          },
+          "logics": {}
+        },
+        "type_checkbox": {
+          "labels_edit": {
+            "default": "DEFAULT",
+            "options": "OPTIONS",
+            "label": "LABEL",
+            "add_an_other_option": "ADD AN OTHER OPTION",
+            "include_a_comment_field": "INCLUDE A COMMENT FIELD",
+            "plaseholder_for_label": "Other",
+            "label_for_plaseholder": "PLACEHOLDER",
+            "label_for_description": "DESCRIPTION",
+            "plaseholder_for_plaseholder": "Please enter a comment",
+            "plaseholder_for_description": "Help text that appears next to the field"
+          },
+          "labels_validation": {
+            "number_of_choices_permitted": "NUNMBER OF CHOICES PERMITTED",
+            "mix": "MIX",
+            "max": "MAX"
+          },
+          "labels_logic": {
+            "show": "SHOW",
+            "only_if": "ONLY IF",
+            "skip": "SKIP",
+            "if": "IF"
+          },
+          "option_source": {
+            "mix_max": [
+              {
+                "value": 0,
+                "text": "0"
+              },
+              {
+                "value": 1,
+                "text": "1"
+              },
+              {
+                "value": 2,
+                "text": "2"
+              },
+              {
+                "value": 3,
+                "text": "3"
+              },
+              {
+                "value": 4,
+                "text": "4"
+              },
+              {
+                "value": 5,
+                "text": "ALL"
+              }
+            ]
+          }
+        },
+        "type_datetime": {
+          "labels_edit": {
+            "date_format": "DATE FORMAT",
+            "time_format": "TIME FORMAT",
+            "plaseholder_for_default": "Pre-filled default response",
+            "plaseholder_for_plaseholder": "Text that appears in the field until the user starts typing",
+            "plaseholder_for_description": "Help text that appears next to the field"
+          },
+          "labels_validation": {
+            "only_allow_dates_in_the": "ONLY ALLOW DATES IN THE:",
+            "past": "PAST",
+            "future": "FUTURE",
+            "range": "RANGE",
+            "from": "FROM",
+            "plaseholder_for_from": "Select a date",
+            "to": "TO",
+            "plaseholder_for_to": "Select a date",
+            "advanced": "(ADVANCED)",
+            "custom_script": "CUSTOM SCRIPT",
+            "plaseholder_for_custom_script": "Date format using allowed script format"
+          },
+          "labels_logic": {
+            "show": "SHOW",
+            "only_if": "ONLY IF",
+            "skip": "SKIP",
+            "if": "IF"
+          }
+        },
+        "type_headings": {
+          "labels": {},
+          "option_source": {}
+        }
+      },
+      "page_source": {
+        "type_options": [
+          {
+            "flag": "af",
+            "key": "text",
+            "value": 0,
+            "text": "Text"
+          },
+          {
+            "flag": "af",
+            "key": "select",
+            "value": 8,
+            "text": "Single Select"
+          },
+          {
+            "flag": "af",
+            "key": "checkboxes",
+            "value": 9,
+            "text": "Checkboxes"
+          },
+          {
+            "flag": "af",
+            "key": "datetime",
+            "value": 10,
+            "text": "Date/Time"
+          },
+          {
+            "flag": "af",
+            "key": "heading",
+            "value": 11,
+            "text": "Heading/Markup"
+          },
+          {
+            "flag": "af",
+            "key": "select_h",
+            "value": 1,
+            "text": "Radio Set Horizontal"
+          },
+          {
+            "flag": "af",
+            "key": "select_v",
+            "value": 2,
+            "text": "Radio Set Vertical"
+          },
+          {
+            "flag": "af",
+            "key": "text",
+            "value": 3,
+            "text": "Text Field"
+          },
+          {
+            "flag": "af",
+            "key": "text_Area",
+            "value": 4,
+            "text": "Text Area"
+          },
+          {
+            "flag": "af",
+            "key": "date",
+            "value": 5,
+            "text": "Date"
+          },
+          {
+            "flag": "af",
+            "key": "checkbox",
+            "value": 6,
+            "text": "Checkbox"
+          },
+          {
+            "flag": "af",
+            "key": "confirm",
+            "value": 7,
+            "text": "Final Confirmation Checkbox"
+          }
+        ],
+        "option_options": [
+          {
+            "value": 0,
+            "text": "0"
+          },
+          {
+            "value": 1,
+            "text": "1"
+          },
+          {
+            "value": 2,
+            "text": "2"
+          },
+          {
+            "value": 3,
+            "text": "3"
+          },
+          {
+            "value": 4,
+            "text": "4"
+          },
+          {
+            "value": 5,
+            "text": "ALL"
+          }
+        ],
+        "length_options": [
+          {
+            "value": 4,
+            "text": "4"
+          },
+          {
+            "value": 6,
+            "text": "6"
+          },
+          {
+            "value": 8,
+            "text": "8"
+          },
+          {
+            "value": 10,
+            "text": "10"
+          },
+          {
+            "value": 12,
+            "text": "12"
+          },
+          {
+            "value": 16,
+            "text": "16"
+          }
+        ],
+        "logic_operator_options": [
+          {
+            "value": "is",
+            "text": "is"
+          },
+          {
+            "value": "isNot",
+            "text": "is not"
+          },
+          {
+            "value": "contains",
+            "text": "contains"
+          },
+          {
+            "value": "notContains",
+            "text": "does not contain"
+          }
+        ],
+        "rule_options": [
+          {
+            "value": "contains",
+            "text": "Contains"
+          },
+          {
+            "value": "notContains",
+            "text": "Not Contain"
+          },
+          {
+            "value": "startsWith",
+            "text": "Starts With"
+          },
+          {
+            "value": "equals",
+            "text": "Equals"
+          },
+          {
+            "value": "notEquals",
+            "text": "Not Equals"
+          },
+          {
+            "value": "advanced",
+            "text": "Advanced"
+          }
+        ]
+      },
+      "dialog_labels": {
+        "operation": {
+          "page": "PAGE",
+          "question": "QUESTION",
+          "position": "POSITION",
+          "positionOptions": [
+            {
+              "value": "before",
+              "text": "Before"
+            },
+            {
+              "value": "after",
+              "text": "After"
+            }
+          ],
+          "insert": {
+            "title": "Insert Question",
+            "subtitle": "Insert Reference to the Response of a Previous Question",
+            "cancel_button": "Cancel",
+            "confirm_button": "Insert"
+          },
+          "delete": {
+            "title": "Delete Question",
+            "subtitle": "Are you sure you want to delete the this question?",
+            "cancel_button": "Cancel",
+            "confirm_button": "Delete"
+          },
+          "copy": {
+            "title": "Copy Question",
+            "subtitle": "Where would you like to paste the current Copy?",
+            "cancel_button": "Cancel",
+            "confirm_button": "Copy"
+          },
+          "move": {
+            "title": "Move Question",
+            "subtitle": "Where would you like to move the current question?",
+            "cancel_button": "Cancel",
+            "confirm_button": "Move"
+          }
+        },
+        "other_dialog": {}
+      }
+    }
+  }
+}

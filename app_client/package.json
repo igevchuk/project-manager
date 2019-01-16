@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "query-string": "^6.2.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-scripts-ts": "3.1.0",
@@ -10,7 +11,8 @@
     "semantic-ui-react": "^0.84.0"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
+    "start": "concurrently \"react-scripts-ts start\" \"npm run json\" ",
+    "json": "json-server --watch --p 3400 ./src/_share_/service/mock_data/index.js",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
@@ -20,6 +22,8 @@
     "@types/node": "^10.12.18",
     "@types/react": "^16.7.20",
     "@types/react-dom": "^16.0.11",
+    "@types/query-string": "^6.2.0",
+    "concurrently": "^4.1.0",
     "typescript": "^3.2.2"
   },
   "prettier": {

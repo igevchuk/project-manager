@@ -1,0 +1,56 @@
+{
+  "count": 7,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 1,
+      "name": "Radio Set Horizontal",
+      "value": "",
+      "icon": "",
+      "summary_page": false
+    },
+    {
+      "id": 2,
+      "name": "Radio Set Vertical",
+      "value": "",
+      "icon": "",
+      "summary_page": false
+    },
+    {
+      "id": 3,
+      "name": "Text Field",
+      "value": "",
+      "icon": "",
+      "summary_page": false
+    },
+    {
+      "id": 4,
+      "name": "Text Area",
+      "value": "",
+      "icon": "",
+      "summary_page": false
+    },
+    {
+      "id": 5,
+      "name": "Date",
+      "value": "",
+      "icon": "",
+      "summary_page": false
+    },
+    {
+      "id": 6,
+      "name": "Checkbox",
+      "value": "",
+      "icon": "",
+      "summary_page": false
+    },
+    {
+      "id": 7,
+      "name": "Final Confirmation Checkbox",
+      "value": "",
+      "icon": "",
+      "summary_page": true
+    }
+  ]
+}
