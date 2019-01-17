@@ -11,17 +11,17 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 
 import { ApiBase } from './api_base';
-import { vm } from './view_model';
+import { vm as vm1 } from './view_model/module1_vm';
 
 class FactoryFormbuilder extends ApiBase {
   // Get local form
-  public getLocalForm = (): Observable<vm.form> => {
+  public getLocalForm = (): Observable<vm1.vm.form> => {
     const url = `${this.baseUrl}/local_form/`;
     const forms$ = this.sendRequest(url);
     return forms$;
   };
 
-  public getApiForm = (id?: number): Observable<vm.form> => {
+  public getApiForm = (id?: number): Observable<vm1.vm.form> => {
     const formId = 1;
     const url = `${this.baseApiUrl}/form/${formId}/`;
     const forms$ = this.sendRequest(url);

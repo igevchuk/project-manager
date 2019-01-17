@@ -1,6 +1,4 @@
 // import repo from "../../../_service_/repository";
-import { vm } from '../../../.share/service/view_model';
-export { vm };
 
 // export const checkinForm = repo.checkinForm;
 // export const checkoutForm = repo.checkoutForm;

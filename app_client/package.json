@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "concurrently \"react-scripts-ts start\" \"npm run json\" ",
-    "json": "json-server --watch --p 3400 ./src/.share/service/mock_data/index.js",
+    "json": "json-server --watch --p 3400 ./../app_server/mock_data/index.js",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
