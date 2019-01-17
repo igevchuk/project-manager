@@ -10,8 +10,8 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 
-import { ApiBase } from './api_base';
-import { vm as vm1 } from './view_model/module1_vm';
+import { ApiBase } from './api.base';
+import { vm as vm1 } from './view_model/vm.module1';
 
 class FactoryFormbuilder extends ApiBase {
   // Get local form

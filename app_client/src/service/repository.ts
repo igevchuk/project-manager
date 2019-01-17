@@ -1,4 +1,4 @@
-import factory_formbuilder from './api_tempate';
+import factory_formbuilder from './api.local';
 
 const checkinForm = factory_formbuilder.postCheckInForm;
 const checkoutForm = factory_formbuilder.postCheckOutForm;
