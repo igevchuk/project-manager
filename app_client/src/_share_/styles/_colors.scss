@@ -1,0 +1,60 @@
+// Brand Colors
+$darkblue: #002888;
+$green: #43a047;
+$lllgreen: #e8f5e8;
+$llviolet: #9fa8da;
+$lllviolet: #e8eaf6;
+$brand-gray: #4a4a4a;
+$lightgray: rgba(189, 189, 189, 0.24);
+$table-border-gray: rgba(0, 0, 0, 0.12);
+$danger-red: #f44336;
+$lightyellow: #fffcdc;
+$input-border-gray: #d2d2d2;
+$white: #ffffff;
+$table-title: rgb(117, 117, 117);
+// Color Roles
+$primary: $darkblue;
+$secondary: $green;
+$default: $brand-gray;
+$text-primary: $brand-gray;
+$hint: #8b9898;
+$error: $danger-red;
+
+// Typography
+$font-mono: 'Courier', monospace;
+$font-sans: 'Roboto', 'Helvetica', 'Arial', 'Roboto', sans-serif;
+$roboto: $font-sans;
+
+$default-font: $font-sans;
+$base-font-color: $brand-gray;
+$base-font-family: $font-sans;
+$base-font-size: 14px/25px;
+$small-font-size: 12px;
+$font-light: 300;
+$font-normal: 400;
+$font-semibold: 600;
+$font-bold: 700;
+$base-line-height: 1.5em;
+$headings: (6, 5, 4, 3, 2, 1);
+
+// Borders
+$base-border: 1px solid $brand-gray;
+$base-radius: 0.25rem;
+// Shadows
+$base-box-shadow: rgba(darken($brand-gray, 20%), 0.2) 0 0 5px;
+$box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+$paper-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
+  0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+// $button-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16),
+// 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+$button-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+// Dimensions
+$sidebar-width: 256px;
+$header-height: 64px;
+//Buttons
+$primary-button: $green;
+$secondary-button: $white;
+$alternate-button: $darkblue;
+$disabled-button: $lightgray;
+//Tables
+$table-border: 1px solid $table-border-gray;
