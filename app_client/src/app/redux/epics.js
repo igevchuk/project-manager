@@ -1,18 +1,6 @@
-import { combineEpics } from "redux-observable";
-import {
-  fetchApiFormsEpic,
-  fetchLocalFormsEpic,
-  fetchTemplateListEpic,
-  postCheckinFormEpic,
-  postCheckoutFormEpic,
-  publishFormEpic
-} from "./../components/formeditor/redux/epics";
+import { combineEpics } from 'redux-observable';
+import toolbarEpic from './../../app_modules/toolbar/redux/epics';
 
-export const rootEpic = combineEpics(
-  fetchApiFormsEpic,
-  fetchLocalFormsEpic,
-  fetchTemplateListEpic,
-  postCheckinFormEpic,
-  postCheckoutFormEpic,
-  publishFormEpic
-);
+const appEpic = combineEpics(toolbarEpic);
+
+export default appEpic;

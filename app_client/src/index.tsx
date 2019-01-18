@@ -20,7 +20,3 @@ ReactDOM.render(
   document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();
-
-// It seems like the complete solution is:
-// git clean -df
-// git checkout -- .

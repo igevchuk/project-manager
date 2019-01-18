@@ -1,12 +1,8 @@
-import { combineReducers } from "redux";
-import formbuilderReducer from "./../views/formeditor/redux/reducer";
-//import toastReducer from "./reducers/toastReducer";
-import uiReducer from "./reducers/uiReducer";
+import { combineReducers } from 'redux';
+import templateReducer from './../../app_modules/toolbar/redux/reducer';
 
-const rootReducer = combineReducers({
-  formbuilderReducer: formbuilderReducer,
-  //toast: toastReducer,
-  ui: uiReducer
+const appReducer = combineReducers({
+  templateReducer
 });
 
-export default rootReducer;
+export default appReducer;
