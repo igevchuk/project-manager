@@ -9,12 +9,13 @@ const epicMiddleware = createEpicMiddleware();
 const middleware = [thunkMiddleware, epicMiddleware];
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export default (configureStore = () => {
+export default function configureStore() {
   const store = createStore(
     appReducer,
     composeEnhancer(applyMiddleware(...middleware))
   );
 
   epicMiddleware.run(appEpic);
+
   return store;
-});
+}

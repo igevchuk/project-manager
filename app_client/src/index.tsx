@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-// import { Provider } from "react-redux";
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './app/styles/vars.style';
@@ -14,14 +14,32 @@ import ErrorBoundary from './app/ErrorBoundary';
 import repo from './service/repository';
 
 repo.getLocalForm().subscribe(res => {
-  console.log(JSON.stringify(res, null, 2));
+  // console.log(JSON.stringify(res, null, 2));
 });
+
+import configureStore from './app/redux/store';
+
+const store = configureStore();
+
+class AppComponent extends React.Component {
+  public render() {
+    return (
+      <Router>
+        <ThemeProvider theme={theme}>
+          <Switch>
+            <Route path="/" component={App} />
+          </Switch>
+        </ThemeProvider>
+      </Router>
+    );
+  }
+}
 
 ReactDOM.render(
   <ErrorBoundary>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <Provider store={store}>
+      <AppComponent />
+    </Provider>
   </ErrorBoundary>,
   document.getElementById('root') as HTMLElement
 );
