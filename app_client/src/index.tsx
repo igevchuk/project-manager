@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 // import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import registerServiceWorker from './registerServiceWorker';
 import { ThemeProvider } from 'styled-components';
-import { theme } from './app/styles/App.style';
+import { theme } from './app/styles/vars.style';
 import 'semantic-ui-css/semantic.min.css';
 import './index.css';
 
