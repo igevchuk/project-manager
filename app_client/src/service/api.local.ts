@@ -1,114 +1,110 @@
 import { Observable } from 'rxjs';
 import { ajax, AjaxRequest } from 'rxjs/ajax';
 import { map } from 'rxjs/operators';
-import * as queryString from 'query-string';
+// import * as queryString from 'query-string';
 
-import 'rxjs/add/observable/dom/ajax';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/of';
+// import 'rxjs/add/observable/dom/ajax';
+// import 'rxjs/add/observable/throw';
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/filter';
+// import 'rxjs/add/operator/catch';
+// import 'rxjs/add/observable/of';
 
 import { ApiBase } from './api.base';
-import { vm as vm1 } from './view_model/vm.module1';
+// import { vm as vm1 } from './view_model/vm.module1';
 
-class FactoryFormbuilder extends ApiBase {
+class ApiLocal extends ApiBase {
   // Get local form
-  public getLocalForm = (): Observable<vm1.vm.form> => {
-    const url = `${this.baseUrl}/local_form/`;
+  public getLocalForm = (): Observable<any> => {
+    const url = `${this.baseUrl}/form/`;
     const forms$ = this.sendRequest(url);
     return forms$;
   };
 
-  public getApiForm = (id?: number): Observable<vm1.vm.form> => {
-    const formId = 1;
-    const url = `${this.baseApiUrl}/form/${formId}/`;
-    const forms$ = this.sendRequest(url);
-    return forms$;
-  };
+  // public getApiForm = (id?: number): Observable<vm1.vm.form> => {
+  //   const formId = 1;
+  //   const url = `${this.baseApiUrl}/form/${formId}/`;
+  //   const forms$ = this.sendRequest(url);
+  //   return forms$;
+  // };
 
-  // Get a all forms
-  public getFormList = (params?: any): Observable<any> => {
-    let url = `${this.baseUrl}/forms/`;
-    if (typeof params === 'object') {
-      url = `${url}${queryString.stringify(params)}`;
-    }
-    const forms$ = this.sendRequest(url);
-    return forms$;
-  };
+  // // Get a all forms
+  // public getFormList = (params?: any): Observable<any> => {
+  //   let url = `${this.baseUrl}/forms/`;
+  //   if (typeof params === 'object') {
+  //     url = `${url}${queryString.stringify(params)}`;
+  //   }
+  //   const forms$ = this.sendRequest(url);
+  //   return forms$;
+  // };
 
-  // Check in form
-  public postCheckInForm = (formId: number): Observable<any> => {
-    const url = `${this.baseUrl}/forms/${formId}/check_in/`;
-    const checkedInForm$ = this.sendRequest(url, 'POST');
+  // // Check in form
+  // public postCheckInForm = (formId: number): Observable<any> => {
+  //   const url = `${this.baseUrl}/forms/${formId}/check_in/`;
+  //   const checkedInForm$ = this.sendRequest(url, 'POST');
 
-    return checkedInForm$;
-  };
+  //   return checkedInForm$;
+  // };
 
-  // Check out form
-  public postCheckOutForm = (formId: number): Observable<any> => {
-    const url = `${this.baseUrl}/forms/${formId}/check_out/`;
-    const checkedOutForm$ = this.sendRequest(url, 'POST');
+  // // Check out form
+  // public postCheckOutForm = (formId: number): Observable<any> => {
+  //   const url = `${this.baseUrl}/forms/${formId}/check_out/`;
+  //   const checkedOutForm$ = this.sendRequest(url, 'POST');
 
-    return checkedOutForm$;
-  };
+  //   return checkedOutForm$;
+  // };
 
-  // Create new form
-  public postCreateForm = (data: any): Observable<any> => {
-    const url = `${this.baseUrl}/forms/update/0`;
+  // // Create new form
+  // public postCreateForm = (data: any): Observable<any> => {
+  //   const url = `${this.baseUrl}/forms/update/0`;
 
-    return this.sendRequest(url, 'POST', data);
-  };
+  //   return this.sendRequest(url, 'POST', data);
+  // };
 
-  public publishForm = (formId: number): Observable<any> => {
-    alert('publish goes to repository');
-    const url = `${this.baseUrl}/form_builder/`;
-    const forms$ = this.sendRequest(url);
-    return forms$;
+  // public publishForm = (formId: number): Observable<any> => {
+  //   alert('publish goes to repository');
+  //   const url = `${this.baseUrl}/form_builder/`;
+  //   const forms$ = this.sendRequest(url);
+  //   return forms$;
+  // };
 
-    // const url = `${this.baseUrl}/forms/${formId}/publish/`;
-    // const publishForm$ = this.sendRequest(url, 'POST');
-    // return publishForm$;
-  };
+  // public copyForm = (formId: number): Observable<any> => {
+  //   const url = `${this.baseUrl}/copy/${formId}`;
 
-  public copyForm = (formId: number): Observable<any> => {
-    const url = `${this.baseUrl}/copy/${formId}`;
+  //   return this.sendRequest(url);
+  // };
 
-    return this.sendRequest(url);
-  };
+  // public disableForm = (
+  //   formId: number,
+  //   disabled?: boolean
+  // ): Observable<any> => {
+  //   const url = `${this.baseUrl}/disable/${formId}`;
 
-  public disableForm = (
-    formId: number,
-    disabled?: boolean
-  ): Observable<any> => {
-    const url = `${this.baseUrl}/disable/${formId}`;
+  //   return this.sendRequest(url);
+  // };
 
-    return this.sendRequest(url);
-  };
+  // public updateActiveForm = (updatedForm: any): Observable<any> => {
+  //   console.log(updatedForm);
+  //   debugger;
+  //   const activeFormId = updatedForm.id;
+  //   const method = 'POST';
+  //   const url = `${this.baseApiUrl}/formupdate/${activeFormId}/`;
+  //   const updatedForm$ = this.sendRequest(url, method, updatedForm);
 
-  public updateActiveForm = (updatedForm: any): Observable<any> => {
-    console.log(updatedForm);
-    debugger;
-    const activeFormId = updatedForm.id;
-    const method = 'POST';
-    const url = `${this.baseApiUrl}/formupdate/${activeFormId}/`;
-    const updatedForm$ = this.sendRequest(url, method, updatedForm);
+  //   updatedForm$.subscribe(res => {
+  //     console.log(JSON.stringify(res, null, 2));
+  //   });
 
-    updatedForm$.subscribe(res => {
-      console.log(JSON.stringify(res, null, 2));
-    });
+  //   return updatedForm$;
+  // };
 
-    return updatedForm$;
-  };
+  // // Get template list
+  // public getTemplateList = (): Observable<any> => {
+  //   const url = `${this.baseUrl}/templates/`;
+  //   const templates$ = this.sendRequest(url);
 
-  // Get template list
-  public getTemplateList = (): Observable<any> => {
-    const url = `${this.baseUrl}/templates/`;
-    const templates$ = this.sendRequest(url);
-
-    return templates$;
-  };
+  //   return templates$;
+  // };
 
   private sendRequest(
     url: string,
@@ -135,7 +131,7 @@ class FactoryFormbuilder extends ApiBase {
     return ajax(request).pipe(map(e => e.response));
   }
 }
-export default new FactoryFormbuilder();
+export default new ApiLocal();
 
 // /**
 // -- General --
