@@ -1,4 +1,4 @@
-@import 'app/styles/colors';
+/* @import 'app/styles/colors'; */
 
 body {
   margin: 0;
@@ -28,10 +28,6 @@ body {
 
 .App-intro {
   font-size: large;
-}
-
-.aaaa {
-  color: blue($color: #000000);
 }
 
 @keyframes App-logo-spin {

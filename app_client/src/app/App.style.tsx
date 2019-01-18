@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export const HeaderComponent = styled.div`
-  background-color: yellow;
-
   margin: 0;
   padding: 0;
   font-family: sans-serif;
 
   .asd {
     color: red;
+    background-color: ${props => props.theme.colorRoles.lightgray};
+    padding: ${props => props.theme.colorRoles.basePadding};
   }
 
   .App {
@@ -35,8 +35,9 @@ export const HeaderComponent = styled.div`
     font-size: large;
   }
 
-  .aaaa {
+  & > div > div.aaaa {
     color: blue($color: #000000);
+    padding: 20px;
   }
 
   @keyframes App-logo-spin {
