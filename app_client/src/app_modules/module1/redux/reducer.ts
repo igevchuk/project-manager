@@ -1,7 +1,7 @@
 // import update from 'immutability-helper';
 import { handleActions, Action } from 'redux-actions';
 
-import { vm } from './index';
+import * as vm from './index';
 
 import { FETCH_FORMS, DELETE_TODO, CLEAR_COMPLETED } from './actions';
 

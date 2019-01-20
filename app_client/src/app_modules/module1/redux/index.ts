@@ -1,2 +1,2 @@
-import * as vm from './state';
-export { vm };
+export * from './state';
+// export { vm };
