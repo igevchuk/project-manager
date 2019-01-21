@@ -1,8 +1,24 @@
 import * as React from 'react';
+// import { connect } from 'react-redux';
+
 import { HeaderComponent } from './App.style';
 import logo from './logo.svg';
 
+import repo from './../service/repository';
+
 class App extends React.Component {
+  public componentDidMount() {
+    this.loadData();
+  }
+
+  public loadData = () => {
+    repo.getLocalForm().subscribe(res => {
+      console.log(JSON.stringify(res, null, 2));
+    });
+
+    // this.props.onFetchLocalForms();
+  };
+
   public render() {
     return (
       <HeaderComponent>
@@ -23,3 +39,19 @@ class App extends React.Component {
 }
 
 export default App;
+
+// const mapStateToProps = state => {
+// };
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onFetchForms: () => dispatch(actions.fetchForms())
+//   };
+// };
+
+// const EnhancedToolbar = connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(App);
+
+// export default EnhancedToolbar;

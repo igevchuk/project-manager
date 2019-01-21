@@ -9,10 +9,11 @@ interface IApiLocal {
 }
 
 class ApiLocal extends ApiBase implements IApiLocal {
-  public baseUrl = 'http://localhost:3400';
-  public baseApiUrl = 'http://127.0.0.1:9000/formbuilder/api';
-  public baseApiFullUrl = 'http://127.0.0.1:9000/formbuilder/api/form/1/';
-  public postFormUrl = 'http://127.0.0.1:9000/formbuilder/api/formupdate/{id}/';
+  private baseUrl = 'http://localhost:3400';
+  // private baseApiUrl = 'http://127.0.0.1:9000/formbuilder/api';
+  // private baseApiFullUrl = 'http://127.0.0.1:9000/formbuilder/api/form/1/';
+  // private postFormUrl =
+  //   'http://127.0.0.1:9000/formbuilder/api/formupdate/{id}/';
 
   // Get local form
   public getLocalForm = (): Observable<vm.form> => {
