@@ -4,7 +4,7 @@ import * as React from 'react';
 import { HeaderComponent } from './App.style';
 import logo from './logo.svg';
 
-import repo from './../service/repository';
+import repo from './../__service__/repository';
 
 class App extends React.Component {
   public componentDidMount() {
@@ -13,7 +13,7 @@ class App extends React.Component {
 
   public loadData = () => {
     repo.getLocalForm().subscribe(res => {
-      console.log(JSON.stringify(res, null, 2));
+      // console.log(JSON.stringify(res, null, 2));
     });
 
     // this.props.onFetchLocalForms();
