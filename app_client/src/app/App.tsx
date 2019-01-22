@@ -1,22 +1,29 @@
 import * as React from 'react';
-// import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { ActionType } from 'typesafe-actions';
 
 import { HeaderComponent } from './App.style';
 import logo from './logo.svg';
 
-import repo from './../__service__/repository';
-
-class App extends React.Component {
+// import repo from './../_service_/repository';
+import * as actions from './redux/actions';
+import { IState } from './redux/state';
+type Action = ActionType<typeof actions>;
+interface IAppProps {
+  onFetchForm: () => void;
+}
+class App extends React.Component<IAppProps, {}> {
   public componentDidMount() {
     this.loadData();
   }
 
   public loadData = () => {
-    repo.getLocalForm().subscribe(res => {
-      // console.log(JSON.stringify(res, null, 2));
-    });
+    // repo.getLocalForm().subscribe(res => {
+    //   console.log(JSON.stringify(res, null, 2));
+    // });
 
-    // this.props.onFetchLocalForms();
+    this.props.onFetchForm();
   };
 
   public render() {
@@ -38,20 +45,17 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state: IState) => {
+  return {};
+};
 
-// const mapStateToProps = state => {
-// };
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
+  return {
+    onFetchForm: () => dispatch(actions.fetchForm())
+  };
+};
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onFetchForms: () => dispatch(actions.fetchForms())
-//   };
-// };
-
-// const EnhancedToolbar = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(App);
-
-// export default EnhancedToolbar;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
