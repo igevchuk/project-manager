@@ -1,7 +1,4 @@
-// @flow
 import styled, { css } from "styled-components";
-
-import ripple from "@mixins/ripple";
 
 const primary = css`
   color: #fff;
@@ -53,7 +50,6 @@ const FloatingActionButton = styled.button.attrs({
     border: 0;
   }
 
-  ${ripple()}
   ${props => props.secondary && secondary}
   ${props => props.primary && primary}
   ${props => props.disabled && disabled}

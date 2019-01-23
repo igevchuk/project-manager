@@ -2,7 +2,6 @@
 import * as React from "react";
 import styled, { css } from "styled-components";
 import { Link as RouteLink } from "react-router-dom";
-import withRipple from "@containers/withRipple";
 
 const primary = css`
   color: ${props => props.theme.primary};
@@ -103,5 +102,4 @@ const Button = styled.button`
   box-shadow: ${props => props.boxShadow && '0 2px 5px #FFFFFF'}
 `;
 const LinkComponent = props => <RouteLink {...props} />;
-export const Link = withRipple(Button.withComponent(LinkComponent));
-export default withRipple(Button);
+export default Button;
