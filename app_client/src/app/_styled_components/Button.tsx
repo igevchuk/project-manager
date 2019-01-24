@@ -1,17 +1,16 @@
-// @flow
 import * as React from "react";
 import styled, { css } from "styled-components";
 import { Link as RouteLink } from "react-router-dom";
 
-const primary = css`
+const primaryCss = css`
   color: ${props => props.theme.primary};
 `;
 
-const secondary = css`
+const secondaryCss = css`
   color: ${props => props.theme.secondary};
 `;
 
-const raised = css`
+const raisedCss = css`
   ${props =>
     props.secondary &&
     `
@@ -38,7 +37,28 @@ const raised = css`
   `}
 `;
 
-const Button = styled.button`
+interface IButtonComponentProps {
+  primary?: boolean;
+  secondary?: boolean;
+  raised?: boolean;
+  disabled?: boolean;
+  compact?: boolean;
+  dense?: boolean;
+  style?: {};
+  onClick?(): void;
+}
+
+// class ButtonComponent extends React.Component<IButtonComponentProps, {}> {
+//   public render() {
+//     return <button {...this.props}>{this.props.children}</button>
+//   }
+// }
+
+const ButtonComponent: React.SFC<IButtonComponentProps> = ({children, ...props}) => (
+  <button {...props}>{children}</button>
+);
+
+const Button = styled(ButtonComponent)`
   color: ${props => props.theme.default};
   display: inline-flex;
   justify-content: center;
@@ -81,9 +101,9 @@ const Button = styled.button`
     fill: ${props => (props.primary || props.secondary) && '#FFFFFF'};
   }
 
-  ${props => props.secondary && secondary}
-  ${props => props.primary && primary}
-  ${props => props.raised && raised}
+  ${props => props.secondary && secondaryCss}
+  ${props => props.primary && primaryCss}
+  ${props => props.raised && raisedCss}
   ${props => props.compact && `padding: 0 8px;`}
   ${props =>
     props.disabled &&
@@ -99,7 +119,8 @@ const Button = styled.button`
     font-size: .8125rem;
     line-height: 32px;
   `}
-  box-shadow: ${props => props.boxShadow && '0 2px 5px #FFFFFF'}
+  box-shadow: ${props => props.boxShadow && '0 2px 5px #FFFFFF'};
 `;
+
 const LinkComponent = props => <RouteLink {...props} />;
 export default Button;

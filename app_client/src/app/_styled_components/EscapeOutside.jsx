@@ -22,12 +22,16 @@ class EscapeOutside extends Component {
 
   // close on ESC keydown
   onEscape(e) {
-    if (e.keyCode === 27) this.props.onEscapeOutside();
+    if (e.keyCode === 27) {
+      this.props.onEscapeOutside();
+    }
   }
 
   // close when click outside of component
   onClick(e) {
-    if (!this.ref.contains(e.target)) this.props.onEscapeOutside();
+    if (!this.ref.contains(e.target)) {
+      this.props.onEscapeOutside();
+    }
   }
 
   getRef(ref) {
@@ -36,8 +40,6 @@ class EscapeOutside extends Component {
 
   render() {
     const props = { ...this.props };
-    const { children } = props;
-
     delete props.onEscapeOutside;
     delete props.children;
 

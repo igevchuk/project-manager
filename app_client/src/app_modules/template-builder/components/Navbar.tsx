@@ -74,7 +74,11 @@ class Navbar extends React.Component<any, any> {
 
           <NavListItem>
             <NavLink>
-              <NavDropdown floating={true} options={fakeOptions} trigger={<a><AddCircleOutline />&nbsp;Add</a>}/>
+              <NavDropdown 
+                floating={true} 
+                options={fakeOptions} 
+                trigger={<span className='trigger-btn'><AddCircleOutline />&nbsp;Add</span>}
+              />
             </NavLink>
           </NavListItem>
 

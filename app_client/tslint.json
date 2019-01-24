@@ -6,7 +6,8 @@
     "interface-over-type-literal": false,
     "no-debugger": false,
     "no-console": false,
-    "jsx-no-lambda": false
+    "jsx-no-lambda": false,
+    "no-shadowed-variable": false
   },
   "jsRules": {
     "object-literal-sort-keys": false //Disable for javascript

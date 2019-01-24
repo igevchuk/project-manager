@@ -52,7 +52,7 @@ export const VariantCount = styled.span`
   font-weight: bold;
   padding: 0 0.5em;
   position: absolute;
-  left: 2vmax;
+  left: 1.5vmax;
   & svg {
     font-size: 20px;
   }

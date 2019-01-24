@@ -52,7 +52,8 @@ export const NavLink = styled.a`
     font-size: 18px;
   }
   &:hover .ui.dropdown *, 
-  &.active .ui.dropdown * {
+  &:hover .ui.dropdown .trigger-btn, 
+  &.active .ui.dropdown .trigger-btn {
     color: #000;
   }
 `;
@@ -63,11 +64,9 @@ export const NavDropdown = styled(Dropdown)`
     color: #757575;
     display: inline-flex;
     font-weight: 400;
-    ${activeMixin}
-    & > a {
+    & .trigger-btn {
       align-items: center;
       display: inline-flex;
-      color: rgb(117, 117, 117);
     }
     & ~ i.icon {
       margin-left: .5rem;
