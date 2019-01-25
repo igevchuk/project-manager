@@ -45,3 +45,39 @@ export const weatherErrorAction = createAction(
   resolve => (error: Error) => resolve(error)
 );
 export const mapReadyAction = createAction(MAP_READY);
+
+// ==========================
+
+// Loading state -> FETCH_SEARCH_DATA
+// Success -> FETCH_SEARCH_SUCCESS
+// Failure -> FETCH_SEARCH_FAILURE
+
+export const FETCH_SEARCH_DATA = 'FETCH_SEARCH_DATA';
+export const FETCH_SEARCH_SUCCESS = 'FETCH_SEARCH_SUCCESS';
+export const FETCH_SEARCH_FAILURE = 'FETCH_SEARCH_SUCCESS';
+
+export function fetchSearchData(args) {
+  return async dispatch => {
+    // Initiate loading state
+    dispatch({
+      type: FETCH_SEARCH_DATA
+    });
+    try {
+      // Call the API
+      const result = null; // = await fetchSearchData_(args.pageCount, args.itemsPerPage);
+
+      // Update payload in reducer on success
+      dispatch({
+        type: FETCH_SEARCH_SUCCESS,
+        payload: result,
+        currentPage: args.pageCount
+      });
+    } catch (err) {
+      // Update error in reducer on failure
+      dispatch({
+        type: FETCH_SEARCH_FAILURE,
+        error: err
+      });
+    }
+  };
+}

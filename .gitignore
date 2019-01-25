@@ -19,7 +19,9 @@
 /app_client/yarn-error.log*
 
 # excludes new feature
-/app_client/src/app_modules/feature
+/app_client/src/app_modules/_feature
+/app_client/src/libs
+
 
 # excludes new feature
-/app_server/.resource
+/app_server/_resource

@@ -9,12 +9,12 @@ import TemplateBuilder from './../app_modules/template-builder';
 const Routes: React.SFC = () => {
   return (
     <Router>
-        <div style={{ marginTop: '64px' }}>
-          <Route path="/page1" component={Page1} />
-          <Route path="/page2" component={Page2} />
-          <Route path="/templates" component={TemplateLibrary} />
-          <Route path="/template-builder" component={TemplateBuilder} />
-        </div>
+      <div style={{ marginTop: '64px' }}>
+        <Route path="/page1" component={Page1} />
+        <Route path="/page2" component={Page2} />
+        <Route path="/templates" component={TemplateLibrary} />
+        <Route path="/template-builder" component={TemplateBuilder} />
+      </div>
     </Router>
   );
 };

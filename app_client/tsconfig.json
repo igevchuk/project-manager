@@ -32,6 +32,7 @@
     "src/setupTests.ts",
     "src/app/_styled_components",
     "src/app/layouts",
-    "src/app_modules/template-builder"
+    "src/app_modules/template-builder",
+    "src/app_modules/_feature"
   ]
 }
