@@ -1,3 +1,6 @@
+#
+# client side
+#
 # dependencies
 /app_client/node_modules
 
@@ -19,9 +22,28 @@
 /app_client/yarn-error.log*
 
 # excludes new feature
-/app_client/src/app_modules/_feature
-/app_client/src/libs
+/app_client/src/__feature__
 
+#
+# server side
+#
+
+# dependencies
+/app_server/node_modules
+
+# production
+/app_server/build
+
+# misc
+/app_server/.DS_Store
+/app_server/.env.local
+/app_server/.env.development.local
+/app_server/.env.test.local
+/app_server/.env.production.local
+
+/app_server/npm-debug.log*
+/app_server/yarn-debug.log*
+/app_server/yarn-error.log*
 
 # excludes new feature
-/app_server/_resource
+/app_server/__resource__

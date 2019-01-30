@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^3.9.0",
     "@material-ui/icons": "^3.0.2",
+    "json-schema-faker": "^0.5.0-rc16",
     "moment": "^2.24.0",
     "node-sass": "^4.11.0",
     "query-string": "^6.2.0",
@@ -45,6 +46,12 @@
     "typescript": "^3.2.2"
   },
   "prettier": {
-    "singleQuote": true
+    "singleQuote": true,
+    "[json]": {
+      "editor.formatOnSave": false
+    },
+    "[jsonc]": {
+      "editor.formatOnSave": false
+    }
   }
 }

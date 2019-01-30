@@ -7,6 +7,8 @@ export type Todo = {
 export type IState = Todo[];
 
 export type IState_ = {
+  fetching?: false;
+  upToDate?: false;
   activeForm?: form;
   forms?: form[];
   templates?: template[];

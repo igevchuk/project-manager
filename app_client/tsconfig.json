@@ -11,15 +11,12 @@
     "moduleResolution": "node",
     "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
-    // "noImplicitReturns": true,
     "noImplicitReturns": false,
     "noImplicitThis": true,
-    // "noImplicitAny": true,
     "noImplicitAny": false,
     "importHelpers": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    // "noUnusedLocals": true
     "noUnusedLocals": false
   },
   "exclude": [
@@ -31,8 +28,9 @@
     "jest",
     "src/setupTests.ts",
     "src/app/_styled_components",
+    "src/atomic",
     "src/app/layouts",
     "src/app_modules/template-builder",
-    "src/app_modules/_feature"
+    "src/__feature__"
   ]
 }

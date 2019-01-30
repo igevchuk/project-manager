@@ -26,6 +26,7 @@ const AppComponet: React.SFC = () => {
   );
 };
 
-ReactDOM.render(<AppComponet />, document.getElementById(
-  'root'
-) as HTMLElement);
+// https://codesandbox.io/embed/jn9657p4w9?fontsize=17&moduleview=1&previewwindow=tests
+const rootElement = document.getElementById('root') as HTMLElement;
+
+ReactDOM.render(<AppComponet />, rootElement);
