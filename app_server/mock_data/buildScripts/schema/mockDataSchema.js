@@ -1,9 +1,9 @@
-var schema = {
+let schema = {
   type: "object",
   properties: {
     users: {
       type: "array",
-      minItems: 3,
+      minItems: 4,
       maxItems: 5,
       items: {
         type: "object",
@@ -15,18 +15,19 @@ var schema = {
           },
           firstName: {
             type: "string",
-            faker: "name.firstName"
+            faker: "name.firstName",
+            minLength: 1000
           },
           lastName: {
             type: "string",
-            faker: "name.lastName"
+            faker: "lastName"
           },
           email: {
             type: "string",
-            faker: "internet.email"
+            faker: "email"
           }
         },
-        required: ["id", "type", "lastname", "email"]
+        required: ["id", "type", "firstName", "lastname", "email"]
       }
     }
   },
