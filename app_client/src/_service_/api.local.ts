@@ -18,13 +18,13 @@ class ApiLocal extends ApiBase implements IApiLocal {
   // };
 
   public getLocalForm = (): Observable<any> => {
-    const url = `${this.baseUrl}/template/`;
+    const url = `${this.baseUrl}/templates/`;
     const forms$ = this.sendRequest(url);
     return forms$;
   };
 
   public postLocalForm0 = (): Observable<any> => {
-    const url = `${this.baseUrl}/template/`;
+    const url = `${this.baseUrl}/templates/`;
     const forms$ = this.sendRequest(url);
     return forms$;
   };
@@ -73,7 +73,7 @@ class ApiLocal extends ApiBase implements IApiLocal {
       }
     ];
 
-    fetch('http://localhost:3004/template/', {
+    fetch('http://localhost:3004/templates/', {
       method: 'POST',
       body: JSON.stringify(body),
       headers: { 'Content-Type': 'application/json' }

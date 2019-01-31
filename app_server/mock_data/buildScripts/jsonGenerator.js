@@ -15,16 +15,4 @@ jsf.resolve(mockTemplateSchema).then(sample => {
       console.log("Mock data generated.");
     }
   });
-
-  // console.log(sample);
-  // console.log(sample.user.name);
 });
-
-// const json = JSON.stringify(jsf.generate(mockDataSchema));
-// fs.writeFile("./mock_data/data/template.json", json, function(err) {
-//   if (err) {
-//     return console.log(err);
-//   } else {
-//     console.log("Mock data generated.");
-//   }
-// });

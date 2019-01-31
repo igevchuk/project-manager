@@ -1,10 +1,10 @@
-let schema1 = {
+let schema = {
   type: "object",
   properties: {
-    users: {
+    template: {
       type: "array",
-      minItems: 14,
-      maxItems: 20,
+      minItems: 4,
+      maxItems: 8,
       items: {
         type: "object",
         properties: {
@@ -14,11 +14,12 @@ let schema1 = {
           firstName: {
             type: "string",
             faker: "name.firstName",
-            minLength: 1000
+            minLength: 100
           },
           lastName: {
             type: "string",
-            faker: "name.lastName"
+            faker: "name.lastName",
+            minLength: 40
           },
           email: {
             type: "string",
@@ -26,11 +27,18 @@ let schema1 = {
             faker: "internet.email"
           }
         },
-        required: ["id", "firstName", "lastname", "email"]
+        required: ["id", "firstName", "lastName", "email"]
       }
     }
   },
-  required: ["users"]
+  required: ["template", "asd"],
+  definitions: {
+    positiveInt: {
+      type: "integer",
+      minimum: 0,
+      exclusiveMinimum: true
+    }
+  }
 };
 
 let schema0 = {

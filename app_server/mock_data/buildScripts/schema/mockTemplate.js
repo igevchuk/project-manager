@@ -1,37 +1,44 @@
 let schema = {
   type: "object",
   properties: {
-    template: {
+    templates: {
       type: "array",
       minItems: 4,
-      maxItems: 5,
+      maxItems: 8,
       items: {
         type: "object",
         properties: {
           id: {
-            type: "number",
-            unique: true,
-            minimum: 1
+            $ref: "#/definitions/positiveInt"
           },
           firstName: {
             type: "string",
             faker: "name.firstName",
-            minLength: 1000
+            minLength: 100
           },
           lastName: {
             type: "string",
-            faker: "lastName"
+            faker: "name.lastName",
+            minLength: 40
           },
           email: {
             type: "string",
-            faker: "email"
+            format: "email",
+            faker: "internet.email"
           }
         },
-        required: ["id", "type", "firstName", "lastname", "email"]
+        required: ["id", "firstName", "lastName", "email"]
       }
     }
   },
-  required: ["template"]
+  required: ["templates"],
+  definitions: {
+    positiveInt: {
+      type: "integer",
+      minimum: 0,
+      exclusiveMinimum: true
+    }
+  }
 };
 
 module.exports = schema;
