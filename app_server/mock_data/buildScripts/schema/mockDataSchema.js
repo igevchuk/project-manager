@@ -1,7 +1,7 @@
 let schema = {
   type: "object",
   properties: {
-    template: {
+    templates: {
       type: "array",
       minItems: 4,
       maxItems: 8,
@@ -31,7 +31,7 @@ let schema = {
       }
     }
   },
-  required: ["template", "asd"],
+  required: ["templates"],
   definitions: {
     positiveInt: {
       type: "integer",
@@ -40,6 +40,8 @@ let schema = {
     }
   }
 };
+
+module.exports = schema;
 
 let schema0 = {
   type: "object",

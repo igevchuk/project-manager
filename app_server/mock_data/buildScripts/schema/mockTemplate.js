@@ -3,31 +3,144 @@ let schema = {
   properties: {
     templates: {
       type: "array",
-      minItems: 4,
-      maxItems: 8,
+      minItems: 2,
+      maxItems: 2,
       items: {
         type: "object",
         properties: {
           id: {
             $ref: "#/definitions/positiveInt"
           },
-          firstName: {
+          name: {
             type: "string",
-            faker: "name.firstName",
-            minLength: 100
+            faker: "name.name",
+            minLength: 20
           },
-          lastName: {
+          textLevel: {
             type: "string",
-            faker: "name.lastName",
-            minLength: 40
+            faker: "name.textLevel",
+            minLength: 15
           },
-          email: {
-            type: "string",
-            format: "email",
-            faker: "internet.email"
+          article: {
+            type: "array",
+            minItems: 4,
+            maxItems: 4,
+            items: {
+              type: "object",
+              properties: {
+                id: {
+                  $ref: "#/definitions/positiveInt"
+                },
+                name: {
+                  type: "string",
+                  faker: "name.name",
+                  minLength: 20
+                }
+              }
+            }
+          },
+          section: {
+            type: "array",
+            minItems: 4,
+            maxItems: 4,
+            items: {
+              type: "object",
+              properties: {
+                id: {
+                  $ref: "#/definitions/positiveInt"
+                },
+                name: {
+                  type: "string",
+                  faker: "name.name",
+                  minLength: 20
+                }
+              }
+            }
+          },
+          subSection: {
+            type: "array",
+            minItems: 4,
+            maxItems: 4,
+            items: {
+              type: "object",
+              properties: {
+                id: {
+                  $ref: "#/definitions/positiveInt"
+                },
+                name: {
+                  type: "string",
+                  faker: "name.name",
+                  minLength: 20
+                }
+              }
+            }
+          },
+          clause: {
+            type: "array",
+            minItems: 4,
+            maxItems: 4,
+            items: {
+              type: "object",
+              properties: {
+                id: {
+                  $ref: "#/definitions/positiveInt"
+                },
+                name: {
+                  type: "string",
+                  faker: "name.name",
+                  minLength: 20
+                }
+              }
+            }
+          },
+          subClause: {
+            type: "array",
+            minItems: 4,
+            maxItems: 4,
+            items: {
+              type: "object",
+              properties: {
+                id: {
+                  $ref: "#/definitions/positiveInt"
+                },
+                name: {
+                  type: "string",
+                  faker: "name.name",
+                  minLength: 20
+                }
+              }
+            }
+          },
+          textSegment: {
+            type: "array",
+            minItems: 4,
+            maxItems: 4,
+            items: {
+              type: "object",
+              properties: {
+                id: {
+                  $ref: "#/definitions/positiveInt"
+                },
+                name: {
+                  type: "string",
+                  faker: "name.name",
+                  minLength: 20
+                }
+              }
+            }
           }
         },
-        required: ["id", "firstName", "lastName", "email"]
+        required: [
+          "id",
+          "name",
+          "textLevel",
+          "article",
+          "section",
+          "subSection",
+          "clause",
+          "subClause",
+          "textSegment"
+        ]
       }
     }
   },

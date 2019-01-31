@@ -1,88 +1,26 @@
 {
   "templates": [
     {
-      "id": 11267536,
-      "firstName": "dolornostrudet sit sint pariaturincididunt exexaliqua officiaquis dolore incididunt etculpa minim labore",
-      "lastName": "esseametenim incididunt in est essevelit nostrud",
-      "email": "2IYntH63UnEN@XoUYUTFzauZrhf.lenx"
+      "id": 35467282,
+      "name": "proidentminimtempor dolore",
+      "textLevel": "Duisreprehenderit",
+      "article": [{}, {}, {}, {}],
+      "section": [{}, {}, {}, {}],
+      "subSection": [{}, {}, {}, {}],
+      "clause": [{}, {}, {}, {}],
+      "subClause": [{}, {}, {}, {}],
+      "textSegment": [{}, {}, {}, {}]
     },
     {
-      "id": 71908375,
-      "firstName": "fugiat consecteturirure doloreproident ullamco est euaute pariatur aliquacommodo veniam aliqua sint irure",
-      "lastName": "mollit ea nisienim infugiat aute Duis irure ut",
-      "email": "WdbkV753iiu@LsufZYFUPXHs.stz"
-    },
-    {
-      "id": 53342043,
-      "firstName": "cupidatat elit esse occaecatveniam dolor sint id minimnullavoluptate culpa do cillumpariaturnon minim",
-      "lastName": "enim in proident idid sedenimvelit non ad aute",
-      "email": "Rn1SBha8V1nVE@FlzQYctPPSnAyVaKOZMaW.mbeb"
-    },
-    {
-      "id": 54709854,
-      "firstName": "in officiaesse aute Duis ut inullamco ipsum et ea dolorDuis officia utculpa et dolore Utminim Utculpa a",
-      "lastName": "Excepteur in aliquip ea temporvelit in laborum veniam",
-      "email": "Q5txhk2CaILdX@gNyYXw.uf"
-    },
-    {
-      "id": 70204678,
-      "firstName": "culpa irure minim voluptatesint in officia estdeseruntin occaecat Excepteurcommodo in laborum esseut",
-      "lastName": "anim dolore eaenim ea culpa exercitation",
-      "email": "QBuLt4Euc9q-gbA@UlnjRNXwzEOVmsRnAJnLUfqysUvZg.gjy"
-    },
-    {
-      "id": 40001485,
-      "firstName": "ad sint aliqua dolore ipsumin voluptatealiquaconsectetur pariatur suntsit in laboris cillumtempor voluptate incididunt mollit ex",
-      "lastName": "ex elit aliqua adipisicing inlabore tempor aute ullamco",
-      "email": "qPM9Q9ijo0tCp@iDTSsDBuaSeMbUkFMQXBnyk.yhe"
-    },
-    {
-      "id": 81337596,
-      "firstName": "est seddeserunt elit in fugiat dolorexercitation occaecat aliquip ad exin aliquipcommodo minim velit",
-      "lastName": "consectetur proidentoccaecat esse incidid",
-      "email": "0cT5OsmJC7jw@jXHYBCaecQha.nelw"
-    },
-    [
-      {
-        "id": 1,
-        "name": "name 1",
-        "last_edited_date": 1519904640,
-        "last_edited_by": "Abrar Huq asd",
-        "created": 1519904640,
-        "checked_out": false,
-        "linked_to_template": "Yes",
-        "status": "Draft"
-      },
-      {
-        "id": 2,
-        "name": "name 2",
-        "last_edited_date": 1519904640,
-        "last_edited_by": "Abrar Huq dsa",
-        "created": 1519904640,
-        "checked_out": true,
-        "linked_to_template": "No",
-        "status": "Draft"
-      },
-      {
-        "id": 3,
-        "name": "name 3",
-        "last_edited_date": 1519904640,
-        "last_edited_by": "Abrar Huq aaaa",
-        "created": 1519904640,
-        "checked_out": false,
-        "linked_to_template": "Yes",
-        "status": "Published"
-      },
-      {
-        "id": 4,
-        "name": "name 4",
-        "last_edited_date": 1519904641,
-        "last_edited_by": "Abrar Huq bbbb",
-        "created": 1519904640,
-        "checked_out": false,
-        "linked_to_template": "No",
-        "status": "Draft"
-      }
-    ]
+      "id": 85022253,
+      "name": "pariatur magnaminimsint",
+      "textLevel": "laborumesse commodo veniam",
+      "article": [{}, {}, {}, {}],
+      "section": [{}, {}, {}, {}],
+      "subSection": [{}, {}, {}, {}],
+      "clause": [{}, {}, {}, {}],
+      "subClause": [{}, {}, {}, {}],
+      "textSegment": [{}, {}, {}, {}]
+    }
   ]
 }
