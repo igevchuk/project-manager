@@ -12,6 +12,13 @@ import configureStore from './_redux_/store';
 import App from './app/App';
 // import Routes from './app/Routes';
 
+import repo from './_service_/repository';
+
+repo.getLocalForm().subscribe(res => {
+  console.log(JSON.stringify(res, null, 2));
+  repo.postCreateForm();
+});
+
 const store = configureStore();
 
 const AppComponet: React.SFC = () => {

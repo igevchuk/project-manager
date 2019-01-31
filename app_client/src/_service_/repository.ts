@@ -1,6 +1,9 @@
 import ApiLocal from './api.local';
 
 const getLocalForm = ApiLocal.getLocalForm;
+const postCreateForm = ApiLocal.postCreateForm;
+
+// postCreateForm
 // const checkoutForm = factory_formbuilder.postCheckOutForm;
 // const copyForm = factory_formbuilder.copyForm;
 // const createForm = factory_formbuilder.postCreateForm;
@@ -13,7 +16,8 @@ const getLocalForm = ApiLocal.getLocalForm;
 // const updateActiveForm = factory_formbuilder.updateActiveForm;
 
 const repo = {
-  getLocalForm
+  getLocalForm,
+  postCreateForm
   // checkoutForm,
   // copyForm,
   // createForm,

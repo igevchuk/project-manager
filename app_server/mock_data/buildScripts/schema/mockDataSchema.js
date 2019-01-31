@@ -1,4 +1,39 @@
-let schema = {
+let schema1 = {
+  type: "object",
+  properties: {
+    users: {
+      type: "array",
+      minItems: 14,
+      maxItems: 20,
+      items: {
+        type: "object",
+        properties: {
+          id: {
+            $ref: "#/definitions/positiveInt"
+          },
+          firstName: {
+            type: "string",
+            faker: "name.firstName",
+            minLength: 1000
+          },
+          lastName: {
+            type: "string",
+            faker: "name.lastName"
+          },
+          email: {
+            type: "string",
+            format: "email",
+            faker: "internet.email"
+          }
+        },
+        required: ["id", "firstName", "lastname", "email"]
+      }
+    }
+  },
+  required: ["users"]
+};
+
+let schema0 = {
   type: "object",
   properties: {
     users: {
@@ -34,4 +69,4 @@ let schema = {
   required: ["users"]
 };
 
-module.exports = schema;
+module.exports = schema0;

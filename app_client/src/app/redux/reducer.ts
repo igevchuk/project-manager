@@ -5,14 +5,8 @@ import { FETCH_FORM, FETCH_FORM_FULFILLED } from './actions';
 
 import { IState } from './state';
 
-export type RootState = {
-  weather: {};
-  map: {};
-};
-
 const initialState: IState = {
-  activeForm: {},
-  forms: [],
+  activeId: 1,
   templates: []
 };
 

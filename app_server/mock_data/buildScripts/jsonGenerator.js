@@ -1,11 +1,11 @@
 var jsf = require("json-schema-faker");
 var fs = require("fs");
 
-var schemaBase = require("./schema/mockDataSchema");
+var schemaBase = require("./schema/schemaBase");
 var mockDataSchema = require("./schema/mockDataSchema");
+var mockTemplateSchema = require("./schema/mockTemplate");
 
-// node ./mock_data/buildScripts/generateMockData
-jsf.resolve(mockDataSchema).then(sample => {
+jsf.resolve(mockTemplateSchema).then(sample => {
   const json = JSON.stringify(sample);
 
   fs.writeFile("./mock_data/data/template.json", json, function(err) {
