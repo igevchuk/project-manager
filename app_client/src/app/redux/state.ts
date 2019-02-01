@@ -71,7 +71,6 @@ export type subClause = {
 };
 export type textSegment = {
   id?: number;
-  type?: textLevelBase;
   isStart?: boolean;
   content?: string;
   ref?: ref;

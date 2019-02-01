@@ -8,7 +8,7 @@ var mockTemplateSchema = require("./schema/mockTemplate");
 jsf.resolve(mockTemplateSchema).then(sample => {
   const json = JSON.stringify(sample);
 
-  fs.writeFile("./mock_data/data/template.json", json, function(err) {
+  fs.writeFile("./mock_data/data/forms.json", json, function(err) {
     if (err) {
       return console.log(err);
     } else {
