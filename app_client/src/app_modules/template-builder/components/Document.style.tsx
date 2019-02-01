@@ -10,7 +10,7 @@ export const TextHover = styled.span`
   position: relative;
   &:hover {
     outline: 2px solid orange;
-    background-color: rgb(255,252,220);
+    background-color: rgb(255, 252, 220);
     cursor: pointer;
     .text-hover-feat {
       display: block;
@@ -44,7 +44,7 @@ export const TextNode = styled.span``;
 
 export const VariantCount = styled.span`
   align-items: center;
-  background: rgb(255,252,220);
+  background: rgb(255, 252, 220);
   border: 1px solid orange;
   border-radius: 3px;
   color: orange;

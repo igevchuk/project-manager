@@ -1,3 +1,5 @@
+// https://codesandbox.io/embed/jn9657p4w9?fontsize=17&moduleview=1&previewwindow=tests
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -10,14 +12,12 @@ import ErrorBoundary from './app/ErrorBoundary';
 import configureStore from './_redux_/store';
 
 import App from './app/App';
-// import Routes from './app/Routes';
 
-import repo from './_service_/repository';
-
-repo.getLocalForm().subscribe(res => {
-  console.log(JSON.stringify(res, null, 2));
-  repo.postCreateForm();
-});
+// import repo from './_service_/repository';
+// repo.getLocalForm().subscribe(res => {
+//   console.log(JSON.stringify(res, null, 2));
+//   repo.postCreateForm();
+// });
 
 const store = configureStore();
 
@@ -33,7 +33,5 @@ const AppComponet: React.SFC = () => {
   );
 };
 
-// https://codesandbox.io/embed/jn9657p4w9?fontsize=17&moduleview=1&previewwindow=tests
 const rootElement = document.getElementById('root') as HTMLElement;
-
 ReactDOM.render(<AppComponet />, rootElement);

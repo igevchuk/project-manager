@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate-mock-data": "node ./mock_data/buildScripts/jsonGenerator",
-    "prestart-mockapi": "npm run generate-mock-data",
+    "__prestart-mockapi": "npm run generate-mock-data",
     "start-mockapi": "json-server --watch ./mock_data/data/template.json --port 3004"
   },
   "keywords": [],

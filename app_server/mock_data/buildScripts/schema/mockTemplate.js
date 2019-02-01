@@ -35,9 +35,14 @@ let schema = {
                   type: "string",
                   faker: "name.name",
                   minLength: 20
+                },
+                ref: {
+                  templateId: {
+                    $ref: "#/definitions/positiveInt"
+                  }
                 }
               },
-              required: ["id", "name"]
+              required: ["id", "name", "ref"]
             }
           },
           section: {
@@ -54,9 +59,14 @@ let schema = {
                   type: "string",
                   faker: "name.name",
                   minLength: 20
+                },
+                ref: {
+                  articleId: {
+                    $ref: "#/definitions/positiveInt"
+                  }
                 }
               },
-              required: ["id", "name"]
+              required: ["id", "name", "ref"]
             }
           },
           subSection: {
@@ -73,9 +83,14 @@ let schema = {
                   type: "string",
                   faker: "name.name",
                   minLength: 20
+                },
+                ref: {
+                  sectionId: {
+                    $ref: "#/definitions/positiveInt"
+                  }
                 }
               },
-              required: ["id", "name"]
+              required: ["id", "name", "ref"]
             }
           },
           clause: {
@@ -92,9 +107,14 @@ let schema = {
                   type: "string",
                   faker: "name.name",
                   minLength: 20
+                },
+                ref: {
+                  subSectionId: {
+                    $ref: "#/definitions/positiveInt"
+                  }
                 }
               },
-              required: ["id", "name"]
+              required: ["id", "name", "ref"]
             }
           },
           subClause: {
@@ -111,9 +131,14 @@ let schema = {
                   type: "string",
                   faker: "name.name",
                   minLength: 20
+                },
+                ref: {
+                  clauseId: {
+                    $ref: "#/definitions/positiveInt"
+                  }
                 }
               },
-              required: ["id", "name"]
+              required: ["id", "name", "ref"]
             }
           },
           textSegment: {
@@ -137,18 +162,6 @@ let schema = {
                   maxLength: 400
                 },
                 ref: {
-                  articleId: {
-                    $ref: "#/definitions/positiveInt"
-                  },
-                  sectionId: {
-                    $ref: "#/definitions/positiveInt"
-                  },
-                  subSectionId: {
-                    $ref: "#/definitions/positiveInt"
-                  },
-                  clauseId: {
-                    $ref: "#/definitions/positiveInt"
-                  },
                   subClauseId: {
                     $ref: "#/definitions/positiveInt"
                   }
