@@ -1,12 +1,13 @@
 export type IState = {
   activeId: number;
+  // article?: article;
   templates?: template[];
 };
 
 export type template = {
   id?: number;
   name?: string;
-  textLevel?: textLevel;
+  textLevel?: string;
 
   article?: article[];
   section?: section[];
@@ -18,63 +19,54 @@ export type template = {
   //
   // previous preperties, will be removed
   //
-  approval_required?: boolean;
-  checked_out?: string;
-  created?: string;
-  creator?: string;
-  creatoremail?: string;
-  creatorid?: number;
-  last_decision?: string;
-  published?: string;
-  publisher?: string;
-  updated?: string;
-  updater?: string;
-  updateremail?: string;
-  updaterid?: number;
-  value?: string;
-  variants?: template_variant[];
+  // approval_required?: boolean;
+  // checked_out?: string;
+  // created?: string;
+  // creator?: string;
+  // creatoremail?: string;
+  // creatorid?: number;
+  // last_decision?: string;
+  // published?: string;
+  // publisher?: string;
+  // updated?: string;
+  // updater?: string;
+  // updateremail?: string;
+  // updaterid?: number;
+  // value?: string;
+  // variants?: template_variant[];
 };
 
 export type article = {
   id?: number;
-  type?: textLevelBase;
-  title?: string;
-  decorator?: decorator;
+  name?: string;
+  ref?: { templateId?: number };
 };
 export type section = {
   id?: number;
-  type?: textLevelBase;
-  title?: string;
-  ref?: ref;
-  decorator?: decorator;
+  name?: string;
+  ref?: { articleId?: number };
 };
 export type subSection = {
   id?: number;
-  type?: textLevelBase;
-  title?: string;
-  ref?: ref;
-  decorator?: decorator;
+  name?: string;
+  ref?: { sectionId?: number };
 };
 export type clause = {
   id?: number;
-  type?: textLevelBase;
-  title?: string;
-  ref?: ref;
-  decorator?: decorator;
+  name?: string;
+  ref?: { subSectionId?: number };
 };
 export type subClause = {
   id?: number;
-  type?: textLevelBase;
-  title?: string;
-  ref?: ref;
-  decorator?: decorator;
+  name?: string;
+  ref?: { clauseId?: number };
 };
 export type textSegment = {
   id?: number;
-  isStart?: boolean;
-  content?: string;
-  ref?: ref;
-  decorator?: decorator;
+  sequence?: number;
+  segment?: string;
+  ref?: { subClauseId?: number };
+  decorator?: { bold: boolean; italic: boolean };
 };
 
 export type decorator = {

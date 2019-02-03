@@ -13,9 +13,15 @@ import { IState } from './redux/state';
 
 type Action = ActionType<typeof actions>;
 interface IAppProps {
+  segment: {
+    id: number;
+    sequence?: number;
+    segment?: string;
+    ref?: { subClauseId?: number };
+    decorator?: { bold: boolean; italic: boolean };
+  };
   onFetchForm: () => void;
 }
-
 class App extends React.Component<IAppProps, {}> {
   public componentDidMount() {
     this.loadData();
@@ -26,17 +32,23 @@ class App extends React.Component<IAppProps, {}> {
   };
 
   public render() {
+    console.log(this.props.segment);
+    const { id, sequence, segment, ref, decorator } = this.props.segment || 0;
     return (
       <div>
-        <Header isAdmin={false} />
-        <Routes />
+        {/* <Header isAdmin={false} />
+        <Routes /> */}
+        <div>{segment}</div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state: IState) => {
-  return {};
+const mapStateToProps = state => {
+  const template = state.templateReducer.templates[0];
+  const segment = template && template.textSegment[0];
+  // console.log(template && template.textSegment[0]);
+  return { segment };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
