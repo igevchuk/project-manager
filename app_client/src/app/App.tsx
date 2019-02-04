@@ -8,18 +8,16 @@ import { ActionType } from 'typesafe-actions';
 import Header from './layouts/Header';
 import Routes from './Routes';
 
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DragDropContext } from 'react-dnd';
+
 import * as actions from './redux/actions';
 import { IState } from './redux/state';
+import { textSegment } from './redux/state';
 
 type Action = ActionType<typeof actions>;
 interface IAppProps {
-  segment: {
-    id: number;
-    sequence?: number;
-    segment?: string;
-    ref?: { subClauseId?: number };
-    decorator?: { bold: boolean; italic: boolean };
-  };
+  segment: textSegment;
   onFetchForm: () => void;
 }
 class App extends React.Component<IAppProps, {}> {
@@ -36,8 +34,8 @@ class App extends React.Component<IAppProps, {}> {
     const { id, sequence, segment, ref, decorator } = this.props.segment || 0;
     return (
       <div>
-        {/* <Header isAdmin={false} />
-        <Routes /> */}
+        <Header isAdmin={false} />
+        <Routes />
         <div>{segment}</div>
       </div>
     );
@@ -61,3 +59,5 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App);
+
+// export default DragDropContext(HTML5Backend)(FormContainer);
