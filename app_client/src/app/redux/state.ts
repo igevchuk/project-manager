@@ -1,13 +1,13 @@
 export type IState = {
   activeId: number;
-  // article?: article;
   templates?: template[];
 };
 
 export type template = {
   id?: number;
   name?: string;
-  textLevel?: string;
+  selectedType?: number;
+  type: type[];
 
   article?: article[];
   section?: section[];
@@ -34,6 +34,10 @@ export type template = {
   // updaterid?: number;
   // value?: string;
   // variants?: template_variant[];
+};
+export type type = {
+  id?: number;
+  model?: string[];
 };
 
 export type article = {
@@ -66,7 +70,7 @@ export type textSegment = {
   sequence?: number;
   segment?: string;
   ref?: { subClauseId?: number };
-  decorator?: { bold: boolean; italic: boolean };
+  decorator?: decorator;
 };
 
 export type decorator = {

@@ -30,7 +30,7 @@ class App extends React.Component<IAppProps, {}> {
   };
 
   public render() {
-    console.log(this.props.segment);
+    // console.log(this.props.segment);
     const { id, sequence, segment, ref, decorator } = this.props.segment || 0;
     return (
       <div>

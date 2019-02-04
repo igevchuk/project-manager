@@ -2,6 +2,42 @@
   "templates": [
     {
       "id": 1,
+      "selectedType": 1,
+      "type": [
+        {
+          "id": 1,
+          "model": [
+            "article1",
+            "section",
+            "subSection",
+            "clause",
+            "subClause",
+            "textSegment"
+          ]
+        },
+        {
+          "id": 2,
+          "model": [
+            "article1",
+            "title",
+            "section",
+            "subSection",
+            "clause",
+            "textSegment"
+          ]
+        },
+        {
+          "id": 3,
+          "model": [
+            "section1",
+            "article",
+            "section",
+            "subSection",
+            "clause",
+            "textSegment"
+          ]
+        }
+      ],
       "name": "in cillum culpaeu dolore est",
       "article": [
         {

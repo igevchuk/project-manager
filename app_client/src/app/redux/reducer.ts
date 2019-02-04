@@ -22,18 +22,13 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case types.FETCH_FORM_FULFILLED: {
       const templates = action.payload;
-      // console.log(templates);
-
       const newState = {
         ...state,
         templates: Array(templates)[0]
       };
-
-      // console.log(newState.templates[0]);
+      console.log(newState.templates[0]);
 
       return newState;
-
-      // return state;
     }
 
     default:
