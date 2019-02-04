@@ -8,14 +8,37 @@ class Variant extends React.Component<any, any> {
     super(props);
   }
 
+  public getTitle = (title) => {
+    return title.trim() || 'New Variant';
+  }
+
+  public handleEditTitle = ({ target }) => {
+    const { variant, onUpdate } = this.props;
+    const updatedVariant = {...variant, title: target.textContent};
+
+    onUpdate(updatedVariant);
+  }
+
+  public handleEditText = ({ target }) => {
+    const { variant, onUpdate } = this.props;
+    const updatedVariant = {...variant, title: target.innerHTML};
+
+    onUpdate(updatedVariant);
+  }
+
   public render() {
-    const { content } = this.props;
+    const { variant } = this.props;
 
     return (
       <Form.Field>
-        <label>1. Standart/Neutral</label>
+        <label>{variant.seq}.</label>
+
+        <label contentEditable={true} onBlur={this.handleEditTitle}>{this.getTitle(variant.title)}</label>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Editable contentEditable={true}>{ content }</Editable>
+          <Editable contentEditable={true} onBlur={this.handleEditText}>
+            { variant.text }
+          </Editable>
+
           <Icon link={true} name='move' />
         </div>
       </Form.Field>

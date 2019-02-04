@@ -28,6 +28,40 @@ const fakeSegments = [
   { id: 5, text: 'Mauris ultricies pellentesque est vel maximus. ' }
 ];
 
+const fakeVariants = [
+  { 
+    id: 1, 
+    title: "Standart/Neutral Language", 
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+    seq: 1
+  },
+  { 
+    id: 2, 
+    title: "Variant 2", 
+    text: 'Donec venenatis dolor id ex sodales consequat. ',
+    seq: 2
+  },
+  {
+    id: 3,
+    title: "Variant 3",
+    text:
+      'Nullam porttitor lacinia diam, sed ultrices magna fringilla pellentesque. Ut viverra fermentum pretium. Donec at fringilla odio. Nullam porttitor lacinia diam, sed ultrices magna fringilla pellentesque. Ut viverra fermentum pretium. Donec at fringilla odio. Nullam porttitor lacinia diam, sed ultrices magna fringilla pellentesque. Ut viverra fermentum pretium. Donec at fringilla odio. ',
+    seq: 3
+  },
+  {
+    id: 4,
+    title: "Variant 4",
+    text:
+      'Praesent euismod dui ut ante fermentum, sed consectetur lacus pretium. Vestibulum ornare sollicitudin lectus at ultrices. ',
+    seq: 4
+  },
+  { 
+    id: 5, 
+    title: "Variant 5",
+    text: 'Mauris ultricies pellentesque est vel maximus. ',
+    seq: 5
+  }
+];
 export default class Document extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -43,6 +77,10 @@ export default class Document extends React.Component<any, any> {
   public handleEscapeOutside = (): void => {
     this.setState({ activeSegment: null });
   };
+
+  public onUpdateVariant = (variant) => {
+    console.log(variant)
+  }
 
   public renderSegment = (segment: any): any => {
     const { activeSegment } = this.state;
@@ -62,7 +100,12 @@ export default class Document extends React.Component<any, any> {
     }
 
     return (
-      <Variants segment={segment} onEscapeOutside={this.handleEscapeOutside} />
+      <Variants 
+        segment={segment} 
+        onEscapeOutside={this.handleEscapeOutside} 
+        onUpdate={this.onUpdateVariant}
+        textVariants={fakeVariants}
+      />
     );
   };
 

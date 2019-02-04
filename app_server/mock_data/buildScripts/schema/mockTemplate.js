@@ -179,6 +179,51 @@ let schema = {
               },
               required: ["id", "isStart", "segment", "ref", "decorator"]
             }
+          },
+          textVariant: {
+            type: "array",
+            minItems: 14,
+            maxItems: 14,
+            items: {
+              type: "object",
+              properties: {
+                id: {
+                  $ref: "#/definitions/positiveInt"
+                },
+                title: {
+                  type: "string",
+                  faker: "name.name"
+                },
+                text: {
+                  type: "string",
+                  faker: "name.name",
+                  minLength: 200,
+                  maxLength: 400
+                },
+                seq: {
+                  type: "integer",
+                  minimum: 1,
+                  maximum: 9999,
+                  exclusiveMinimum: true 
+                },
+                ref: {
+                  textSegmentId: {
+                    $ref: "#/definitions/positiveInt"
+                  }
+                },
+                decorator: {
+                  bold: {
+                    type: "boolean",
+                    faker: "random.boolean"
+                  },
+                  italic: {
+                    type: "boolean",
+                    faker: "random.boolean"
+                  }
+                }
+              },
+              required: ["id", "isStart", "segment", "ref", "decorator"]
+            }
           }
         },
         required: [
