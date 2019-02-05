@@ -48,11 +48,12 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
       <div>
         <Navbar />
         <Grid style={{ marginTop: 0 }}>
-          <Document />
-          <Sidebar />
+          {/* <Document />
+          <Sidebar /> */}
           <Provider value={this.props.template}>
             <Content asd={'asdf'} />
           </Provider>
+          <Sidebar />
         </Grid>
       </div>
     );
