@@ -21,9 +21,17 @@ interface ITemplateProps {
   template: state.template;
 }
 
-// interface ITemplateState {
-// }
-class Template extends React.Component<ITemplateProps> {
+interface ITemplateState {
+  template: state.template;
+}
+class Template extends React.Component<ITemplateProps, ITemplateState> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      template: this.props.template
+    };
+  }
+
   public render() {
     return (
       <div>
@@ -31,7 +39,7 @@ class Template extends React.Component<ITemplateProps> {
         <Grid style={{ marginTop: 0 }}>
           <Document />
           <Sidebar />
-          <Provider value={this.props.template}>
+          <Provider value={this.state.template}>
             <Form asd={'asdf'} />
           </Provider>
         </Grid>
