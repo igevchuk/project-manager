@@ -96,7 +96,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
     return articles.map(article => {
       return (
         <div key={article.id}>
-          {article.name}
+          <h1>{article.name}</h1>
           {this.getSecitons(
             sections,
             subSections,
@@ -128,7 +128,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
     return filteredArray.map(section => {
       return (
         <div key={section.id}>
-          {section.name}
+          <h2>{section.name}</h2>
           {this.getSubSecitons(
             subSections,
             clauses,
@@ -162,7 +162,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
     return filteredArray.map(subSection => {
       return (
         <div key={subSection.id}>
-          {subSection.name}
+          <h3>{subSection.name}</h3>
           {this.getClauses(clauses, subClauses, textSegments, subSection.id)}
           <br />
         </div>
@@ -185,7 +185,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
     return filteredArray.map(clause => {
       return (
         <div key={clause.id}>
-          {clause.name}
+          <h4>{clause.name}</h4>
           {this.getSubClauses(subClauses, textSegments, clause.id)}
           <br />
         </div>
@@ -207,7 +207,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
     return filteredArray.map(subClause => {
       return (
         <div key={subClause.id}>
-          {subClause.name}
+          <h5>{subClause.name}</h5>
           {this.getTextSegments(textSegments, subClause.id)}
           <br />
         </div>
@@ -232,10 +232,10 @@ class TemplateContent extends React.Component<IContentProps, any> {
 
     return filteredArray.map(textSegment => {
       return (
-        <div key={textSegment.id}>
+        <span key={textSegment.id}>
           {textSegment.segment}
           <br />
-        </div>
+        </span>
       );
     });
   };
@@ -256,7 +256,9 @@ class TemplateContent extends React.Component<IContentProps, any> {
     return (
       <Grid.Column width={12}>
         <StyledDocument>
-          {/* {fakeSegments.map(segment => this.renderSegment(segment))} */}
+          {fakeSegments.map(segment => this.renderSegment(segment))}
+          <br />
+          <br />
           {this.getArticles(
             articles,
             sections,
