@@ -2,7 +2,7 @@ import * as React from 'react';
 import { contextWrapper } from './../TemplateContext';
 import * as state from '../../../app/redux/state';
 
-interface ITemplateProps {
+interface IContentProps {
   id: number;
   name: string;
   asd: string;
@@ -15,11 +15,11 @@ interface ITemplateProps {
   textSegment: [];
 }
 
-class Form extends React.Component<ITemplateProps> {
+class TemplateContent extends React.Component<IContentProps> {
   public render() {
-    // console.log(this.props.article);
+    console.log(this.props);
     return <div>{this.props.asd}</div>;
   }
 }
 
-export default contextWrapper(Form);
+export default contextWrapper(TemplateContent);
