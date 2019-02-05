@@ -20,7 +20,8 @@ const fetchLocalFormEpic: Epic<Action, Action, {}> = (action$, store) =>
         ref: { templateId: 111 }
       };
 
-      return from(repo.getLocalForm()).pipe(
+      const templates = repo.getLocalForm();
+      return from(templates).pipe(
         map(response => actions.fetchFormFulfilled(response)),
         catchError(error => of(actions.formErrorAction(error)))
       );

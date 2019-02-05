@@ -26,7 +26,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         templates: Array(templates)[0]
       };
-      console.log(newState.templates[0]);
+      // console.log(newState.templates[0]);
 
       return newState;
     }

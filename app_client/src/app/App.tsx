@@ -8,45 +8,30 @@ import { ActionType } from 'typesafe-actions';
 import Header from './layouts/Header';
 import Routes from './Routes';
 
-import HTML5Backend from 'react-dnd-html5-backend';
-import { DragDropContext } from 'react-dnd';
-
 import * as actions from './redux/actions';
-import { IState } from './redux/state';
-import { textSegment } from './redux/state';
 
 type Action = ActionType<typeof actions>;
 interface IAppProps {
-  segment: textSegment;
   onFetchForm: () => void;
 }
-class App extends React.Component<IAppProps, {}> {
+
+class App extends React.Component<IAppProps> {
   public componentDidMount() {
-    this.loadData();
+    this.props.onFetchForm();
   }
 
-  public loadData = () => {
-    this.props.onFetchForm();
-  };
-
   public render() {
-    // console.log(this.props.segment);
-    const { id, sequence, segment, ref, decorator } = this.props.segment || 0;
     return (
       <div>
         <Header isAdmin={false} />
-        <Routes />
-        <div>{segment}</div>
+        <Routes {...this.props} />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  const template = state.templateReducer.templates[0];
-  const segment = template && template.textSegment[0];
-  // console.log(template && template.textSegment[0]);
-  return { segment };
+const mapStateToProps = () => {
+  return {};
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
@@ -59,5 +44,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App);
-
-// export default DragDropContext(HTML5Backend)(FormContainer);
