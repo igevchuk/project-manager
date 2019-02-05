@@ -50,7 +50,7 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
         <Grid style={{ marginTop: 0 }}>
           {/* <Document />
           <Sidebar /> */}
-          <Provider value={this.props.template}>
+          <Provider value={{ doc: this.props.template }}>
             <Content asd={'asdf'} />
           </Provider>
           <Sidebar />

@@ -21,7 +21,7 @@ let schema = {
             faker: "name.textLevel",
             minLength: 15
           },
-          article: {
+          articles: {
             type: "array",
             minItems: 2,
             maxItems: 2,
@@ -45,7 +45,7 @@ let schema = {
               required: ["id", "name", "ref"]
             }
           },
-          section: {
+          sections: {
             type: "array",
             minItems: 4,
             maxItems: 4,
@@ -69,7 +69,7 @@ let schema = {
               required: ["id", "name", "ref"]
             }
           },
-          subSection: {
+          subSections: {
             type: "array",
             minItems: 6,
             maxItems: 6,
@@ -93,7 +93,7 @@ let schema = {
               required: ["id", "name", "ref"]
             }
           },
-          clause: {
+          clauses: {
             type: "array",
             minItems: 8,
             maxItems: 8,
@@ -117,7 +117,7 @@ let schema = {
               required: ["id", "name", "ref"]
             }
           },
-          subClause: {
+          subClauses: {
             type: "array",
             minItems: 10,
             maxItems: 10,
@@ -141,7 +141,7 @@ let schema = {
               required: ["id", "name", "ref"]
             }
           },
-          textSegment: {
+          textSegments: {
             type: "array",
             minItems: 14,
             maxItems: 14,

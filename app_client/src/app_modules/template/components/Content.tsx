@@ -14,7 +14,7 @@ import {
 import { v4 } from 'uuid';
 
 import { contextWrapper } from './../TemplateContext';
-import * as state from '../../../app/redux/state';
+import * as templateState from '../../../app/redux/state';
 
 const fakeSegments = [
   { id: 1, text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' },
@@ -33,16 +33,18 @@ const fakeSegments = [
 ];
 
 interface IContentProps {
-  id: number;
-  name: string;
   asd: string;
-  selectedType: number;
-  article: state.article[];
-  section: state.section[];
-  subSection: [];
-  clause: [];
-  subClause: [];
-  textSegment: [];
+  doc: {
+    id: number;
+    name: string;
+    selectedType: number;
+    articles: templateState.article[];
+    sections: templateState.section[];
+    subSections: templateState.subSection[];
+    clauses: templateState.clause[];
+    subClauses: templateState.subClause[];
+    textSegments: templateState.textSegment[];
+  };
 }
 
 class TemplateContent extends React.Component<IContentProps, any> {
@@ -83,11 +85,186 @@ class TemplateContent extends React.Component<IContentProps, any> {
     );
   };
 
+  public getArticles = (
+    articles: templateState.article[],
+    sections: templateState.section[],
+    subSections: templateState.subSection[],
+    clauses: templateState.clause[],
+    subClauses: templateState.subClause[],
+    textSegments: templateState.textSegment[]
+  ): any => {
+    return articles.map(article => {
+      return (
+        <div key={article.id}>
+          {article.name}
+          {this.getSecitons(
+            sections,
+            subSections,
+            clauses,
+            subClauses,
+            textSegments,
+            article.id
+          )}
+          <br />
+        </div>
+      );
+    });
+  };
+
+  public getSecitons = (
+    sections: templateState.section[],
+    subSections: templateState.subSection[],
+    clauses: templateState.clause[],
+    subClauses: templateState.subClause[],
+    textSegments: templateState.textSegment[],
+    articleId?: number
+  ): any => {
+    const filteredArray = sections.filter(
+      (section: { id: number; name: string; ref: { articleId: number } }) => {
+        return section.ref.articleId === articleId;
+      }
+    );
+
+    return filteredArray.map(section => {
+      return (
+        <div key={section.id}>
+          {section.name}
+          {this.getSubSecitons(
+            subSections,
+            clauses,
+            subClauses,
+            textSegments,
+            section.id
+          )}
+          <br />
+        </div>
+      );
+    });
+  };
+
+  public getSubSecitons = (
+    subSections: templateState.subSection[],
+    clauses: templateState.clause[],
+    subClauses: templateState.subClause[],
+    textSegments: templateState.textSegment[],
+    sectionId?: number
+  ): any => {
+    const filteredArray = subSections.filter(
+      (subSection: {
+        id: number;
+        name: string;
+        ref: { sectionId: number };
+      }) => {
+        return subSection.ref.sectionId === sectionId;
+      }
+    );
+
+    return filteredArray.map(subSection => {
+      return (
+        <div key={subSection.id}>
+          {subSection.name}
+          {this.getClauses(clauses, subClauses, textSegments, subSection.id)}
+          <br />
+        </div>
+      );
+    });
+  };
+
+  public getClauses = (
+    clauses: templateState.clause[],
+    subClauses: templateState.subClause[],
+    textSegments: templateState.textSegment[],
+    subSectionId?: number
+  ): any => {
+    const filteredArray = clauses.filter(
+      (clause: { id: number; name: string; ref: { subSectionId: number } }) => {
+        return clause.ref.subSectionId === subSectionId;
+      }
+    );
+
+    return filteredArray.map(clause => {
+      return (
+        <div key={clause.id}>
+          {clause.name}
+          {this.getSubClauses(subClauses, textSegments, clause.id)}
+          <br />
+        </div>
+      );
+    });
+  };
+
+  public getSubClauses = (
+    subClauses: templateState.subClause[],
+    textSegments: templateState.textSegment[],
+    clauseId?: number
+  ): any => {
+    const filteredArray = subClauses.filter(
+      (subClause: { id: number; name: string; ref: { clauseId: number } }) => {
+        return subClause.ref.clauseId === clauseId;
+      }
+    );
+
+    return filteredArray.map(subClause => {
+      return (
+        <div key={subClause.id}>
+          {subClause.name}
+          {this.getTextSegments(textSegments, subClause.id)}
+          <br />
+        </div>
+      );
+    });
+  };
+
+  public getTextSegments = (
+    textSegments: templateState.textSegment[],
+    subClauseId?: number
+  ): any => {
+    const filteredArray = textSegments.filter(
+      (textSegment: {
+        id: number;
+        sequence: number;
+        segment: string;
+        ref: { subClauseId: number };
+      }) => {
+        return textSegment.ref.subClauseId === subClauseId;
+      }
+    );
+
+    return filteredArray.map(textSegment => {
+      return (
+        <div key={textSegment.id}>
+          {textSegment.segment}
+          <br />
+        </div>
+      );
+    });
+  };
   public render() {
+    if (!this.props.doc) {
+      return null;
+    }
+
+    const {
+      articles,
+      sections,
+      subSections,
+      clauses,
+      subClauses,
+      textSegments
+    } = this.props.doc;
+
     return (
       <Grid.Column width={12}>
         <StyledDocument>
-          {fakeSegments.map(segment => this.renderSegment(segment))}
+          {/* {fakeSegments.map(segment => this.renderSegment(segment))} */}
+          {this.getArticles(
+            articles,
+            sections,
+            subSections,
+            clauses,
+            subClauses,
+            textSegments
+          )}
         </StyledDocument>
       </Grid.Column>
     );

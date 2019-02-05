@@ -39,7 +39,7 @@
         }
       ],
       "name": "in cillum culpaeu dolore est",
-      "article": [
+      "articles": [
         {
           "id": 11,
           "name": "sint dolorpariatur est eu",
@@ -51,7 +51,7 @@
           "ref": { "templateId": 1 }
         }
       ],
-      "section": [
+      "sections": [
         {
           "id": 111,
           "name": "non Utsit ipsum sedminim est",
@@ -73,7 +73,7 @@
           "ref": { "articleId": 11 }
         }
       ],
-      "subSection": [
+      "subSections": [
         {
           "id": 1111,
           "name": "culpa anim cillumoccaecat laborum ea cillum",
@@ -105,7 +105,7 @@
           "ref": { "sectionId": 111 }
         }
       ],
-      "clause": [
+      "clauses": [
         {
           "id": 11111,
           "name": "eu quis non elit minim",
@@ -147,7 +147,7 @@
           "ref": { "subSectionId": 1111 }
         }
       ],
-      "subClause": [
+      "subClauses": [
         {
           "id": 111111,
           "name": "veniamirure est amet consectetur",
@@ -219,7 +219,7 @@
           }
         }
       ],
-      "textSegment": [
+      "textSegments": [
         {
           "id": 1111111,
           "sequence": 1,
@@ -352,7 +352,7 @@
       "id": 2,
       "name": "enimsunt Ut exercitation",
       "textLevel": "eu nostrud doest",
-      "article": [
+      "articles": [
         {
           "id": 21,
           "name": "proidentid nostrud ipsum Duis sint",
@@ -364,7 +364,7 @@
           "ref": { "templateId": 2 }
         }
       ],
-      "section": [
+      "sections": [
         {
           "id": 211,
           "name": "eiusmod pariatur deserunt",
@@ -386,7 +386,7 @@
           "ref": { "articleId": 21 }
         }
       ],
-      "subSection": [
+      "subSections": [
         {
           "id": 2111,
           "name": "exirureullamco minim Lorem eiusmod ad",
@@ -418,7 +418,7 @@
           "ref": { "sectionId": 213 }
         }
       ],
-      "clause": [
+      "clauses": [
         {
           "id": 21111,
           "name": "reprehenderit ullamco consectetur do labore",
@@ -460,7 +460,7 @@
           "ref": { "subSectionId": 2111 }
         }
       ],
-      "subClause": [
+      "subClauses": [
         {
           "id": 211111,
           "name": "eu doloremollit minim Lorem id veniam",
@@ -532,7 +532,7 @@
           }
         }
       ],
-      "textSegment": [
+      "textSegments": [
         {
           "id": 2111111,
           "sequence": 1,
