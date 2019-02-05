@@ -28,8 +28,12 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
   constructor(props) {
     super(props);
     this.state = {
-      template: this.props.template
+      template: {}
     };
+  }
+
+  public componentDidMount() {
+    this.setState({ template: this.props.template });
   }
 
   public render() {
@@ -39,7 +43,7 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
         <Grid style={{ marginTop: 0 }}>
           <Document />
           <Sidebar />
-          <Provider value={this.state.template}>
+          <Provider value={this.props.template}>
             <Form asd={'asdf'} />
           </Provider>
         </Grid>
@@ -53,6 +57,8 @@ const mapStateToProps = state => {
   if (templates.length === 0) {
     return {};
   }
+
+  // console.log(templates[0]);
   return { template: templates[0] };
 };
 

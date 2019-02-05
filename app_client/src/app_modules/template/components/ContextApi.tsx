@@ -7,8 +7,8 @@ interface ITemplateProps {
   name: string;
   asd: string;
   selectedType: number;
-  article: [];
-  section: [];
+  article: state.article[];
+  section: state.section[];
   subSection: [];
   clause: [];
   subClause: [];
