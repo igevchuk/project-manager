@@ -5,6 +5,7 @@ import * as state from '../../../app/redux/state';
 interface ITemplateProps {
   id: number;
   name: string;
+  asd: string;
   selectedType: number;
   article: [];
   section: [];
@@ -17,7 +18,7 @@ interface ITemplateProps {
 class Form extends React.Component<ITemplateProps> {
   public render() {
     console.log(this.props);
-    return <div>{this.props.name}</div>;
+    return <div>{this.props.asd}</div>;
   }
 }
 

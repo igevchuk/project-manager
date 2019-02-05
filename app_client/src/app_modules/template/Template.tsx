@@ -32,7 +32,7 @@ class Template extends React.Component<ITemplateProps> {
           <Document />
           <Sidebar />
           <Provider value={this.props.template}>
-            <Form />
+            <Form asd={'asdf'} />
           </Provider>
         </Grid>
       </div>
