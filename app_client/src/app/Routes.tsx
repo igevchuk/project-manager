@@ -5,6 +5,7 @@ import Page1 from './../app_modules/module1/Page1';
 import Page2 from './../app_modules/module1/Page2';
 import TemplateLibrary from './../app_modules/template-library';
 import TemplateBuilder from './../app_modules/template-builder';
+import Template from '../app_modules/template/Template';
 
 const Routes: React.SFC = () => {
   return (
@@ -14,6 +15,7 @@ const Routes: React.SFC = () => {
         <Route path="/page2" component={Page2} />
         <Route path="/templates" component={TemplateLibrary} />
         <Route path="/template-builder" component={TemplateBuilder} />
+        <Route path="/template" component={Template} />
       </div>
     </Router>
   );

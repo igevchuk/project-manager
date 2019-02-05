@@ -1,6 +1,6 @@
-import * as React from "react";
-import styled, { css } from "styled-components";
-import { Link as RouteLink } from "react-router-dom";
+import * as React from 'react';
+import styled, { css } from 'styled-components';
+import { Link as RouteLink } from 'react-router-dom';
 
 const primaryCss = css`
   color: ${props => props.theme.primary};
@@ -12,7 +12,7 @@ const secondaryCss = css`
 
 const raisedCss = css`
   ${props =>
-    props.secondary &&
+    props.theme.secondary &&
     `
     color: white;
     background-color: ${props.theme.secondary};
@@ -21,7 +21,7 @@ const raisedCss = css`
     }
   `}
   ${props =>
-    props.primary &&
+    props.theme.primary &&
     `
     color: white;
     background-color: ${props.theme.primary};
@@ -30,7 +30,7 @@ const raisedCss = css`
     }
   `}
   ${props =>
-    props.disabled &&
+    props.theme.disabled &&
     `
     background-color: rgba(0, 0, 0, .12);
     pointer-events: none;
@@ -54,9 +54,10 @@ interface IButtonComponentProps {
 //   }
 // }
 
-const ButtonComponent: React.SFC<IButtonComponentProps> = ({children, ...props}) => (
-  <button {...props}>{children}</button>
-);
+const ButtonComponent: React.SFC<IButtonComponentProps> = ({
+  children,
+  ...props
+}) => <button {...props}>{children}</button>;
 
 const Button = styled(ButtonComponent)`
   color: ${props => props.theme.default};
@@ -119,7 +120,7 @@ const Button = styled(ButtonComponent)`
     font-size: .8125rem;
     line-height: 32px;
   `}
-  box-shadow: ${props => props.boxShadow && '0 2px 5px #FFFFFF'};
+  box-shadow: ${props => props.theme.boxShadow && '0 2px 5px #FFFFFF'};
 `;
 
 const LinkComponent = props => <RouteLink {...props} />;

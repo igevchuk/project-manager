@@ -7,7 +7,7 @@ export type template = {
   id?: number;
   name?: string;
   selectedType?: number;
-  type: type[];
+  type?: type[];
 
   article?: article[];
   section?: section[];
@@ -77,7 +77,7 @@ export type decorator = {
   bold?: boolean;
   italic?: boolean;
   style?: {};
-  // ....
+  // .... validate
 };
 
 export type ref = {
