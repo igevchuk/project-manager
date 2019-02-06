@@ -25,6 +25,7 @@ interface ITemplateState {
   template: state.template;
 }
 class Template extends React.Component<ITemplateProps, ITemplateState> {
+  private timer: number = 0;
   constructor(props) {
     super(props);
     this.state = {
@@ -33,6 +34,8 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
   }
 
   public componentDidMount() {
+    this.timer = window.setInterval(() => console.log('testing'), 1000);
+
     this.setState(
       (prevState, props) => ({ template: this.props.template }),
       () => {
