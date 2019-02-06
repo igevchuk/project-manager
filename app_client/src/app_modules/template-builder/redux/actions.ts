@@ -1,19 +1,16 @@
-import { createAction } from 'redux-actions';
-
-import { Variant } from './model';
+import { TextVariant } from './model';
 
 export const ADD_VARIANT = 'ADD_VARIANT';
 export const EDIT_VARIANT = 'EDIT_VARIANT';
 
-const addVariant = createAction<Variant, number>(
-  ADD_VARIANT, 
-  (segmentId: number) => segmentId
-);
+const addVariant = (segmentId: number) => ({
+  type: ADD_VARIANT,
+  segmentId
+});
 
-const editVariant = createAction<Variant, Variant>(
-  EDIT_VARIANT, 
-  (payload: Variant) => payload
-);
+const editVariant = (payload: TextVariant) => ({
+  type: EDIT_VARIANT,
+  payload
+});
 
 export { addVariant, editVariant };
-

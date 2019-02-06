@@ -180,16 +180,14 @@ let schema = {
               required: ["id", "isStart", "segment", "ref", "decorator"]
             }
           },
-          textVariant: {
+          textVariants: {
             type: "array",
             minItems: 1,
             maxItems: 9999,
             items: {
               type: "object",
               properties: {
-                id: {
-                  $ref: "#/definitions/positiveInt"
-                },
+                id: number,
                 title: {
                   type: "string",
                   faker: "lorem.word"

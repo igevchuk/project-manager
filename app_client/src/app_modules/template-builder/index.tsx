@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { ActionType } from 'typesafe-actions';
 
-import { contextWrapper } from './Context';
+import { Provider } from './Context';
 import { Grid } from 'semantic-ui-react';
 import Document from './components/Document';
 import Sidebar from './components/Sidebar';
@@ -12,34 +12,33 @@ import { actions, model, state } from './redux';
 import Variant from '../template/components/Variant';
 
 type Action = ActionType<typeof actions>;
-
 interface ITemplateProps {
-  id: number;
-  name: string;
-  asd: string;
-  selectedType: number;
-  article: state.article[];
-  section: state.section[];
-  subSection: [];
-  clause: [];
-  subClause: [];
-  textSegment: model.Segment[];
-  textVariant: model.Variant[];
-  dispatch: Dispatch<Action>;
-  // dispatch: any;
-};
-
-interface ITemplateState {
-  activeSegment: model.Segment | null 
+  template: state.template;
 }
 
-class TemplateBuilder extends React.Component<ITemplateProps> {
-  constructor(props, context) {
-    super(props, context);
+interface ITemplateState {
+  template: state.template;
+}
+
+class TemplateBuilder extends React.Component<ITemplateProps, ITemplateState> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      template: {}
+    };
+  }
+
+  public componentDidMount() {
+    this.setState(
+      (prevState, props) => ({ template: this.props.template }),
+      () => {
+        console.log(this.state.template);
+      }
+    );
   }
 
   public render() {
-    const { dispatch } = this.props;
+    // const { dispatch } = this.props;
     const { addVariant, editVariant } = actions;
 
     return (
@@ -47,11 +46,13 @@ class TemplateBuilder extends React.Component<ITemplateProps> {
         <Toolbar />
 
         <Grid style={{ marginTop: 0 }}>
-          <Document
-            variants={[]}
-            addVariant={(segmentId) => dispatch(actions.addVariant(segmentId))} 
-            editVariant={(payload: model.Variant) => dispatch(actions.editVariant(payload))}
-          />
+          <Provider value={{ template: this.props.template }}>
+            <Document 
+              variants={[]}
+              addVariant={(segmentId) => actions.addVariant(segmentId)}
+              editVariant={(payload) => actions.editVariant(payload)}
+            />
+          </Provider>
 
           <Sidebar />
         </Grid>
@@ -60,10 +61,22 @@ class TemplateBuilder extends React.Component<ITemplateProps> {
   }
 };
 
-const mapStateToProps = ({ template }) => ({
-  template
-});
+const mapStateToProps = state => {
+  const templates = state.templateReducer.templates;
+  if (templates.length === 0) {
+    return {};
+  }
 
-export default connect(mapStateToProps)(TemplateBuilder);
+  // console.log(templates[0]);
+  return { template: templates[0] };
+};
+
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
+  return {
+    // onFetchForm: () => dispatch(actions.fetchForm())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TemplateBuilder);
 
 

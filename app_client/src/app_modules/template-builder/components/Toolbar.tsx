@@ -20,15 +20,7 @@ const fakeOptions = [
   { key: 3, text: 'Option 3', value: 'Option 3' }
 ];
 
-interface ToolbarProps {
-
-};
-
-interface ToolbarState {
-
-}
-
-class Toolbar extends React.Component<ToolbarProps, ToolbarState> {
+class Toolbar extends React.Component {
   constructor(props, context) {
     super(props, context);
   }

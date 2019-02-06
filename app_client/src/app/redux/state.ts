@@ -76,10 +76,10 @@ export type textSegment = {
 
 export type textVariant = {
   id?: number;
-  title: string;
-  text: string;
-  sequence: number;
-  segmentId?: number;
+  title?: string;
+  text?: string;
+  sequence?: number;
+  ref: { segmentId: number, docLevel: number };
 };
 
 export type decorator = {

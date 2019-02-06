@@ -1,11 +1,11 @@
-export type Segment = {
+export type TextSegment = {
   id?: number;
   text: string;
   sequence: number;
   clauseId?: number;
 };
 
-export type Variant = {
+export type TextVariant = {
   id?: number;
   title?: string;
   text?: string;
@@ -13,4 +13,4 @@ export type Variant = {
   segmentId?: number;
 };
 
-export type IState = Variant[];
+export type IState = TextVariant[];
