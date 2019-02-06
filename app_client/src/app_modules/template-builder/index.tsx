@@ -6,6 +6,7 @@ import { ActionType } from 'typesafe-actions';
 import { Provider } from './Context';
 import { Grid } from 'semantic-ui-react';
 import Document from './components/Document';
+import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Toolbar from './components/Toolbar';
 import { actions, model, state } from './redux';
@@ -43,6 +44,7 @@ class TemplateBuilder extends React.Component<ITemplateProps, ITemplateState> {
 
     return (
       <div>
+        {/* <Header /> */}
         <Toolbar />
 
         <Grid style={{ marginTop: 0 }}>
