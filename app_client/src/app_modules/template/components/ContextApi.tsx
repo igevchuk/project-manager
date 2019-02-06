@@ -17,7 +17,7 @@ interface ITemplateProps {
 
 class Form extends React.Component<ITemplateProps> {
   public render() {
-    console.log(this.props);
+    // console.log(this.props.article);
     return <div>{this.props.asd}</div>;
   }
 }

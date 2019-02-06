@@ -39,7 +39,7 @@
         }
       ],
       "name": "in cillum culpaeu dolore est",
-      "article": [
+      "articles": [
         {
           "id": 11,
           "name": "sint dolorpariatur est eu",
@@ -51,7 +51,7 @@
           "ref": { "templateId": 1 }
         }
       ],
-      "section": [
+      "sections": [
         {
           "id": 111,
           "name": "non Utsit ipsum sedminim est",
@@ -73,7 +73,7 @@
           "ref": { "articleId": 11 }
         }
       ],
-      "subSection": [
+      "subSections": [
         {
           "id": 1111,
           "name": "culpa anim cillumoccaecat laborum ea cillum",
@@ -105,7 +105,7 @@
           "ref": { "sectionId": 111 }
         }
       ],
-      "clause": [
+      "clauses": [
         {
           "id": 11111,
           "name": "eu quis non elit minim",
@@ -147,7 +147,7 @@
           "ref": { "subSectionId": 1111 }
         }
       ],
-      "subClause": [
+      "subClauses": [
         {
           "id": 111111,
           "name": "veniamirure est amet consectetur",
@@ -219,11 +219,11 @@
           }
         }
       ],
-      "textSegment": [
+      "textSegments": [
         {
           "id": 1111111,
           "sequence": 1,
-          "segment": "dolore labore Uteiusmodiruredolor pariatur ut aliqua innonaute irureofficia aliqua eu estaute et Ut cillumdolor aliquip aute irure reprehenderitincididunt irure inproident nostrud ad culpareprehenderit",
+          "segment": "dolore labore Uteiusmodiruredolor pariatur ut aliqua innonaute irureofficia aliqua eu estaute et Ut cillumdolor aliquip aute irure reprehenderitincididunt irure inproident nostrud ad culpareprehenderit.",
           "ref": {
             "subClauseId": 111111
           },
@@ -232,7 +232,7 @@
         {
           "id": 1111112,
           "sequence": 1,
-          "segment": "non aute consequat idcupidatat est voluptate ut nullaaliqua cupidatat elitmollit culpa dolor irure ipsumreprehenderit in eucommodo sed incididunt elit veniamaliqua veniam adipisicing fugiat quivoluptate aliquip ex laborum veniam",
+          "segment": "non aute consequat idcupidatat est voluptate ut nullaaliqua cupidatat elitmollit culpa dolor irure ipsumreprehenderit in eucommodo sed incididunt elit veniamaliqua veniam adipisicing fugiat quivoluptate aliquip ex laborum veniam.",
           "ref": {
             "subClauseId": 111112
           },
@@ -241,7 +241,7 @@
         {
           "id": 1111113,
           "sequence": 2,
-          "segment": "elit labore id esseeiusmod velit noncillum tempornisi sed veniam utdolor Lorem pariaturcupidatat et magna consequataliqua nulla elit proident cillumlaboris seddolor eiusmod adea proident quis occaecat",
+          "segment": "elit labore id esseeiusmod velit noncillum tempornisi sed veniam utdolor Lorem pariaturcupidatat et magna consequataliqua nulla elit proident cillumlaboris seddolor eiusmod adea proident quis occaecat.",
           "ref": {
             "subClauseId": 111111
           },
@@ -250,7 +250,7 @@
         {
           "id": 1111114,
           "sequence": false,
-          "segment": "voluptate labore reprehenderiteu Duisexminim ea enim quiin ea Utdolaborumeiusmod mollit sint dolortempor labore cupidatat ea involuptatedolornon eiusmod sedullamco do veniam ad cillumut officia fugiat dolor",
+          "segment": "voluptate labore reprehenderiteu Duisexminim ea enim quiin ea Utdolaborumeiusmod mollit sint dolortempor labore cupidatat ea involuptatedolornon eiusmod sedullamco do veniam ad cillumut officia fugiat dolor.",
           "ref": {
             "subClauseId": 111113
           },
@@ -259,7 +259,7 @@
         {
           "id": 1111115,
           "sequence": false,
-          "segment": "voluptate incillumlaborum non ad mollitquis officia mollit laborelaboris cillum nulla dolorexercitation et nostrud Lorem mollitlaborum mollit veniam cillummollitin nulla in voluptate Excepteurnisi sint incididunt esse nostrud",
+          "segment": "voluptate incillumlaborum non ad mollitquis officia mollit laborelaboris cillum nulla dolorexercitation et nostrud Lorem mollitlaborum mollit veniam cillummollitin nulla in voluptate Excepteurnisi sint incididunt esse nostrud.",
           "ref": {
             "subClauseId": 111114
           },
@@ -268,7 +268,7 @@
         {
           "id": 1111116,
           "sequence": 3,
-          "segment": "voluptateveniamnulla minim dolordolore quis inuteu culpavelit incididunt estqui eu deseruntadipisicing consequat in consectetur idullamco consequatveniamminim elit nulla veniamcupidatat fugiat sunt voluptate",
+          "segment": "voluptateveniamnulla minim dolordolore quis inuteu culpavelit incididunt estqui eu deseruntadipisicing consequat in consectetur idullamco consequatveniamminim elit nulla veniamcupidatat fugiat sunt voluptate.",
           "ref": {
             "subClauseId": 111111
           },
@@ -277,7 +277,7 @@
         {
           "id": 1111117,
           "sequence": 4,
-          "segment": "ullamco Duis cillum in sedvoluptate doloriruredolore aliqua adsed pariatur exercitation nulla dolorDuisreprehenderit et eu Loremipsumlaborum ea Loremvoluptate minim dolor exindolorlaborum deserunt sit",
+          "segment": "ullamco Duis cillum in sedvoluptate doloriruredolore aliqua adsed pariatur exercitation nulla dolorDuisreprehenderit et eu Loremipsumlaborum ea Loremvoluptate minim dolor exindolorlaborum deserunt sit.",
           "ref": {
             "subClauseId": 111111
           },
@@ -286,7 +286,7 @@
         {
           "id": 1111118,
           "sequence": 2,
-          "segment": "doloramet cupidatat incididunt sed Excepteuret aliqua eu anim indolore aliquanisi eu tempor dolore reprehenderitvoluptate doloreex in ea consequat elitsunt amet mollit dolore Utexercitation sunt est esse nostrud",
+          "segment": "doloramet cupidatat incididunt sed Excepteuret aliqua eu anim indolore aliquanisi eu tempor dolore reprehenderitvoluptate doloreex in ea consequat elitsunt amet mollit dolore Utexercitation sunt est esse nostrud.",
           "ref": {
             "subClauseId": 111112
           },
@@ -295,7 +295,7 @@
         {
           "id": 1111119,
           "sequence": 5,
-          "segment": "in enim id aliqua deseruntesse indo id commodoauteveniam velit deserunt adipsumirure ut aliquadolor nostrudadipisicingad enim non culpa exeu consectetur qui magnaoccaecat Lorem incommodo ipsum culpa elit qui",
+          "segment": "in enim id aliqua deseruntesse indo id commodoauteveniam velit deserunt adipsumirure ut aliquadolor nostrudadipisicingad enim non culpa exeu consectetur qui magnaoccaecat Lorem incommodo ipsum culpa elit qui.",
           "ref": {
             "subClauseId": 111111
           },
@@ -304,7 +304,7 @@
         {
           "id": 1111120,
           "sequence": true,
-          "segment": "qui autequinulla qui sit in ipsumaute ad quivoluptate consectetur laboris etnisiquisad anim non euincididunt id nostrudofficia eu adipisicingea sunt velitipsum proidentofficia ad Excepteur deserunt non",
+          "segment": "qui autequinulla qui sit in ipsumaute ad quivoluptate consectetur laboris etnisiquisad anim non euincididunt id nostrudofficia eu adipisicingea sunt velitipsum proidentofficia ad Excepteur deserunt non.",
           "ref": {
             "subClauseId": 111114
           },
@@ -313,7 +313,7 @@
         {
           "id": 1111121,
           "sequence": 6,
-          "segment": "do fugiatsuntvoluptate in doloreid reprehenderitut commodo fugiat eiusmodminim cillum aliquip tempor cupidatatea cillum aliqua magna nostrudUt eiusmod utet minim enim Lorem utaliqua DuisDuis enimdolore ea",
+          "segment": "do fugiatsuntvoluptate in doloreid reprehenderitut commodo fugiat eiusmodminim cillum aliquip tempor cupidatatea cillum aliqua magna nostrudUt eiusmod utet minim enim Lorem utaliqua DuisDuis enimdolore ea.",
           "ref": {
             "subClauseId": 111111
           },
@@ -322,7 +322,7 @@
         {
           "id": 1111122,
           "sequence": 7,
-          "segment": "laborum aliqua in auteexercitation amet irure inet ipsumoccaecat in reprehenderit ullamconulla dolor proidentcommodo Ut noncupidatatofficia elit laborum nisi commodonostrud culpa amet aute euea Ut nulla elit",
+          "segment": "laborum aliqua in auteexercitation amet irure inet ipsumoccaecat in reprehenderit ullamconulla dolor proidentcommodo Ut noncupidatatofficia elit laborum nisi commodonostrud culpa amet aute euea Ut nulla elit.",
           "ref": {
             "subClauseId": 111111
           },
@@ -331,7 +331,7 @@
         {
           "id": 1111123,
           "sequence": 3,
-          "segment": "amet Lorem incididunt in nulladeserunt cupidatat proident laborum velitnon sed ipsum voluptate reprehenderitest ullamco quieu amet idconsectetur cupidatat veniam laborenon consequat amet qui quisdolore nisi officia nostrud",
+          "segment": "amet Lorem incididunt in nulladeserunt cupidatat proident laborum velitnon sed ipsum voluptate reprehenderitest ullamco quieu amet idconsectetur cupidatat veniam laborenon consequat amet qui quisdolore nisi officia nostrud.",
           "ref": {
             "subClauseId": 111112
           },
@@ -340,7 +340,7 @@
         {
           "id": 1111124,
           "sequence": false,
-          "segment": "nisi sedconsequat culpa Lorem quilaboris et deserunt Duis idlaboresed pariatur eu veniamipsum occaecat deserunttempor in ullamcovelit aliqua nisi ullamco sintminimdolordolornullased irure eiusmod addo dolore",
+          "segment": "nisi sedconsequat culpa Lorem quilaboris et deserunt Duis idlaboresed pariatur eu veniamipsum occaecat deserunttempor in ullamcovelit aliqua nisi ullamco sintminimdolordolornullased irure eiusmod addo dolore.",
           "ref": {
             "subClauseId": 111113
           },
@@ -352,7 +352,7 @@
       "id": 2,
       "name": "enimsunt Ut exercitation",
       "textLevel": "eu nostrud doest",
-      "article": [
+      "articles": [
         {
           "id": 21,
           "name": "proidentid nostrud ipsum Duis sint",
@@ -364,7 +364,7 @@
           "ref": { "templateId": 2 }
         }
       ],
-      "section": [
+      "sections": [
         {
           "id": 211,
           "name": "eiusmod pariatur deserunt",
@@ -386,7 +386,7 @@
           "ref": { "articleId": 21 }
         }
       ],
-      "subSection": [
+      "subSections": [
         {
           "id": 2111,
           "name": "exirureullamco minim Lorem eiusmod ad",
@@ -418,7 +418,7 @@
           "ref": { "sectionId": 213 }
         }
       ],
-      "clause": [
+      "clauses": [
         {
           "id": 21111,
           "name": "reprehenderit ullamco consectetur do labore",
@@ -460,7 +460,7 @@
           "ref": { "subSectionId": 2111 }
         }
       ],
-      "subClause": [
+      "subClauses": [
         {
           "id": 211111,
           "name": "eu doloremollit minim Lorem id veniam",
@@ -532,11 +532,11 @@
           }
         }
       ],
-      "textSegment": [
+      "textSegments": [
         {
           "id": 2111111,
           "sequence": 1,
-          "segment": "ad occaecat mollit amet sintconsequat ipsum Loremirure ullamco quiofficia exercitation id enim elitdolore do eiusmodtempor quis consequat nisiinculpa quis doloredoloreestsedvoluptate esse ipsumnisi non",
+          "segment": "ad occaecat mollit amet sintconsequat ipsum Loremirure ullamco quiofficia exercitation id enim elitdolore do eiusmodtempor quis consequat nisiinculpa quis doloredoloreestsedvoluptate esse ipsumnisi non.",
           "ref": {
             "subClauseId": 211111
           },
@@ -545,7 +545,7 @@
         {
           "id": 2111112,
           "sequence": 2,
-          "segment": "eiusmod elit sunt cupidatat Duisullamco cupidatat dolor proidenteiusmod sint cillum ut dolorealiquaeiusmod officia in qui inexercitationcillumvoluptate laboris suntaliqua exercitationin qui cillumelit laborum culpa",
+          "segment": "eiusmod elit sunt cupidatat Duisullamco cupidatat dolor proidenteiusmod sint cillum ut dolorealiquaeiusmod officia in qui inexercitationcillumvoluptate laboris suntaliqua exercitationin qui cillumelit laborum culpa.",
           "ref": {
             "subClauseId": 211111
           },
@@ -554,7 +554,7 @@
         {
           "id": 2111113,
           "sequence": 1,
-          "segment": "id enim officia veniamelitea laboris sitadin uteiusmod ex cillum sitesse laborumnisiveniamqui Utconsequatincididunt culpa pariaturaliquip quiut ut labore culpaqui ut anim reprehenderit sedquis Excepteur nostrud incididunt",
+          "segment": "id enim officia veniamelitea laboris sitadin uteiusmod ex cillum sitesse laborumnisiveniamqui Utconsequatincididunt culpa pariaturaliquip quiut ut labore culpaqui ut anim reprehenderit sedquis Excepteur nostrud incididunt.",
           "ref": {
             "subClauseId": 211112
           },
@@ -563,7 +563,7 @@
         {
           "id": 2111114,
           "sequence": 3,
-          "segment": "aute incididunt sedvoluptate enim dolorlabore exercitation enim in estamet veniam consectetur animmollit aliqua veniam ut doloreDuis elit laborisconsectetur tempornisi occaecat eiusmod aliqua nostrudsit",
+          "segment": "aute incididunt sedvoluptate enim dolorlabore exercitation enim in estamet veniam consectetur animmollit aliqua veniam ut doloreDuis elit laborisconsectetur tempornisi occaecat eiusmod aliqua nostrudsit.",
           "ref": {
             "subClauseId": 211111
           },
@@ -572,7 +572,7 @@
         {
           "id": 2111115,
           "sequence": true,
-          "segment": "ut est incididunt culpareprehenderit est eu adnonaliqua aute consequat enimpariatur amet commodo dolor minimipsum ut consequat ullamcoenim sint idreprehenderit officia magna incididuntExcepteur nostrud mollit",
+          "segment": "ut est incididunt culpareprehenderit est eu adnonaliqua aute consequat enimpariatur amet commodo dolor minimipsum ut consequat ullamcoenim sint idreprehenderit officia magna incididuntExcepteur nostrud mollit.",
           "ref": {
             "subClauseId": 211114
           },
@@ -581,7 +581,7 @@
         {
           "id": 2111116,
           "sequence": true,
-          "segment": "Loremproidentinsunt cupidatat tempor Duis aliquipnonut qui minim ea sedexercitation nostrudculpa ut dolore aliquipmollitlaborumest nostrudcupidatat aliquip consectetur anim sedquis enim aliquip pariatur do",
+          "segment": "Loremproidentinsunt cupidatat tempor Duis aliquipnonut qui minim ea sedexercitation nostrudculpa ut dolore aliquipmollitlaborumest nostrudcupidatat aliquip consectetur anim sedquis enim aliquip pariatur do.",
           "ref": {
             "subClauseId": 211113
           },
@@ -590,7 +590,7 @@
         {
           "id": 2111117,
           "sequence": 4,
-          "segment": "tempor reprehenderit occaecat nostrud dolordolor eiusmod ut in adipisicingestproidentminimnon laboris proident aliquipUt ipsum ut doloreUt aute sunt proidentin et in sed minimaute minimDuis sed dolorincididunt nulla commodo do",
+          "segment": "tempor reprehenderit occaecat nostrud dolordolor eiusmod ut in adipisicingestproidentminimnon laboris proident aliquipUt ipsum ut doloreUt aute sunt proidentin et in sed minimaute minimDuis sed dolorincididunt nulla commodo do.",
           "ref": {
             "subClauseId": 211111
           },
@@ -599,7 +599,7 @@
         {
           "id": 2111118,
           "sequence": 5,
-          "segment": "ut Ut consectetur mollit enimdoloredolore cillum enim elitnisi consequat laboris officia animutirure consectetur in indolor ipsum ea do quisminim qui velitipsum reprehenderitexercitation nisi dolor Ut",
+          "segment": "ut Ut consectetur mollit enimdoloredolore cillum enim elitnisi consequat laboris officia animutirure consectetur in indolor ipsum ea do quisminim qui velitipsum reprehenderitexercitation nisi dolor Ut.",
           "ref": {
             "subClauseId": 211111
           },
@@ -608,7 +608,7 @@
         {
           "id": 2111119,
           "sequence": 2,
-          "segment": "exercitation velitculpa temporlaboreUt minim commodo culpa esteiusmod elit quisnulla ut proident consequatdo minim sunt adipisicing elitculpa consequatproident esse aute pariatur ametesse dolor enim quis nostrud",
+          "segment": "exercitation velitculpa temporlaboreUt minim commodo culpa esteiusmod elit quisnulla ut proident consequatdo minim sunt adipisicing elitculpa consequatproident esse aute pariatur ametesse dolor enim quis nostrud.",
           "ref": {
             "subClauseId": 211112
           },
@@ -617,7 +617,7 @@
         {
           "id": 2111120,
           "sequence": false,
-          "segment": "fugiatculpa aliqua ut laboris sintconsequat est quis ullamcoet in dolor dolor estincididunt dolorelit cillum est dolore nostrudipsumadipisicing cillumqui pariatur incididunt sed aliquanulla commodo laborum non",
+          "segment": "fugiatculpa aliqua ut laboris sintconsequat est quis ullamcoet in dolor dolor estincididunt dolorelit cillum est dolore nostrudipsumadipisicing cillumqui pariatur incididunt sed aliquanulla commodo laborum non.",
           "ref": {
             "subClauseId": 211116
           },
@@ -626,7 +626,7 @@
         {
           "id": 2111121,
           "sequence": 6,
-          "segment": "aliquiputqui non proidentid in dolor exercitation irureExcepteur cillum Loremelit esse anim eueu nisi et magna pariaturaute id ExcepteuresseUt ut labore nostrudelit deserunt laborelabore veniam minimirure proident dolore est",
+          "segment": "aliquiputqui non proidentid in dolor exercitation irureExcepteur cillum Loremelit esse anim eueu nisi et magna pariaturaute id ExcepteuresseUt ut labore nostrudelit deserunt laborelabore veniam minimirure proident dolore est.",
           "ref": {
             "subClauseId": 211111
           },
@@ -635,7 +635,7 @@
         {
           "id": 2111122,
           "sequence": 3,
-          "segment": "irure proident magnacommodosunt nulla do commodo minimanim consequat reprehenderitenim exercitation sunt proident temporesse ad voluptate in veniamExcepteur utirure in pariaturlaboris consequat quis ipsum",
+          "segment": "irure proident magnacommodosunt nulla do commodo minimanim consequat reprehenderitenim exercitation sunt proident temporesse ad voluptate in veniamExcepteur utirure in pariaturlaboris consequat quis ipsum.",
           "ref": {
             "subClauseId": 211112
           },
@@ -644,7 +644,7 @@
         {
           "id": 2111123,
           "sequence": false,
-          "segment": "aliqua voluptate nostrud ullamco temporadipisicingexamet adipisicing elit officia exercitationculpa Lorem eu pariaturaliquip ad enim voluptate nonveniam quinisi etea enimsed ex cillum dolor veliteiusmod reprehenderit cupidatat",
+          "segment": "aliqua voluptate nostrud ullamco temporadipisicingexamet adipisicing elit officia exercitationculpa Lorem eu pariaturaliquip ad enim voluptate nonveniam quinisi etea enimsed ex cillum dolor veliteiusmod reprehenderit cupidatat.",
           "ref": {
             "subClauseId": 211116
           },
@@ -653,7 +653,7 @@
         {
           "id": 2111124,
           "sequence": 4,
-          "segment": "do proident ut sit laboreullamco occaecat dolor idsintmollit do esse pariaturtempor officiareprehenderiteiusmod id dolor proident esseExcepteur commodosunt sit pariatur veniamdofugiat laborisLorem proident veniam",
+          "segment": "do proident ut sit laboreullamco occaecat dolor idsintmollit do esse pariaturtempor officiareprehenderiteiusmod id dolor proident esseExcepteur commodosunt sit pariatur veniamdofugiat laborisLorem proident veniam.",
           "ref": {
             "subClauseId": 211112
           },

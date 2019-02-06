@@ -15,7 +15,7 @@ import { DragDropContext } from 'react-dnd';
 
 import * as state from '../../app/redux/state';
 import { Provider } from './TemplateContext';
-import Form from './components/ContextApi';
+import Content from './components/Content';
 
 interface ITemplateProps {
   template: state.template;
@@ -33,19 +33,27 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
   }
 
   public componentDidMount() {
-    this.setState({ template: this.props.template });
+    this.setState(
+      (prevState, props) => ({ template: this.props.template }),
+      () => {
+        // console.log(this.state.template);
+      }
+    );
   }
 
   public render() {
+    // console.log(this.props.template);
+
     return (
       <div>
         <Navbar />
         <Grid style={{ marginTop: 0 }}>
-          <Document />
-          <Sidebar />
-          <Provider value={this.props.template}>
-            <Form asd={'asdf'} />
+          {/* <Document />
+          <Sidebar /> */}
+          <Provider value={{ doc: this.props.template }}>
+            <Content asd={'asdf'} />
           </Provider>
+          <Sidebar />
         </Grid>
       </div>
     );

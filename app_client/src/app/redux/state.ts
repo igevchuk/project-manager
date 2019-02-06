@@ -9,12 +9,12 @@ export type template = {
   selectedType?: number;
   type?: type[];
 
-  article?: article[];
-  section?: section[];
-  subSection?: subSection[];
-  clause?: clause[];
-  subClause?: subClause[];
-  textSegment?: textSegment[];
+  articles?: article[];
+  sections?: section[];
+  subSections?: subSection[];
+  clauses?: clause[];
+  subClauses?: subClause[];
+  textSegments?: textSegment[];
 
   //
   // previous preperties, will be removed
