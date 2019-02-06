@@ -12,7 +12,8 @@
             "subSection",
             "clause",
             "subClause",
-            "textSegment"
+            "textSegment",
+            "textVariant"
           ]
         },
         {
@@ -23,7 +24,8 @@
             "section",
             "subSection",
             "clause",
-            "textSegment"
+            "textSegment",
+            "textVariant"
           ]
         },
         {
@@ -34,7 +36,8 @@
             "section",
             "subSection",
             "clause",
-            "textSegment"
+            "textSegment",
+            "textVariant"
           ]
         }
       ],
@@ -345,6 +348,53 @@
             "subClauseId": 111113
           },
           "decorator": { "bold": false, "italic": false }
+        }
+      ],
+      "textVariant": [
+        {
+          "id": 1,
+          "title": "Standart/Neutral Language",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "sequence": 1,
+          "ref": {
+            "segmentId": 1111111
+          }
+        },
+        {
+          "id": 2,
+          "title": "Variant 2",
+          "text": "Donec venenatis dolor id ex sodales consequat.",
+          "sequence": 2,
+          "ref": {
+            "segmentId": 1111111
+          }
+        },
+        {
+          "id": 3,
+          "title": "Variant 3",
+          "text": "Nullam porttitor lacinia diam, sed ultrices magna fringilla pellentesque. Ut viverra fermentum pretium. Donec at fringilla odio. Nullam porttitor lacinia diam, sed ultrices magna fringilla pellentesque. Ut viverra fermentum pretium. Donec at fringilla odio. Nullam porttitor lacinia diam, sed ultrices magna fringilla pellentesque. Ut viverra fermentum pretium. Donec at fringilla odio.",
+          "sequence": 3,
+          "ref": {
+            "segmentId": 1111111
+          }
+        },
+        {
+          "id": 4,
+          "title": "Variant 4",
+          "text": "Praesent euismod dui ut ante fermentum, sed consectetur lacus pretium. Vestibulum ornare sollicitudin lectus at ultrices.",
+          "sequence": 4,
+          "ref": {
+            "segmentId": 1111111
+          }
+        },
+        {
+          "id": 5,
+          "title": "Variant 5",
+          "text": "Mauris ultricies pellentesque est vel maximus.",
+          "sequence": 5,
+          "ref": {
+            "segmentId": 1111111
+          }
         }
       ]
     },

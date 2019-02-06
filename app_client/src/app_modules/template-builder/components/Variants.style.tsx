@@ -101,23 +101,13 @@ export const Editable = styled.div`
     content: '';
     display: block;
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
+    bottom: -2px;
+    left: -2px;
+    right: -2px;
+    top: -2px;
     border: 1px solid rgba(34,36,38,.15);
     border-radius: .28571429rem;
   }
-  /* &:hover:before {
-    border: 2px solid orange;
-    background: rgb(255,252,220);
-  }
-  &:focus {
-    background: ${props => props.theme.lllgreen};
-  }
-  &:focus:before {
-    border: ${props => `2px solid ${props.theme.green}`};
-  } */
   & + .icon {
     visibility: hidden;
   }

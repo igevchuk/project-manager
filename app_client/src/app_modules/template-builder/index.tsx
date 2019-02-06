@@ -1,24 +1,69 @@
 import * as React from 'react';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { ActionType } from 'typesafe-actions';
+
+import { contextWrapper } from './Context';
 import { Grid } from 'semantic-ui-react';
 import Document from './components/Document';
-import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
-// import Toolbar from './components/Toolbar';
+import Toolbar from './components/Toolbar';
+import { actions, model, state } from './redux';
+import Variant from '../template/components/Variant';
 
-class TemplateBuilder extends React.Component {
+type Action = ActionType<typeof actions>;
+
+interface ITemplateProps {
+  id: number;
+  name: string;
+  asd: string;
+  selectedType: number;
+  article: state.article[];
+  section: state.section[];
+  subSection: [];
+  clause: [];
+  subClause: [];
+  textSegment: model.Segment[];
+  textVariant: model.Variant[];
+  dispatch: Dispatch<Action>;
+  // dispatch: any;
+};
+
+interface ITemplateState {
+  activeSegment: model.Segment | null 
+}
+
+class TemplateBuilder extends React.Component<ITemplateProps> {
+  constructor(props, context) {
+    super(props, context);
+  }
+
   public render() {
-    return <div>
-      {/* <Toolbar /> */}
-      
-      <Navbar />
+    const { dispatch } = this.props;
+    const { addVariant, editVariant } = actions;
 
-      <Grid style={{ marginTop: 0 }}>
-          <Document />
+    return (
+      <div>
+        <Toolbar />
+
+        <Grid style={{ marginTop: 0 }}>
+          <Document
+            variants={[]}
+            addVariant={(segmentId) => dispatch(actions.addVariant(segmentId))} 
+            editVariant={(payload: model.Variant) => dispatch(actions.editVariant(payload))}
+          />
 
           <Sidebar />
-      </Grid>
-    </div>;
+        </Grid>
+      </div>
+    );
   }
 };
 
-export default TemplateBuilder;
+const mapStateToProps = ({ template }) => ({
+  template
+});
+
+export default connect(mapStateToProps)(TemplateBuilder);
+
+

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { contextWrapper } from './../TemplateContext';
+import { contextWrapper } from './../Context';
 import * as state from '../../../app/redux/state';
 
 interface ITemplateProps {
@@ -18,7 +18,7 @@ interface ITemplateProps {
 
 class Form extends React.Component<ITemplateProps> {
   public render() {
-    // console.log(this.props.article);
+    console.log(this.props);
     return <div>{this.props.asd}</div>;
   }
 }

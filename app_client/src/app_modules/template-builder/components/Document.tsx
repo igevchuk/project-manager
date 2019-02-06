@@ -1,4 +1,7 @@
 import * as React from 'react';
+
+import { Segment, Variant } from './../redux/model';
+import { Provider } from './../Context';
 import { Grid, Icon } from 'semantic-ui-react';
 import CompareArrows from '@material-ui/icons/CompareArrows';
 import Variants from './Variants';
@@ -62,8 +65,19 @@ const fakeVariants = [
     seq: 5
   }
 ];
-export default class Document extends React.Component<any, any> {
-  constructor(props: any) {
+
+interface DocumentProps {
+  variants: Variant[];
+  addVariant: (segmentId: number) => void;
+  editVariant: (variant: Variant) => void;
+};
+
+interface DocumentState {
+  activeSegment: Segment | null;
+};
+
+export default class Document extends React.Component<DocumentProps, DocumentState> {
+  constructor(props: any, context: any) {
     super(props);
     this.state = {
       activeSegment: null
@@ -78,16 +92,18 @@ export default class Document extends React.Component<any, any> {
     this.setState({ activeSegment: null });
   };
 
-  public onUpdateVariant = (variant) => {
-    console.log(variant)
+  public onContextMenu = (e) => {
+    e.preventDefault();
+    return false;
   }
 
   public renderSegment = (segment: any): any => {
+    const { addVariant, editVariant } = this.props;
     const { activeSegment } = this.state;
 
     if (!activeSegment || segment.id !== activeSegment.id) {
       return [
-        <TextHover key={v4()} onClick={e => this.handleClick(e, segment)}>
+        <TextHover key={v4()} onClick={e => this.handleClick(e, segment)} onContextMenu={this.onContextMenu}>
           <TextHoverFeature className="text-hover-feat">
             <Icon name="move" size="small" />
           </TextHoverFeature>
@@ -103,7 +119,8 @@ export default class Document extends React.Component<any, any> {
       <Variants 
         segment={segment} 
         onEscapeOutside={this.handleEscapeOutside} 
-        onUpdate={this.onUpdateVariant}
+        addVariant={addVariant}
+        editVariant={editVariant}
         textVariants={fakeVariants}
       />
     );

@@ -182,8 +182,8 @@ let schema = {
           },
           textVariant: {
             type: "array",
-            minItems: 14,
-            maxItems: 14,
+            minItems: 1,
+            maxItems: 9999,
             items: {
               type: "object",
               properties: {
@@ -192,37 +192,25 @@ let schema = {
                 },
                 title: {
                   type: "string",
-                  faker: "name.name"
+                  faker: "lorem.word"
                 },
                 text: {
                   type: "string",
-                  faker: "name.name",
-                  minLength: 200,
-                  maxLength: 400
+                  faker: "lorem.sentence"
                 },
-                seq: {
+                sequence: {
                   type: "integer",
                   minimum: 1,
                   maximum: 9999,
-                  exclusiveMinimum: true 
+                  unique: true 
                 },
                 ref: {
-                  textSegmentId: {
+                  segmentId: {
                     $ref: "#/definitions/positiveInt"
                   }
                 },
-                decorator: {
-                  bold: {
-                    type: "boolean",
-                    faker: "random.boolean"
-                  },
-                  italic: {
-                    type: "boolean",
-                    faker: "random.boolean"
-                  }
-                }
               },
-              required: ["id", "isStart", "segment", "ref", "decorator"]
+              required: ["id", "title", "text", "sequence", "segmentId"]
             }
           }
         },
