@@ -6,20 +6,25 @@ export type IState = {
 export type template = {
   id?: number;
   name?: string;
+  version?: string;
+
+  blocks?: block[];
+  paragraphs?: paragraph[];
+  tables?: table[];
+
+  textSegments?: textSegment[];
+  textVariants?: textVariant[];
+
+  //
+  // previous preperties, will be removed
+  //
   selectedType?: number;
   type?: type[];
-
   articles?: article[];
   sections?: section[];
   subSections?: subSection[];
   clauses?: clause[];
   subClauses?: subClause[];
-  textSegments?: textSegment[];
-  textVariant?: textVariant[];
-
-  //
-  // previous preperties, will be removed
-  //
   // approval_required?: boolean;
   // checked_out?: string;
   // created?: string;
@@ -36,6 +41,21 @@ export type template = {
   // value?: string;
   // variants?: template_variant[];
 };
+export type block = {
+  id?: number;
+  position?: number;
+};
+
+export type paragraph = {
+  id?: number;
+  type: string;
+  ref?: { blockId?: number };
+};
+export type table = {
+  id?: number;
+  ref?: { blockId?: number };
+};
+
 export type type = {
   id?: number;
   model?: string[];
@@ -70,8 +90,15 @@ export type textSegment = {
   id?: number;
   sequence?: number;
   segment?: string;
-  ref?: { subClauseId?: number };
+  ref?: { subClauseId?: number; paragraphId?: number };
   decorator?: decorator;
+  playbooks?: playbook[];
+};
+
+export type playbook = {
+  id?: number;
+  name?: string;
+  ref?: { clauseId?: number };
 };
 
 export type textVariant = {
@@ -79,7 +106,7 @@ export type textVariant = {
   title?: string;
   text?: string;
   sequence?: number;
-  ref: { segmentId: number, docLevel: number };
+  ref: { paragraphId?: number };
 };
 
 export type decorator = {
