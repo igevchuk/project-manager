@@ -16,22 +16,6 @@ import * as templateState from '../../../app/redux/state';
 
 import { v4 } from 'uuid';
 
-const fakeSegments = [
-  { id: 1, text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' },
-  { id: 2, text: 'Donec venenatis dolor id ex sodales consequat. ' },
-  {
-    id: 3,
-    text:
-      'Nullam porttitor lacinia diam, sed ultrices magna fringilla pellentesque. Ut viverra fermentum pretium. Donec at fringilla odio. Nullam porttitor lacinia diam, sed ultrices magna fringilla pellentesque. Ut viverra fermentum pretium. Donec at fringilla odio. Nullam porttitor lacinia diam, sed ultrices magna fringilla pellentesque. Ut viverra fermentum pretium. Donec at fringilla odio. '
-  },
-  {
-    id: 4,
-    text:
-      'Praesent euismod dui ut ante fermentum, sed consectetur lacus pretium. Vestibulum ornare sollicitudin lectus at ultrices. '
-  },
-  { id: 5, text: 'Mauris ultricies pellentesque est vel maximus. ' }
-];
-
 const fakeVariants = [
   { 
     id: 1, 
@@ -119,7 +103,7 @@ class Document extends React.Component<IDocumentProps, IDocumentState> {
           <TextHoverFeature className="text-hover-feat">
             <Icon name="move" size="small" />
           </TextHoverFeature>
-          <TextNode className="text-node">{segment.text}</TextNode>
+          <TextNode className="text-node">{segment.segment}</TextNode>
         </TextHover>,
         <VariantCount key={v4()} className="variant-count">
           3 <CompareArrows />
@@ -285,10 +269,11 @@ class Document extends React.Component<IDocumentProps, IDocumentState> {
 
     return filteredArray.map(textSegment => {
       return (
-        <span key={textSegment.id}>
-          {textSegment.segment}
-          <br />
-        </span>
+        // <span key={textSegment.id}>
+        //   {textSegment.segment}
+        //   <br />
+        // </span>
+        this.renderSegment(textSegment)
       );
     });
   };
@@ -310,7 +295,7 @@ class Document extends React.Component<IDocumentProps, IDocumentState> {
     return (
       <Grid.Column width={12}>
         <StyledDocument>
-          {fakeSegments.map(segment => this.renderSegment(segment))}
+          {/* {fakeSegments.map(segment => this.renderSegment(segment))} */}
           <br />
           <br />
           {this.getArticles(
