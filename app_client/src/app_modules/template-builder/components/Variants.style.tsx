@@ -23,9 +23,24 @@ export const VariantForm = styled(Form)`
   padding: 1em 1em 1em 2em;
   margin-bottom: 1em;
   &&& label {
+    color: rgba(0, 0, 0, 0.5);
+    display: inline-block;
     font-size: 12px;
     font-weight: normal;
-    opacity: 0.5;
+    opacity: 1;
+    &[contenteditable^="true"] {
+      padding: 0 0.5em;
+      border: 2px solid transparent;
+      border-radius: .28571429rem;
+      outline: none;
+      &:hover {
+        cursor: pointer;
+      }
+      &:focus {
+        background: rgb(232,245,232);
+        border: 2px solid rgb(67,160,71);
+      }
+    }
   }
   button {
     background: transparent;
@@ -67,28 +82,31 @@ export const Editable = styled.div`
   color: rgba(0,0,0,.87);
   border-radius: .28571429rem;
   position: relative;
+  border: 2px solid transparent;
+  &:hover {
+    background: rgb(255,252,220);
+    border: 2px solid orange;
+    &:before {
+      display: none;
+    }
+  }
+  &:focus {
+    background: rgb(232,245,232);
+    border: 2px solid rgb(67,160,71);
+    &:before {
+      display: none;
+    }
+  }
   &:before {
     content: '';
     display: block;
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
+    bottom: -2px;
+    left: -2px;
+    right: -2px;
+    top: -2px;
     border: 1px solid rgba(34,36,38,.15);
     border-radius: .28571429rem;
-  }
-  &:hover {
-    background: rgb(255,252,220);
-  }
-  &:hover:before {
-    border: 2px solid orange;
-  }
-  &:focus {
-    background: ${props => props.theme.lllgreen};
-  }
-  &:focus:before {
-    border: ${props => `2px solid ${props.theme.green}`};
   }
   & + .icon {
     visibility: hidden;

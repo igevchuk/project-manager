@@ -9,6 +9,7 @@ import { Grid } from 'semantic-ui-react';
 import Document from './components/Document';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
+import { Editor, EditorState } from 'draft-js';
 
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
@@ -19,18 +20,22 @@ import Content from './components/Content';
 
 interface ITemplateProps {
   template: state.template;
+  onChange: () => void;
 }
 
 interface ITemplateState {
   template: state.template;
+  editorState: EditorState;
 }
 class Template extends React.Component<ITemplateProps, ITemplateState> {
   private timer: number = 0;
   constructor(props) {
     super(props);
-    this.state = {
-      template: {}
-    };
+    // this.state = {
+    //   template: {}
+    // };
+    this.state = { template: {}, editorState: EditorState.createEmpty() };
+    // this.onChange = editorState => this.setState({ editorState });
   }
 
   public componentDidMount() {
@@ -44,6 +49,10 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
     );
   }
 
+  public onChange() {
+    return;
+  }
+
   public render() {
     // console.log(this.props.template);
 
@@ -51,8 +60,14 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
       <div>
         <Navbar />
         <Grid style={{ marginTop: 0 }}>
-          {/* <Document />
-          <Sidebar /> */}
+          <Document />
+          <Sidebar />
+
+          <Editor
+            editorState={this.state.editorState}
+            onChange={this.onChange}
+          />
+
           <Provider value={{ doc: this.props.template }}>
             <Content asd={'asdf'} />
           </Provider>

@@ -73,7 +73,7 @@ class ApiLocal extends ApiBase implements IApiLocal {
       }
     ];
 
-    fetch('http://localhost:3004/templates/', {
+    fetch('http://localhost:3004/templates', {
       method: 'POST',
       body: JSON.stringify(body),
       headers: { 'Content-Type': 'application/json' }

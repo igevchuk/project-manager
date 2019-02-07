@@ -13,7 +13,8 @@
             "subSection",
             "clause",
             "subClause",
-            "textSegment"
+            "textSegment",
+            "textVariant"
           ]
         },
         {
@@ -24,7 +25,8 @@
             "section",
             "subSection",
             "clause",
-            "textSegment"
+            "textSegment",
+            "textVariant"
           ]
         },
         {
@@ -35,7 +37,8 @@
             "section",
             "subSection",
             "clause",
-            "textSegment"
+            "textSegment",
+            "textVariant"
           ]
         }
       ],
