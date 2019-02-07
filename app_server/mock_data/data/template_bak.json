@@ -1,630 +1,1648 @@
 {
-  "templates": [
+  "approval_required": false,
+  "checked_out": null,
+  "created": "2018-08-27T16:22:06Z",
+  "creator": "Admin User",
+  "creatoremail": "admin@gs.com",
+  "creatorid": 6,
+  "description": null,
+  "id": 5,
+  "killed": null,
+  "last_published": null,
+  "published": false,
+  "publisher": "",
+  "sections": [
     {
-      "id": 1,
-      "name": "in cillum culpaeu dolore est",
-      "textLevel": "exercitation et do consequat",
-      "article": [
+      "id": 21,
+      "killed": null,
+      "prefix": 0,
+      "heading": "Preamble",
+      "subheading": "",
+      "clauses": []
+    },
+    {
+      "id": 22,
+      "killed": null,
+      "prefix": 1,
+      "heading": "Term Sheet",
+      "subheading": "",
+      "clauses": [
         {
-          "id": 11,
-          "name": "sint dolorpariatur est eu",
-          "ref": { "templateId": 1 }
+          "id": 645,
+          "type": "Title",
+          "killed": null,
+          "identifier": "1",
+          "level": 0,
+          "title": "Title ",
+          "seq": 1,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 645,
+              "texttable": null,
+              "default": true,
+              "is_bolded": true,
+              "is_centered": true,
+              "id": 1539,
+              "id_tag": "RrAczLuPAln4ja8AtMBXQ8MgUboGu5kU",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": false,
+                  "clause_identifier": "1",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2041,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1539,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "TERM SHEET"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 12,
-          "name": "aute aliqua adipisicing exercitation elit",
-          "ref": { "templateId": 1 }
-        }
-      ],
-      "section": [
-        {
-          "id": 111,
-          "name": "non Utsit ipsum sedminim est",
-          "ref": { "articleId": 11 }
+          "id": 646,
+          "type": "Title",
+          "killed": null,
+          "identifier": "1",
+          "level": 0,
+          "title": "Parties ",
+          "seq": 1,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 646,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": true,
+              "id": 1540,
+              "id_tag": "J8S2cLoY8ho1axedMrETdawErn4bYbyT",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "1",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2044,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1540,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": true,
+                  "clause_identifier": "1",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": "",
+                  "id": 2043,
+                  "language": "Changes to the counterparty is acceptable if it is the name listed on the netting opinion.",
+                  "modify": true,
+                  "reject": true,
+                  "text_segment": 1540,
+                  "type": "conditional"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "1",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": "",
+                  "id": 2042,
+                  "language": "Any changes to the name of the Goldman Sachs contracting entity must be rejected.",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1540,
+                  "type": "escalations"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "1",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2045,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1540,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 2,
+              "tags": [],
+              "text": "Between\n\n{{goldman_sachs_entity}} and {{counterparty_name}}\n\nDate: {{term_sheet_date}}"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 112,
-          "name": "sint laborum exercitation incididunt in",
-          "ref": { "articleId": 12 }
-        },
-        {
-          "id": 113,
-          "name": "aliqua veniam laborum",
-          "ref": { "articleId": 11 }
-        },
-        {
-          "id": 114,
-          "name": "ex dolor pariatur laboris",
-          "ref": { "articleId": 11 }
-        }
-      ],
-      "subSection": [
-        {
-          "id": 1111,
-          "name": "culpa anim cillumoccaecat laborum ea cillum",
-          "ref": { "sectionId": 111 }
-        },
-        {
-          "id": 1112,
-          "name": "adipisicing laborisin laboris elit ad",
-          "ref": { "sectionId": 111 }
-        },
-        {
-          "id": 1113,
-          "name": "mollit voluptatequis occaecat",
-          "ref": { "sectionId": 114 }
-        },
-        {
-          "id": 1114,
-          "name": "sed nostrud etconsectetur qui consequat",
-          "ref": { "sectionId": 113 }
-        },
-        {
-          "id": 1115,
-          "name": "consecteturauteculpa aliquip esse",
-          "ref": { "sectionId": 111 }
-        },
-        {
-          "id": 1116,
-          "name": "elitirure doin laboris enim",
-          "ref": { "sectionId": 111 }
-        }
-      ],
-      "clause": [
-        {
-          "id": 11111,
-          "name": "eu quis non elit minim",
-          "ref": { "subSectionId": 1111 }
-        },
-        {
-          "id": 11112,
-          "name": "consectetur aliquipin aliqua nostrud magna irure",
-          "ref": { "subSectionId": 1112 }
-        },
-        {
-          "id": 11113,
-          "name": "magna quis enim mollit irure",
-          "ref": { "subSectionId": 1111 }
-        },
-        {
-          "id": 11114,
-          "name": "velitminim officia laboris",
-          "ref": { "subSectionId": 1113 }
-        },
-        {
-          "id": 11115,
-          "name": "Duis dolorealiqua deserunt culpa mollit",
-          "ref": { "subSectionId": 1111 }
-        },
-        {
-          "id": 11116,
-          "name": "dolore cupidatat Duis ali",
-          "ref": { "subSectionId": 1114 }
-        },
-        {
-          "id": 11117,
-          "name": "culpa sint sit dolor mollit",
-          "ref": { "subSectionId": 1111 }
-        },
-        {
-          "id": 11118,
-          "name": "doloreadex laboris eu in",
-          "ref": { "subSectionId": 1111 }
-        }
-      ],
-      "subClause": [
-        {
-          "id": 111111,
-          "name": "veniamirure est amet consectetur",
-          "ref": {
-            "clauseId": 11111
-          }
-        },
-        {
-          "id": 111112,
-          "name": "adipisicing minim consec",
-          "ref": {
-            "clauseId": 11111
-          }
-        },
-        {
-          "id": 111113,
-          "name": "aliquip nisipariatur minim",
-          "ref": {
-            "clauseId": 11112
-          }
-        },
-        {
-          "id": 111114,
-          "name": "sintirure cillum sit dolore ut",
-          "ref": {
-            "clauseId": 11111
-          }
-        },
-        {
-          "id": 111115,
-          "name": "minimoccaecat esse enim",
-          "ref": {
-            "clauseId": 11113
-          }
-        },
-        {
-          "id": 111116,
-          "name": "Ut amet minim aliquip",
-          "ref": {
-            "clauseId": 11111
-          }
-        },
-        {
-          "id": 111117,
-          "name": "eareprehenderit cillum cupidatat dolore",
-          "ref": {
-            "clauseId": 11112
-          }
-        },
-        {
-          "id": 111118,
-          "name": "irure incididunt mollit do veniam",
-          "ref": {
-            "clauseId": 11114
-          }
-        },
-        {
-          "id": 111119,
-          "name": "exenim eu quis laborum",
-          "ref": {
-            "clauseId": 11111
-          }
-        },
-        {
-          "id": 111120,
-          "name": "nostrud dolor laborum",
-          "ref": {
-            "clauseId": 11111
-          }
-        }
-      ],
-      "textSegment": [
-        {
-          "id": 1111111,
-          "isStart": false,
-          "segment": "dolore labore Uteiusmodiruredolor pariatur ut aliqua innonaute irureofficia aliqua eu estaute et Ut cillumdolor aliquip aute irure reprehenderitincididunt irure inproident nostrud ad culpareprehenderit",
-          "ref": {
-            "subClauseId": 111111
-          },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 1111112,
-          "isStart": false,
-          "segment": "non aute consequat idcupidatat est voluptate ut nullaaliqua cupidatat elitmollit culpa dolor irure ipsumreprehenderit in eucommodo sed incididunt elit veniamaliqua veniam adipisicing fugiat quivoluptate aliquip ex laborum veniam",
-          "ref": {
-            "subClauseId": 111112
-          },
-          "decorator": { "bold": true, "italic": true }
-        },
-        {
-          "id": 1111113,
-          "isStart": false,
-          "segment": "elit labore id esseeiusmod velit noncillum tempornisi sed veniam utdolor Lorem pariaturcupidatat et magna consequataliqua nulla elit proident cillumlaboris seddolor eiusmod adea proident quis occaecat",
-          "ref": {
-            "subClauseId": 111111
-          },
-          "decorator": { "bold": true, "italic": true }
-        },
-        {
-          "id": 1111114,
-          "isStart": false,
-          "segment": "voluptate labore reprehenderiteu Duisexminim ea enim quiin ea Utdolaborumeiusmod mollit sint dolortempor labore cupidatat ea involuptatedolornon eiusmod sedullamco do veniam ad cillumut officia fugiat dolor",
-          "ref": {
-            "subClauseId": 111113
-          },
-          "decorator": { "bold": false, "italic": true }
-        },
-        {
-          "id": 1111115,
-          "isStart": false,
-          "segment": "voluptate incillumlaborum non ad mollitquis officia mollit laborelaboris cillum nulla dolorexercitation et nostrud Lorem mollitlaborum mollit veniam cillummollitin nulla in voluptate Excepteurnisi sint incididunt esse nostrud",
-          "ref": {
-            "subClauseId": 111114
-          },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 1111116,
-          "isStart": true,
-          "segment": "voluptateveniamnulla minim dolordolore quis inuteu culpavelit incididunt estqui eu deseruntadipisicing consequat in consectetur idullamco consequatveniamminim elit nulla veniamcupidatat fugiat sunt voluptate",
-          "ref": {
-            "subClauseId": 111111
-          },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 1111117,
-          "isStart": false,
-          "segment": "ullamco Duis cillum in sedvoluptate doloriruredolore aliqua adsed pariatur exercitation nulla dolorDuisreprehenderit et eu Loremipsumlaborum ea Loremvoluptate minim dolor exindolorlaborum deserunt sit",
-          "ref": {
-            "subClauseId": 111111
-          },
-          "decorator": { "bold": false, "italic": true }
-        },
-        {
-          "id": 1111118,
-          "isStart": true,
-          "segment": "doloramet cupidatat incididunt sed Excepteuret aliqua eu anim indolore aliquanisi eu tempor dolore reprehenderitvoluptate doloreex in ea consequat elitsunt amet mollit dolore Utexercitation sunt est esse nostrud",
-          "ref": {
-            "subClauseId": 111112
-          },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 1111119,
-          "isStart": true,
-          "segment": "in enim id aliqua deseruntesse indo id commodoauteveniam velit deserunt adipsumirure ut aliquadolor nostrudadipisicingad enim non culpa exeu consectetur qui magnaoccaecat Lorem incommodo ipsum culpa elit qui",
-          "ref": {
-            "subClauseId": 111111
-          },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 1111120,
-          "isStart": true,
-          "segment": "qui autequinulla qui sit in ipsumaute ad quivoluptate consectetur laboris etnisiquisad anim non euincididunt id nostrudofficia eu adipisicingea sunt velitipsum proidentofficia ad Excepteur deserunt non",
-          "ref": {
-            "subClauseId": 111114
-          },
-          "decorator": { "bold": false, "italic": true }
-        },
-        {
-          "id": 1111121,
-          "isStart": false,
-          "segment": "do fugiatsuntvoluptate in doloreid reprehenderitut commodo fugiat eiusmodminim cillum aliquip tempor cupidatatea cillum aliqua magna nostrudUt eiusmod utet minim enim Lorem utaliqua DuisDuis enimdolore ea",
-          "ref": {
-            "subClauseId": 111111
-          },
-          "decorator": { "bold": true, "italic": true }
-        },
-        {
-          "id": 1111122,
-          "isStart": true,
-          "segment": "laborum aliqua in auteexercitation amet irure inet ipsumoccaecat in reprehenderit ullamconulla dolor proidentcommodo Ut noncupidatatofficia elit laborum nisi commodonostrud culpa amet aute euea Ut nulla elit",
-          "ref": {
-            "subClauseId": 111111
-          },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 1111123,
-          "isStart": true,
-          "segment": "amet Lorem incididunt in nulladeserunt cupidatat proident laborum velitnon sed ipsum voluptate reprehenderitest ullamco quieu amet idconsectetur cupidatat veniam laborenon consequat amet qui quisdolore nisi officia nostrud",
-          "ref": {
-            "subClauseId": 111112
-          },
-          "decorator": { "bold": false, "italic": true }
-        },
-        {
-          "id": 1111124,
-          "isStart": false,
-          "segment": "nisi sedconsequat culpa Lorem quilaboris et deserunt Duis idlaboresed pariatur eu veniamipsum occaecat deserunttempor in ullamcovelit aliqua nisi ullamco sintminimdolordolornullased irure eiusmod addo dolore",
-          "ref": {
-            "subClauseId": 111113
-          },
-          "decorator": { "bold": false, "italic": false }
+          "id": 647,
+          "type": "Preamble",
+          "killed": null,
+          "identifier": "1.1",
+          "level": 0,
+          "title": "No Binding Obligation ",
+          "seq": 2,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 647,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1541,
+              "id_tag": "F8eOqBDb0SQk0qArYZoXOSFtzf8E2c37",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "1.1",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": "",
+                  "id": 2046,
+                  "language": "The following is acceptable:\n\nThis Term Sheet represents the current understanding of the parties and does not constitute a legally binding agreement nor create any legally binding obligation.",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1541,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "1.1",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2047,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1541,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "This Term Sheet represents the current understanding of the parties with respect to certain of the major issues relating to the Credit Support Annex and does not constitute a legally binding agreement. This summary does not constitute a legally binding obligation. Any other legally binding obligation will only be made pursuant to definitive agreements to be negotiated and executed by the parties. "
+            },
+            {
+              "add_new_line": true,
+              "clause": 647,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1542,
+              "id_tag": "OtQPMNVognmABn1tZbPtXFjeinrgTDDx",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "1.1",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": "",
+                  "id": 2048,
+                  "language": "It is fine to include FX Spots.",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1542,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "1.1",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2049,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1542,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 2,
+              "tags": [],
+              "text": "Terms of the Credit Support Annex:"
+            }
+          ],
+          "clausetables": []
         }
       ]
     },
     {
-      "id": 2,
-      "name": "enimsunt Ut exercitation",
-      "textLevel": "eu nostrud doest",
-      "article": [
+      "id": 23,
+      "killed": null,
+      "prefix": 2,
+      "heading": "Terms",
+      "subheading": "",
+      "clauses": [
         {
-          "id": 21,
-          "name": "proidentid nostrud ipsum Duis sint",
-          "ref": { "templateId": 2 }
+          "id": 648,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.1",
+          "level": 0,
+          "title": "Base Currency ",
+          "seq": 3,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 648,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1543,
+              "id_tag": "TB6JxWFQ0pzQ3IbyroONzpD8WZV4DaK7",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.1",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2051,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1543,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": true,
+                  "clause_identifier": "2.1",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": "",
+                  "id": 2050,
+                  "language": "EUR or Great British Pound GBP are acceptable. However, CP Risk and Treasury must opine for any deviations from USD. Credit must only approve deviations from EUR, GBP, USD.",
+                  "modify": true,
+                  "reject": true,
+                  "text_segment": 1543,
+                  "type": "conditional"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.1",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2052,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1543,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Base Currency:                                                                    {{base_currency}}"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 22,
-          "name": "sedullamco voluptate tempor",
-          "ref": { "templateId": 2 }
-        }
-      ],
-      "section": [
-        {
-          "id": 211,
-          "name": "eiusmod pariatur deserunt",
-          "ref": { "articleId": 21 }
+          "id": 649,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.2",
+          "level": 0,
+          "title": "Eligible Currency ",
+          "seq": 4,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 649,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1544,
+              "id_tag": "1I00U7Yg92wQObebjDH58XwUNujUlmwg",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.2",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2054,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1544,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.2",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2055,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1544,
+                  "type": "escalations"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.2",
+                  "confirmed_language": "Confirm that no changes has been made to Base Currency and Eligible Currency.",
+                  "escalate": true,
+                  "explanation": "",
+                  "id": 2053,
+                  "language": "Never accept an Eligible Currency different than the Base Currency (USD). Escalate to the Federation teams and CVA for any deviations, or if the request is for several Eligible Currencies.",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1544,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Eligible Currency:                                                                Same as Base Currency."
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 212,
-          "name": "ipsum exercitationdolor anim voluptate",
-          "ref": { "articleId": 22 }
+          "id": 650,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.3",
+          "level": 0,
+          "title": "Covered Transaction Date ",
+          "seq": 5,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 650,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1545,
+              "id_tag": "AW5hgN44wqJPsk7KUdjRx76veYtBl8HE",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.3",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2057,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1545,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": true,
+                  "clause_identifier": "2.3",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": "",
+                  "id": 2056,
+                  "language": "Text of \"on or after March 1, 2017\" can be changed if confirmed that there are no executed in-scope trades prior to the date of execution of the CSA. Trade information can be confirmed with either Credit or Sales.",
+                  "modify": true,
+                  "reject": true,
+                  "text_segment": 1545,
+                  "type": "conditional"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.3",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2058,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1545,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Covered Transactions Date:                                                 March 1, 2017"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 213,
-          "name": "sunt nostrud veniam ut cupidatat",
-          "ref": { "articleId": 21 }
+          "id": 651,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.4",
+          "level": 0,
+          "title": "Covered Transaction ",
+          "seq": 6,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 651,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1546,
+              "id_tag": "pl81dMVYStptGecenGaxkGMCgQYYi3j7",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.4",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2059,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1546,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.4",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2060,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1546,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Covered Transactions:                                                         Exclude FX Spot"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 214,
-          "name": "incididunttempor aliquip commo",
-          "ref": { "articleId": 21 }
-        }
-      ],
-      "subSection": [
-        {
-          "id": 2111,
-          "name": "exirureullamco minim Lorem eiusmod ad",
-          "ref": { "sectionId": 211 }
+          "id": 652,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.5",
+          "level": 0,
+          "title": "Eligible Collateral ",
+          "seq": 7,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 652,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1547,
+              "id_tag": "EUsSvi1IrAeYEvUrW13obLBhX7GqsGOv",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.5",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2062,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1547,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.5",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2063,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1547,
+                  "type": "escalations"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.5",
+                  "confirmed_language": "Confirm that the Eligible Collateral is cash only.",
+                  "escalate": true,
+                  "explanation": "",
+                  "id": 2061,
+                  "language": "CP Risk, MCVO and CRMA must always approve before any non-cash collateral is accepted. Note that the denomination of any non-cash collateral approved by Treasury, CP Risk, MCVO and CRMA should always match the Eligible Currency and the Base Currency. CRMA must also approve the Rating Ranges and Valuation Percentages as applicable to Counterparty. Treasury would need to approve any Ratings Ranges and Valuation Percentages that apply against Goldman Sachs.",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1547,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Eligible Collateral:                                                               Cash{{eligible_collateral_text}}"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 2112,
-          "name": "sunt reprehenderitlaboris",
-          "ref": { "sectionId": 211 }
+          "id": 653,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.6",
+          "level": 0,
+          "title": "Valuation Percentage ",
+          "seq": 8,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 653,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1548,
+              "id_tag": "ZFVZFNu5DJ6YZsYYze0v8avztLC9jFyc",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.6",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2065,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1548,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.6",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2066,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1548,
+                  "type": "escalations"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.6",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": "",
+                  "id": 2064,
+                  "language": "Any deviation in the Valuation Percentage must be escalated to CRMA for approval.",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1548,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Valuation Percentage:                                                         100%"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 2113,
-          "name": "deserunt in non fugiat dolor",
-          "ref": { "sectionId": 212 }
+          "id": 654,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.7",
+          "level": 0,
+          "title": "Rounding ",
+          "seq": 9,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 654,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1549,
+              "id_tag": "i1kIO8uO5ZoaDvYWOnC9VXRA8Fu4oNeN",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.7",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2068,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1549,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.7",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2069,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1549,
+                  "type": "escalations"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.7",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": "",
+                  "id": 2067,
+                  "language": "Any deviation on Rounding must be approved by MCVO and Treasury. Credit should be posted.",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1549,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Rounding:                                                                            10,000 units of Base Currency"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 2114,
-          "name": "velit ex Duis ipsumad dolore incididunt",
-          "ref": { "sectionId": 211 }
+          "id": 655,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.8",
+          "level": 0,
+          "title": "Minimum Transfer Amount ",
+          "seq": 10,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 655,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1550,
+              "id_tag": "3bSVmPJfNGgxFLbUIDKK8WWT2jJtF6rJ",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.8",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2071,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1550,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": true,
+                  "clause_identifier": "2.8",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": "",
+                  "id": 2070,
+                  "language": "MTA of 250,000 for Counterparty requires CRMA approval required before it can be accepted. If CRMA approve a 250,000 MTA for Counterparty, the MTA for GSI should also be set at 250,000, subject to Treasury approval. ",
+                  "modify": true,
+                  "reject": true,
+                  "text_segment": 1550,
+                  "type": "conditional"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.8",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2072,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1550,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Minimum Transfer Amount:                                               {{minimum_transfer_amount}}"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 2115,
-          "name": "adipisicingvoluptate cupidatat",
-          "ref": { "sectionId": 214 }
+          "id": 656,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.9",
+          "level": 0,
+          "title": "Valuation Agent ",
+          "seq": 11,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 656,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1551,
+              "id_tag": "ceNZDtVQpTZfp9ks8bVcs1RJ8nc4gCkL",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.9",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2074,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1551,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": true,
+                  "clause_identifier": "2.9",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": "",
+                  "id": 2073,
+                  "language": "Changes to the counterparty is acceptable. However, the change must match up to the name of the counterparty indicated near the top of the term sheet. Changes to the counterparty is acceptable if it is the name listed on the netting opinion.",
+                  "modify": true,
+                  "reject": true,
+                  "text_segment": 1551,
+                  "type": "conditional"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.9",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2075,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1551,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Valuation Agent:                                                                 {{goldman_sachs_entity}}"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 2116,
-          "name": "Ut ullamco exercitation sunt",
-          "ref": { "sectionId": 213 }
-        }
-      ],
-      "clause": [
-        {
-          "id": 21111,
-          "name": "reprehenderit ullamco consectetur do labore",
-          "ref": { "subSectionId": 2111 }
+          "id": 657,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.11",
+          "level": 0,
+          "title": "Valuation Date Location ",
+          "seq": 12,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 657,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1552,
+              "id_tag": "jN3pOMqu9B3MxBdwd2biUjgplQzf8keL",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.11",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": "",
+                  "id": 2076,
+                  "language": "New York is acceptable.",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1552,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": true,
+                  "clause_identifier": "2.11",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2077,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1552,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.11",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2078,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1552,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Valuation Date Location:                                                    London"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 21112,
-          "name": "commododolor exercitation laborum",
-          "ref": { "subSectionId": 2111 }
+          "id": 658,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.12",
+          "level": 0,
+          "title": "Notification Time ",
+          "seq": 13,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 658,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1553,
+              "id_tag": "R6ndVb6AbsaASUtpKtQBZJxJFnREHyZx",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.12",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2080,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1553,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.12",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2081,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1553,
+                  "type": "escalations"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.12",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": "",
+                  "id": 2079,
+                  "language": "If Counterparty CMU is located in London, the Counterparty should accept 12 noon London time.\n\nIf Counterparty CMU is located in the US:\n- 10 am New York time can be accepted\n- any time from (and including) 11am New York time to (and including) 1 p.m. New York time can be accepted if Eligible Collateral is USD cash only\n- any other request of a time later than 10am New York time (not meeting the above requirement) to be escalated to MCVO.\n\nAll other requested times to be escalated to MCVO.\n\nAny request to specify a Notification Time (and a corresponding Resolution Time) that is earlier than 12 noon, London time must be escalated to CPRT, Tech, CRMA and MCVO.",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1553,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Notification Time:                                                               12PM, London"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 21113,
-          "name": "enimcommodoutelit sint laboris",
-          "ref": { "subSectionId": 2112 }
+          "id": 659,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.13",
+          "level": 0,
+          "title": "Consent ",
+          "seq": 14,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 659,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1554,
+              "id_tag": "5c0haZ5y3pxNSGqDGe5x3mahnZpTii2j",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.13",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2082,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1554,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.13",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2083,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1554,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Consent:                                                                               Not required"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 21114,
-          "name": "ineain elit sint aliquip",
-          "ref": { "subSectionId": 2111 }
+          "id": 660,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.14",
+          "level": 0,
+          "title": "Resolution Time ",
+          "seq": 15,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 660,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1555,
+              "id_tag": "d8JyWUeemmG0gNajTaiFA4XlfNtHa7gQ",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.14",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2085,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1555,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": true,
+                  "clause_identifier": "2.14",
+                  "confirmed_language": "Confirm that \"Resolution Time\" matches \"Notification Time\".",
+                  "escalate": true,
+                  "explanation": "",
+                  "id": 2084,
+                  "language": "\"Resolution Time\" must match \"Notification Time\".",
+                  "modify": true,
+                  "reject": true,
+                  "text_segment": 1555,
+                  "type": "conditional"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.14",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2086,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1555,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Resolution Time:                                                                 12PM, London"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 21115,
-          "name": "sunt magnanon minimvelit",
-          "ref": { "subSectionId": 2113 }
+          "id": 661,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.15",
+          "level": 0,
+          "title": "Special Conditions ",
+          "seq": 16,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 661,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1556,
+              "id_tag": "e9QfGSnC4GY5rHfZzmgPY6czfwbqQhTR",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.15",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2088,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1556,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.15",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2089,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1556,
+                  "type": "escalations"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.15",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": "",
+                  "id": 2087,
+                  "language": "Any new Special Conditions must be escalated to Legal.",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1556,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Special Conditions:                                                              None"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 21116,
-          "name": "nostrud ut consectetur",
-          "ref": { "subSectionId": 2114 }
+          "id": 662,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.16",
+          "level": 0,
+          "title": "Interest Transfer ",
+          "seq": 17,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 662,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1557,
+              "id_tag": "O0lXd2XwC3mDmX71JyhMNg3F3wrgSZtE",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.16",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2091,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1557,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.16",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2092,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1557,
+                  "type": "escalations"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.16",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": "",
+                  "id": 2090,
+                  "language": "Any changes from Standard must be rejected.",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1557,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Standard or Modified Interest Transfer:                              Standard"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 21117,
-          "name": "nulla ad quis eu sed",
-          "ref": { "subSectionId": 2111 }
+          "id": 663,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.17",
+          "level": 0,
+          "title": "Interest Adjustment ",
+          "seq": 18,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 663,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1558,
+              "id_tag": "3KEr2nKTpKovPhX2F30bByJmuDJpc142",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.17",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2093,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1558,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.17",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2094,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1558,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Interest Adjustment:                                                             Not Applicable"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 21118,
-          "name": "in veniam in dolorut enim",
-          "ref": { "subSectionId": 2111 }
-        }
-      ],
-      "subClause": [
-        {
-          "id": 211111,
-          "name": "eu doloremollit minim Lorem id veniam",
-          "ref": {
-            "clauseId": 21111
-          }
+          "id": 664,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.18",
+          "level": 0,
+          "title": "Negative Interest ",
+          "seq": 19,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 664,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1559,
+              "id_tag": "qxaXnIMBlcnpCOQCgWr7oJm5RsQDXE6g",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.18",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2096,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1559,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.18",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2097,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1559,
+                  "type": "escalations"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.18",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": "",
+                  "id": 2095,
+                  "language": "Changes to applicability of Negative Interest must be escalated to CP Risk.",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1559,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Negative Interest:                                                                 Applicable"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 211112,
-          "name": "ipsumid deseruntesse ut",
-          "ref": {
-            "clauseId": 21111
-          }
+          "id": 665,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.19",
+          "level": 0,
+          "title": "Daily Interest Compounding ",
+          "seq": 20,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 665,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1560,
+              "id_tag": "SfyxptJjhV6pFTWsCaKwW3g5XZBZiWYi",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.19",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": "",
+                  "id": 2098,
+                  "language": "Not Applicable is acceptable.",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1560,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": true,
+                  "clause_identifier": "2.19",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2099,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1560,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.19",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2100,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1560,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Daily Interest Compounding:                                               Applicable"
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 211113,
-          "name": "dolore ad dolor sedeiusmod mollit",
-          "ref": {
-            "clauseId": 21112
-          }
+          "id": 666,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.21",
+          "level": 0,
+          "title": "Other Provisions ",
+          "seq": 21,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 666,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1561,
+              "id_tag": "x1Tcf65m2dMyhZxvRSbaz7xVXCYUNpwa",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.21",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2102,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1561,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.21",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2103,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1561,
+                  "type": "escalations"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.21",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": "",
+                  "id": 2101,
+                  "language": "Any new provisions must be escalated to Legal and CRMA.",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1561,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "Other Provisions:                                                                 None."
+            }
+          ],
+          "clausetables": []
         },
         {
-          "id": 211114,
-          "name": "deserunt dolor fugiat ipsum",
-          "ref": {
-            "clauseId": 21113
-          }
-        },
-        {
-          "id": 211115,
-          "name": "eiusmodculpa ut cupidatat",
-          "ref": {
-            "clauseId": 21111
-          }
-        },
-        {
-          "id": 211116,
-          "name": "dolor tempor magna eiusmod ea",
-          "ref": {
-            "clauseId": 21111
-          }
-        },
-        {
-          "id": 211117,
-          "name": "sedreprehenderit tempor labore cillum",
-          "ref": {
-            "clauseId": 21114
-          }
-        },
-        {
-          "id": 211118,
-          "name": "ut cupidatat sunt in",
-          "ref": {
-            "clauseId": 21114
-          }
-        },
-        {
-          "id": 211119,
-          "name": "dolore ullamco sed cillum",
-          "ref": {
-            "clauseId": 21111
-          }
-        },
-        {
-          "id": 211120,
-          "name": "sint in consectetur aute",
-          "ref": {
-            "clauseId": 21111
-          }
-        }
-      ],
-      "textSegment": [
-        {
-          "id": 2111111,
-          "isStart": false,
-          "segment": "ad occaecat mollit amet sintconsequat ipsum Loremirure ullamco quiofficia exercitation id enim elitdolore do eiusmodtempor quis consequat nisiinculpa quis doloredoloreestsedvoluptate esse ipsumnisi non",
-          "ref": {
-            "subClauseId": 211111
-          },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 2111112,
-          "isStart": false,
-          "segment": "eiusmod elit sunt cupidatat Duisullamco cupidatat dolor proidenteiusmod sint cillum ut dolorealiquaeiusmod officia in qui inexercitationcillumvoluptate laboris suntaliqua exercitationin qui cillumelit laborum culpa",
-          "ref": {
-            "subClauseId": 211111
-          },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 2111113,
-          "isStart": false,
-          "segment": "id enim officia veniamelitea laboris sitadin uteiusmod ex cillum sitesse laborumnisiveniamqui Utconsequatincididunt culpa pariaturaliquip quiut ut labore culpaqui ut anim reprehenderit sedquis Excepteur nostrud incididunt",
-          "ref": {
-            "subClauseId": 211112
-          },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 2111114,
-          "isStart": true,
-          "segment": "aute incididunt sedvoluptate enim dolorlabore exercitation enim in estamet veniam consectetur animmollit aliqua veniam ut doloreDuis elit laborisconsectetur tempornisi occaecat eiusmod aliqua nostrudsit",
-          "ref": {
-            "subClauseId": 211111
-          },
-          "decorator": { "bold": true, "italic": true }
-        },
-        {
-          "id": 2111115,
-          "isStart": true,
-          "segment": "ut est incididunt culpareprehenderit est eu adnonaliqua aute consequat enimpariatur amet commodo dolor minimipsum ut consequat ullamcoenim sint idreprehenderit officia magna incididuntExcepteur nostrud mollit",
-          "ref": {
-            "subClauseId": 211114
-          },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 2111116,
-          "isStart": true,
-          "segment": "Loremproidentinsunt cupidatat tempor Duis aliquipnonut qui minim ea sedexercitation nostrudculpa ut dolore aliquipmollitlaborumest nostrudcupidatat aliquip consectetur anim sedquis enim aliquip pariatur do",
-          "ref": {
-            "subClauseId": 211113
-          },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 2111117,
-          "isStart": true,
-          "segment": "tempor reprehenderit occaecat nostrud dolordolor eiusmod ut in adipisicingestproidentminimnon laboris proident aliquipUt ipsum ut doloreUt aute sunt proidentin et in sed minimaute minimDuis sed dolorincididunt nulla commodo do",
-          "ref": {
-            "subClauseId": 211111
-          },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 2111118,
-          "isStart": true,
-          "segment": "ut Ut consectetur mollit enimdoloredolore cillum enim elitnisi consequat laboris officia animutirure consectetur in indolor ipsum ea do quisminim qui velitipsum reprehenderitexercitation nisi dolor Ut",
-          "ref": {
-            "subClauseId": 211111
-          },
-          "decorator": { "bold": true, "italic": true }
-        },
-        {
-          "id": 2111119,
-          "isStart": true,
-          "segment": "exercitation velitculpa temporlaboreUt minim commodo culpa esteiusmod elit quisnulla ut proident consequatdo minim sunt adipisicing elitculpa consequatproident esse aute pariatur ametesse dolor enim quis nostrud",
-          "ref": {
-            "subClauseId": 211112
-          },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 2111120,
-          "isStart": false,
-          "segment": "fugiatculpa aliqua ut laboris sintconsequat est quis ullamcoet in dolor dolor estincididunt dolorelit cillum est dolore nostrudipsumadipisicing cillumqui pariatur incididunt sed aliquanulla commodo laborum non",
-          "ref": {
-            "subClauseId": 211116
-          },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 2111121,
-          "isStart": true,
-          "segment": "aliquiputqui non proidentid in dolor exercitation irureExcepteur cillum Loremelit esse anim eueu nisi et magna pariaturaute id ExcepteuresseUt ut labore nostrudelit deserunt laborelabore veniam minimirure proident dolore est",
-          "ref": {
-            "subClauseId": 211111
-          },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 2111122,
-          "isStart": true,
-          "segment": "irure proident magnacommodosunt nulla do commodo minimanim consequat reprehenderitenim exercitation sunt proident temporesse ad voluptate in veniamExcepteur utirure in pariaturlaboris consequat quis ipsum",
-          "ref": {
-            "subClauseId": 211112
-          },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 2111123,
-          "isStart": false,
-          "segment": "aliqua voluptate nostrud ullamco temporadipisicingexamet adipisicing elit officia exercitationculpa Lorem eu pariaturaliquip ad enim voluptate nonveniam quinisi etea enimsed ex cillum dolor veliteiusmod reprehenderit cupidatat",
-          "ref": {
-            "subClauseId": 211116
-          },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 2111124,
-          "isStart": false,
-          "segment": "do proident ut sit laboreullamco occaecat dolor idsintmollit do esse pariaturtempor officiareprehenderiteiusmod id dolor proident esseExcepteur commodosunt sit pariatur veniamdofugiat laborisLorem proident veniam",
-          "ref": {
-            "subClauseId": 211112
-          },
-          "decorator": { "bold": false, "italic": false }
+          "id": 667,
+          "type": "Clause",
+          "killed": null,
+          "identifier": "2.22",
+          "level": 0,
+          "title": "Signatures ",
+          "seq": 22,
+          "is_title_visible": false,
+          "segments": [
+            {
+              "add_new_line": true,
+              "clause": 667,
+              "texttable": null,
+              "default": true,
+              "is_bolded": false,
+              "is_centered": false,
+              "id": 1562,
+              "id_tag": "mBthq5LKINgvJKXs2BOQZryTzAGucMDs",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": false,
+                  "clause_identifier": "2.22",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2104,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1562,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 1,
+              "tags": [],
+              "text": "This Term Sheet may be executed in counterparts, which together will constitute one document. Electronic signatures shall have the same legal effect as original signatures."
+            },
+            {
+              "add_new_line": true,
+              "clause": 667,
+              "texttable": null,
+              "default": true,
+              "is_bolded": true,
+              "is_centered": false,
+              "id": 1563,
+              "id_tag": "95gmTjZoih6SK1teZ6C4CAf9fPiGDjIR",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.22",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2105,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1563,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.22",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2106,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1563,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 2,
+              "tags": [],
+              "text": "{{goldman_sachs_entity}} \n\n\n_________________________________\nName:\nTitle: \nDate: \n"
+            },
+            {
+              "add_new_line": true,
+              "clause": 667,
+              "texttable": null,
+              "default": true,
+              "is_bolded": true,
+              "is_centered": false,
+              "id": 1564,
+              "id_tag": "lhfz6L583Bn7l6l19wjB7bmfv4MKvtsN",
+              "level": 0,
+              "playbookrules": [
+                {
+                  "accept": true,
+                  "clause_identifier": "2.22",
+                  "confirmed_language": "",
+                  "escalate": false,
+                  "explanation": null,
+                  "id": 2107,
+                  "language": "Cosmetic changes",
+                  "modify": true,
+                  "reject": false,
+                  "text_segment": 1564,
+                  "type": "acceptable"
+                },
+                {
+                  "accept": false,
+                  "clause_identifier": "2.22",
+                  "confirmed_language": "",
+                  "escalate": true,
+                  "explanation": null,
+                  "id": 2108,
+                  "language": "Non-cosmetic changes",
+                  "modify": false,
+                  "reject": false,
+                  "text_segment": 1564,
+                  "type": "escalations"
+                }
+              ],
+              "seq": 3,
+              "tags": [],
+              "text": "{{counterparty_name}} \n\n\n_________________________________\nName:\nTitle: \nDate: \n"
+            }
+          ],
+          "clausetables": []
         }
       ]
     }
-  ]
+  ],
+  "type": 1,
+  "updated": "2018-08-27T16:22:06Z",
+  "updater": "Admin User",
+  "updateremail": "admin@gs.com",
+  "updaterid": 6,
+  "value": "Term Sheet",
+  "variants": []
 }

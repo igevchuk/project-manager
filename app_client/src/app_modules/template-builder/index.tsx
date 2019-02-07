@@ -51,8 +51,8 @@ class TemplateBuilder extends React.Component<ITemplateProps, ITemplateState> {
           <Provider value={{ template }}>
             <Document 
               variants={[]}
-              addVariant={(segmentId) => actions.addVariant(segmentId)}
-              editVariant={(payload) => actions.editVariant(payload)}
+              addVariant={segmentId => actions.addVariant(segmentId)}
+              editVariant={payload => actions.editVariant(payload)}
             />
           </Provider>
 
@@ -61,7 +61,7 @@ class TemplateBuilder extends React.Component<ITemplateProps, ITemplateState> {
       </div>
     );
   }
-};
+}
 
 const mapStateToProps = state => {
   const templates = state.templateReducer.templates;
@@ -69,7 +69,6 @@ const mapStateToProps = state => {
     return {};
   }
 
-  // console.log(templates[0]);
   return { template: templates[0] };
 };
 
@@ -79,6 +78,7 @@ const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TemplateBuilder);
-
-
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TemplateBuilder);
