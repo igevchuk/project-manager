@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 interface IProps {
   className?: '';
-  children: any;
+  children: React.ReactNode;
 }
 
 const BaseComp = ({ className = '', children }) => (
