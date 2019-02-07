@@ -9,6 +9,7 @@ interface IButtonComponentProps {
   disabled?: boolean;
   compact?: boolean;
   dense?: boolean;
+  icon?: string;
   style?: {};
   onClick?(): void;
 }

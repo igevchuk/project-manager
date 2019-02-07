@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { Grid, Tab } from 'semantic-ui-react';
+
+import { Grid } from 'semantic-ui-react';
+import PlaybookRule from './PlaybookRule';
+import StyledSidebar, { Tab, TabPane } from './Sidebar.style';
 
 // interface ISidebarProps {
 
@@ -10,8 +13,8 @@ import { Grid, Tab } from 'semantic-ui-react';
 // }
 
 const panes = [
-  { menuItem: 'PLAYBOOK', render: () => <Tab.Pane attached={false}>PLAYBOOK</Tab.Pane> },
-  { menuItem: 'HISTORY', render: () => <Tab.Pane attached={false}>HISTORY</Tab.Pane> },
+  { menuItem: 'PLAYBOOK', render: () => <TabPane attached={false}><PlaybookRule /></TabPane> },
+  { menuItem: 'HISTORY', render: () => <TabPane attached={false}>HISTORY</TabPane> },
 ]
 
 export default class Sidebar extends React.Component<any, any> {
@@ -21,9 +24,9 @@ export default class Sidebar extends React.Component<any, any> {
   
   public render() {
     return (
-      <Grid.Column width={4}>
+      <StyledSidebar width={4}>
         <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
-      </Grid.Column>
+      </StyledSidebar>
     );
   }
 }
