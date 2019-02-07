@@ -1,29 +1,27 @@
 import * as React from 'react';
 import { Grid, Tab } from 'semantic-ui-react';
 
-// interface ISidebarProps {
-
-// }
-
-// interface ISidebarState {
-
-// }
+import SidebarContent from './SidebarContent';
+import SidebarPlaybook from './SidebarPlaybook';
+import SidebarHistory from './SidebarHistory';
 
 const panes = [
-  { menuItem: 'PLAYBOOK', render: () => <Tab.Pane attached={false}>PLAYBOOK</Tab.Pane> },
-  { menuItem: 'HISTORY', render: () => <Tab.Pane attached={false}>HISTORY</Tab.Pane> },
-]
+  {
+    menuItem: 'PLAYBOOK',
+    render: () => <SidebarContent render={<SidebarPlaybook />} />
+  },
+  {
+    menuItem: 'HISTORY',
+    render: () => <SidebarContent render={<SidebarHistory />} />
+  }
+];
 
-export default class Sidebar extends React.Component<any, any> {
-  constructor(props) {
-    super(props);
-  }
-  
-  public render() {
-    return (
-      <Grid.Column width={4}>
-        <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
-      </Grid.Column>
-    );
-  }
-}
+const Sidebar: React.SFC = () => {
+  return (
+    <Grid.Column width={4}>
+      <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+    </Grid.Column>
+  );
+};
+
+export default Sidebar;
