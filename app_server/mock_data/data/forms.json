@@ -1,534 +1,228 @@
 {
   "templates": [
     {
-      "id": 4242,
-      "name": "culpa Duisminim ex veni",
-      "textLevel": "nulla qui dolor in",
-      "article": [
+      "id": 8652,
+      "name": "inconsequatsint officia",
+      "selectedType": 7497,
+      "textVariant": [
         {
-          "id": 2870,
-          "name": "laboris exercitation",
-          "ref": { "templateId": 8932 }
+          "id": 2072,
+          "title": "culpa ipsum ullamco",
+          "text": "enim do eu aute nostruddosunt veniam esse do voluptatead tempor do esseid do veniamUt adipisicing qui sit occaecatsint Lorem enim inullamcocillum in aliquaipsum Duis sint mollit eafugiat suntfugiat Lorem consectetu",
+          "sequence": 1506,
+          "segmentId": 53744623
         },
         {
-          "id": 6440,
-          "name": "est exercitation Duis",
-          "ref": { "templateId": 7014 }
-        }
-      ],
-      "section": [
-        {
-          "id": 8974,
-          "name": "consequat nonest et velit consectetur",
-          "ref": { "articleId": 1519 }
+          "id": 3892,
+          "title": "dolore sunt amet in cillum",
+          "text": "consequatcupidatat elit mollitdolore tempor dolore doet doloretempor noncillumaliquipullamco consectetur animproident eiusmodin cillum dolore elit adesse ex ullamco doloreofficia in dolor laboreeu adipisicing laborum commodo",
+          "sequence": 6473,
+          "segmentId": "adipisicing sit aute non laborum"
         },
         {
-          "id": 1778,
-          "name": "do adipisicingadipisicing est proident dolore",
-          "ref": { "articleId": 4459 }
+          "id": 4438,
+          "title": "do non eiusmod",
+          "text": "ullamco ea incididunt dolorcillum incididunt dolore velitnon reprehenderitconsequat id nostrud Excepteurmollit ipsum adipisicingvelit nulla Ututeiusmod nostrud etdoloremagnairure Duiscommodo dolor exercitation",
+          "sequence": 6449,
+          "segmentId": -28210304.240084395
         },
         {
-          "id": 4389,
-          "name": "minimcupidatatnon id",
-          "ref": { "articleId": 2261 }
-        },
-        {
-          "id": 9688,
-          "name": "Loremsed dolor aliqua eu",
-          "ref": { "articleId": 6545 }
-        }
-      ],
-      "subSection": [
-        {
-          "id": 8687,
-          "name": "in tempordoloredolor ut dolore",
-          "ref": { "sectionId": 3353 }
-        },
-        {
-          "id": 9184,
-          "name": "cupidatatet aliquipcu",
-          "ref": { "sectionId": 8827 }
-        },
-        {
-          "id": 3920,
-          "name": "pariatur velit mollit irure",
-          "ref": { "sectionId": 3584 }
-        },
-        {
-          "id": 1526,
-          "name": "tempor voluptate in ad",
-          "ref": { "sectionId": 1043 }
-        },
-        {
-          "id": 5411,
-          "name": "nostrudincididunt enim occaecat",
-          "ref": { "sectionId": 8981 }
-        },
-        {
-          "id": 1323,
-          "name": "nulla fugiat aliquaproident ut ullamco",
-          "ref": { "sectionId": 6216 }
-        }
-      ],
-      "clause": [
-        {
-          "id": 1211,
-          "name": "fugiat ex culpa tempor",
-          "ref": { "subSectionId": 8274 }
-        },
-        {
-          "id": 2772,
-          "name": "elit culpa laboris exerci",
-          "ref": { "subSectionId": 5124 }
-        },
-        {
-          "id": 3682,
-          "name": "Excepteur ipsum laborum voluptate pariatur",
-          "ref": { "subSectionId": 7497 }
-        },
-        {
-          "id": 1806,
-          "name": "dolore esse dolor culpa laborum",
-          "ref": { "subSectionId": 5558 }
-        },
-        {
-          "id": 9583,
-          "name": "voluptate deserunt aliqua ",
-          "ref": { "subSectionId": 4529 }
-        },
-        {
-          "id": 6062,
-          "name": "ametdoesse eiusmod voluptate",
-          "ref": { "subSectionId": 9653 }
-        },
-        {
-          "id": 5957,
-          "name": "aliquip labore dolor ullamco",
-          "ref": { "subSectionId": 1596 }
-        },
-        {
-          "id": 1344,
-          "name": "Lorem pariaturExcepteur amet ad in",
-          "ref": { "subSectionId": 3836 }
-        }
-      ],
-      "subClause": [
-        {
-          "id": 6412,
-          "name": "irureminim doesse in occaecat",
-          "ref": { "clauseId": 7728 }
-        },
-        {
-          "id": 1526,
-          "name": "consecteturut ea dolore et pariatur",
-          "ref": { "clauseId": 5229 }
-        },
-        {
-          "id": 5110,
-          "name": "culpatemporin non labore",
-          "ref": { "clauseId": 2485 }
-        },
-        {
-          "id": 4592,
-          "name": "ut esse tempornulla ad deserunt voluptate",
-          "ref": { "clauseId": 7427 }
-        },
-        {
-          "id": 3052,
-          "name": "Duiscommodomollit et",
-          "ref": { "clauseId": 5803 }
-        },
-        {
-          "id": 1729,
-          "name": "ullamco sint occaecat qui sit",
-          "ref": { "clauseId": 3010 }
-        },
-        {
-          "id": 1848,
-          "name": "laborum est addolor est esse",
-          "ref": { "clauseId": 5663 }
-        },
-        {
-          "id": 9982,
-          "name": "aliquareprehenderit voluptate",
-          "ref": { "clauseId": 3647 }
-        },
-        {
-          "id": 8386,
-          "name": "sint commodovelit cupidatat ex est",
-          "ref": { "clauseId": 8057 }
-        },
-        {
-          "id": 8288,
-          "name": "culpa incididunt pariatur proident",
-          "ref": { "clauseId": 4361 }
-        }
-      ],
-      "textSegment": [
-        {
-          "id": 1547,
-          "isStart": true,
-          "segment": "aliqua Duis aliquip tempor ipsumincididunt aute proident irurequis utminimincididuntnostrud reprehenderiteiusmod irureproident qui sunt in sedet Utcommodo magna culpaUtpariaturex dolor velitdolorefugiat",
-          "ref": { "subClauseId": 3829 },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 9597,
-          "isStart": true,
-          "segment": "nulla Loremconsequat sunt amet ullamcodolore anim adipisicing officiacillum Duis commodo eiusmodcillum consecteturirure nostrud aliqua culpavelit pariatur ullamco consequat magnaveniam mollit ea fugiat id",
-          "ref": { "subClauseId": 6916 },
-          "decorator": { "bold": false, "italic": true }
-        },
-        {
-          "id": 6132,
-          "isStart": false,
-          "segment": "non est labore commodo incididuntDuis magnadolor ut in quisoccaecat et exmagnadolor in aliqua aute inoccaecat nisi adipisicingUt Lorem irure Excepteurestenimin dolor culpalaboris sint ad veniam culpaconsequat velit",
-          "ref": { "subClauseId": 3423 },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 9303,
-          "isStart": false,
-          "segment": "in proident nullased culpa ex velit essevelit ametnon sed elitnon eiusmod labore reprehenderit insit ullamcoofficiavoluptate do aliquip elit etdoqui anim laboredolor aliquipqui ipsum laborumirure nostrud",
-          "ref": { "subClauseId": 4179 },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 3780,
-          "isStart": false,
-          "segment": "laboris dolor inveniam esteu incididuntvelit aliqua qui Ut nostrudsintlaboris commodoeuut labore enim laboris ullamcolaborumcupidatat idelit ea commodo nullased in eu velit proidentin tempor dolore amet sed",
-          "ref": { "subClauseId": 1260 },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 8001,
-          "isStart": true,
-          "segment": "sunteiusmod reprehenderit esse auteamet et elit dolorLorem nostrud magnaquis culpa incididunt dolordeserunt ut sit Lorem inreprehenderit deserunt et est exin tempor pariaturullamco Ut et magna sintproident",
-          "ref": { "subClauseId": 4921 },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 4739,
-          "isStart": false,
-          "segment": "Ut voluptateut mollit enimquis commodo dolore fugiat doloraliquip nostrud proident sit idofficia do velit labore proidentautecupidatat nostrud nisi ipsumdeserunt proident cupidatat exenimlaborisenim quis do Lorem",
-          "ref": { "subClauseId": 2163 },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 4312,
-          "isStart": false,
-          "segment": "fugiatcillum tempor inexercitation doloredolor aliquip id et eapariatur DuisExcepteur magna aliquaaliquip exercitation cupidatatesse ut amet dolorfugiat pariaturin doloraliquaaliqualaborum consequat ut nostrud",
-          "ref": { "subClauseId": 9772 },
-          "decorator": { "bold": false, "italic": true }
-        },
-        {
-          "id": 4095,
-          "isStart": false,
-          "segment": "sit dolor nulla velit ullamcofugiat id qui in exercitationculpa sit nisi non aliquipveniam ullamco utnostrudex voluptate magna laborumfugiat magna sunt adfugiat magna in veniam enimlabore quisedadipisicing",
-          "ref": { "subClauseId": 9583 },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 5782,
-          "isStart": true,
-          "segment": "aliqua quis cupidatat adipisicingcupidatat enim fugiat doloroccaecat enim tempor do voluptatelaborum sit dolorenulla adipisicingesse eiusmod consequat in utLorem cillum culpa ut sitfugiat sed nullaeu elit",
-          "ref": { "subClauseId": 6825 },
-          "decorator": { "bold": true, "italic": true }
-        },
-        {
-          "id": 8834,
-          "isStart": true,
-          "segment": "minim velit est sinttempor qui nulla ullamco exexercitation nulla est consequat pariaturirureconsequatveniam tempor nullaeu veniam laboreirure laborum amet veniamut quisea incididunt doirurenostrud quis qui sit oc",
-          "ref": { "subClauseId": 9275 },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 1687,
-          "isStart": true,
-          "segment": "aliqua idqui ex sint adipisicingexirure officia dominim quis sinteiusmod voluptate Ut esse quiExcepteur ex fugiatveniam velit suntconsequat voluptate veniamnon id doloresit elit Excepteur inDuis dolor amet",
-          "ref": { "subClauseId": 3465 },
-          "decorator": { "bold": false, "italic": true }
-        },
-        {
-          "id": 8211,
-          "isStart": true,
-          "segment": "magna in mollitaliquip eiusmod Excepteurcommodo consequat etad culpa pariatur doloreidExcepteurlaborum doloraliqua in occaecatadipisicingad magnapariatur dolore Excepteur nisi laborenisicillum tempor in",
-          "ref": { "subClauseId": 4704 },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 9863,
-          "isStart": false,
-          "segment": "consectetur aute utveniam adet commodo aliqua quitempor cupidatat ea Lorem occaecatest ad consequat minimnulla nostrudlaboriscillum sint qui laborisnisi non sint adexercitation ex aliquaquis sed ullamco do",
-          "ref": { "subClauseId": 8183 },
-          "decorator": { "bold": true, "italic": true }
-        }
-      ]
-    },
-    {
-      "id": 4452,
-      "name": "reprehenderit culpa qui minim irure",
-      "textLevel": "sunt aute consectetur voluptate",
-      "article": [
-        {
-          "id": 2611,
-          "name": "dolor quis eiusmod ad nisi",
-          "ref": { "templateId": 8155 }
-        },
-        {
-          "id": 7280,
-          "name": "sed pariatur eu est laborum",
-          "ref": { "templateId": 5803 }
-        }
-      ],
-      "section": [
-        {
-          "id": 7070,
-          "name": "dolore etlaborisad tempor",
-          "ref": { "articleId": 8141 }
-        },
-        {
-          "id": 2695,
-          "name": "ipsum Loremenim occaecat",
-          "ref": { "articleId": 5684 }
-        },
-        {
-          "id": 7609,
-          "name": "magnadolor labore incididunt",
-          "ref": { "articleId": 6132 }
-        },
-        {
-          "id": 6825,
-          "name": "adipisicing enimanim Ut",
-          "ref": { "articleId": 2947 }
-        }
-      ],
-      "subSection": [
-        {
-          "id": 1113,
-          "name": "nostrud doeafugiat Duis sint pariatur",
-          "ref": { "sectionId": 3899 }
-        },
-        {
-          "id": 7469,
-          "name": "consectetur velit enim dolore",
-          "ref": { "sectionId": 5047 }
-        },
-        {
-          "id": 9702,
-          "name": "sint voluptatevoluptate",
-          "ref": { "sectionId": 8659 }
-        },
-        {
-          "id": 9688,
-          "name": "id occaecat etoccaecat",
-          "ref": { "sectionId": 9324 }
-        },
-        {
-          "id": 7686,
-          "name": "tempor dolorsit incididunt aliquip sed sint",
-          "ref": { "sectionId": 3969 }
-        },
-        {
-          "id": 9261,
-          "name": "labore sintcupidatat esse velit ",
-          "ref": { "sectionId": 8274 }
-        }
-      ],
-      "clause": [
-        {
-          "id": 6909,
-          "name": "indolor Ut laborumsed",
-          "ref": { "subSectionId": 3493 }
+          "id": 8708,
+          "title": "aliqua",
+          "text": "quis non voluptate ametlabore amet commodo eu irureid dolore nulla laborisnostrud Excepteur enim nullaanim quisvelit fugiat Lorem non aliquacommodoculpa ad dolor nisiquis utlabore nisi Duis esse reprehenderit",
+          "sequence": 7728,
+          "segmentId": 40960192.44522321
         },
         {
           "id": 9254,
-          "name": "cillum culpa elitExcepteur",
-          "ref": { "subSectionId": 8232 }
+          "title": "quis",
+          "text": "aliquip ad reprehenderitut irure sed reprehenderitcillum adipisicing amettempor sit aliquip dolor minimirure velit eiusmod eu adipisicingoccaecat aute laborum commodoreprehenderit ut id inUt sunt sit ea ullamco",
+          "sequence": 1823,
+          "segmentId": -95550558
         },
         {
-          "id": 4459,
-          "name": "tempor Excepteur etLorem cillum laborum",
-          "ref": { "subSectionId": 2646 }
+          "id": 4725,
+          "title": "non",
+          "text": "tempor cupidatatLorem consequat velit idExcepteur etirure magna quis cupidatatelit est aliquip sunt sitnisi occaecat commodoquis consectetur aliquaenim quis consequatirure cupidatatincididunt laboris occaecat commodo",
+          "sequence": 379,
+          "segmentId": 93672649.14473611
         },
         {
-          "id": 8400,
-          "name": "magna do reprehenderit aliqua",
-          "ref": { "subSectionId": 8939 }
+          "id": 5208,
+          "title": "labore reprehenderit tempor amet",
+          "text": "aliqua quisfugiatdolore nisi utin consequat Excepteur Lorem idcillum Lorem consectetur aute idmollitaliqua exercitation dout irureExcepteur enim ut officia temporlabore Excepteurconsectetur officia enim",
+          "sequence": 1211,
+          "segmentId": false
         },
         {
-          "id": 1211,
-          "name": "incididunt commodo sunt",
-          "ref": { "subSectionId": 6986 }
+          "id": 2534,
+          "title": "qui sed esse nostrud",
+          "text": "sint in pariaturvoluptate est dolor sedin eaexercitation et consequatmollit sitofficia exessesed id doadipisicing sit reprehenderit Lorem utadipisicing consequatelit dolor ipsum non tempordonon irure esse cillum nisi",
+          "sequence": 810,
+          "segmentId": 79312141
         },
         {
-          "id": 4571,
-          "name": "ex ea qui sunt deserunt",
-          "ref": { "subSectionId": 6601 }
+          "id": 3871,
+          "title": "dolor Ut eiusmod",
+          "text": "tempor mollitideu adipisicing Loremdolore dolore in occaecat quiLorem quis euincididunt in nulla irureullamco eiusmod mollit nullaidlabore veniam officia esseofficia Lorem dodeseruntet sit in proident pariatur",
+          "sequence": 4714,
+          "segmentId": true
         },
         {
-          "id": 4872,
-          "name": "occaecat in do labore dolore",
-          "ref": { "subSectionId": 5376 }
+          "id": 6510,
+          "title": "adipisicing ad incididunt",
+          "text": "nullased incididunt minim adirure cillum Loremest elit quilaboris deserunt eiusmodqui sunt labore nonfugiat advoluptate ut esseest deserunt dolore etLoremut velit deseruntExcepteuraute occaecat voluptate sint Excepteur",
+          "sequence": 2645,
+          "segmentId": 82209930
         },
         {
-          "id": 1029,
-          "name": "sint exercitation ipsum dolor non",
-          "ref": { "subSectionId": 8036 }
+          "id": 4242,
+          "title": "nulla sint",
+          "text": "animquinostrud commodo reprehenderit amet deseruntveniam consecteturofficia minim Ut aliquaDuis quis labore adipisicingut aliqua elit Excepteur animreprehenderit quislaborum officia eu quis veliteu fugiat incididunt ullamco",
+          "sequence": 8578,
+          "segmentId": "ut tempor et magna pariatur"
+        },
+        {
+          "id": 3864,
+          "title": "ea labore mollit",
+          "text": "exnon in velit utcillum irure fugiat ametquis Lorem veniam sunt magnaaliqua ipsum in mollit eiusmodirure consecteturipsum Duismollit consequat essenon quis nisiqui dolorest sed utdolorincididunt euin ut cillum no",
+          "sequence": 6028,
+          "segmentId": -31431173.682984695
+        },
+        {
+          "id": 6363,
+          "title": "nisi",
+          "text": "commodo quiutpariaturLorem dolor sunt consecteturdolore ipsum donulla in nisidolor reprehenderit irureeiusmodproidentUt cillummagna non proident dolaborisproident ad occaecatmagna ipsum anim incididunt",
+          "sequence": 2165,
+          "segmentId": -22778566
+        },
+        {
+          "id": 8519,
+          "title": "culpa et ea fugiat laborum",
+          "text": "dolordolor ut adipisicing Duis sintlabore aliquip qui enim inDuis in ad labore utaliquacommodo est magna eiusmodest qui consequat magna culpasint dolore labore cupidatatut laborum commodoad enimExcepteur aute eu voluptate ut",
+          "sequence": 9962,
+          "segmentId": -80265770
         }
       ],
-      "subClause": [
+      "textLevel": 16179466,
+      "article": false,
+      "section": 36360131,
+      "subSection": "minim non",
+      "clause": true,
+      "subClause": "sed aute elit",
+      "textSegment": 47725237.445560485
+    },
+    {
+      "id": 1953,
+      "name": "exercitation sit Excepte",
+      "selectedType": 7252,
+      "textVariant": [
         {
-          "id": 7322,
-          "name": "Lorem commodo officia aliquip dolore",
-          "ref": { "clauseId": 1064 }
+          "id": 4235,
+          "title": "laboris incididunt quis",
+          "text": "sed deserunt inea aliquip in culpa fugiatutexercitation sit fugiat Loremnisi id dolore Excepteur eaconsectetur dolore tempor in mollitculpa ex sit essesit mollit amet idnulla dolore enim tempornon Ut irure aliqua nostrud",
+          "sequence": 4509,
+          "segmentId": 73630189
         },
         {
-          "id": 3178,
-          "name": "magna culpa ullamco sint",
-          "ref": { "clauseId": 7777 }
+          "id": 8218,
+          "title": "ut dolore",
+          "text": "eaeiusmod ad consequat in UtquisDuis aute officiaveniam officia fugiat ipsumincididunt proident culpadolore in Loremest eusint laborumreprehenderit eiusmoddeseruntnulla labore est ipsumfugiat amet proident",
+          "sequence": 504,
+          "segmentId": -44413340
         },
         {
-          "id": 2198,
-          "name": "Duis dolore occaecat sint ex",
-          "ref": { "clauseId": 5362 }
+          "id": 4949,
+          "title": "dolor id do in",
+          "text": "Lorem ex auteesse officiaut elitnullaconsequatreprehenderit culpa laborisamet id ea utoccaecat quienim labore velit culpaipsum nostrud adipisicing voluptatein aliquiptempor id laborum ullamco consectetur",
+          "sequence": 202,
+          "segmentId": -58684861.20420537
         },
         {
-          "id": 9702,
-          "name": "sed proident dolor qui et",
-          "ref": { "clauseId": 2009 }
+          "id": 4312,
+          "title": "consequat et enim dolor ven",
+          "text": "pariatur eu nonqui occaecataliquip Excepteur minimnisinon sint adipisicingest id enim dolorein aliqua doanim Ut exercitation commodo mollitmagna consequatanimexercitation Lorem labore exeiusmod exercitation veniam",
+          "sequence": 9193,
+          "segmentId": "mollit veniam"
         },
         {
-          "id": 5838,
-          "name": "in fugiat reprehenderit c",
-          "ref": { "clauseId": 9562 }
+          "id": 5537,
+          "title": "mollit in",
+          "text": "ea officia mollit deseruntautefugiat quised pariatur irure Excepteur doloredolore velit mollit ipsum commodoexercitationcommodo occaecat enimconsequatin quissint iddeserunt Duis innondoloreconsectetur",
+          "sequence": 2634,
+          "segmentId": true
         },
         {
-          "id": 4389,
-          "name": "exercitation exet adipisicing",
-          "ref": { "clauseId": 8134 }
+          "id": 5628,
+          "title": "Lorem commodo aliqua fugiat officia",
+          "text": "mollit labore ex officiaamet nostrud nisi mollitExcepteur dolorconsequat Duis euexUt aliquaLorem adipisicingsit labore consectetur voluptate ametmagna officia exin aute proident consectetur ullamcoipsum ut qui et ad",
+          "sequence": 7190,
+          "segmentId": -55133770
         },
         {
-          "id": 3731,
-          "name": "deserunt exercitation",
-          "ref": { "clauseId": 9261 }
+          "id": 7910,
+          "title": "ut pariatur ad",
+          "text": "mollit tempor aute culpa consecteturconsectetur laboris Lorem cillumadipisicing aliquip adcommodo laborevoluptate reprehenderit qui laborumveniam aliqua eu in mollitestnostrudExcepteurirure adlaboris elit",
+          "sequence": 5330,
+          "segmentId": -23099012
         },
         {
-          "id": 7707,
-          "name": "qui Ut deserunt dolor in",
-          "ref": { "clauseId": 3892 }
+          "id": 6083,
+          "title": "sint Duis culpa cillum ut",
+          "text": "nisielit ut aliqua cupidatat nisiproident nulla magna deserunt consecteturanim idexercitationculpa in exercitation aliquavoluptate consequat sed fugiateiusmod est ut idlaboris voluptate labore reprehenderit",
+          "sequence": 5817,
+          "segmentId": 67721876.04075387
         },
         {
-          "id": 3836,
-          "name": "eiusmodnulla mollit qui do sunt",
-          "ref": { "clauseId": 9611 }
+          "id": 3759,
+          "title": "occaecat quis nostrud",
+          "text": "est officia aliquiput ullamco inExcepteur occaecat sed cillumcupidatat minimconsequat etut irure sed exminim aliqua etirure consequat laboris et estnon officia consequat nulla inadeu occaecataute exelit pariatur ex dolor",
+          "sequence": 5026,
+          "segmentId": 67311059
         },
         {
-          "id": 3178,
-          "name": "enimmagna voluptate veniam",
-          "ref": { "clauseId": 3640 }
+          "id": 3409,
+          "title": "eiusmod",
+          "text": "in esse eiusmod cillum laborisveniam Ut consecteturut deserunt exercitation etad situllamco nulla veniamex culpa adipisicing magnaaliquipquis veniam anim reprehenderitqui ad ullamcoreprehenderitdonisi laborum dolor eiusmod",
+          "sequence": 7775,
+          "segmentId": "qui voluptate Excepteur"
+        },
+        {
+          "id": 4802,
+          "title": "ipsum",
+          "text": "eiusmod aliquip ad magnaaute doloreExcepteur aliqua mollitid proident nulla ipsum ametest dolorvoluptate consequat aliquipaliqua inmagna et indolorelaborum velit aliqua in laboreullamcoullamco sitconsequat c",
+          "sequence": 2284,
+          "segmentId": -88206027
+        },
+        {
+          "id": 6041,
+          "title": "dolor aliqua",
+          "text": "enimincididunt Ut deserunt sunt occaecatLorem fugiatad veniam voluptatecillum ad aute proident inadipisicing inanim est tempor idquis Excepteur sit aliquasint est in cillum quidolor cupidatat qui aliqua",
+          "sequence": 6433,
+          "segmentId": "magna nulla"
+        },
+        {
+          "id": 7700,
+          "title": "qui aliqua consectetur cillum",
+          "text": "amet doUt incididuntDuis labore aute nisi fugiatex etnulladolornon ipsum pariatur esseelit ullamco voluptate aliquip occaecatdo nostrud cillumminimqui voluptate in mollitculpa sit non laboris animsit reprehenderit labore Duis commodo",
+          "sequence": 4608,
+          "segmentId": -5044780.887203619
+        },
+        {
+          "id": 9919,
+          "title": "aliquip mollit commodo",
+          "text": "aliqua officia utin pariaturquispariaturnisi veniam voluptate cupidatat Excepteurproident laboris velit incididuntin est ullamco culpa doanim in nisi eapariatur cupidatat Lorem proident utinlaboreincididunt sed ut nisi",
+          "sequence": 2126,
+          "segmentId": true
         }
       ],
-      "textSegment": [
-        {
-          "id": 9779,
-          "isStart": true,
-          "segment": "ut sit autesed irureut laboristempor iddo sit adipisicingeiusmoddolor enim sint noneiusmod laborum officiaad nostrud eu estfugiat labore in dolorequis nonaliquip sunt mollit consequat etUt Duis ea tempor irure",
-          "ref": { "subClauseId": 2324 },
-          "decorator": { "bold": true, "italic": true }
-        },
-        {
-          "id": 6475,
-          "isStart": true,
-          "segment": "ex dolorelaborumExcepteur idsit in mollit doin et nostrud UtLoremvoluptate magna nostruddeserunt elitdolor reprehenderit enim et inExcepteur sintdolor in ullamcodolor sunt cupidatat quis consecteturcommodo",
-          "ref": { "subClauseId": 1029 },
-          "decorator": { "bold": true, "italic": true }
-        },
-        {
-          "id": 5740,
-          "isStart": false,
-          "segment": "do animconsectetur proident eu ea Excepteurproident Excepteur enim amet quiin aliquipsunt nisitemporquis Excepteur voluptatelaboris magna consequat in ullamcominim velitenim etirure commodo utmollit esse fugiat",
-          "ref": { "subClauseId": 7770 },
-          "decorator": { "bold": false, "italic": true }
-        },
-        {
-          "id": 6629,
-          "isStart": true,
-          "segment": "magnatempor dolor ut incididuntdeseruntmagna ex do culpa suntullamcoaliqua eiusmod nostruddeserunt do irureet sunt doloreculpa nostrudExcepteur irure nonnulla elit irure quiveniam ut nisiet laborum esse",
-          "ref": { "subClauseId": 9800 },
-          "decorator": { "bold": true, "italic": true }
-        },
-        {
-          "id": 2793,
-          "isStart": false,
-          "segment": "magna dolore ad uttempor labore ut culpa proidentdolor ut consectetur ipsum pariaturproident culpa nonmollit esse pariatur deserunt utmollit consequat nulla cupidatat reprehenderitExcepteurexaliqua sunt",
-          "ref": { "subClauseId": 1533 },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 6734,
-          "isStart": false,
-          "segment": "incididunt dolor adutculpa tempor aliquipUt id laborum aliquapariatur consectetur qui eiusmodest temporenim consectetur quiseiusmod proident dolor tempor doUtsitin nonamet Duis proident velitdolor consequat nostrud mollit veniam",
-          "ref": { "subClauseId": 2751 },
-          "decorator": { "bold": false, "italic": true }
-        },
-        {
-          "id": 2842,
-          "isStart": false,
-          "segment": "ut Ut veniamet tempor aliquip dolorecupidatatenim deserunt elit laborum voluptatevoluptatevoluptate occaecatex nisi sunt id adipisicingadipisicing incididunt sunt tempor essealiquip culpa ut dolor pariatur",
-          "ref": { "subClauseId": 4690 },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 2247,
-          "isStart": true,
-          "segment": "enim voluptate et cillum pariaturdolor exercitation proidentet aute aliquaexercitation dolor eu tempor essein enim exercitation minimetpariatur esse exercitation estet cillum eiusmod sintproident enim",
-          "ref": { "subClauseId": 9184 },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 5467,
-          "isStart": false,
-          "segment": "in nulla do ipsumnulla est consequat eadeserunt culpa pariatur ametmagna commodo irure veniamveniam voluptate deserunt cillumut proidentdolore incididunt Loremsed ipsum id pariaturdolore in dolor sitminim quis",
-          "ref": { "subClauseId": 1197 },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 3668,
-          "isStart": true,
-          "segment": "enim incididunt deserunt ipsum consequatelitenim incididunt do laborumnulla aute deserunt laboris iruresit fugiat reprehenderit suntenim occaecat aliquip Duisdoloreincididunt ullamco magna minim Lorem",
-          "ref": { "subClauseId": 2912 },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 3521,
-          "isStart": true,
-          "segment": "ea consequatproident sed in aliquip doloreaute Duispariatur eupariatur cillumipsum incididuntofficia euex idut sed velit culpa estreprehenderit laborisexercitation dolor sunt laborum sitDuis dolore Excepteur amet proident",
-          "ref": { "subClauseId": 6188 },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 8848,
-          "isStart": false,
-          "segment": "dolore dolore magnasunt quisincididunt velit minimreprehenderit amet aliquipconsectetur anim ipsum ea nostrudLorem et mollit nisiconsectetur aliquipnon irurecillum culpa sintdeserunt eaex do occaecat nulla incididunt",
-          "ref": { "subClauseId": 5488 },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 6013,
-          "isStart": true,
-          "segment": "reprehenderitlabore et qui Excepteur dolormollit in doirure officia minimut anim exercitation id culpaamet utproident ea pariaturmagnain nisielit aliqua adipisicing laboreest occaecatdo ut pariaturquis reprehenderit nostrud sit",
-          "ref": { "subClauseId": 8442 },
-          "decorator": { "bold": true, "italic": true }
-        },
-        {
-          "id": 1365,
-          "isStart": true,
-          "segment": "ipsum incididunt exin quis fugiat eiusmod minimreprehenderit exercitation dolor fugiat Duisamet voluptate sit ineu aliqua labore ipsumsed Duis pariatur elitconsectetur sit laboris do utmagna ullamco adipisicing",
-          "ref": { "subClauseId": 3822 },
-          "decorator": { "bold": false, "italic": true }
-        }
-      ]
+      "textLevel": false,
+      "article": "eu",
+      "section": false,
+      "subSection": "anim fugiat",
+      "clause": -7422782,
+      "subClause": 63659258.53218344,
+      "textSegment": 90102380
     }
   ]
 }

@@ -16,10 +16,44 @@ let schema = {
             faker: "name.name",
             minLength: 20
           },
-          textLevel: {
-            type: "string",
-            faker: "name.textLevel",
-            minLength: 15
+          selectedType: {
+            $ref: "#/definitions/positiveInt"
+          },
+          type: {
+            type: "array",
+            minItems: 3,
+            maxItems: 3,
+            items: {
+              type: "object",
+              properties: {
+                id: {
+                  $ref: "#/definitions/positiveInt"
+                },
+                model: {
+                  type: "string",
+                  faker: "name.name",
+                  minLength: 10
+                }
+              }
+            }
+          },
+          paragraphLevel: {
+            type: "array",
+            minItems: 3,
+            maxItems: 3,
+            items: {
+              type: "object",
+              properties: {
+                id: {
+                  $ref: "#/definitions/positiveInt"
+                },
+                name: {
+                  type: "string",
+                  faker: "name.name",
+                  minLength: 10
+                }
+              }
+            }
           },
           articles: {
             type: "array",
@@ -180,33 +214,37 @@ let schema = {
               required: ["id", "isStart", "segment", "ref", "decorator"]
             }
           },
-          textVariants: {
+          textVariant: {
             type: "array",
-            minItems: 1,
-            maxItems: 9999,
+            minItems: 14,
+            maxItems: 14,
             items: {
               type: "object",
               properties: {
-                id: number,
+                id: {
+                  $ref: "#/definitions/positiveInt"
+                },
                 title: {
                   type: "string",
                   faker: "lorem.word"
                 },
                 text: {
                   type: "string",
-                  faker: "lorem.sentence"
+                  faker: "lorem.sentence",
+                  minLength: 200,
+                  maxLength: 400
                 },
                 sequence: {
                   type: "integer",
                   minimum: 1,
                   maximum: 9999,
-                  unique: true 
+                  unique: true
                 },
                 ref: {
                   segmentId: {
                     $ref: "#/definitions/positiveInt"
                   }
-                },
+                }
               },
               required: ["id", "title", "text", "sequence", "segmentId"]
             }
@@ -215,13 +253,15 @@ let schema = {
         required: [
           "id",
           "name",
+          "selectedType",
           "textLevel",
           "article",
           "section",
           "subSection",
           "clause",
           "subClause",
-          "textSegment"
+          "textSegment",
+          "textVariant"
         ]
       }
     }
