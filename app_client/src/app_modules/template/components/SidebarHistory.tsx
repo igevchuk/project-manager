@@ -19,7 +19,7 @@ interface IProps {
 const SidebarHistory: React.SFC<IProps> = props => {
   const template = props.template;
 
-  return <div>{template && template.name + 'bbbb'}</div>;
+  return <div>{template.name + 'bbbb'}</div>;
 };
 
 export default contextWrapper(SidebarHistory);

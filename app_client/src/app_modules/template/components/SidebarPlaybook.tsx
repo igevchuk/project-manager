@@ -19,7 +19,7 @@ interface IProps {
 const SidebarPlaybook: React.SFC<IProps> = props => {
   const template = props.template;
 
-  return <div>{template && template.name + 'aaaa'}asd</div>;
+  return <div>{template.name + 'aaaa'}asd</div>;
 };
 
 export default contextWrapper(SidebarPlaybook);

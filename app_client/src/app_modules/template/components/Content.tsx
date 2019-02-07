@@ -34,7 +34,7 @@ const fakeSegments = [
 
 interface IContentProps {
   asd: string;
-  doc: {
+  template: {
     id: number;
     name: string;
     selectedType: number;
@@ -240,10 +240,6 @@ class TemplateContent extends React.Component<IContentProps, any> {
     });
   };
   public render() {
-    if (!this.props.doc) {
-      return null;
-    }
-
     const {
       articles,
       sections,
@@ -251,7 +247,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
       clauses,
       subClauses,
       textSegments
-    } = this.props.doc;
+    } = this.props.template;
 
     return (
       <Grid.Column width={12}>

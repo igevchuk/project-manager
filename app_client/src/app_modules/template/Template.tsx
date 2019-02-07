@@ -57,7 +57,7 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
     if (!this.props.template) {
       return null;
     }
-    console.log(this.props.template);
+    // console.log(this.props.template);
 
     return (
       <div>
