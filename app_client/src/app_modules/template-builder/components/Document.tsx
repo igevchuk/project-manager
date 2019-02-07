@@ -294,7 +294,6 @@ class Document extends React.Component<IDocumentProps, IDocumentState> {
   };
 
   public render() {
-    console.log(this.props)
     if (!this.props.template) {
       return null;
     }

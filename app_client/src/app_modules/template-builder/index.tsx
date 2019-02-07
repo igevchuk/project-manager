@@ -39,16 +39,16 @@ class TemplateBuilder extends React.Component<ITemplateProps, ITemplateState> {
   }
 
   public render() {
-    // const { dispatch } = this.props;
+    const { template } = this.props;
     const { addVariant, editVariant } = actions;
 
     return (
       <div>
-        {/* <Header /> */}
+        <Header template={ template }/>
         <Toolbar />
 
         <Grid style={{ marginTop: 0 }}>
-          <Provider value={{ template: this.props.template }}>
+          <Provider value={{ template }}>
             <Document 
               variants={[]}
               addVariant={(segmentId) => actions.addVariant(segmentId)}

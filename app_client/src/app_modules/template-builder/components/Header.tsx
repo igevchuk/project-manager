@@ -1,50 +1,71 @@
 import * as React from 'react';
 
 import { Header as HeaderBase, Icon } from 'semantic-ui-react';
+import { Edit } from '@material-ui/icons';
 import StyledHeader, { HeaderColumn, HeaderActions, HeaderAction } from './Header.style';
 import Button from './../../../app/_styled_components/Button';
+import Dropdown from './../../../app/_styled_components/Dropdown';
+import { state } from './../redux';
 
+interface IHeaderProps {
+  template: state.template;
+}
 
-// interface IHeaderProps {
+const fakeOptions = [
+  { key: 1, text: 'Option 1', value: 'Option 1' },
+  { key: 1, text: 'Option 2', value: 'Option 2' },
+  { key: 1, text: 'Option 3', value: 'Option 3' }
+];
 
-// }
-
-// interface IHeaderState {
-
-// }
-
-export default class Header extends React.Component<any, any> {
+export default class Header extends React.Component<IHeaderProps, any> {
   constructor(props) {
     super(props);
   }
   
   public render() {
+    const { template } = this.props;
+
+    if(!template) {
+      return null;
+    }
+
     return (
       <StyledHeader>
         <HeaderColumn>
           <a href='#'>
             <Icon link={true} name='chevron left' />
-            <h1>
-              Confidentiality Agreement
+            <h2>
+              { template.name }
               <small>Never published &bull; Last saved June 7, 2018 at 3.12 PM</small>
-            </h1>
-            
+            </h2>
           </a>
         </HeaderColumn>
         
         <HeaderColumn>
           <HeaderActions>
             <HeaderAction>
-              1
+              <Edit />
+              <span style={{ margin: '0 1rem', fontSize: '12px', lineHeight: '1.1em' }}>
+                Editing mode
+                <small style={{ display: 'block' }}>Checked out by you</small>
+              </span>
+              <Dropdown floating={ true } options={ fakeOptions } selection={ false } text='' />
             </HeaderAction>
             <HeaderAction>
-              <Button>SAVE DRAFT</Button>
+              <Button primary={true} raised={true}>SAVE DRAFT</Button>
             </HeaderAction>
             <HeaderAction>
-              <Button>PUBLISH</Button>
+              <Button secondary={true} raised={true}>PUBLISH</Button>
             </HeaderAction>
             <HeaderAction>
-              4
+              <Dropdown 
+                direction='left'
+                floating={ true }
+                icon='ellipsis vertical'
+                options={ fakeOptions } 
+                pointing={ false }
+                selection={ false }
+              />
             </HeaderAction>
           </HeaderActions>
         </HeaderColumn>
