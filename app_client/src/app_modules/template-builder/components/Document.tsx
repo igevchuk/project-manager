@@ -62,10 +62,10 @@ interface IDocumentProps {
     clauses: templateState.clause[];
     subClauses: templateState.subClause[];
     textSegments: templateState.textSegment[];
-    variants: templateState.textVariant[];
+    textVariants: templateState.textVariant[];
   };
-  addVariant: (segmentId: number) => {type: string, segmentId: number};
-  editVariant: (variant: TextVariant) => {type: string, payload: templateState.textVariant};
+  // addVariant: (segmentId: number) => {type: string, segmentId: number};
+  // editVariant: (variant: TextVariant) => {type: string, payload: templateState.textVariant};
 };
 
 interface IDocumentState {
@@ -94,7 +94,7 @@ class Document extends React.Component<IDocumentProps, IDocumentState> {
   }
 
   public renderSegment = (segment: any): any => {
-    const { addVariant, editVariant } = this.props;
+    // const { addVariant, editVariant } = this.props;
     const { activeSegment } = this.state;
 
     if (!activeSegment || segment.id !== activeSegment.id) {
@@ -115,8 +115,8 @@ class Document extends React.Component<IDocumentProps, IDocumentState> {
       <Variants 
         segment={segment} 
         onEscapeOutside={this.handleEscapeOutside} 
-        addVariant={addVariant}
-        editVariant={editVariant}
+        // addVariant={addVariant}
+        // editVariant={editVariant}
         textVariants={fakeVariants}
       />
     );

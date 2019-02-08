@@ -9,8 +9,9 @@ import Document from './components/Document';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Toolbar from './components/Toolbar';
-import { actions, model, state } from './redux';
 import Variant from '../template/components/Variant';
+import * as state from './../../app/redux/state';
+import * as actions from './../../app/redux/actions';
 
 type Action = ActionType<typeof actions>;
 interface ITemplateProps {
@@ -31,32 +32,32 @@ class TemplateBuilder extends React.Component<ITemplateProps, ITemplateState> {
 
   public componentDidMount() {
     this.setState(
-      (prevState, props) => ({ template: this.props.template }),
-      () => {
-        console.log(this.state.template);
-      }
+      (prevState, props) => ({ template: this.props.template })
     );
   }
 
   public render() {
     const { template } = this.props;
-    const { addVariant, editVariant } = actions;
+    // const { addVariant, editVariant } = actions;
 
     return (
       <div>
         <Header template={ template }/>
-        <Toolbar />
+          <Provider value={{ template }}>
+            <Toolbar />
+          </Provider>
 
         <Grid style={{ marginTop: 0 }}>
           <Provider value={{ template }}>
             <Document 
-              variants={[]}
-              addVariant={segmentId => actions.addVariant(segmentId)}
-              editVariant={payload => actions.editVariant(payload)}
+              // addVariant={segmentId => actions.addVariant(segmentId)}
+              // editVariant={payload => actions.editVariant(payload)}
             />
           </Provider>
 
-          <Sidebar />
+          <Provider value={{ template }}>
+            <Sidebar />
+          </Provider>
         </Grid>
       </div>
     );

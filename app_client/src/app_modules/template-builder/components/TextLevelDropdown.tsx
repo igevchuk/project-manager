@@ -11,17 +11,17 @@ interface IDropdownItemProps {
   indent?: number;
 }
 
-class Dropdown extends DropdownBase {
+class TextLevelDropdown extends DropdownBase {
   public render() {
     const { children, ...props } = this.props;
     return !!children ? <DropdownBase {...props}>{children}</DropdownBase> : <DropdownBase {...this.props} />
   }
 }
 
-export default styled(Dropdown)`
+export default styled(TextLevelDropdown)`
 `;
 
-export const DropdownMenu = styled(Dropdown.Menu)`
+export const TextLevelDropdownMenu = styled(TextLevelDropdown.Menu)`
     cursor: auto;
     position: absolute;
     display: none;
@@ -46,7 +46,7 @@ export const DropdownMenu = styled(Dropdown.Menu)`
     visibility: ${(props: IDropdownMenuProps) => props.open ? 'visible' : 'hidden'};
 `;
 
-export const DropdownItem = styled(Dropdown.Item)`
+export const TextLevelDropdownItem = styled(TextLevelDropdown.Item)`
   &&& {
     padding: 11px 16px;
     padding-left: ${(props: IDropdownItemProps) => props.indent ? `${props.indent * 8 + 16}px` : '16px'};

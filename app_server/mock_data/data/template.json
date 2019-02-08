@@ -254,7 +254,21 @@
             "fk": 11,
             "subClauseId": 11
           },
-          "decorator": { "bold": true, "italic": false }
+          "decorator": { "bold": true, "italic": false },
+          "playbookRules": [
+            {
+              "accept": false,
+              "confirmedLanguage": "",
+              "escalate": true,
+              "explanation": null,
+              "id": 2041,
+              "language": "Non-cosmetic changes",
+              "modify": false,
+              "reject": false,
+              "textSegmentId": 1111111,
+              "type": "escalations"
+            }
+          ]
         },
         {
           "id": 1111112,
@@ -265,7 +279,33 @@
             "fk": 12,
             "subClauseId": 111112
           },
-          "decorator": { "bold": true, "italic": true }
+          "decorator": { "bold": true, "italic": true },
+          "playbookRules": [
+            {
+              "accept": true,
+              "confirmedLanguage": "",
+              "escalate": false,
+              "explanation": null,
+              "id": 2044,
+              "language": "Non-cosmetic changes",
+              "modify": true,
+              "reject": false,
+              "textSegmentId": 1111112,
+              "type": "acceptable"
+            },
+            {
+              "accept": true,
+              "confirmedLanguage": "",
+              "escalate": false,
+              "explanation": null,
+              "id": 2043,
+              "language": "Changes to the counterparty is acceptable if it is the name listed on the netting opinion.",
+              "modify": true,
+              "reject": true,
+              "textSegmentId": 1111112,
+              "type": "conditional"
+            }
+          ]
         },
         {
           "id": 1111113,
@@ -276,7 +316,8 @@
             "fk": 111,
             "subClauseId": 111111
           },
-          "decorator": { "bold": true, "italic": true }
+          "decorator": { "bold": true, "italic": true },
+          "playbookRules": []
         },
         {
           "id": 1111114,
@@ -287,7 +328,8 @@
             "fk": 112,
             "subClauseId": 111113
           },
-          "decorator": { "bold": false, "italic": true }
+          "decorator": { "bold": false, "italic": true },
+          "playbookRules": []
         },
         {
           "id": 1111115,
@@ -298,7 +340,8 @@
             "fk": 111,
             "subClauseId": 111114
           },
-          "decorator": { "bold": false, "italic": false }
+          "decorator": { "bold": false, "italic": false },
+          "playbookRules": []
         },
         {
           "id": 1111116,
@@ -309,7 +352,8 @@
             "fk": 112,
             "subClauseId": 111111
           },
-          "decorator": { "bold": false, "italic": false }
+          "decorator": { "bold": false, "italic": false },
+          "playbookRules": []
         },
         {
           "id": 1111117,
@@ -320,7 +364,8 @@
             "fk": 111,
             "subClauseId": 111111
           },
-          "decorator": { "bold": false, "italic": true }
+          "decorator": { "bold": false, "italic": true },
+          "playbookRules": []
         },
         {
           "id": 1111118,
@@ -331,7 +376,8 @@
             "fk": 113,
             "subClauseId": 111112
           },
-          "decorator": { "bold": true, "italic": false }
+          "decorator": { "bold": true, "italic": false },
+          "playbookRules": []
         },
         {
           "id": 1111119,
@@ -342,7 +388,8 @@
             "fk": 114,
             "subClauseId": 111111
           },
-          "decorator": { "bold": true, "italic": false }
+          "decorator": { "bold": true, "italic": false },
+          "playbookRules": []
         },
         {
           "id": 1111120,
@@ -353,7 +400,8 @@
             "fk": 111,
             "subClauseId": 111114
           },
-          "decorator": { "bold": false, "italic": true }
+          "decorator": { "bold": false, "italic": true },
+          "playbookRules": []
         },
         {
           "id": 1111121,
@@ -364,7 +412,8 @@
             "fk": 112,
             "subClauseId": 111111
           },
-          "decorator": { "bold": true, "italic": true }
+          "decorator": { "bold": true, "italic": true },
+          "playbookRules": []
         },
         {
           "id": 1111122,
@@ -375,7 +424,8 @@
             "fk": 114,
             "subClauseId": 111111
           },
-          "decorator": { "bold": true, "italic": false }
+          "decorator": { "bold": true, "italic": false },
+          "playbookRules": []
         },
         {
           "id": 1111123,
@@ -386,7 +436,8 @@
             "fk": 111,
             "subClauseId": 111112
           },
-          "decorator": { "bold": false, "italic": true }
+          "decorator": { "bold": false, "italic": true },
+          "playbookRules": []
         },
         {
           "id": 1111124,
@@ -397,7 +448,8 @@
             "fk": 113,
             "subClauseId": 111113
           },
-          "decorator": { "bold": false, "italic": false }
+          "decorator": { "bold": false, "italic": false },
+          "playbookRules": []
         }
       ],
       "textVariant": [

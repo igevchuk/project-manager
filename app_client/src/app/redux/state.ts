@@ -41,6 +41,7 @@ export type template = {
   // value?: string;
   // variants?: template_variant[];
 };
+
 export type block = {
   id?: number;
   position?: number;
@@ -51,6 +52,7 @@ export type paragraph = {
   type: string;
   ref?: { blockId?: number };
 };
+
 export type table = {
   id?: number;
   ref?: { blockId?: number };
@@ -66,39 +68,53 @@ export type article = {
   name?: string;
   ref?: { templateId?: number };
 };
+
 export type section = {
   id?: number;
   name?: string;
   ref?: { articleId?: number };
 };
+
 export type subSection = {
   id?: number;
   name?: string;
   ref?: { sectionId?: number };
 };
+
 export type clause = {
   id?: number;
   name?: string;
   ref?: { subSectionId?: number };
 };
+
 export type subClause = {
   id?: number;
   name?: string;
   ref?: { clauseId?: number };
 };
+
 export type textSegment = {
   id?: number;
   sequence?: number;
   segment?: string;
   ref?: { subClauseId?: number; paragraphId?: number };
   decorator?: decorator;
-  playbooks?: playbook[];
+  playbookRules?: playbookRule[];
 };
 
-export type playbook = {
+/*
+  properties "accept", "escalate", "modify" and "reject" depend on playbook rule type and are hardcoded
+*/
+export type playbookRule = {
   id?: number;
-  name?: string;
-  ref?: { clauseId?: number };
+  accept: boolean; 
+  confirmedLanguage?: string;
+  escalate: boolean;
+  language: string;
+  modify: boolean;
+  reject: boolean;
+  type: string;
+  ref?: { textSegmentId?: number }; // if playbook rule belongs to the text segment, otherwise paragraphId
 };
 
 export type textVariant = {
@@ -125,6 +141,7 @@ export type ref = {
 };
 
 export type textLevel = textLevelBase | textLevelTwo | textLevelThree;
+
 export enum textLevelBase {
   article1,
   section,
@@ -133,6 +150,7 @@ export enum textLevelBase {
   subClause,
   textSegment
 }
+
 export enum textLevelTwo {
   article1,
   title,
@@ -141,6 +159,7 @@ export enum textLevelTwo {
   clause,
   textSegment
 }
+
 export enum textLevelThree {
   section1,
   article,

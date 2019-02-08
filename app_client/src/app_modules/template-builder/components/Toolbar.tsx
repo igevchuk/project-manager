@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
 import Book from '@material-ui/icons/Book';
+import Check from '@material-ui/icons/Check';
 import FormatAlignCenter from '@material-ui/icons/FormatAlignCenter';
 import FormatAlignJustify from '@material-ui/icons/FormatAlignJustify';
 import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft';
@@ -12,33 +13,117 @@ import FormatStrikethrough from '@material-ui/icons/FormatStrikethrough';
 import FormatUnderlined from '@material-ui/icons/FormatUnderlined';
 import FormatIndentDecrease from '@material-ui/icons/FormatIndentDecrease';
 import FormatIndentIncrease from '@material-ui/icons/FormatIndentIncrease';
-import { ToolbarWrap, ToolbarGroup, ToolbarItem, Link, Dropdown, Icon, IconGroup, IconGroupIcon } from './Toolbar.style';
+import { Dropdown } from 'semantic-ui-react';
+import Toggle from './../../../app/_styled_components/Toggle';
+import TextLevelDropdown, { TextLevelDropdownMenu, TextLevelDropdownItem } from './TextLevelDropdown';
+import { ToolbarWrap, ToolbarGroup, ToolbarItem, Link, Icon, IconGroup, IconGroupIcon } from './Toolbar.style';
 
 const fakeOptions = [
-  { key: 1, text: 'Option 1', value: 'Option 1' },
-  { key: 2, text: 'Option 2', value: 'Option 2' },
-  { key: 3, text: 'Option 3', value: 'Option 3' }
+  {
+    key: 1,
+    text: <b>156168719</b>
+  }
 ];
 
-class Toolbar extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+interface IToolbarState {
+  showNumbering?: boolean;
+  textLevel?: string;
+}
+
+const textLevelOptions = {
+  "noLevel": {
+    key: 0,
+    text: 'No Indent Level',
+    value: 'noLevel'
+  },
+  "article1": {
+    key: 0,
+    text: 'ARTICLE 1',
+    value: 'article1',
+    bold: true
+  },
+  "section": {
+    key: 0,
+    text: '1. Section',
+    value: 'section',
+    bold: true
+  },
+};
+
+class Toolbar extends React.Component<{}, IToolbarState> {
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
 
   public handleChange = (name: string, value: string): void => {
     console.log(name, value)
   }
 
+  public handleSelectTextLevel = (name) => {
+    console.log(name)
+    this.setState({ textLevel: name });
+  }
+
+  public toggleNumbering = (e) => {
+    e.preventDefault();
+    this.setState({ showNumbering: !this.state.showNumbering });
+  }
+
+  public renderTextLevelItem = (key) => {
+    const item = textLevelOptions[key];
+    console.log(item)
+    return (
+      <TextLevelDropdownItem onClick={this.handleSelectTextLevel(key)}>
+        {item.text()}
+      </TextLevelDropdownItem>
+    );
+  }
+
   public render() {
+    const { showNumbering, textLevel } = this.state;
     return (
       <ToolbarWrap>
         <ToolbarGroup divided={true} horizontal={true} relaxed={true}>
           <ToolbarItem>
             <Link>
-              <Dropdown floating={true} options={fakeOptions} text='Text Level' />
-
-              <Icon link={true} name='setting' />
+              {/* <TextLevelDropdown>
+                <TextLevelDropdownMenu>
+                  {
+                    Object.keys(textLevelOptions).map(key => this.renderTextLevelItem(key))
+                  }
+                </TextLevelDropdownMenu>
+              </TextLevelDropdown> */}
+              <TextLevelDropdown floating={true} fluid={true} text={textLevel || 'Text Level'} closeOnChange={false}>
+                <TextLevelDropdownMenu>
+                  <TextLevelDropdownItem onClick={() => this.handleSelectTextLevel('noLevel')} active={textLevel === null}>
+                    No Indent Ievel <Check />
+                  </TextLevelDropdownItem>
+                  <TextLevelDropdownItem onClick={() => this.handleSelectTextLevel('article1')} active={textLevel === 'article1'}>
+                    <b>ARTICLE 1</b> <Check />
+                  </TextLevelDropdownItem>
+                  <TextLevelDropdownItem indent={1} onClick={() => this.handleSelectTextLevel('section')} active={textLevel === 'section'}>
+                    &nbsp;<b>1. Section</b> <Check />
+                  </TextLevelDropdownItem>
+                  <TextLevelDropdownItem indent={2} onClick={() => this.handleSelectTextLevel('subSection')} active={textLevel === 'subSection'}>
+                    &nbsp;&nbsp;1.1 Subsection <Check />
+                  </TextLevelDropdownItem>
+                  <TextLevelDropdownItem indent={3} onClick={() => this.handleSelectTextLevel('clause')} active={textLevel === 'clause'}>
+                    &nbsp;&nbsp;&nbsp;(a) Clause <Check />
+                  </TextLevelDropdownItem>
+                  <TextLevelDropdownItem indent={4} onClick={() => this.handleSelectTextLevel('subClause')} active={textLevel === 'subClause'}>
+                    &nbsp;&nbsp;&nbsp;&nbsp;(i) Subclause <Check />
+                  </TextLevelDropdownItem>
+                  <TextLevelDropdownItem>
+                    Link to Previous Segment <Check />
+                  </TextLevelDropdownItem>
+                  <TextLevelDropdownItem onClick={this.toggleNumbering}>
+                    Show Numbering <Toggle checked={showNumbering} />
+                  </TextLevelDropdownItem>
+                </TextLevelDropdownMenu>
+              </TextLevelDropdown>
             </Link>
+            <Link><Icon link={true} name='setting' /></Link>
           </ToolbarItem>
 
           <ToolbarItem>
