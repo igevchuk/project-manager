@@ -5,13 +5,6 @@ import { FETCH_FORM, FETCH_FORM_FULFILLED } from './actions';
 import * as types from './actions';
 
 import { IState } from './state';
-import { template } from './state';
-import { article } from './state';
-import { section } from './state';
-import { subSection } from './state';
-import { clause } from './state';
-import { subClause } from './state';
-import { textSegment } from './state';
 
 const initialState: IState = {
   activeId: 1,

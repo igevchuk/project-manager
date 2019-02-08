@@ -1,844 +1,735 @@
 {
   "templates": [
     {
-      "id": 1,
-      "name": "in cillum culpaeu dolore est",
-      "selectedType": 1,
-      "type": [
+      "id": 1000,
+      "name": "Confidentiality Agreement",
+      "version": 0,
+      "versionIsPublished": true,
+      "lastSaved": "2018-06-07 15:13:00",
+      "lastPublished": "2018-06-07 15:13:00",
+      "editIsLocked": true,
+      "editLockedBy": 5000,
+      "blocks": [
         {
-          "id": 1,
-          "model": [
-            "article1",
-            "section",
-            "subSection",
-            "clause",
-            "subClause",
-            "textSegment",
-            "textVariant"
-          ]
+          "id": 101,
+          "sequence": 0,
+          "type": "Paragraph",
+          "properties": {
+            "pStyle": "Title",
+            "jc": "center"
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
         },
         {
-          "id": 2,
-          "model": [
-            "article1",
-            "title",
-            "section",
-            "subSection",
-            "clause",
-            "textSegment",
-            "textVariant"
-          ]
+          "id": 201,
+          "sequence": 1,
+          "type": "Paragraph",
+          "properties": {
+            "pStyle": "Title",
+            "jc": "center"
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
         },
         {
-          "id": 3,
-          "model": [
-            "section1",
-            "article",
-            "section",
-            "subSection",
-            "clause",
-            "textSegment",
-            "textVariant"
-          ]
+          "id": 301,
+          "sequence": 2,
+          "type": "Paragraph",
+          "properties": {
+            "pStyle": "Heading1"
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 401,
+          "sequence": 3,
+          "type": "Paragraph",
+          "properties": {
+            "pStyle": "Heading2"
+          },
+          "revision": 1,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 501,
+          "sequence": 4,
+          "type": "Paragraph",
+          "properties": {
+            "pStyle": "Heading3"
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 601,
+          "sequence": 5,
+          "type": "Paragraph",
+          "properties": {
+            "pStyle": "Heading4"
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 701,
+          "sequence": 6,
+          "type": "Table",
+          "properties": {
+            "w:tblStyle": "TableGrid",
+            "tblW": "100% pct"
+          },
+          "columns": [
+            {
+              "sequence": 0,
+              "width": 2880
+            },
+            {
+              "sequence": 1,
+              "width": 2880
+            }
+          ],
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
         }
       ],
-      "paragraphLevel": [
+      "tableRows": [
         {
-          "id": 1,
-          "name": "article"
-        },
-        {
-          "id": 2,
-          "name": "section"
-        },
-        {
-          "id": 3,
-          "name": "subSections"
-        },
-        {
-          "id": 4,
-          "name": "clauses"
-        },
-        {
-          "id": 5,
-          "name": "subClauses"
+          "id": 710,
+          "ref": {
+            "tables": 701
+          },
+          "sequence": 0,
+          "type": "TableRow",
+          "properties": {
+            "height": 400
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
         }
       ],
-      "articles": [
+      "tableCells": [
         {
-          "id": 11,
-          "name": "sint dolorpariatur est eu",
-          "ref": { "templateId": 1 }
+          "id": 720,
+          "ref": {
+            "tableRows": 710
+          },
+          "sequence": 0,
+          "properties": {
+            "width": null,
+            "rowSpan": null,
+            "colSpan": null
+          },
+          "revision": 2,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
         },
         {
-          "id": 12,
-          "name": "aute aliqua adipisicing exercitation elit",
-          "ref": { "templateId": 1 }
+          "id": 721,
+          "ref": {
+            "tableRows": 710
+          },
+          "sequence": 1,
+          "properties": {
+            "width": null,
+            "rowSpan": null,
+            "colSpan": null
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
         }
       ],
-      "sections": [
+      "tableParagraphs": [
         {
-          "id": 111,
-          "name": "non Utsit ipsum sedminim est",
-          "ref": { "articleId": 11 }
+          "id": 730,
+          "sequence": null,
+          "type": "Paragraph",
+          "properties": {
+            "pStyle": null
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
         },
         {
-          "id": 112,
-          "name": "sint laborum exercitation incididunt in",
-          "ref": { "articleId": 12 }
-        },
-        {
-          "id": 113,
-          "name": "aliqua veniam laborum",
-          "ref": { "articleId": 11 }
-        },
-        {
-          "id": 114,
-          "name": "ex dolor pariatur laboris",
-          "ref": { "articleId": 11 }
-        }
-      ],
-      "subSections": [
-        {
-          "id": 1111,
-          "name": "culpa anim cillumoccaecat laborum ea cillum",
-          "ref": { "sectionId": 111 }
-        },
-        {
-          "id": 1112,
-          "name": "adipisicing laborisin laboris elit ad",
-          "ref": { "sectionId": 111 }
-        },
-        {
-          "id": 1113,
-          "name": "mollit voluptatequis occaecat",
-          "ref": { "sectionId": 114 }
-        },
-        {
-          "id": 1114,
-          "name": "sed nostrud etconsectetur qui consequat",
-          "ref": { "sectionId": 113 }
-        },
-        {
-          "id": 1115,
-          "name": "consecteturauteculpa aliquip esse",
-          "ref": { "sectionId": 111 }
-        },
-        {
-          "id": 1116,
-          "name": "elitirure doin laboris enim",
-          "ref": { "sectionId": 111 }
-        }
-      ],
-      "clauses": [
-        {
-          "id": 11111,
-          "name": "eu quis non elit minim",
-          "ref": { "subSectionId": 1111 }
-        },
-        {
-          "id": 11112,
-          "name": "consectetur aliquipin aliqua nostrud magna irure",
-          "ref": { "subSectionId": 1112 }
-        },
-        {
-          "id": 11113,
-          "name": "magna quis enim mollit irure",
-          "ref": { "subSectionId": 1111 }
-        },
-        {
-          "id": 11114,
-          "name": "velitminim officia laboris",
-          "ref": { "subSectionId": 1113 }
-        },
-        {
-          "id": 11115,
-          "name": "Duis dolorealiqua deserunt culpa mollit",
-          "ref": { "subSectionId": 1111 }
-        },
-        {
-          "id": 11116,
-          "name": "dolore cupidatat Duis ali",
-          "ref": { "subSectionId": 1114 }
-        },
-        {
-          "id": 11117,
-          "name": "culpa sint sit dolor mollit",
-          "ref": { "subSectionId": 1111 }
-        },
-        {
-          "id": 11118,
-          "name": "doloreadex laboris eu in",
-          "ref": { "subSectionId": 1111 }
-        }
-      ],
-      "subClauses": [
-        {
-          "id": 111111,
-          "name": "veniamirure est amet consectetur",
-          "ref": {
-            "clauseId": 11111
-          }
-        },
-        {
-          "id": 111112,
-          "name": "adipisicing minim consec",
-          "ref": {
-            "clauseId": 11111
-          }
-        },
-        {
-          "id": 111113,
-          "name": "aliquip nisipariatur minim",
-          "ref": {
-            "clauseId": 11112
-          }
-        },
-        {
-          "id": 111114,
-          "name": "sintirure cillum sit dolore ut",
-          "ref": {
-            "clauseId": 11111
-          }
-        },
-        {
-          "id": 111115,
-          "name": "minimoccaecat esse enim",
-          "ref": {
-            "clauseId": 11113
-          }
-        },
-        {
-          "id": 111116,
-          "name": "Ut amet minim aliquip",
-          "ref": {
-            "clauseId": 11111
-          }
-        },
-        {
-          "id": 111117,
-          "name": "eareprehenderit cillum cupidatat dolore",
-          "ref": {
-            "clauseId": 11112
-          }
-        },
-        {
-          "id": 111118,
-          "name": "irure incididunt mollit do veniam",
-          "ref": {
-            "clauseId": 11114
-          }
-        },
-        {
-          "id": 111119,
-          "name": "exenim eu quis laborum",
-          "ref": {
-            "clauseId": 11111
-          }
-        },
-        {
-          "id": 111120,
-          "name": "nostrud dolor laborum",
-          "ref": {
-            "clauseId": 11111
-          }
+          "id": 731,
+          "sequence": null,
+          "type": "Paragraph",
+          "properties": {
+            "pStyle": null
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
         }
       ],
       "textSegments": [
         {
-          "id": 1111111,
-          "sequence": 1,
-          "segment": "dolore labore Uteiusmodiruredolor pariatur ut aliqua innonaute irureofficia aliqua eu estaute et Ut cillumdolor aliquip aute irure reprehenderitincididunt irure inproident nostrud ad culpareprehenderit.",
+          "id": 141,
           "ref": {
-            "docLevelId": 1,
-            "fk": 11,
-            "subClauseId": 11
+            "paragraphs": 101
           },
-          "decorator": { "bold": true, "italic": false }
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1000,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": true,
+          "text": "ARTICLE I",
+          "revision": 1,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
         },
         {
-          "id": 1111112,
-          "sequence": 1,
-          "segment": "non aute consequat idcupidatat est voluptate ut nullaaliqua cupidatat elitmollit culpa dolor irure ipsumreprehenderit in eucommodo sed incididunt elit veniamaliqua veniam adipisicing fugiat quivoluptate aliquip ex laborum veniam.",
+          "id": 240,
           "ref": {
-            "docLevelId": 1,
-            "fk": 12,
-            "subClauseId": 111112
+            "paragraphs": 201
           },
-          "decorator": { "bold": true, "italic": true }
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1001,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": true,
+          "text": "[NEW ARTICLE TITLE]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
         },
         {
-          "id": 1111113,
-          "sequence": 1,
-          "segment": "elit labore id esseeiusmod velit noncillum tempornisi sed veniam utdolor Lorem pariaturcupidatat et magna consequataliqua nulla elit proident cillumlaboris seddolor eiusmod adea proident quis occaecat.",
+          "id": 340,
           "ref": {
-            "docLevelId": 2,
-            "fk": 111,
-            "subClauseId": 111111
+            "paragraphs": 301
           },
-          "decorator": { "bold": true, "italic": true }
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1002,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": true,
+          "text": "[Agreement Title]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
         },
         {
-          "id": 1111114,
+          "id": 440,
+          "ref": {
+            "paragraphs": 401
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1004,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": true,
+          "text": "[This is a description of the contract]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 540,
+          "ref": {
+            "paragraphs": 501
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1005,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": true,
+          "text": "[The Services to be provided under this contract are described herein.]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 640,
+          "ref": {
+            "paragraphs": 601
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "text": "[It is further agreed between the parties as follows.]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 641,
+          "ref": {
+            "paragraphs": 601
+          },
+          "sequence": 1,
+          "type": "TextSegment",
+          "variantGroup": 1006,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": true,
+          "text": "Additional Text Segment",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 740,
+          "ref": {
+            "paragraphs": 730
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1007,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": true,
+          "text": "Column 1",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 741,
+          "ref": {
+            "paragraphs": 731
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1008,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": true,
+          "text": "Column 2",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 742,
+          "ref": {
+            "paragraphs": 731
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1008,
+          "variantType": "Buyer-Friendly",
+          "variantIsDefault": false,
+          "text": "Column 2 Variant 2",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 743,
+          "ref": {
+            "paragraphs": 731
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1008,
+          "variantType": "Seller-Friendly",
+          "variantIsDefault": false,
+          "text": "Column 2 Variant 3",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 840,
+          "ref": {
+            "paragraphs": 501
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1009,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": true,
+          "text": "First Name: {{FirstName}}",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        }
+      ],
+      "runs": [
+        {
+          "id": 150,
+          "ref": {
+            "textSegments": 140
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "ARTICLE I",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 250,
+          "ref": {
+            "textSegments": 240
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "[NEW ARTICLE TITLE]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 350,
+          "ref": {
+            "textSegments": 340
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "[Agreement Title]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 450,
+          "ref": {
+            "textSegments": 440
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "[This is a description of the contract]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 550,
+          "ref": {
+            "textSegments": 540
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "[The Services to be provided under this contract are described herein.",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 650,
+          "ref": {
+            "textSegments": 640
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "[It is further agreed between the parties as follows.",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 651,
+          "ref": {
+            "textSegments": 641
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "Additional ",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 652,
+          "ref": {
+            "textSegments": 641
+          },
+          "sequence": 1,
+          "type": "Run",
+          "properties": {
+            "b": true,
+            "i": null,
+            "u": null
+          },
+          "t": "Text",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 653,
+          "ref": {
+            "textSegments": 641
+          },
           "sequence": 2,
-          "segment": "voluptate labore reprehenderiteu Duisexminim ea enim quiin ea Utdolaborumeiusmod mollit sint dolortempor labore cupidatat ea involuptatedolornon eiusmod sedullamco do veniam ad cillumut officia fugiat dolor.",
-          "ref": {
-            "docLevelId": 2,
-            "fk": 112,
-            "subClauseId": 111113
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
           },
-          "decorator": { "bold": false, "italic": true }
+          "t": " Segment",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
         },
         {
-          "id": 1111115,
-          "sequence": false,
-          "segment": "voluptate incillumlaborum non ad mollitquis officia mollit laborelaboris cillum nulla dolorexercitation et nostrud Lorem mollitlaborum mollit veniam cillummollitin nulla in voluptate Excepteurnisi sint incididunt esse nostrud.",
+          "id": 750,
           "ref": {
-            "docLevelId": 2,
-            "fk": 111,
-            "subClauseId": 111114
+            "textSegments": 740
           },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 1111116,
-          "sequence": 3,
-          "segment": "voluptateveniamnulla minim dolordolore quis inuteu culpavelit incididunt estqui eu deseruntadipisicing consequat in consectetur idullamco consequatveniamminim elit nulla veniamcupidatat fugiat sunt voluptate.",
-          "ref": {
-            "docLevelId": 2,
-            "fk": 112,
-            "subClauseId": 111111
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
           },
-          "decorator": { "bold": false, "italic": false }
+          "t": "Column 1",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
         },
         {
-          "id": 1111117,
-          "sequence": 4,
-          "segment": "ullamco Duis cillum in sedvoluptate doloriruredolore aliqua adsed pariatur exercitation nulla dolorDuisreprehenderit et eu Loremipsumlaborum ea Loremvoluptate minim dolor exindolorlaborum deserunt sit.",
+          "id": 751,
           "ref": {
-            "docLevelId": 2,
-            "fk": 111,
-            "subClauseId": 111111
+            "textSegments": 741
           },
-          "decorator": { "bold": false, "italic": true }
-        },
-        {
-          "id": 1111118,
-          "sequence": 2,
-          "segment": "doloramet cupidatat incididunt sed Excepteuret aliqua eu anim indolore aliquanisi eu tempor dolore reprehenderitvoluptate doloreex in ea consequat elitsunt amet mollit dolore Utexercitation sunt est esse nostrud.",
-          "ref": {
-            "docLevelId": 2,
-            "fk": 113,
-            "subClauseId": 111112
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
           },
-          "decorator": { "bold": true, "italic": false }
+          "t": "Column 2",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
         },
         {
-          "id": 1111119,
-          "sequence": 5,
-          "segment": "in enim id aliqua deseruntesse indo id commodoauteveniam velit deserunt adipsumirure ut aliquadolor nostrudadipisicingad enim non culpa exeu consectetur qui magnaoccaecat Lorem incommodo ipsum culpa elit qui.",
+          "id": 752,
           "ref": {
-            "docLevelId": 2,
-            "fk": 114,
-            "subClauseId": 111111
+            "textSegments": 742
           },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 1111120,
-          "sequence": true,
-          "segment": "qui autequinulla qui sit in ipsumaute ad quivoluptate consectetur laboris etnisiquisad anim non euincididunt id nostrudofficia eu adipisicingea sunt velitipsum proidentofficia ad Excepteur deserunt non.",
-          "ref": {
-            "docLevelId": 2,
-            "fk": 111,
-            "subClauseId": 111114
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
           },
-          "decorator": { "bold": false, "italic": true }
+          "t": "Column 2 ",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
         },
         {
-          "id": 1111121,
-          "sequence": 6,
-          "segment": "do fugiatsuntvoluptate in doloreid reprehenderitut commodo fugiat eiusmodminim cillum aliquip tempor cupidatatea cillum aliqua magna nostrudUt eiusmod utet minim enim Lorem utaliqua DuisDuis enimdolore ea.",
+          "id": 753,
           "ref": {
-            "docLevelId": 2,
-            "fk": 112,
-            "subClauseId": 111111
+            "textSegments": 742
           },
-          "decorator": { "bold": true, "italic": true }
-        },
-        {
-          "id": 1111122,
-          "sequence": 7,
-          "segment": "laborum aliqua in auteexercitation amet irure inet ipsumoccaecat in reprehenderit ullamconulla dolor proidentcommodo Ut noncupidatatofficia elit laborum nisi commodonostrud culpa amet aute euea Ut nulla elit.",
-          "ref": {
-            "docLevelId": 2,
-            "fk": 114,
-            "subClauseId": 111111
-          },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 1111123,
-          "sequence": 3,
-          "segment": "amet Lorem incididunt in nulladeserunt cupidatat proident laborum velitnon sed ipsum voluptate reprehenderitest ullamco quieu amet idconsectetur cupidatat veniam laborenon consequat amet qui quisdolore nisi officia nostrud.",
-          "ref": {
-            "docLevelId": 2,
-            "fk": 111,
-            "subClauseId": 111112
-          },
-          "decorator": { "bold": false, "italic": true }
-        },
-        {
-          "id": 1111124,
-          "sequence": false,
-          "segment": "nisi sedconsequat culpa Lorem quilaboris et deserunt Duis idlaboresed pariatur eu veniamipsum occaecat deserunttempor in ullamcovelit aliqua nisi ullamco sintminimdolordolornullased irure eiusmod addo dolore.",
-          "ref": {
-            "docLevelId": 2,
-            "fk": 113,
-            "subClauseId": 111113
-          },
-          "decorator": { "bold": false, "italic": false }
-        }
-      ],
-      "textVariant": [
-        {
-          "id": 2072,
-          "title": "culpa ipsum ullamco",
-          "text": "enim do eu aute nostruddosunt veniam esse do voluptatead tempor do esseid do veniamUt adipisicing qui sit occaecatsint Lorem enim inullamcocillum in aliquaipsum Duis sint mollit eafugiat suntfugiat Lorem consectetu",
-          "sequence": 1506,
-          "segmentId": 53744623
-        },
-        {
-          "id": 3892,
-          "title": "dolore sunt amet in cillum",
-          "text": "consequatcupidatat elit mollitdolore tempor dolore doet doloretempor noncillumaliquipullamco consectetur animproident eiusmodin cillum dolore elit adesse ex ullamco doloreofficia in dolor laboreeu adipisicing laborum commodo",
-          "sequence": 6473,
-          "segmentId": "adipisicing sit aute non laborum"
-        },
-        {
-          "id": 4438,
-          "title": "do non eiusmod",
-          "text": "ullamco ea incididunt dolorcillum incididunt dolore velitnon reprehenderitconsequat id nostrud Excepteurmollit ipsum adipisicingvelit nulla Ututeiusmod nostrud etdoloremagnairure Duiscommodo dolor exercitation",
-          "sequence": 6449,
-          "segmentId": -28210304.240084395
-        },
-        {
-          "id": 8708,
-          "title": "aliqua",
-          "text": "quis non voluptate ametlabore amet commodo eu irureid dolore nulla laborisnostrud Excepteur enim nullaanim quisvelit fugiat Lorem non aliquacommodoculpa ad dolor nisiquis utlabore nisi Duis esse reprehenderit",
-          "sequence": 7728,
-          "segmentId": 40960192.44522321
-        },
-        {
-          "id": 9254,
-          "title": "quis",
-          "text": "aliquip ad reprehenderitut irure sed reprehenderitcillum adipisicing amettempor sit aliquip dolor minimirure velit eiusmod eu adipisicingoccaecat aute laborum commodoreprehenderit ut id inUt sunt sit ea ullamco",
-          "sequence": 1823,
-          "segmentId": -95550558
-        },
-        {
-          "id": 4725,
-          "title": "non",
-          "text": "tempor cupidatatLorem consequat velit idExcepteur etirure magna quis cupidatatelit est aliquip sunt sitnisi occaecat commodoquis consectetur aliquaenim quis consequatirure cupidatatincididunt laboris occaecat commodo",
-          "sequence": 379,
-          "segmentId": 93672649.14473611
-        },
-        {
-          "id": 5208,
-          "title": "labore reprehenderit tempor amet",
-          "text": "aliqua quisfugiatdolore nisi utin consequat Excepteur Lorem idcillum Lorem consectetur aute idmollitaliqua exercitation dout irureExcepteur enim ut officia temporlabore Excepteurconsectetur officia enim",
-          "sequence": 1211,
-          "segmentId": false
-        },
-        {
-          "id": 2534,
-          "title": "qui sed esse nostrud",
-          "text": "sint in pariaturvoluptate est dolor sedin eaexercitation et consequatmollit sitofficia exessesed id doadipisicing sit reprehenderit Lorem utadipisicing consequatelit dolor ipsum non tempordonon irure esse cillum nisi",
-          "sequence": 810,
-          "segmentId": 79312141
-        },
-        {
-          "id": 3871,
-          "title": "dolor Ut eiusmod",
-          "text": "tempor mollitideu adipisicing Loremdolore dolore in occaecat quiLorem quis euincididunt in nulla irureullamco eiusmod mollit nullaidlabore veniam officia esseofficia Lorem dodeseruntet sit in proident pariatur",
-          "sequence": 4714,
-          "segmentId": true
-        },
-        {
-          "id": 6510,
-          "title": "adipisicing ad incididunt",
-          "text": "nullased incididunt minim adirure cillum Loremest elit quilaboris deserunt eiusmodqui sunt labore nonfugiat advoluptate ut esseest deserunt dolore etLoremut velit deseruntExcepteuraute occaecat voluptate sint Excepteur",
-          "sequence": 2645,
-          "segmentId": 82209930
-        },
-        {
-          "id": 4242,
-          "title": "nulla sint",
-          "text": "animquinostrud commodo reprehenderit amet deseruntveniam consecteturofficia minim Ut aliquaDuis quis labore adipisicingut aliqua elit Excepteur animreprehenderit quislaborum officia eu quis veliteu fugiat incididunt ullamco",
-          "sequence": 8578,
-          "segmentId": "ut tempor et magna pariatur"
-        },
-        {
-          "id": 3864,
-          "title": "ea labore mollit",
-          "text": "exnon in velit utcillum irure fugiat ametquis Lorem veniam sunt magnaaliqua ipsum in mollit eiusmodirure consecteturipsum Duismollit consequat essenon quis nisiqui dolorest sed utdolorincididunt euin ut cillum no",
-          "sequence": 6028,
-          "segmentId": -31431173.682984695
-        },
-        {
-          "id": 6363,
-          "title": "nisi",
-          "text": "commodo quiutpariaturLorem dolor sunt consecteturdolore ipsum donulla in nisidolor reprehenderit irureeiusmodproidentUt cillummagna non proident dolaborisproident ad occaecatmagna ipsum anim incididunt",
-          "sequence": 2165,
-          "segmentId": -22778566
-        },
-        {
-          "id": 8519,
-          "title": "culpa et ea fugiat laborum",
-          "text": "dolordolor ut adipisicing Duis sintlabore aliquip qui enim inDuis in ad labore utaliquacommodo est magna eiusmodest qui consequat magna culpasint dolore labore cupidatatut laborum commodoad enimExcepteur aute eu voluptate ut",
-          "sequence": 9962,
-          "segmentId": -80265770
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "name": "enimsunt Ut exercitation",
-      "textLevel": "eu nostrud doest",
-      "articles": [
-        {
-          "id": 21,
-          "name": "proidentid nostrud ipsum Duis sint",
-          "ref": { "templateId": 2 }
-        },
-        {
-          "id": 22,
-          "name": "sedullamco voluptate tempor",
-          "ref": { "templateId": 2 }
-        }
-      ],
-      "sections": [
-        {
-          "id": 211,
-          "name": "eiusmod pariatur deserunt",
-          "ref": { "articleId": 21 }
-        },
-        {
-          "id": 212,
-          "name": "ipsum exercitationdolor anim voluptate",
-          "ref": { "articleId": 22 }
-        },
-        {
-          "id": 213,
-          "name": "sunt nostrud veniam ut cupidatat",
-          "ref": { "articleId": 21 }
-        },
-        {
-          "id": 214,
-          "name": "incididunttempor aliquip commo",
-          "ref": { "articleId": 21 }
-        }
-      ],
-      "subSections": [
-        {
-          "id": 2111,
-          "name": "exirureullamco minim Lorem eiusmod ad",
-          "ref": { "sectionId": 211 }
-        },
-        {
-          "id": 2112,
-          "name": "sunt reprehenderitlaboris",
-          "ref": { "sectionId": 211 }
-        },
-        {
-          "id": 2113,
-          "name": "deserunt in non fugiat dolor",
-          "ref": { "sectionId": 212 }
-        },
-        {
-          "id": 2114,
-          "name": "velit ex Duis ipsumad dolore incididunt",
-          "ref": { "sectionId": 211 }
-        },
-        {
-          "id": 2115,
-          "name": "adipisicingvoluptate cupidatat",
-          "ref": { "sectionId": 214 }
-        },
-        {
-          "id": 2116,
-          "name": "Ut ullamco exercitation sunt",
-          "ref": { "sectionId": 213 }
-        }
-      ],
-      "clauses": [
-        {
-          "id": 21111,
-          "name": "reprehenderit ullamco consectetur do labore",
-          "ref": { "subSectionId": 2111 }
-        },
-        {
-          "id": 21112,
-          "name": "commododolor exercitation laborum",
-          "ref": { "subSectionId": 2111 }
-        },
-        {
-          "id": 21113,
-          "name": "enimcommodoutelit sint laboris",
-          "ref": { "subSectionId": 2112 }
-        },
-        {
-          "id": 21114,
-          "name": "ineain elit sint aliquip",
-          "ref": { "subSectionId": 2111 }
-        },
-        {
-          "id": 21115,
-          "name": "sunt magnanon minimvelit",
-          "ref": { "subSectionId": 2113 }
-        },
-        {
-          "id": 21116,
-          "name": "nostrud ut consectetur",
-          "ref": { "subSectionId": 2114 }
-        },
-        {
-          "id": 21117,
-          "name": "nulla ad quis eu sed",
-          "ref": { "subSectionId": 2111 }
-        },
-        {
-          "id": 21118,
-          "name": "in veniam in dolorut enim",
-          "ref": { "subSectionId": 2111 }
-        }
-      ],
-      "subClauses": [
-        {
-          "id": 211111,
-          "name": "eu doloremollit minim Lorem id veniam",
-          "ref": {
-            "clauseId": 21111
-          }
-        },
-        {
-          "id": 211112,
-          "name": "ipsumid deseruntesse ut",
-          "ref": {
-            "clauseId": 21111
-          }
-        },
-        {
-          "id": 211113,
-          "name": "dolore ad dolor sedeiusmod mollit",
-          "ref": {
-            "clauseId": 21112
-          }
-        },
-        {
-          "id": 211114,
-          "name": "deserunt dolor fugiat ipsum",
-          "ref": {
-            "clauseId": 21113
-          }
-        },
-        {
-          "id": 211115,
-          "name": "eiusmodculpa ut cupidatat",
-          "ref": {
-            "clauseId": 21111
-          }
-        },
-        {
-          "id": 211116,
-          "name": "dolor tempor magna eiusmod ea",
-          "ref": {
-            "clauseId": 21111
-          }
-        },
-        {
-          "id": 211117,
-          "name": "sedreprehenderit tempor labore cillum",
-          "ref": {
-            "clauseId": 21114
-          }
-        },
-        {
-          "id": 211118,
-          "name": "ut cupidatat sunt in",
-          "ref": {
-            "clauseId": 21114
-          }
-        },
-        {
-          "id": 211119,
-          "name": "dolore ullamco sed cillum",
-          "ref": {
-            "clauseId": 21111
-          }
-        },
-        {
-          "id": 211120,
-          "name": "sint in consectetur aute",
-          "ref": {
-            "clauseId": 21111
-          }
-        }
-      ],
-      "textSegments": [
-        {
-          "id": 2111111,
           "sequence": 1,
-          "segment": "ad occaecat mollit amet sintconsequat ipsum Loremirure ullamco quiofficia exercitation id enim elitdolore do eiusmodtempor quis consequat nisiinculpa quis doloredoloreestsedvoluptate esse ipsumnisi non.",
-          "ref": {
-            "docLevelId": 1,
-            "fk": 11,
-            "subClauseId": 211111
+          "type": "Run",
+          "properties": {
+            "b": true,
+            "i": true,
+            "u": null
           },
-          "decorator": { "bold": true, "italic": false }
+          "t": " Variant 2",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
         },
         {
-          "id": 2111112,
-          "sequence": 2,
-          "segment": "eiusmod elit sunt cupidatat Duisullamco cupidatat dolor proidenteiusmod sint cillum ut dolorealiquaeiusmod officia in qui inexercitationcillumvoluptate laboris suntaliqua exercitationin qui cillumelit laborum culpa.",
+          "id": 754,
           "ref": {
-            "docLevelId": 1,
-            "fk": 11,
-            "subClauseId": 211111
+            "textSegments": 743
           },
-          "decorator": { "bold": false, "italic": false }
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": true
+          },
+          "t": "Column 2 Variant 3",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
         },
         {
-          "id": 2111113,
+          "id": 850,
+          "ref": {
+            "textSegments": 840
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "First Name: ",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 851,
+          "ref": {
+            "textSegments": 840
+          },
           "sequence": 1,
-          "segment": "id enim officia veniamelitea laboris sitadin uteiusmod ex cillum sitesse laborumnisiveniamqui Utconsequatincididunt culpa pariaturaliquip quiut ut labore culpaqui ut anim reprehenderit sedquis Excepteur nostrud incididunt.",
-          "ref": {
-            "docLevelId": 1,
-            "fk": 11,
-            "subClauseId": 211112
+          "type": "Run",
+          "isVariable": true,
+          "varible": {
+            "ref": 2001
           },
-          "decorator": { "bold": true, "italic": false }
-        },
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": true
+          },
+          "t": "{{FirstName}}",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        }
+      ],
+      "variables": [
         {
-          "id": 2111114,
-          "sequence": 3,
-          "segment": "aute incididunt sedvoluptate enim dolorlabore exercitation enim in estamet veniam consectetur animmollit aliqua veniam ut doloreDuis elit laborisconsectetur tempornisi occaecat eiusmod aliqua nostrudsit.",
-          "ref": {
-            "docLevelId": 1,
-            "fk": 11,
-            "subClauseId": 211111
-          },
-          "decorator": { "bold": true, "italic": true }
-        },
+          "id": 2001,
+          "type": "String",
+          "placeholder": "{{FirstName}}",
+          "description": "Customer First Name",
+          "isGlobal": false,
+          "variableGroupId": 1001,
+          "variableGroupName": "Personal Information",
+          "groupType": "I forgot why I had Group Type for variables...",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        }
+      ],
+      "history": [
         {
-          "id": 2111115,
-          "sequence": true,
-          "segment": "ut est incididunt culpareprehenderit est eu adnonaliqua aute consequat enimpariatur amet commodo dolor minimipsum ut consequat ullamcoenim sint idreprehenderit officia magna incididuntExcepteur nostrud mollit.",
-          "ref": {
-            "docLevelId": 1,
-            "fk": 11,
-            "subClauseId": 211114
-          },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 2111116,
-          "sequence": true,
-          "segment": "Loremproidentinsunt cupidatat tempor Duis aliquipnonut qui minim ea sedexercitation nostrudculpa ut dolore aliquipmollitlaborumest nostrudcupidatat aliquip consectetur anim sedquis enim aliquip pariatur do.",
-          "ref": {
-            "docLevelId": 1,
-            "fk": 11,
-            "subClauseId": 211113
-          },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 2111117,
-          "sequence": 4,
-          "segment": "tempor reprehenderit occaecat nostrud dolordolor eiusmod ut in adipisicingestproidentminimnon laboris proident aliquipUt ipsum ut doloreUt aute sunt proidentin et in sed minimaute minimDuis sed dolorincididunt nulla commodo do.",
-          "ref": {
-            "docLevelId": 1,
-            "fk": 11,
-            "subClauseId": 211111
-          },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 2111118,
-          "sequence": 5,
-          "segment": "ut Ut consectetur mollit enimdoloredolore cillum enim elitnisi consequat laboris officia animutirure consectetur in indolor ipsum ea do quisminim qui velitipsum reprehenderitexercitation nisi dolor Ut.",
-          "ref": {
-            "docLevelId": 1,
-            "fk": 11,
-            "subClauseId": 211111
-          },
-          "decorator": { "bold": true, "italic": true }
-        },
-        {
-          "id": 2111119,
-          "sequence": 2,
-          "segment": "exercitation velitculpa temporlaboreUt minim commodo culpa esteiusmod elit quisnulla ut proident consequatdo minim sunt adipisicing elitculpa consequatproident esse aute pariatur ametesse dolor enim quis nostrud.",
-          "ref": {
-            "docLevelId": 1,
-            "fk": 11,
-            "subClauseId": 211112
-          },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 2111120,
-          "sequence": false,
-          "segment": "fugiatculpa aliqua ut laboris sintconsequat est quis ullamcoet in dolor dolor estincididunt dolorelit cillum est dolore nostrudipsumadipisicing cillumqui pariatur incididunt sed aliquanulla commodo laborum non.",
-          "ref": {
-            "docLevelId": 1,
-            "fk": 11,
-            "subClauseId": 211116
-          },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 2111121,
-          "sequence": 6,
-          "segment": "aliquiputqui non proidentid in dolor exercitation irureExcepteur cillum Loremelit esse anim eueu nisi et magna pariaturaute id ExcepteuresseUt ut labore nostrudelit deserunt laborelabore veniam minimirure proident dolore est.",
-          "ref": {
-            "docLevelId": 1,
-            "fk": 11,
-            "subClauseId": 211111
-          },
-          "decorator": { "bold": false, "italic": false }
-        },
-        {
-          "id": 2111122,
-          "sequence": 3,
-          "segment": "irure proident magnacommodosunt nulla do commodo minimanim consequat reprehenderitenim exercitation sunt proident temporesse ad voluptate in veniamExcepteur utirure in pariaturlaboris consequat quis ipsum.",
-          "ref": {
-            "docLevelId": 1,
-            "fk": 11,
-            "subClauseId": 211112
-          },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 2111123,
-          "sequence": false,
-          "segment": "aliqua voluptate nostrud ullamco temporadipisicingexamet adipisicing elit officia exercitationculpa Lorem eu pariaturaliquip ad enim voluptate nonveniam quinisi etea enimsed ex cillum dolor veliteiusmod reprehenderit cupidatat.",
-          "ref": {
-            "docLevelId": 4,
-            "fk": 21111,
-            "subClauseId": 211116
-          },
-          "decorator": { "bold": true, "italic": false }
-        },
-        {
-          "id": 2111124,
-          "sequence": 4,
-          "segment": "do proident ut sit laboreullamco occaecat dolor idsintmollit do esse pariaturtempor officiareprehenderiteiusmod id dolor proident esseExcepteur commodosunt sit pariatur veniamdofugiat laborisLorem proident veniam.",
-          "ref": {
-            "docLevelId": 5,
-            "fk": 211112,
-            "subClauseId": 211112
-          },
-          "decorator": { "bold": false, "italic": false }
+          "blocks": [
+            {
+              "id": 401,
+              "sequence": 3,
+              "type": "Paragraph",
+              "properties": {
+                "pStyle": "Heading2"
+              },
+              "revision": 1,
+              "revisionCreatedDateTime": "2019-01-01 14:00:05",
+              "revisionCreatedBy": "7006"
+            }
+          ],
+          "tableRows": [],
+          "tableColumns": [
+            {
+              "id": 720,
+              "ref": {
+                "tableRows": 710
+              },
+              "sequence": 0,
+              "properties": {
+                "width": 3000,
+                "rowSpan": null,
+                "colSpan": null
+              },
+              "revision": 0,
+              "revisionCreatedDateTime": "2019-01-01 14:00:05",
+              "revisionCreatedBy": "7006"
+            },
+            {
+              "id": 720,
+              "ref": {
+                "tableRows": 710
+              },
+              "sequence": 0,
+              "properties": {
+                "width": 7000,
+                "rowSpan": null,
+                "colSpan": null
+              },
+              "revision": 1,
+              "revisionCreatedDateTime": "2019-01-01 14:00:05",
+              "revisionCreatedBy": "7006"
+            }
+          ],
+          "tableParagraphs": [],
+          "textSegments": [
+            {
+              "id": 140,
+              "ref": {
+                "paragraphs": 101
+              },
+              "sequence": 0,
+              "type": "TextSegment",
+              "variantGroup": 1000,
+              "variantType": "Standard/Neutral",
+              "variantIsDefault": true,
+              "text": "Title ONE OLD REVISION",
+              "revision": 0,
+              "revisionCreatedDateTime": "2019-01-01 14:00:05",
+              "revisionCreatedBy": "uuid"
+            }
+          ],
+          "runs": [
+            {
+              "id": 150,
+              "ref": {
+                "textSegments": 140
+              },
+              "sequence": 0,
+              "type": "Run",
+              "properties": {
+                "b": null,
+                "i": null,
+                "u": null
+              },
+              "t": "ARTICLE I",
+              "revision": 0,
+              "revisionCreatedDateTime": "2019-01-01 14:00:05",
+              "revisionCreatedBy": "7006"
+            }
+          ]
         }
       ]
     }

@@ -8,7 +8,7 @@ import SidebarHistory from './SidebarHistory';
 const panes = [
   {
     menuItem: 'PLAYBOOK',
-    render: () => <SidebarContent render={<SidebarPlaybook />} />
+    render: () => <SidebarContent render={<SidebarPlaybook aaa={'dd'} />} />
   },
   {
     menuItem: 'HISTORY',

@@ -7,13 +7,21 @@ interface IProps {
   template: {
     id: number;
     name: string;
-    selectedType: number;
-    articles: templateState.article[];
-    sections: templateState.section[];
-    subSections: templateState.subSection[];
-    clauses: templateState.clause[];
-    subClauses: templateState.subClause[];
+    version: number;
+    versionIsPublished: number;
+    lastSaved: number;
+    lastPublished: number;
+    editIsLocked: number;
+    editLockedBy: number;
+
+    blocks: templateState.block[];
+    tableRows: templateState.tableRow[];
+    tableColumns: templateState.tableCell[];
+    tableParagraphs: templateState.tableParagraph[];
     textSegments: templateState.textSegment[];
+    variables: templateState.variable[];
+    runs: templateState.run[];
+    history: templateState.history;
   };
 }
 const SidebarPlaybook: React.SFC<IProps> = props => {

@@ -1,44 +1,737 @@
 {
-  "user": [
+  "templates": [
     {
-      "id": 1,
-      "name": "name 1",
-      "last_edited_date": 1519904640,
-      "last_edited_by": "Abrar Huq asd",
-      "created": 1519904640,
-      "checked_out": false,
-      "linked_to_template": "Yes",
-      "status": "Draft"
-    },
-    {
-      "id": 2,
-      "name": "name 2",
-      "last_edited_date": 1519904640,
-      "last_edited_by": "Abrar Huq dsa",
-      "created": 1519904640,
-      "checked_out": true,
-      "linked_to_template": "No",
-      "status": "Draft"
-    },
-    {
-      "id": 3,
-      "name": "name 3",
-      "last_edited_date": 1519904640,
-      "last_edited_by": "Abrar Huq aaaa",
-      "created": 1519904640,
-      "checked_out": false,
-      "linked_to_template": "Yes",
-      "status": "Published"
-    },
-    {
-      "id": 4,
-      "name": "name 4",
-      "last_edited_date": 1519904641,
-      "last_edited_by": "Abrar Huq bbbb",
-      "created": 1519904640,
-      "checked_out": false,
-      "linked_to_template": "No",
-      "status": "Draft"
+      "id": 1000,
+      "name": "Confidentiality Agreement",
+      "version": 0,
+      "versionIsPublished": true,
+      "lastSaved": "2018-06-07 15:13:00",
+      "lastPublished": "2018-06-07 15:13:00",
+      "editIsLocked": true,
+      "editLockedBy": 5000,
+      "blocks": [
+        {
+          "id": 101,
+          "sequence": 0,
+          "type": "Paragraph",
+          "properties": {
+            "pStyle": "Title",
+            "jc": "center"
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 201,
+          "sequence": 1,
+          "type": "Paragraph",
+          "properties": {
+            "pStyle": "Title",
+            "jc": "center"
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 301,
+          "sequence": 2,
+          "type": "Paragraph",
+          "properties": {
+            "pStyle": "Heading1"
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 401,
+          "sequence": 3,
+          "type": "Paragraph",
+          "properties": {
+            "pStyle": "Heading2"
+          },
+          "revision": 1,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 501,
+          "sequence": 4,
+          "type": "Paragraph",
+          "properties": {
+            "pStyle": "Heading3"
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 601,
+          "sequence": 5,
+          "type": "Paragraph",
+          "properties": {
+            "pStyle": "Heading4"
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 701,
+          "sequence": 6,
+          "type": "Table",
+          "properties": {
+            "w:tblStyle": "TableGrid",
+            "tblW": "100% pct"
+          },
+          "columns": [
+            {
+              "sequence": 0,
+              "width": 2880
+            },
+            {
+              "sequence": 1,
+              "width": 2880
+            }
+          ],
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        }
+      ],
+      "tableRows": [
+        {
+          "id": 710,
+          "ref": {
+            "tables": 701
+          },
+          "sequence": 0,
+          "type": "TableRow",
+          "properties": {
+            "height": 400
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        }
+      ],
+      "tableColumns": [
+        {
+          "id": 720,
+          "ref": {
+            "tableRows": 710
+          },
+          "sequence": 0,
+          "properties": {
+            "width": null,
+            "rowSpan": null,
+            "colSpan": null
+          },
+          "revision": 2,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 721,
+          "ref": {
+            "tableRows": 710
+          },
+          "sequence": 1,
+          "properties": {
+            "width": null,
+            "rowSpan": null,
+            "colSpan": null
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        }
+      ],
+      "tableParagraphs": [
+        {
+          "id": 730,
+          "sequence": null,
+          "type": "Paragraph",
+          "properties": {
+            "pStyle": null
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 731,
+          "sequence": null,
+          "type": "Paragraph",
+          "properties": {
+            "pStyle": null
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        }
+      ],
+      "textSegments": [
+        {
+          "id": 141,
+          "ref": {
+            "paragraphs": 101
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1000,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": true,
+          "text": "ARTICLE I",
+          "revision": 1,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 240,
+          "ref": {
+            "paragraphs": 201
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1001,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": true,
+          "text": "[NEW ARTICLE TITLE]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 340,
+          "ref": {
+            "paragraphs": 301
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1002,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": true,
+          "text": "[Agreement Title]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 440,
+          "ref": {
+            "paragraphs": 401
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1004,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": true,
+          "text": "[This is a description of the contract]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 540,
+          "ref": {
+            "paragraphs": 501
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1005,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": true,
+          "text": "[The Services to be provided under this contract are described herein.]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 640,
+          "ref": {
+            "paragraphs": 601
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "text": "[It is further agreed between the parties as follows.]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 641,
+          "ref": {
+            "paragraphs": 601
+          },
+          "sequence": 1,
+          "type": "TextSegment",
+          "variantGroup": 1006,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": true,
+          "text": "Additional Text Segment",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 740,
+          "ref": {
+            "paragraphs": 730
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1007,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": true,
+          "text": "Column 1",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 741,
+          "ref": {
+            "paragraphs": 731
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1008,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": true,
+          "text": "Column 2",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 742,
+          "ref": {
+            "paragraphs": 731
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1008,
+          "variantType": "Buyer-Friendly",
+          "variantIsDefault": false,
+          "text": "Column 2 Variant 2",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 743,
+          "ref": {
+            "paragraphs": 731
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1008,
+          "variantType": "Seller-Friendly",
+          "variantIsDefault": false,
+          "text": "Column 2 Variant 3",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 840,
+          "ref": {
+            "paragraphs": 501
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1009,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": true,
+          "text": "First Name: {{FirstName}}",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        }
+      ],
+      "runs": [
+        {
+          "id": 150,
+          "ref": {
+            "textSegments": 140
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "ARTICLE I",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 250,
+          "ref": {
+            "textSegments": 240
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "[NEW ARTICLE TITLE]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 350,
+          "ref": {
+            "textSegments": 340
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "[Agreement Title]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 450,
+          "ref": {
+            "textSegments": 440
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "[This is a description of the contract]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 550,
+          "ref": {
+            "textSegments": 540
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "[The Services to be provided under this contract are described herein.",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 650,
+          "ref": {
+            "textSegments": 640
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "[It is further agreed between the parties as follows.",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 651,
+          "ref": {
+            "textSegments": 641
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "Additional ",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 652,
+          "ref": {
+            "textSegments": 641
+          },
+          "sequence": 1,
+          "type": "Run",
+          "properties": {
+            "b": true,
+            "i": null,
+            "u": null
+          },
+          "t": "Text",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 653,
+          "ref": {
+            "textSegments": 641
+          },
+          "sequence": 2,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": " Segment",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 750,
+          "ref": {
+            "textSegments": 740
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "Column 1",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 751,
+          "ref": {
+            "textSegments": 741
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "Column 2",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 752,
+          "ref": {
+            "textSegments": 742
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "Column 2 ",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 753,
+          "ref": {
+            "textSegments": 742
+          },
+          "sequence": 1,
+          "type": "Run",
+          "properties": {
+            "b": true,
+            "i": true,
+            "u": null
+          },
+          "t": " Variant 2",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 754,
+          "ref": {
+            "textSegments": 743
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": true
+          },
+          "t": "Column 2 Variant 3",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 850,
+          "ref": {
+            "textSegments": 840
+          },
+          "sequence": 0,
+          "type": "Run",
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": null
+          },
+          "t": "First Name: ",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 851,
+          "ref": {
+            "textSegments": 840
+          },
+          "sequence": 1,
+          "type": "Run",
+          "isVariable": true,
+          "varible": {
+            "ref": 2001
+          },
+          "properties": {
+            "b": null,
+            "i": null,
+            "u": true
+          },
+          "t": "{{FirstName}}",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        }
+      ],
+      "variables": [
+        {
+          "id": 2001,
+          "type": "String",
+          "placeholder": "{{FirstName}}",
+          "description": "Customer First Name",
+          "isGlobal": false,
+          "variableGroupId": 1001,
+          "variableGroupName": "Personal Information",
+          "groupType": "I forgot why I had Group Type for variables...",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        }
+      ],
+      "history": [ 
+        {
+          "blocks": [
+            {
+              "id": 401,
+              "sequence": 3,
+              "type": "Paragraph",
+              "properties": {
+                "pStyle": "Heading2"
+              },
+              "revision": 1,
+              "revisionCreatedDateTime": "2019-01-01 14:00:05",
+              "revisionCreatedBy": "7006"
+            }
+          ],
+          "tableRows": [],
+          "tableColumns": [
+            {
+              "id": 720,
+              "ref": {
+                "tableRows": 710
+              },
+              "sequence": 0,
+              "properties": {
+                "width": 3000,
+                "rowSpan": null,
+                "colSpan": null
+              },
+              "revision": 0,
+              "revisionCreatedDateTime": "2019-01-01 14:00:05",
+              "revisionCreatedBy": "7006"
+            },
+            {
+              "id": 720,
+              "ref": {
+                "tableRows": 710
+              },
+              "sequence": 0,
+              "properties": {
+                "width": 7000,
+                "rowSpan": null,
+                "colSpan": null
+              },
+              "revision": 1,
+              "revisionCreatedDateTime": "2019-01-01 14:00:05",
+              "revisionCreatedBy": "7006"
+            }
+          ],
+          "tableParagraphs": [],
+          "textSegments": [
+            {
+              "id": 140,
+              "ref": {
+                "paragraphs": 101
+              },
+              "sequence": 0,
+              "type": "TextSegment",
+              "variantGroup": 1000,
+              "variantType": "Standard/Neutral",
+              "variantIsDefault": true,
+              "text": "Title ONE OLD REVISION",
+              "revision": 0,
+              "revisionCreatedDateTime": "2019-01-01 14:00:05",
+              "revisionCreatedBy": "uuid"
+            }
+          ],
+          "runs": [
+            {
+              "id": 150,
+              "ref": {
+                "textSegments": 140
+              },
+              "sequence": 0,
+              "type": "Run",
+              "properties": {
+                "b": null,
+                "i": null,
+                "u": null
+              },
+              "t": "ARTICLE I",
+              "revision": 0,
+              "revisionCreatedDateTime": "2019-01-01 14:00:05",
+              "revisionCreatedBy": "7006"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
