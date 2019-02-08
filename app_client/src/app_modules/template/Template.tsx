@@ -39,7 +39,7 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
   }
 
   public componentDidMount() {
-    this.timer = window.setInterval(() => console.log('testing'), 1000);
+    // this.timer = window.setInterval(() => console.log('testing'), 1000);
 
     this.setState(
       (prevState, props) => ({ template: this.props.template }),
@@ -54,24 +54,31 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
   }
 
   public render() {
-    // console.log(this.props.template);
+    if (!this.props.template) {
+      return null;
+    }
+    console.log(this.props.template);
 
     return (
       <div>
         <Navbar />
         <Grid style={{ marginTop: 0 }}>
-          <Document />
-          <Sidebar />
-
-          <Editor
+          {/* <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
-          />
+          /> */}
 
-          <Provider value={{ doc: this.props.template }}>
+          <Provider value={{ template: this.props.template }}>
+            <Document />
+          </Provider>
+
+          <Provider value={{ template: this.props.template }}>
+            <Sidebar />
+          </Provider>
+
+          <Provider value={{ template: this.props.template }}>
             <Content asd={'asdf'} />
           </Provider>
-          <Sidebar />
         </Grid>
       </div>
     );
@@ -83,8 +90,6 @@ const mapStateToProps = state => {
   if (templates.length === 0) {
     return {};
   }
-
-  // console.log(templates[0]);
   return { template: templates[0] };
 };
 
