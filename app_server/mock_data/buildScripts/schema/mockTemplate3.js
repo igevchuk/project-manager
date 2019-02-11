@@ -48,7 +48,7 @@ let schema = {
             minLength: 10,
             maxLength: 10
           },
-          contentOutine: {
+          contentOutline: {
             type: "object",
             properties: {
               id: {
@@ -870,7 +870,7 @@ let schema = {
           "lastPublished",
           "editIsLocked",
           "editLockedBy",
-          "contentOutine",
+          "contentOutline",
           "blocks",
           "paragraphs",
           "table",

@@ -20,14 +20,14 @@ export type template = {
   editIsLocked?: boolean;
   editLockedBy?: number;
 
-  contentOutine?: contentOutine; // new added
+  contentOutline?: contentOutline; // new added
   blocks?: block[];
   paragraphs?: paragraph[];
   tables?: table[]; // new added
   tableRows?: tableRow[];
   tableCells?: tableCell[];
   tableParagraphs?: tableParagraph[];
-  textSegments: textSegment[];
+  textSegments?: textSegment[];
   runs?: run[];
   variables?: variable[];
   history?: history;
@@ -36,7 +36,7 @@ export type template = {
 // this is new added for easily operation in front-end.
 // it also plays a role as a map, which provides support for tracking.
 // the core is blockId. So, blocks entity even don't care the sequence
-export type contentOutine = {
+export type contentOutline = {
   id?: uuid;
   name?: string;
   articles: [{ id: uuid; blockId: uuid; sequence: number }];
@@ -296,7 +296,7 @@ export type variable = {
 
 export type history = {
   id?: number;
-  contentOutine?: contentOutine;
+  contentOutline?: contentOutline;
   blocks?: block[];
   tables?: table[];
   tableRows?: tableRow[];

@@ -61,7 +61,6 @@ class Toolbar extends React.Component<{}, IToolbarState> {
   }
 
   public handleSelectTextLevel = (name) => {
-    console.log(name)
     this.setState({ textLevel: name });
   }
 
@@ -72,9 +71,8 @@ class Toolbar extends React.Component<{}, IToolbarState> {
 
   public renderTextLevelItem = (key) => {
     const item = textLevelOptions[key];
-    console.log(item)
     return (
-      <TextLevelDropdownItem onClick={this.handleSelectTextLevel(key)}>
+      <TextLevelDropdownItem key={key} onClick={this.handleSelectTextLevel(key)}>
         {item.text()}
       </TextLevelDropdownItem>
     );

@@ -3,9 +3,9 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { ActionType } from 'typesafe-actions';
 
-import { Provider } from './Context';
+import { Provider } from './TemplateContext';
 import { Grid } from 'semantic-ui-react';
-// import Document from './components/Document';
+import Content from './components/Content';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Toolbar from './components/Toolbar';
@@ -38,21 +38,21 @@ class TemplateBuilder extends React.Component<ITemplateProps, ITemplateState> {
 
   public render() {
     const { template } = this.props;
-    // const { addVariant, editVariant } = actions;
+    
+    if(!template) {
+      return null;
+    }
 
     return (
       <div>
-        <Header template={ template }/>
-          <Provider value={{ template }}>
-            <Toolbar />
-          </Provider>
+        <Header template={ template } />
+        <Provider value={{ template }}>
+          <Toolbar />
+        </Provider>
 
         <Grid style={{ marginTop: 0 }}>
           <Provider value={{ template }}>
-            <Document 
-              // addVariant={segmentId => actions.addVariant(segmentId)}
-              // editVariant={payload => actions.editVariant(payload)}
-            />
+            <Content />
           </Provider>
 
           <Provider value={{ template }}>
@@ -74,9 +74,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
-  return {
-    // onFetchForm: () => dispatch(actions.fetchForm())
-  };
+  return {};
 };
 
 export default connect(

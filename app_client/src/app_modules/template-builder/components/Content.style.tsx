@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Grid } from 'semantic-ui-react';
 
-export const StyledDocument = styled(Grid.Column)`
+export const StyledContent = styled(Grid.Column)`
   margin: 50px 5vmax;
   padding: 1em;
 `;

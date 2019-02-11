@@ -4,7 +4,7 @@ import { Icon } from 'semantic-ui-react';
 import CompareArrows from '@material-ui/icons/CompareArrows';
 import Variant from './Variant';
 import { StyledVariants, VariantForm, Divider } from './Variants.style';
-import { VariantCount } from './Document.style';
+import { VariantCount } from './Content.style';
 
 class Variants extends React.Component<any, any> {
   constructor(props: any) {

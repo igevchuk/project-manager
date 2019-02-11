@@ -4,36 +4,19 @@ import { Grid, Icon } from 'semantic-ui-react';
 import CompareArrows from '@material-ui/icons/CompareArrows';
 import Variants from './Variants';
 import {
-  StyledDocument,
+  StyledContent,
   TextHover,
   TextHoverFeature,
   TextNode,
   VariantCount
-} from './Document.style';
+} from './Content.style';
 
 import { v4 } from 'uuid';
 
-import { contextWrapper } from './../TemplateContext';
+import { contextWrapper } from '../TemplateContext';
 import * as templateState from '../../../app/redux/state';
 
-const fakeSegments = [
-  { id: 1, text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' },
-  { id: 2, text: 'Donec venenatis dolor id ex sodales consequat. ' },
-  {
-    id: 3,
-    text:
-      'Nullam porttitor lacinia diam, sed ultrices magna fringilla pellentesque. Ut viverra fermentum pretium. Donec at fringilla odio. Nullam porttitor lacinia diam, sed ultrices magna fringilla pellentesque. Ut viverra fermentum pretium. Donec at fringilla odio. Nullam porttitor lacinia diam, sed ultrices magna fringilla pellentesque. Ut viverra fermentum pretium. Donec at fringilla odio. '
-  },
-  {
-    id: 4,
-    text:
-      'Praesent euismod dui ut ante fermentum, sed consectetur lacus pretium. Vestibulum ornare sollicitudin lectus at ultrices. '
-  },
-  { id: 5, text: 'Mauris ultricies pellentesque est vel maximus. ' }
-];
-
 interface IContentProps {
-  asd: string;
   template: {
     id: number;
     name: string;
@@ -44,7 +27,11 @@ interface IContentProps {
   };
 }
 
-class TemplateContent extends React.Component<IContentProps, any> {
+interface IContentState {
+  activeSegment: templateState.textSegment | null;
+}
+
+class Content extends React.Component<IContentProps, IContentState> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -212,15 +199,12 @@ class TemplateContent extends React.Component<IContentProps, any> {
 
     return (
       <Grid.Column width={12}>
-        <StyledDocument>
-          {fakeSegments.map(segment => this.renderSegment(segment))}
-          <br />
-          <br />
+        <StyledContent>
           {this.getArticles(contentOutline, blocks, paragraphs, textSegments)}
-        </StyledDocument>
+        </StyledContent>
       </Grid.Column>
     );
   }
 }
 
-export default contextWrapper(TemplateContent);
+export default contextWrapper(Content);

@@ -6,6 +6,7 @@ import StyledHeader, { HeaderColumn, HeaderActions, HeaderAction } from './Heade
 import Button from './../../../app/_styled_components/Button';
 import Dropdown from './../../../app/_styled_components/Dropdown';
 import { state } from './../redux';
+import utils from './../../../app/utils';
 
 interface IHeaderProps {
   template: state.template;
@@ -17,9 +18,18 @@ const fakeOptions = [
   { key: 1, text: 'Option 3', value: 'Option 3' }
 ];
 
-export default class Header extends React.Component<IHeaderProps, any> {
+export default class Header extends React.Component<IHeaderProps, {}> {
   constructor(props) {
     super(props);
+  }
+
+  public getLastUpdated = (lastUpdated, type) => {
+    if(!!lastUpdated) {
+      const timeString = utils.formatDate(lastUpdated, 'MMMM D, YYYY') + ' at ' + utils.formatDate(lastUpdated, 'h:mm A');
+      return `Last ${type} ${timeString}`;
+    }
+
+    return `Never ${type}`;
   }
   
   public render() {
@@ -36,7 +46,10 @@ export default class Header extends React.Component<IHeaderProps, any> {
             <Icon link={true} name='chevron left' />
             <h2>
               { template.name }
-              <small>Never published &bull; Last saved June 7, 2018 at 3.12 PM</small>
+              <small>
+                { this.getLastUpdated(template.lastPublished, 'published') } &bull;&nbsp;
+                { this.getLastUpdated(template.lastSaved, 'saved') }
+              </small>
             </h2>
           </a>
         </HeaderColumn>

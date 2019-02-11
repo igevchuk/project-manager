@@ -8,7 +8,8 @@ export type template = {
   name?: string;
   selectedType?: number;
   type?: type[];
-
+  lastPublished?: Date;
+  lastSaved?: Date;
   article?: article[];
   section?: section[];
   subSection?: subSection[];
