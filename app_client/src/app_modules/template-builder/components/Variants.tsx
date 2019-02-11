@@ -93,7 +93,7 @@ class Variants extends React.Component<any, any> {
           </div>
           
           <VariantCount className="variant-count">
-            3 <CompareArrows />
+            { textVariants.length } <CompareArrows />
           </VariantCount>
         </StyledVariants>
       </EscapeOutside>

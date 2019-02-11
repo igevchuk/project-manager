@@ -50,6 +50,7 @@ class Content extends React.Component<IContentProps, IContentState> {
 
   public renderSegment = (segment: any): any => {
     const { activeSegment } = this.state;
+    const segmentVariants = this.getTextVariants(segment);
 
     if (!activeSegment || segment.id !== activeSegment.id) {
       return [
@@ -60,7 +61,7 @@ class Content extends React.Component<IContentProps, IContentState> {
           <TextNode className="text-node">{segment.text}</TextNode>
         </TextHover>,
         <VariantCount key={v4()} className="variant-count">
-          3 <CompareArrows />
+          { segmentVariants.length } <CompareArrows />
         </VariantCount>
       ];
     }
@@ -68,7 +69,7 @@ class Content extends React.Component<IContentProps, IContentState> {
     return (
       <Variants 
         segmentId={segment.id}
-        textVariants={this.getTextVariants(segment)} 
+        textVariants={segmentVariants} 
         onEscapeOutside={this.handleEscapeOutside} 
       />
     );
@@ -197,7 +198,7 @@ class Content extends React.Component<IContentProps, IContentState> {
     const { textVariants } = this.props.template;
     
     if(!textVariants || !segment) {
-      return;
+      return [];
     }
 
     return textVariants.filter(({ref}) => segment.id === ref.segmentId);
