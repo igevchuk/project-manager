@@ -134,7 +134,7 @@
           "revisionCreatedBy": "minim dolore in nostrud"
         }
       ],
-      "table": [
+      "tables": [
         {
           "id": 5572,
           "ref": { "blockId": 1386 },
@@ -162,7 +162,7 @@
           "revisionCreatedBy": "proident deserunt laborum"
         }
       ],
-      "tableRow": [
+      "tableRows": [
         {
           "id": 7805,
           "type": "ullamco commodoreprehenderit",
@@ -180,7 +180,7 @@
           "revisionCreatedBy": "cillum Duis laboris do"
         }
       ],
-      "tableCell": [
+      "tableCells": [
         {
           "id": 2639,
           "ref": { "tableRowId": 3640 },
@@ -202,7 +202,7 @@
           "revisionCreatedBy": "nisi aliquaconsectetur ea Excepteur sunt"
         }
       ],
-      "tableParagraph": [
+      "tableParagraphs": [
         {
           "id": 6251,
           "ref": { "tableCellId": 1330 },
@@ -218,7 +218,7 @@
           "revisionCreatedBy": "adipisicing nisiadipisicing Ut veniam incididunt aliqua"
         }
       ],
-      "textSegment": [
+      "textSegments": [
         {
           "id": 4001,
           "ref": { "paragraphId": 3001 },
@@ -235,7 +235,7 @@
         },
         {
           "id": 4002,
-          "ref": { "paragraphId": 3001 },
+          "ref": { "paragraphId": 3002 },
           "styling": { "b": true, "i": true, "u": false },
           "sequence": 12,
           "variantGroup": 52,
@@ -249,7 +249,7 @@
         },
         {
           "id": 4003,
-          "ref": { "paragraphId": 3002 },
+          "ref": { "paragraphId": 3003 },
           "styling": { "b": true, "i": false, "u": true },
           "sequence": 13,
           "variantGroup": 97,
@@ -263,7 +263,35 @@
         },
         {
           "id": 4004,
-          "ref": { "paragraphId": 3001 },
+          "ref": { "paragraphId": 3004 },
+          "styling": { "b": false, "i": true, "u": false },
+          "sequence": 14,
+          "variantGroup": 82,
+          "variantType": "cillum irure incididunt amet",
+          "variantIsDefault": true,
+          "text": "est aliqua Duis nostrud cupidatat",
+          "revision": 40,
+          "revisionCreatedDateTime": "laborum enim Excepteur reprehenderit ad",
+          "revisionCreatedBy": "dolor irure cupidatat dolor",
+          "type": true
+        },
+        {
+          "id": 4005,
+          "ref": { "paragraphId": 3005 },
+          "styling": { "b": false, "i": true, "u": false },
+          "sequence": 14,
+          "variantGroup": 82,
+          "variantType": "cillum irure incididunt amet",
+          "variantIsDefault": true,
+          "text": "est aliqua Duis nostrud cupidatat",
+          "revision": 40,
+          "revisionCreatedDateTime": "laborum enim Excepteur reprehenderit ad",
+          "revisionCreatedBy": "dolor irure cupidatat dolor",
+          "type": true
+        },
+        {
+          "id": 4006,
+          "ref": { "paragraphId": 3006 },
           "styling": { "b": false, "i": true, "u": false },
           "sequence": 14,
           "variantGroup": 82,
@@ -276,7 +304,7 @@
           "type": true
         }
       ],
-      "textVariant": [
+      "textVariants": [
         {
           "id": 5001,
           "title": "officia ad ipsum",
@@ -376,7 +404,7 @@
           "segmentId": 4002
         }
       ],
-      "run": [
+      "runs": [
         {
           "id": 1057,
           "type": "dolor ex in Utenim sit sunt",

@@ -285,7 +285,7 @@ let schema = {
             }
           },
 
-          table: {
+          tables: {
             type: "array",
             minItems: 2,
             maxItems: 2,
@@ -376,7 +376,7 @@ let schema = {
             }
           },
 
-          tableRow: {
+          tableRows: {
             type: "array",
             minItems: 2,
             maxItems: 2,
@@ -442,7 +442,7 @@ let schema = {
             }
           },
 
-          tableCell: {
+          tableCells: {
             type: "array",
             minItems: 2,
             maxItems: 2,
@@ -519,7 +519,7 @@ let schema = {
             }
           },
 
-          tableParagraph: {
+          tableParagraphs: {
             type: "array",
             minItems: 2,
             maxItems: 2,
@@ -564,7 +564,7 @@ let schema = {
             }
           },
 
-          textSegment: {
+          textSegments: {
             type: "array",
             minItems: 4,
             maxItems: 4,
@@ -658,7 +658,7 @@ let schema = {
             }
           },
 
-          textVariant: {
+          textVariants: {
             type: "array",
             minItems: 14,
             maxItems: 14,
@@ -694,7 +694,7 @@ let schema = {
             }
           },
 
-          run: {
+          runs: {
             type: "array",
             minItems: 2,
             maxItems: 2,
@@ -873,13 +873,13 @@ let schema = {
           "contentOutine",
           "blocks",
           "paragraphs",
-          "table",
-          "tableRow",
-          "tableCell",
-          "tableParagraph",
-          "textSegment",
-          "textVariant",
-          "run",
+          "tables",
+          "tableRows",
+          "tableCells",
+          "tableParagraphs",
+          "textSegments",
+          "textVariants",
+          "runs",
           "variable",
           "history"
         ]

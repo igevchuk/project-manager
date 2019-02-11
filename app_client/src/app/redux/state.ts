@@ -27,7 +27,7 @@ export type template = {
   tableRows?: tableRow[];
   tableCells?: tableCell[];
   tableParagraphs?: tableParagraph[];
-  textSegments?: textSegment[];
+  textSegments: textSegment[];
   runs?: run[];
   variables?: variable[];
   history?: history;
@@ -39,8 +39,8 @@ export type template = {
 export type contentOutine = {
   id?: uuid;
   name?: string;
-  articles: [{ id: uuid; blockId: uuid; sequence?: number }];
-  sections?: [
+  articles: [{ id: uuid; blockId: uuid; sequence: number }];
+  sections: [
     {
       id?: uuid;
       blockId?: uuid;
@@ -50,7 +50,7 @@ export type contentOutine = {
       };
     }
   ];
-  subSections?: [
+  subSections: [
     {
       id?: uuid;
       blockId?: uuid;
@@ -130,9 +130,9 @@ export type block = {
 };
 
 export type paragraph = {
-  id?: uuid;
-  ref?: {
-    blockId?: uuid;
+  id: uuid;
+  ref: {
+    blockId: uuid;
   };
   type?: string; // Paragraph
 
@@ -230,8 +230,8 @@ export type tableParagraph = {
 
 // changed the refid to block, and added new property existed in block.
 export type textSegment = {
-  id?: uuid;
-  ref?: {
+  id: uuid;
+  ref: {
     paragraphId?: uuid;
   };
   styling?: {
