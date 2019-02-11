@@ -26,6 +26,7 @@ interface IContentProps {
     textSegments: templateState.textSegment[];
     textVariants: templateState.textVariant[];
   };
+  handleAddTextVariant?: (textVariant: templateState.textVariant) => void;
 }
 
 interface IContentState {

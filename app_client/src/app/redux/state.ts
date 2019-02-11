@@ -28,6 +28,7 @@ export type template = {
   tableCells?: tableCell[];
   tableParagraphs?: tableParagraph[];
   textSegments?: textSegment[];
+  textVariants?: textVariant[];
   runs?: run[];
   variables?: variable[];
   history?: history;

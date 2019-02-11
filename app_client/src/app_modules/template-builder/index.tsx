@@ -36,6 +36,18 @@ class TemplateBuilder extends React.Component<ITemplateProps, ITemplateState> {
     );
   }
 
+  public addTextVariant = (variant) => {
+    const { template } = this.props;
+
+    console.log(variant);
+
+    // this.setState({
+    //   template: {
+    //     ...template, textVariants: [...template.textVariants, variant]
+    //   }
+    // });
+  }
+
   public render() {
     const { template } = this.props;
     
@@ -51,7 +63,7 @@ class TemplateBuilder extends React.Component<ITemplateProps, ITemplateState> {
         </Provider>
 
         <Grid style={{ marginTop: 0 }}>
-          <Provider value={{ template }}>
+          <Provider value={{ template, handleAddTextVariant: this.addTextVariant }}>
             <Content />
           </Provider>
 

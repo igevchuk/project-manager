@@ -13,10 +13,9 @@ import FormatStrikethrough from '@material-ui/icons/FormatStrikethrough';
 import FormatUnderlined from '@material-ui/icons/FormatUnderlined';
 import FormatIndentDecrease from '@material-ui/icons/FormatIndentDecrease';
 import FormatIndentIncrease from '@material-ui/icons/FormatIndentIncrease';
-import { Dropdown } from 'semantic-ui-react';
 import Toggle from './../../../app/_styled_components/Toggle';
 import TextLevelDropdown, { TextLevelDropdownMenu, TextLevelDropdownItem } from './TextLevelDropdown';
-import { ToolbarWrap, ToolbarGroup, ToolbarItem, Link, Icon, IconGroup, IconGroupIcon } from './Toolbar.style';
+import { Dropdown, ToolbarWrap, ToolbarGroup, ToolbarItem, Link, Icon, IconGroup, IconGroupIcon } from './Toolbar.style';
 
 const fakeOptions = [
   {

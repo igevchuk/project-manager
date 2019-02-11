@@ -22,14 +22,14 @@ class Variant extends React.Component<IVariantProps, {}> {
     const { variant, onUpdate } = this.props;
     const updatedVariant = {...variant, title: target.textContent};
 
-    onUpdate(updatedVariant);
+    // onUpdate(updatedVariant);
   }
 
   public handleEditText = ({ target }) => {
     const { variant, onUpdate } = this.props;
     const updatedVariant = {...variant, title: target.innerHTML};
 
-    onUpdate(updatedVariant);
+    // onUpdate(updatedVariant);
   }
 
   public render() {
