@@ -16,7 +16,7 @@ import { DragDropContext } from 'react-dnd';
 
 import * as state from '../../app/redux/state';
 import { Provider } from './TemplateContext';
-// import Content from './components/Content';
+import Content from './components/Content';
 
 interface ITemplateProps {
   template: state.template;
@@ -76,7 +76,7 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
           </Provider>
 
           <Provider value={{ template: this.props.template }}>
-            {/* <Content asd={'asdf'} /> */}
+            <Content asd={'asdf'} />
           </Provider>
         </Grid>
       </div>
