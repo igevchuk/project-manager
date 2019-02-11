@@ -31,23 +31,36 @@ interface IToolbarState {
 }
 
 const textLevelOptions = {
-  "noLevel": {
-    key: 0,
+  "textSegment": {
+    html: 'No Indent Level',
     text: 'No Indent Level',
-    value: 'noLevel'
+    value: 'textSegment'
   },
   "article1": {
-    key: 0,
+    html: 'ARTICLE 1',
     text: 'ARTICLE 1',
-    value: 'article1',
-    bold: true
+    value: 'article1'
   },
   "section": {
-    key: 0,
+    html: <span>&nbsp;1. Section</span>,
     text: '1. Section',
-    value: 'section',
-    bold: true
+    value: 'section'
   },
+  "subSection": {
+    html: <span>&nbsp;&nbsp;1.1 Subsection</span>,
+    text: '1.1 Subsection',
+    value: 'subSection'
+  },
+  "clause": {
+    html: <span>&nbsp;&nbsp;&nbsp;(a) Clause</span>,
+    text: '(a) Clause',
+    value: 'clause'
+  },
+  "subClause": {
+    html: <span>&nbsp;&nbsp;&nbsp;&nbsp;(i) Subclause</span>,
+    text: '(i) Subclause',
+    value: 'subClause'
+  }
 };
 
 class Toolbar extends React.Component<{}, IToolbarState> {
@@ -70,48 +83,44 @@ class Toolbar extends React.Component<{}, IToolbarState> {
   }
 
   public renderTextLevelItem = (key) => {
+    const { textLevel } = this.state;
     const item = textLevelOptions[key];
+    const isActive = key === textLevel;
+
     return (
-      <TextLevelDropdownItem key={key} onClick={this.handleSelectTextLevel(key)}>
-        {item.text()}
+      <TextLevelDropdownItem 
+        key={key} 
+        onClick={() => this.handleSelectTextLevel(key)}
+        active={isActive}
+      >
+        {item.html} {isActive ? <Check /> : null}
       </TextLevelDropdownItem>
     );
   }
 
+  public getTextLevelLabel = () => {
+    const { textLevel } = this.state;
+
+    if(!textLevel) {
+      return 'Text Level';
+    }
+
+    return textLevelOptions[textLevel].text;
+  }
+
   public render() {
     const { showNumbering, textLevel } = this.state;
+
     return (
       <ToolbarWrap>
         <ToolbarGroup divided={true} horizontal={true} relaxed={true}>
           <ToolbarItem>
             <Link>
-              {/* <TextLevelDropdown>
+              <TextLevelDropdown fluid={true} text={this.getTextLevelLabel()} closeOnChange={false}>
                 <TextLevelDropdownMenu>
                   {
                     Object.keys(textLevelOptions).map(key => this.renderTextLevelItem(key))
                   }
-                </TextLevelDropdownMenu>
-              </TextLevelDropdown> */}
-              <TextLevelDropdown floating={true} fluid={true} text={textLevel || 'Text Level'} closeOnChange={false}>
-                <TextLevelDropdownMenu>
-                  <TextLevelDropdownItem onClick={() => this.handleSelectTextLevel('noLevel')} active={textLevel === null}>
-                    No Indent Ievel <Check />
-                  </TextLevelDropdownItem>
-                  <TextLevelDropdownItem onClick={() => this.handleSelectTextLevel('article1')} active={textLevel === 'article1'}>
-                    <b>ARTICLE 1</b> <Check />
-                  </TextLevelDropdownItem>
-                  <TextLevelDropdownItem indent={1} onClick={() => this.handleSelectTextLevel('section')} active={textLevel === 'section'}>
-                    &nbsp;<b>1. Section</b> <Check />
-                  </TextLevelDropdownItem>
-                  <TextLevelDropdownItem indent={2} onClick={() => this.handleSelectTextLevel('subSection')} active={textLevel === 'subSection'}>
-                    &nbsp;&nbsp;1.1 Subsection <Check />
-                  </TextLevelDropdownItem>
-                  <TextLevelDropdownItem indent={3} onClick={() => this.handleSelectTextLevel('clause')} active={textLevel === 'clause'}>
-                    &nbsp;&nbsp;&nbsp;(a) Clause <Check />
-                  </TextLevelDropdownItem>
-                  <TextLevelDropdownItem indent={4} onClick={() => this.handleSelectTextLevel('subClause')} active={textLevel === 'subClause'}>
-                    &nbsp;&nbsp;&nbsp;&nbsp;(i) Subclause <Check />
-                  </TextLevelDropdownItem>
                   <TextLevelDropdownItem>
                     Link to Previous Segment <Check />
                   </TextLevelDropdownItem>

@@ -9,6 +9,7 @@ interface IDropdownMenuProps {
 
 interface IDropdownItemProps {
   indent?: number;
+  text: string | HTMLElement
 }
 
 class TextLevelDropdown extends DropdownBase {
@@ -19,6 +20,9 @@ class TextLevelDropdown extends DropdownBase {
 }
 
 export default styled(TextLevelDropdown)`
+  && .menu {
+    border-radius: 0;
+  }
 `;
 
 export const TextLevelDropdownMenu = styled(TextLevelDropdown.Menu)`
@@ -44,23 +48,25 @@ export const TextLevelDropdownMenu = styled(TextLevelDropdown.Menu)`
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16), 0 3px 4px 0 rgba(0,0,0,0.16), 0 1px 5px 0 rgba(0,0,0,0.16);
     display: ${(props: IDropdownMenuProps) => props.open ? 'block' : 'none'};
     visibility: ${(props: IDropdownMenuProps) => props.open ? 'visible' : 'hidden'};
+    &&.menu > .item {
+      border-top: 1px solid #E0E0E0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 40px 11px 16px;
+      min-width: 240px;
+    }
 `;
 
 export const TextLevelDropdownItem = styled(TextLevelDropdown.Item)`
   &&& {
-    padding: 11px 16px;
-    padding-left: ${(props: IDropdownItemProps) => props.indent ? `${props.indent * 8 + 16}px` : '16px'};
-    border-top: 1px solid #E0E0E0;
-    display: flex !important;
-    align-items: center;
     color: #010101;
     &:hover {
       background: #F5F5F5;
     }
-    & svg {
+    & svg, & > .toggle {
       position: absolute;
       right: 16px;
-      display: ${(props) => props.active ? 'inline' : 'none'};
     }
   }
 `;

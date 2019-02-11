@@ -14,8 +14,8 @@ interface IHeaderProps {
 
 const fakeOptions = [
   { key: 1, text: 'Option 1', value: 'Option 1' },
-  { key: 1, text: 'Option 2', value: 'Option 2' },
-  { key: 1, text: 'Option 3', value: 'Option 3' }
+  { key: 2, text: 'Option 2', value: 'Option 2' },
+  { key: 3, text: 'Option 3', value: 'Option 3' }
 ];
 
 export default class Header extends React.Component<IHeaderProps, {}> {
