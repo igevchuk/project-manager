@@ -195,8 +195,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
       return filteredTextSegments.map(textSegment => {
         return (
           <div key={textSegment.id}>
-            <h3>{textSegment.text}</h3>
-            {this.renderSegment(textSegment.text)}
+            {this.renderSegment({ id: textSegment.id, text: textSegment.text })}
           </div>
         );
       });
