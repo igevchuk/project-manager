@@ -238,7 +238,7 @@ let schema = {
                   type: "integer",
                   minimum: 1,
                   maximum: 9999,
-                  unique: true 
+                  unique: true
                 },
                 ref: {
                   segmentId: {

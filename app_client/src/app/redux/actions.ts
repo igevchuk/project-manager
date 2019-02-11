@@ -3,8 +3,6 @@ import { createAction } from 'redux-actions';
 
 // import { createAction } from 'typesafe-actions';
 // import { Form } from "./model";
-import { IState } from './state';
-import { article } from './state';
 
 // Action defination
 export const FETCH_FORM = 'formbuilder/FETCH_FORM';

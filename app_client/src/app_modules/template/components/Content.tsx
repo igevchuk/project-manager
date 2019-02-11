@@ -34,15 +34,12 @@ const fakeSegments = [
 
 interface IContentProps {
   asd: string;
-  doc: {
+  template: {
     id: number;
     name: string;
-    selectedType: number;
-    articles: templateState.article[];
-    sections: templateState.section[];
-    subSections: templateState.subSection[];
-    clauses: templateState.clause[];
-    subClauses: templateState.subClause[];
+    contentOutine: templateState.contentOutine;
+    blocks: templateState.block[];
+    paragraphs: templateState.paragraph[];
     textSegments: templateState.textSegment[];
   };
 }
@@ -86,53 +83,77 @@ class TemplateContent extends React.Component<IContentProps, any> {
   };
 
   public getArticles = (
-    articles: templateState.article[],
-    sections: templateState.section[],
-    subSections: templateState.subSection[],
-    clauses: templateState.clause[],
-    subClauses: templateState.subClause[],
+    contentOutine: templateState.contentOutine,
+    blocks: templateState.block[],
+    paragraphs: templateState.paragraph[],
     textSegments: templateState.textSegment[]
   ): any => {
-    return articles.map(article => {
-      return (
-        <div key={article.id}>
-          <h1>{article.name}</h1>
-          {this.getSecitons(
-            sections,
-            subSections,
-            clauses,
-            subClauses,
-            textSegments,
-            article.id
-          )}
-          <br />
-        </div>
-      );
-    });
+    return contentOutine.articles
+      .sort((a, b) => a.sequence - b.sequence)
+      .map(article => {
+        const blockId = article.blockId;
+
+        const paragraph = paragraphs.filter(
+          paragraph => paragraph.ref.blockId === blockId
+        )[0];
+
+        const filteredTextSegments = textSegments.filter(
+          textSegment => textSegment.ref.paragraphId === paragraph.id
+        )[0];
+
+        return (
+          <div key={article.id}>
+            <h1>{filteredTextSegments.text}</h1>
+            {this.getSecitons(
+              contentOutine,
+              // blocks,
+              paragraphs,
+              textSegments,
+              article.id
+            )}
+            <br />
+          </div>
+        );
+      });
   };
 
   public getSecitons = (
-    sections: templateState.section[],
-    subSections: templateState.subSection[],
-    clauses: templateState.clause[],
-    subClauses: templateState.subClause[],
+    contentOutine: templateState.contentOutine,
+    // blocks: templateState.block[],
+    paragraphs: templateState.paragraph[],
     textSegments: templateState.textSegment[],
     articleId?: number
   ): any => {
-    const filteredArray = sections.filter(
-      (section: { id: number; name: string; ref: { articleId: number } }) => {
+    const filteredArray = contentOutine.sections.filter(
+      (section: {
+        id: number;
+        blockId: number;
+        sequence: number;
+        ref: { articleId: number };
+      }) => {
         return section.ref.articleId === articleId;
       }
     );
 
     return filteredArray.map(section => {
+      const blockId = section.blockId;
+
+      const paragraph = paragraphs.filter(
+        paragraph => paragraph.ref.blockId === blockId
+      )[0];
+
+      const filteredTextSegments = textSegments.filter(
+        textSegment => textSegment.ref.paragraphId === paragraph.id
+      )[0];
+
       return (
         <div key={section.id}>
-          <h2>{section.name}</h2>
+          <h2>
+            {`${filteredTextSegments.sequence}. ` + filteredTextSegments.text}
+          </h2>
           {this.getSubSecitons(
-            subSections,
-            clauses,
-            subClauses,
+            contentOutine,
+            paragraphs,
             textSegments,
             section.id
           )}
@@ -143,16 +164,16 @@ class TemplateContent extends React.Component<IContentProps, any> {
   };
 
   public getSubSecitons = (
-    subSections: templateState.subSection[],
-    clauses: templateState.clause[],
-    subClauses: templateState.subClause[],
+    contentOutine: templateState.contentOutine,
+    paragraphs: templateState.paragraph[],
     textSegments: templateState.textSegment[],
     sectionId?: number
   ): any => {
-    const filteredArray = subSections.filter(
+    const filteredArray = contentOutine.subSections.filter(
       (subSection: {
         id: number;
-        name: string;
+        blockId: number;
+        sequence: number;
         ref: { sectionId: number };
       }) => {
         return subSection.ref.sectionId === sectionId;
@@ -160,98 +181,34 @@ class TemplateContent extends React.Component<IContentProps, any> {
     );
 
     return filteredArray.map(subSection => {
-      return (
-        <div key={subSection.id}>
-          <h3>{subSection.name}</h3>
-          {this.getClauses(clauses, subClauses, textSegments, subSection.id)}
-          <br />
-        </div>
+      const blockId = subSection.blockId;
+
+      const paragraph = paragraphs.filter(
+        paragraph => paragraph.ref.blockId === blockId
+      )[0];
+
+      const filteredTextSegments = textSegments.filter(
+        textSegment => textSegment.ref.paragraphId === paragraph.id
       );
+
+      console.log(filteredTextSegments);
+      return filteredTextSegments.map(textSegment => {
+        return (
+          <div key={textSegment.id}>
+            {this.renderSegment({ id: textSegment.id, text: textSegment.text })}
+          </div>
+        );
+      });
     });
   };
 
-  public getClauses = (
-    clauses: templateState.clause[],
-    subClauses: templateState.subClause[],
-    textSegments: templateState.textSegment[],
-    subSectionId?: number
-  ): any => {
-    const filteredArray = clauses.filter(
-      (clause: { id: number; name: string; ref: { subSectionId: number } }) => {
-        return clause.ref.subSectionId === subSectionId;
-      }
-    );
-
-    return filteredArray.map(clause => {
-      return (
-        <div key={clause.id}>
-          <h4>{clause.name}</h4>
-          {this.getSubClauses(subClauses, textSegments, clause.id)}
-          <br />
-        </div>
-      );
-    });
-  };
-
-  public getSubClauses = (
-    subClauses: templateState.subClause[],
-    textSegments: templateState.textSegment[],
-    clauseId?: number
-  ): any => {
-    const filteredArray = subClauses.filter(
-      (subClause: { id: number; name: string; ref: { clauseId: number } }) => {
-        return subClause.ref.clauseId === clauseId;
-      }
-    );
-
-    return filteredArray.map(subClause => {
-      return (
-        <div key={subClause.id}>
-          <h5>{subClause.name}</h5>
-          {this.getTextSegments(textSegments, subClause.id)}
-          <br />
-        </div>
-      );
-    });
-  };
-
-  public getTextSegments = (
-    textSegments: templateState.textSegment[],
-    subClauseId?: number
-  ): any => {
-    const filteredArray = textSegments.filter(
-      (textSegment: {
-        id: number;
-        sequence: number;
-        segment: string;
-        ref: { subClauseId: number };
-      }) => {
-        return textSegment.ref.subClauseId === subClauseId;
-      }
-    );
-
-    return filteredArray.map(textSegment => {
-      return (
-        <span key={textSegment.id}>
-          {textSegment.segment}
-          <br />
-        </span>
-      );
-    });
-  };
   public render() {
-    if (!this.props.doc) {
-      return null;
-    }
-
     const {
-      articles,
-      sections,
-      subSections,
-      clauses,
-      subClauses,
+      contentOutine,
+      blocks,
+      paragraphs,
       textSegments
-    } = this.props.doc;
+    } = this.props.template;
 
     return (
       <Grid.Column width={12}>
@@ -259,14 +216,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
           {fakeSegments.map(segment => this.renderSegment(segment))}
           <br />
           <br />
-          {this.getArticles(
-            articles,
-            sections,
-            subSections,
-            clauses,
-            subClauses,
-            textSegments
-          )}
+          {this.getArticles(contentOutine, blocks, paragraphs, textSegments)}
         </StyledDocument>
       </Grid.Column>
     );

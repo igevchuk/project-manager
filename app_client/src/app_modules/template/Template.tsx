@@ -34,7 +34,10 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
     // this.state = {
     //   template: {}
     // };
-    this.state = { template: {}, editorState: EditorState.createEmpty() };
+    this.state = {
+      template: this.props.template,
+      editorState: EditorState.createEmpty()
+    };
     // this.onChange = editorState => this.setState({ editorState });
   }
 
@@ -57,7 +60,6 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
     if (!this.props.template) {
       return null;
     }
-    console.log(this.props.template);
 
     return (
       <div>
@@ -68,16 +70,16 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
             onChange={this.onChange}
           /> */}
 
-          <Provider value={{ template: this.props.template }}>
+          {/* <Provider value={{ template: this.props.template }}>
             <Document />
+          </Provider> */}
+
+          <Provider value={{ template: this.props.template }}>
+            <Content asd={'asdf'} />
           </Provider>
 
           <Provider value={{ template: this.props.template }}>
             <Sidebar />
-          </Provider>
-
-          <Provider value={{ template: this.props.template }}>
-            <Content asd={'asdf'} />
           </Provider>
         </Grid>
       </div>

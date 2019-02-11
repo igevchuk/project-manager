@@ -1,141 +1,48 @@
-// import * as React from 'react';
-
-// import { TextSegment, TextVariant } from './../redux/model';
-// import { contextWrapper } from './../Context';
-// import { Grid, Icon } from 'semantic-ui-react';
-// import CompareArrows from '@material-ui/icons/CompareArrows';
-// import Variants from './Variants';
-// import {
-//   StyledDocument,
-//   TextHover,
-//   TextHoverFeature,
-//   TextNode,
-//   VariantCount
-// } from './Document.style';
-// import * as templateState from '../../../app/redux/state';
-
 // import { v4 } from 'uuid';
 
-// const fakeSegments = [
-//   { id: 1, text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' },
-//   { id: 2, text: 'Donec venenatis dolor id ex sodales consequat. ' },
-//   {
-//     id: 3,
-//     text:
-//       'Nullam porttitor lacinia diam, sed ultrices magna fringilla pellentesque. Ut viverra fermentum pretium. Donec at fringilla odio. Nullam porttitor lacinia diam, sed ultrices magna fringilla pellentesque. Ut viverra fermentum pretium. Donec at fringilla odio. Nullam porttitor lacinia diam, sed ultrices magna fringilla pellentesque. Ut viverra fermentum pretium. Donec at fringilla odio. '
-//   },
-//   {
-//     id: 4,
-//     text:
-//       'Praesent euismod dui ut ante fermentum, sed consectetur lacus pretium. Vestibulum ornare sollicitudin lectus at ultrices. '
-//   },
-//   { id: 5, text: 'Mauris ultricies pellentesque est vel maximus. ' }
-// ];
+// import * as templateState from '../../app/redux/state';
+// import Template from './Template';
 
-// const fakeVariants = [
-//   {
-//     id: 1,
-//     title: "Standart/Neutral Language",
-//     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-//     seq: 1
-//   },
-//   {
-//     id: 2,
-//     title: "Variant 2",
-//     text: 'Donec venenatis dolor id ex sodales consequat. ',
-//     seq: 2
-//   },
-//   {
-//     id: 3,
-//     title: "Variant 3",
-//     text:
-//       'Nullam porttitor lacinia diam, sed ultrices magna fringilla pellentesque. Ut viverra fermentum pretium. Donec at fringilla odio. Nullam porttitor lacinia diam, sed ultrices magna fringilla pellentesque. Ut viverra fermentum pretium. Donec at fringilla odio. Nullam porttitor lacinia diam, sed ultrices magna fringilla pellentesque. Ut viverra fermentum pretium. Donec at fringilla odio. ',
-//     seq: 3
-//   },
-//   {
-//     id: 4,
-//     title: "Variant 4",
-//     text:
-//       'Praesent euismod dui ut ante fermentum, sed consectetur lacus pretium. Vestibulum ornare sollicitudin lectus at ultrices. ',
-//     seq: 4
-//   },
-//   {
-//     id: 5,
-//     title: "Variant 5",
-//     text: 'Mauris ultricies pellentesque est vel maximus. ',
-//     seq: 5
-//   }
-// ];
-
-// interface IDocumentProps {
+// interface IContentProps {
 //   template: {
 //     id: number;
 //     name: string;
-//     selectedType: number;
-//     articles: templateState.article[];
-//     sections: templateState.section[];
-//     subSections: templateState.subSection[];
-//     clauses: templateState.clause[];
-//     subClauses: templateState.subClause[];
+//     version: number;
+//     versionIsPublished: number;
+//     lastSaved: number;
+//     lastPublished: number;
+//     editIsLocked: number;
+//     editLockedBy: number;
+
+//     blocks: templateState.block[];
+//     tableRows: templateState.tableRow[];
+//     tableColumns: templateState.tableCell[];
+//     tableParagraphs: templateState.tableParagraph[];
 //     textSegments: templateState.textSegment[];
-//     variants: templateState.textVariant[];
+//     variables: templateState.variable[];
+//     runs: templateState.run[];
+//     history: templateState.history;
 //   };
-//   addVariant: (segmentId: number) => {type: string, segmentId: number};
-//   editVariant: (variant: TextVariant) => {type: string, payload: templateState.textVariant};
-// };
+// }
 
-// interface IDocumentState {
-//   activeSegment: TextSegment | null;
-// };
-
-// class Document extends React.Component<IDocumentProps, IDocumentState> {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       activeSegment: null
-//     };
-//   }
-
-//   public handleClick = (e: any, segment: any): void => {
-//     this.setState({ activeSegment: segment });
-//   };
-
-//   public handleEscapeOutside = (): void => {
-//     this.setState({ activeSegment: null });
-//   };
-
-//   public onContextMenu = (e) => {
-//     e.preventDefault();
-//     return false;
-//   }
-
-//   public renderSegment = (segment: any): any => {
-//     const { addVariant, editVariant } = this.props;
-//     const { activeSegment } = this.state;
-
-//     if (!activeSegment || segment.id !== activeSegment.id) {
-//       return [
-//         <TextHover key={v4()} onClick={e => this.handleClick(e, segment)} onContextMenu={this.onContextMenu}>
-//           <TextHoverFeature className="text-hover-feat">
-//             <Icon name="move" size="small" />
-//           </TextHoverFeature>
-//           <TextNode className="text-node">{segment.text}</TextNode>
-//         </TextHover>,
-//         <VariantCount key={v4()} className="variant-count">
-//           3 <CompareArrows />
-//         </VariantCount>
-//       ];
-//     }
-
-//     return (
-//       <Variants
-//         segment={segment}
-//         onEscapeOutside={this.handleEscapeOutside}
-//         addVariant={addVariant}
-//         editVariant={editVariant}
-//         textVariants={fakeVariants}
-//       />
-//     );
+// class Template {
+//   public getBlocks = (textSegments: templateState.textSegment[]): any => {
+//     return textSegments.map(textSegment => {
+//       return (
+//         <div key={article.id}>
+//           <h1>{article.name}</h1>
+//           {this.getSecitons(
+//             sections,
+//             subSections,
+//             clauses,
+//             subClauses,
+//             textSegments,
+//             article.id
+//           )}
+//           <br />
+//         </div>
+//       );
+//     });
 //   };
 
 //   public getArticles = (
@@ -150,7 +57,7 @@
 //       return (
 //         <div key={article.id}>
 //           <h1>{article.name}</h1>
-//           {this.getSections(
+//           {this.getSecitons(
 //             sections,
 //             subSections,
 //             clauses,
@@ -164,7 +71,7 @@
 //     });
 //   };
 
-//   public getSections = (
+//   public getSecitons = (
 //     sections: templateState.section[],
 //     subSections: templateState.subSection[],
 //     clauses: templateState.clause[],
@@ -182,7 +89,7 @@
 //       return (
 //         <div key={section.id}>
 //           <h2>{section.name}</h2>
-//           {this.getSubSections(
+//           {this.getSubSecitons(
 //             subSections,
 //             clauses,
 //             subClauses,
@@ -195,7 +102,7 @@
 //     });
 //   };
 
-//   public getSubSections = (
+//   public getSubSecitons = (
 //     subSections: templateState.subSection[],
 //     clauses: templateState.clause[],
 //     subClauses: templateState.subClause[],
@@ -292,13 +199,7 @@
 //       );
 //     });
 //   };
-
 //   public render() {
-//     console.log(this.props)
-//     if (!this.props.template) {
-//       return null;
-//     }
-
 //     const {
 //       articles,
 //       sections,
@@ -327,5 +228,3 @@
 //     );
 //   }
 // }
-
-// export default contextWrapper(Document);

@@ -25,7 +25,7 @@ const schema = {
   definitions: {
     positiveInt: {
       type: "integer",
-      minimum: 0,
+      minimum: 4,
       exclusiveMinimum: true
     }
   }

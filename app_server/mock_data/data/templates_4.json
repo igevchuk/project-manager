@@ -11,8 +11,40 @@
       "editLockedBy": 5000,
       "blocks": [
         {
+          "id": 1,
+          "sequence": 0
+        },
+        {
+          "id": 2,
+          "sequence": 1
+        },
+        {
+          "id": 3,
+          "sequence": 2
+        },
+        {
+          "id": 4,
+          "sequence": 3
+        },
+        {
+          "id": 5,
+          "sequence": 4
+        },
+        {
+          "id": 6,
+          "sequence": 5
+        },
+        {
+          "id": 7,
+          "sequence": 6
+        }
+      ],
+      "paragraphs": [
+        {
           "id": 101,
-          "sequence": 0,
+          "ref": {
+            "block": 1
+          },
           "type": "Paragraph",
           "properties": {
             "pStyle": "Title",
@@ -25,7 +57,9 @@
         },
         {
           "id": 201,
-          "sequence": 1,
+          "ref": {
+            "block": 2
+          },
           "type": "Paragraph",
           "properties": {
             "pStyle": "Title",
@@ -37,7 +71,9 @@
         },
         {
           "id": 301,
-          "sequence": 2,
+          "ref": {
+            "block": 3
+          },
           "type": "Paragraph",
           "properties": {
             "pStyle": "Heading1"
@@ -48,7 +84,9 @@
         },
         {
           "id": 401,
-          "sequence": 3,
+          "ref": {
+            "block": 4
+          },
           "type": "Paragraph",
           "properties": {
             "pStyle": "Heading2"
@@ -59,7 +97,7 @@
         },
         {
           "id": 501,
-          "sequence": 4,
+          "sequence": 5,
           "type": "Paragraph",
           "properties": {
             "pStyle": "Heading3"
@@ -70,7 +108,9 @@
         },
         {
           "id": 601,
-          "sequence": 5,
+          "ref": {
+            "block": 6
+          },
           "type": "Paragraph",
           "properties": {
             "pStyle": "Heading4"
@@ -80,8 +120,44 @@
           "revisionCreatedBy": "7006"
         },
         {
+          "id": 730,
+          "ref": {
+            "tableCell": 720
+          },
+          "sequence": null,
+          "type": "Paragraph",
+          "properties": {
+            "pStyle": null,
+            "jc": null,
+            "ind": null
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 731,
+          "ref": {
+            "tableCell": 721
+          },
+          "sequence": null,
+          "type": "Paragraph",
+          "properties": {
+            "pStyle": null,
+            "jc": null,
+            "ind": null
+          },
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        }
+      ],
+      "tables": [
+        {
           "id": 701,
-          "sequence": 6,
+          "ref": {
+            "block": 7
+          },
           "type": "Table",
           "properties": {
             "w:tblStyle": "TableGrid",
@@ -145,40 +221,6 @@
             "width": null,
             "rowSpan": null,
             "colSpan": null
-          },
-          "revision": 0,
-          "revisionCreatedDateTime": "2019-01-01 14:00:05",
-          "revisionCreatedBy": "7006"
-        }
-      ],
-      "tableParagraphs": [
-        {
-          "id": 730,
-          "ref": {
-            "tableCell": 720
-          },
-          "sequence": null,
-          "type": "Paragraph",
-          "properties": {
-            "pStyle": null,
-            "jc": null,
-            "ind": null
-          },
-          "revision": 0,
-          "revisionCreatedDateTime": "2019-01-01 14:00:05",
-          "revisionCreatedBy": "7006"
-        },
-        {
-          "id": 731,
-          "ref": {
-            "tableCell": 721
-          },
-          "sequence": null,
-          "type": "Paragraph",
-          "properties": {
-            "pStyle": null,
-            "jc": null,
-            "ind": null
           },
           "revision": 0,
           "revisionCreatedDateTime": "2019-01-01 14:00:05",

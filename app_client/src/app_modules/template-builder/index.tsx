@@ -5,7 +5,7 @@ import { ActionType } from 'typesafe-actions';
 
 import { Provider } from './Context';
 import { Grid } from 'semantic-ui-react';
-import Document from './components/Document';
+// import Document from './components/Document';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Toolbar from './components/Toolbar';
