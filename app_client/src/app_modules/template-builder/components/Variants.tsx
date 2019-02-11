@@ -5,13 +5,24 @@ import CompareArrows from '@material-ui/icons/CompareArrows';
 import Variant from './Variant';
 import { StyledVariants, VariantForm, Divider } from './Variants.style';
 import { VariantCount } from './Content.style';
+import { textVariant } from '../../../app/redux/state';
+
+interface IVariantsProps {
+  segmentId: number;
+  textVariants?: textVariant[];
+  onEscapeOutside?: () => void;
+}
+
+interface IVariantsState {
+  textVariants?: textVariant[];
+}
 
 class Variants extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
 
     this.state = {
-      variants: props.textVariants || []
+      textVariants: props.textVariants || []
     };
   }
 
@@ -19,11 +30,11 @@ class Variants extends React.Component<any, any> {
     const newVariant = {
       title: 'New Variant',
       text: '',
-      seq: this.state.variants.length + 1
+      sequence: this.state.textVariants.length + 1
     };
 
     this.setState({
-      variants: [...this.state.variants, newVariant]
+      textVariants: [...this.state.textVariants, newVariant]
     });
   }
 
@@ -31,7 +42,7 @@ class Variants extends React.Component<any, any> {
     return (
       <React.Fragment>
         {
-          variant.seq === 1 && (
+          variant.sequence === 1 && (
             <Divider>
               <span>
                 Fallback/Default Language <Icon name="info circle" />
@@ -45,19 +56,19 @@ class Variants extends React.Component<any, any> {
   }
 
   public render() {
-    const { segment, onEscapeOutside } = this.props;
-    const { variants } = this.state;
-    const restVariants = variants.slice(1, variants.length);
+    const { segmentId, onEscapeOutside } = this.props;
+    const { textVariants } = this.state;
+    const restVariants = textVariants.slice(1, textVariants.length);
 
     return (
-      <EscapeOutside onEscapeOutside={onEscapeOutside} key={segment.id}>
+      <EscapeOutside onEscapeOutside={onEscapeOutside} key={segmentId}>
         <StyledVariants>
           <span className="enumerate">1.1</span>
 
           <div>
             {
-              variants[0] && (
-                <VariantForm>{ this.renderVariantForm(variants[0]) }</VariantForm>
+              textVariants[0] && (
+                <VariantForm>{ this.renderVariantForm(textVariants[0]) }</VariantForm>
               )
             }
 

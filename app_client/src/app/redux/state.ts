@@ -255,7 +255,7 @@ export type textVariant = {
   title?: string;
   text?: string;
   sequence?: number;
-  ref?: {
+  ref: {
     segmentId?: uuid;
   };
 };

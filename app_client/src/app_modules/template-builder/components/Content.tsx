@@ -24,6 +24,7 @@ interface IContentProps {
     blocks: templateState.block[];
     paragraphs: templateState.paragraph[];
     textSegments: templateState.textSegment[];
+    textVariants: templateState.textVariant[];
   };
 }
 
@@ -65,7 +66,11 @@ class Content extends React.Component<IContentProps, IContentState> {
     }
 
     return (
-      <Variants segment={segment} onEscapeOutside={this.handleEscapeOutside} />
+      <Variants 
+        segmentId={segment.id}
+        textVariants={this.getTextVariants(segment)} 
+        onEscapeOutside={this.handleEscapeOutside} 
+      />
     );
   };
 
@@ -138,7 +143,7 @@ class Content extends React.Component<IContentProps, IContentState> {
           <h2>
             {`${filteredTextSegments.sequence}. ` + filteredTextSegments.text}
           </h2>
-          {this.getSubSecitons(
+          {this.getSubSections(
             contentOutline,
             paragraphs,
             textSegments,
@@ -150,7 +155,7 @@ class Content extends React.Component<IContentProps, IContentState> {
     });
   };
 
-  public getSubSecitons = (
+  public getSubSections = (
     contentOutline: templateState.contentOutline,
     paragraphs: templateState.paragraph[],
     textSegments: templateState.textSegment[],
@@ -178,7 +183,6 @@ class Content extends React.Component<IContentProps, IContentState> {
         textSegment => textSegment.ref.paragraphId === paragraph.id
       );
 
-      console.log(filteredTextSegments);
       return filteredTextSegments.map(textSegment => {
         return (
           <div key={textSegment.id}>
@@ -188,6 +192,16 @@ class Content extends React.Component<IContentProps, IContentState> {
       });
     });
   };
+
+  public getTextVariants = (segment: any) => {
+    const { textVariants } = this.props.template;
+    
+    if(!textVariants || !segment) {
+      return;
+    }
+
+    return textVariants.filter(({ref}) => segment.id === ref.segmentId);
+  }
 
   public render() {
     const {

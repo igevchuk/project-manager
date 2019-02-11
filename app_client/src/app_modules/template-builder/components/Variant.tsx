@@ -2,8 +2,14 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Form, Icon } from 'semantic-ui-react';
 import { Editable } from './Variants.style';
+import { textVariant } from '../../../app/redux/state';
 
-class Variant extends React.Component<any, any> {
+interface IVariantProps {
+  variant: textVariant;
+  onUpdate: (textVariant: textVariant) => void;
+}
+
+class Variant extends React.Component<IVariantProps, {}> {
   constructor(props: any) {
     super(props);
   }
@@ -31,7 +37,7 @@ class Variant extends React.Component<any, any> {
 
     return (
       <Form.Field>
-        <label>{variant.seq}.</label>
+        <label>{variant.sequence}.</label>
 
         <label contentEditable={true} onBlur={this.handleEditTitle}>{this.getTitle(variant.title)}</label>
         <div style={{ display: 'flex', alignItems: 'center' }}>
