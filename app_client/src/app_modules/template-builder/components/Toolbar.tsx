@@ -42,22 +42,22 @@ const textLevelOptions = {
   },
   "section": {
     html: <span>&nbsp;1. Section</span>,
-    text: '1. Section',
+    text: 'Section',
     value: 'section'
   },
   "subSection": {
     html: <span>&nbsp;&nbsp;1.1 Subsection</span>,
-    text: '1.1 Subsection',
+    text: 'Subsection',
     value: 'subSection'
   },
   "clause": {
     html: <span>&nbsp;&nbsp;&nbsp;(a) Clause</span>,
-    text: '(a) Clause',
+    text: 'Clause',
     value: 'clause'
   },
   "subClause": {
     html: <span>&nbsp;&nbsp;&nbsp;&nbsp;(i) Subclause</span>,
-    text: '(i) Subclause',
+    text: 'Subclause',
     value: 'subClause'
   }
 };
@@ -124,7 +124,7 @@ class Toolbar extends React.Component<{}, IToolbarState> {
                     Link to Previous Segment <Check />
                   </TextLevelDropdownItem>
                   <TextLevelDropdownItem onClick={this.toggleNumbering}>
-                    Show Numbering <Toggle checked={showNumbering} />
+                    Show Numbering <Toggle checked={showNumbering} size='small' />
                   </TextLevelDropdownItem>
                 </TextLevelDropdownMenu>
               </TextLevelDropdown>

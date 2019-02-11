@@ -22,6 +22,7 @@ class TextLevelDropdown extends DropdownBase {
 export default styled(TextLevelDropdown)`
   && .menu {
     border-radius: 0;
+    top: 16px;
   }
 `;
 
@@ -30,7 +31,6 @@ export const TextLevelDropdownMenu = styled(TextLevelDropdown.Menu)`
     position: absolute;
     display: none;
     outline: 0;
-    top: 100%;
     min-width: -webkit-max-content;
     min-width: -moz-max-content;
     min-width: max-content;
