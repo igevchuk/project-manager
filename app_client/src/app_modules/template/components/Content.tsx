@@ -25,6 +25,7 @@ import { v4 } from 'uuid';
 
 import { contextWrapper } from './../TemplateContext';
 import Controller from './../controller';
+import MainApp from './../controllers/doc.controller';
 
 import * as templateState from '../../../app/redux/state';
 
@@ -211,6 +212,9 @@ class TemplateContent extends React.Component<IContentProps, any> {
 
     // const controller = new Controller(blocks);
     // controller.getBlocks();
+
+    const mainApp = new MainApp();
+    mainApp.Maina();
 
     return (
       <Grid.Column width={12}>
