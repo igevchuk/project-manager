@@ -10,23 +10,33 @@ interface ISidebarProps {
   template: {
     id: number;
     name: string;
-    contentOutline: templateState.contentOutline;
+    // contentOutline: templateState.contentOutline;
     blocks: templateState.block[];
     paragraphs: templateState.paragraph[];
     textSegments?: templateState.textSegment[];
   };
-};
+}
 
 const panes = [
-  { menuItem: 'PLAYBOOK', render: () => <TabPane attached={false}><PlaybookRule /></TabPane> },
-  { menuItem: 'HISTORY', render: () => <TabPane attached={false}>HISTORY</TabPane> },
-]
+  {
+    menuItem: 'PLAYBOOK',
+    render: () => (
+      <TabPane attached={false}>
+        <PlaybookRule />
+      </TabPane>
+    )
+  },
+  {
+    menuItem: 'HISTORY',
+    render: () => <TabPane attached={false}>HISTORY</TabPane>
+  }
+];
 
 class Sidebar extends React.Component<ISidebarProps, any> {
   constructor(props) {
     super(props);
   }
-  
+
   public render() {
     return (
       <StyledSidebar width={4}>

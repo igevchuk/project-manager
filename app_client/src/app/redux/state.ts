@@ -24,11 +24,28 @@ export type template = {
   tableRows?: tableRow[];
   tableCells?: tableCell[];
   tableParagraphs?: tableParagraph[];
-  textSegments: textSegment[];
+  textSegments?: textSegment[];
   textVariants?: textVariant[];
   runs?: run[];
   variables?: variable[];
   history?: history;
+};
+
+export type textSegment = {
+  id?: uuid;
+  ref?: {
+    paragraphId?: uuid;
+  };
+  sequence?: number;
+  styling?: {};
+  type?: string; // TextSegment
+  variantGroup?: number; // 1000
+  variantType?: string; // Standard/Neutral
+  variantIsDefault?: boolean;
+  text?: string; // ARTICLE I
+  revision?: number;
+  revisionCreatedDateTime?: Date;
+  revisionCreatedBy?: string;
 };
 
 export type block = {
@@ -109,23 +126,6 @@ export type tableCell = {
   revisionCreatedBy?: string;
 };
 export type tableParagraph = {};
-
-export type textSegment = {
-  id: uuid;
-  ref: {
-    paragraphId?: uuid;
-  };
-  sequence: number;
-  styling?: {};
-  type?: string; // TextSegment
-  variantGroup?: number; // 1000
-  variantType?: string; // Standard/Neutral
-  variantIsDefault?: boolean;
-  text?: string; // ARTICLE I
-  revision?: number;
-  revisionCreatedDateTime?: Date;
-  revisionCreatedBy?: string;
-};
 
 export type textVariant = {
   id?: uuid;

@@ -32,11 +32,11 @@ class TemplateBuilder extends React.Component<ITemplateProps, ITemplateState> {
 
   public componentDidMount() {
     this.setState(
-      (prevState, props) => ({ template: this.props.template })
+      (prevState, props) => ({ template: this.props.template } as any)
     );
   }
 
-  public addTextVariant = (variant) => {
+  public addTextVariant = variant => {
     const { template } = this.props;
 
     console.log(variant);
@@ -46,24 +46,26 @@ class TemplateBuilder extends React.Component<ITemplateProps, ITemplateState> {
     //     ...template, textVariants: [...template.textVariants, variant]
     //   }
     // });
-  }
+  };
 
   public render() {
     const { template } = this.props;
-    
-    if(!template) {
+
+    if (!template) {
       return null;
     }
 
     return (
       <div>
-        <Header template={ template } />
+        <Header template={template} />
         <Provider value={{ template }}>
           <Toolbar />
         </Provider>
 
         <Grid style={{ marginTop: 0 }}>
-          <Provider value={{ template, handleAddTextVariant: this.addTextVariant }}>
+          <Provider
+            value={{ template, handleAddTextVariant: this.addTextVariant }}
+          >
             <Content />
           </Provider>
 

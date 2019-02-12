@@ -209,8 +209,8 @@ class TemplateContent extends React.Component<IContentProps, any> {
   public render() {
     const { blocks, paragraphs, textSegments } = this.props.template;
 
-    const controller = new Controller(blocks);
-    controller.getBlocks();
+    // const controller = new Controller(blocks);
+    // controller.getBlocks();
 
     return (
       <Grid.Column width={12}>
