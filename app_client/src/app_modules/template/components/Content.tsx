@@ -1,6 +1,16 @@
 import * as React from 'react';
+import {
+  Button,
+  Header,
+  Icon,
+  Image,
+  Menu,
+  Segment,
+  Sidebar,
+  Grid
+} from 'semantic-ui-react';
 
-import { Grid, Icon } from 'semantic-ui-react';
+// import { Grid, Icon } from 'semantic-ui-react';
 import CompareArrows from '@material-ui/icons/CompareArrows';
 import Variants from './Variants';
 import {
@@ -14,6 +24,8 @@ import {
 import { v4 } from 'uuid';
 
 import { contextWrapper } from './../TemplateContext';
+import Controller from './../controller';
+
 import * as templateState from '../../../app/redux/state';
 
 const fakeSegments = [
@@ -37,7 +49,6 @@ interface IContentProps {
   template: {
     id: number;
     name: string;
-    contentOutline: templateState.contentOutline;
     blocks: templateState.block[];
     paragraphs: templateState.paragraph[];
     textSegments: templateState.textSegment[];
@@ -48,9 +59,14 @@ class TemplateContent extends React.Component<IContentProps, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      activeSegment: null
+      activeSegment: null,
+      visible: false
     };
   }
+
+  public handleHideClick = () => this.setState({ visible: false });
+  public handleShowClick = () => this.setState({ visible: true });
+  public handleSidebarHide = () => this.setState({ visible: false });
 
   public handleClick = (e: any, segment: any): void => {
     this.setState({ activeSegment: segment });
@@ -82,141 +98,174 @@ class TemplateContent extends React.Component<IContentProps, any> {
     );
   };
 
-  public getArticles = (
-    contentOutline: templateState.contentOutline,
-    blocks: templateState.block[],
-    paragraphs: templateState.paragraph[],
-    textSegments: templateState.textSegment[]
-  ): any => {
-    return contentOutline.articles
-      .sort((a, b) => a.sequence - b.sequence)
-      .map(article => {
-        const blockId = article.blockId;
+  // public getArticles = (
+  //   paragraphs: templateState.paragraph[],
+  //   textSegments: templateState.textSegment[]
+  // ): any => {
+  //   return contentOutine.articles
+  //     .sort((a, b) => a.sequence - b.sequence)
+  //     .map(article => {
+  //       const blockId = article.blockId;
 
-        const paragraph = paragraphs.filter(
-          paragraph => paragraph.ref.blockId === blockId
-        )[0];
+  //       const paragraph = paragraphs.filter(
+  //         paragraph => paragraph.ref.blockId === blockId
+  //       )[0];
 
-        const filteredTextSegments = textSegments.filter(
-          textSegment => textSegment.ref.paragraphId === paragraph.id
-        )[0];
+  //       const filteredTextSegments = textSegments.filter(
+  //         textSegment => textSegment.ref.paragraphId === paragraph.id
+  //       )[0];
 
-        return (
-          <div key={article.id}>
-            <h1>{filteredTextSegments.text}</h1>
-            {this.getSecitons(
-              contentOutline,
-              // blocks,
-              paragraphs,
-              textSegments,
-              article.id
-            )}
-            <br />
-          </div>
-        );
-      });
-  };
+  //       return (
+  //         <div key={article.id}>
+  //           <h1>{filteredTextSegments.text}</h1>
+  //           {this.getSecitons(paragraphs, textSegments, article.id)}
+  //           <br />
+  //         </div>
+  //       );
+  //     });
+  // };
 
-  public getSecitons = (
-    contentOutline: templateState.contentOutline,
-    // blocks: templateState.block[],
-    paragraphs: templateState.paragraph[],
-    textSegments: templateState.textSegment[],
-    articleId?: number
-  ): any => {
-    const filteredArray = contentOutline.sections.filter(
-      (section: {
-        id: number;
-        blockId: number;
-        sequence: number;
-        ref: { articleId: number };
-      }) => {
-        return section.ref.articleId === articleId;
-      }
-    );
+  // public getSecitons = (
+  //   paragraphs: templateState.paragraph[],
+  //   textSegments: templateState.textSegment[],
+  //   articleId?: number
+  // ): any => {
+  //   const filteredArray = contentOutine.sections.filter(
+  //     (section: {
+  //       id: number;
+  //       blockId: number;
+  //       sequence: number;
+  //       ref: { articleId: number };
+  //     }) => {
+  //       return section.ref.articleId === articleId;
+  //     }
+  //   );
 
-    return filteredArray.map(section => {
-      const blockId = section.blockId;
+  //   return filteredArray.map(section => {
+  //     const blockId = section.blockId;
 
-      const paragraph = paragraphs.filter(
-        paragraph => paragraph.ref.blockId === blockId
-      )[0];
+  //     const paragraph = paragraphs.filter(
+  //       paragraph => paragraph.ref.blockId === blockId
+  //     )[0];
 
-      const filteredTextSegments = textSegments.filter(
-        textSegment => textSegment.ref.paragraphId === paragraph.id
-      )[0];
+  //     const filteredTextSegments = textSegments.filter(
+  //       textSegment => textSegment.ref.paragraphId === paragraph.id
+  //     )[0];
 
-      return (
-        <div key={section.id}>
-          <h2>
-            {`${filteredTextSegments.sequence}. ` + filteredTextSegments.text}
-          </h2>
-          {this.getSubSecitons(
-            contentOutline,
-            paragraphs,
-            textSegments,
-            section.id
-          )}
-          <br />
-        </div>
-      );
-    });
-  };
+  //     return (
+  //       <div key={section.id}>
+  //         <h2>
+  //           {`${filteredTextSegments.sequence}. ` + filteredTextSegments.text}
+  //         </h2>
+  //         {this.getSubSecitons(paragraphs, textSegments, section.id)}
+  //         <br />
+  //       </div>
+  //     );
+  //   });
+  // };
 
-  public getSubSecitons = (
-    contentOutline: templateState.contentOutline,
-    paragraphs: templateState.paragraph[],
-    textSegments: templateState.textSegment[],
-    sectionId?: number
-  ): any => {
-    const filteredArray = contentOutline.subSections.filter(
-      (subSection: {
-        id: number;
-        blockId: number;
-        sequence: number;
-        ref: { sectionId: number };
-      }) => {
-        return subSection.ref.sectionId === sectionId;
-      }
-    );
+  // public getSubSecitons = (
+  //   paragraphs: templateState.paragraph[],
+  //   textSegments: templateState.textSegment[],
+  //   sectionId?: number
+  // ): any => {
+  //   const filteredArray = contentOutine.subSections.filter(
+  //     (subSection: {
+  //       id: number;
+  //       blockId: number;
+  //       sequence: number;
+  //       ref: { sectionId: number };
+  //     }) => {
+  //       return subSection.ref.sectionId === sectionId;
+  //     }
+  //   );
 
-    return filteredArray.map(subSection => {
-      const blockId = subSection.blockId;
+  //   return filteredArray.map(subSection => {
+  //     const blockId = subSection.blockId;
 
-      const paragraph = paragraphs.filter(
-        paragraph => paragraph.ref.blockId === blockId
-      )[0];
+  //     const paragraph = paragraphs.filter(
+  //       paragraph => paragraph.ref.blockId === blockId
+  //     )[0];
 
-      const filteredTextSegments = textSegments.filter(
-        textSegment => textSegment.ref.paragraphId === paragraph.id
-      );
+  //     const filteredTextSegments = textSegments.filter(
+  //       textSegment => textSegment.ref.paragraphId === paragraph.id
+  //     );
 
-      console.log(filteredTextSegments);
-      return filteredTextSegments.map(textSegment => {
-        return (
-          <div key={textSegment.id}>
-            {this.renderSegment({ id: textSegment.id, text: textSegment.text })}
-          </div>
-        );
-      });
-    });
+  //     console.log(filteredTextSegments);
+  //     return filteredTextSegments.map(textSegment => {
+  //       return (
+  //         <div key={textSegment.id}>
+  //           {this.renderSegment({ id: textSegment.id, text: textSegment.text })}
+  //         </div>
+  //       );
+  //     });
+  //   });
+  // };
+
+  public asd = () => {
+    alert('aaaa');
   };
 
   public render() {
-    const {
-      contentOutline,
-      blocks,
-      paragraphs,
-      textSegments
-    } = this.props.template;
+    const { blocks, paragraphs, textSegments } = this.props.template;
+
+    const controller = new Controller(blocks);
+    controller.getBlocks();
 
     return (
       <Grid.Column width={12}>
         <StyledDocument>
-          {fakeSegments.map(segment => this.renderSegment(segment))}
-          <br />
-          <br />
-          {this.getArticles(contentOutline, blocks, paragraphs, textSegments)}
+          <div>
+            <Button.Group>
+              <Button
+                disabled={this.state.visible}
+                onClick={this.handleShowClick}
+              >
+                Show sidebar
+              </Button>
+              <Button
+                disabled={!this.state.visible}
+                onClick={this.handleHideClick}
+              >
+                Hide sidebar
+              </Button>
+            </Button.Group>
+
+            <Sidebar.Pushable as={Segment}>
+              <Sidebar
+                as={Menu}
+                animation="overlay"
+                icon="labeled"
+                inverted={true}
+                onHide={this.handleSidebarHide}
+                vertical={true}
+                visible={this.state.visible}
+                width="wide"
+              >
+                <div>
+                  <Menu.Item as="a" header={true}>
+                    Content Outline
+                  </Menu.Item>
+                  <Menu.Item as="a">
+                    <div onClick={this.asd}>ARTICLE 1</div>
+                  </Menu.Item>
+                  <Menu.Item as="a">ARTICLE 2</Menu.Item>
+                  <Menu.Item as="a">ARTICLE 3</Menu.Item>
+                  <Menu.Item as="a">ARTICLE 4</Menu.Item>
+                </div>
+              </Sidebar>
+
+              <Sidebar.Pusher>
+                <Segment basic={true}>
+                  {fakeSegments.map(segment => this.renderSegment(segment))}
+                  <br />
+
+                  <br />
+                  {/* {this.getArticles(contentOutine, paragraphs, textSegments)} */}
+                </Segment>
+              </Sidebar.Pusher>
+            </Sidebar.Pushable>
+          </div>
         </StyledDocument>
       </Grid.Column>
     );
