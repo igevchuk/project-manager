@@ -1,16 +1,5 @@
 import * as templateState from '../../../app/redux/state';
 
-class Controller {
-  // constructor(public blocks: templateState.block[]) {
-  //   this.blocks = blocks;
-  // }
-  // public getBlocks = () => {
-  //   console.log(this.blocks);
-  // };
-}
-
-// export default Controller;
-
 class Products {
   constructor(public name: string, public unitPrice: number) {}
 }
@@ -26,32 +15,6 @@ class ProductWithDiscountCodes extends Products {
     super(name, unitPrice);
   }
 }
-
-// ======================================================
-abstract class BaseEmployee {
-  public firstName: string;
-  public lastName: string;
-
-  constructor(firstName: string, lastName: string) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
-
-  public abstract doWork(): void;
-}
-
-class Employee extends BaseEmployee {
-  constructor(firstName: string, lastName: string) {
-    super(firstName, lastName);
-  }
-
-  public doWork(): void {
-    console.log(`${this.lastName}, ${this.firstName} doing work...`);
-  }
-}
-
-const emp = new Employee('Dana', 'Ryan');
-emp.doWork(); // Print Ryan, Dana doing work...
 
 // =============================
 
@@ -108,7 +71,7 @@ class Leaf extends Component {
   }
 }
 
-class MainApp {
+class DocController {
   public Maina(): void {
     // Create a tree structure
     const root = new Composite('root'); // Composite
@@ -121,9 +84,9 @@ class MainApp {
     root.Add(new Leaf('Leaf C'));
 
     // Add and remove a leaf
-    // const leaf = new Leaf('Leaf D'); // Leaf
-    // root.Add(leaf);
-    // root.Remove(leaf);
+    const leaf = new Leaf('Leaf D'); // Leaf
+    root.Add(leaf);
+    root.Remove(leaf);
 
     // Recursively display tree
     root.Display(1);
@@ -133,4 +96,4 @@ class MainApp {
   }
 }
 
-export default MainApp;
+export default DocController;
