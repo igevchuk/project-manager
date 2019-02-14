@@ -25,9 +25,11 @@ import { v4 } from 'uuid';
 
 import { contextWrapper } from './../TemplateContext';
 import Controller from './../controller';
-import MainApp from './../controllers/doc.controller';
+import MainApp from './document/doc.controller';
+import Schema from './document/schema';
 
 import * as templateState from '../../../app/redux/state';
+import { any } from 'prop-types';
 
 const fakeSegments = [
   { id: 1, text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' },
@@ -46,7 +48,6 @@ const fakeSegments = [
 ];
 
 interface IContentProps {
-  asd: string;
   template: {
     id: number;
     name: string;
@@ -61,8 +62,18 @@ class TemplateContent extends React.Component<IContentProps, any> {
     super(props);
     this.state = {
       activeSegment: null,
-      visible: false
+      visible: false,
+      template: {}
     };
+  }
+
+  public componentDidMount() {
+    this.setState(
+      (prevState, props) => ({ template: this.props.template }),
+      () => {
+        // console.log(this.state.template);
+      }
+    );
   }
 
   public handleHideClick = () => this.setState({ visible: false });
@@ -213,15 +224,18 @@ class TemplateContent extends React.Component<IContentProps, any> {
     // const controller = new Controller(blocks);
     // controller.getBlocks();
 
-    console.log(paragraphs);
-    console.log(textSegments);
-    const mainApp = new MainApp();
-    mainApp.Maina();
+    // console.log(this.props.template);
+    // console.log(textSegments);
+    const mainApp = new MainApp(this.props.template as any);
+    const asd = mainApp.Mainaa();
+    // console.log(asd);
 
     return (
       <Grid.Column width={12}>
         <StyledDocument>
           <div>
+            {asd}
+            <Schema template={this.state.template} />
             <Button.Group>
               <Button
                 disabled={this.state.visible}
