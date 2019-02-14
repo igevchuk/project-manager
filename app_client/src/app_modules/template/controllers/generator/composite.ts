@@ -1,5 +1,5 @@
-import * as templateState from '../../../app/redux/state';
-import { DocElement, IVisitor } from './generator/abstract';
+import * as templateState from '../../../../app/redux/state';
+import { DocElement, IVisitor } from './abstract';
 
 class Products {
   constructor(public name: string, public unitPrice: number) {}

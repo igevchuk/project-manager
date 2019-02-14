@@ -213,6 +213,8 @@ class TemplateContent extends React.Component<IContentProps, any> {
     // const controller = new Controller(blocks);
     // controller.getBlocks();
 
+    console.log(paragraphs);
+    console.log(textSegments);
     const mainApp = new MainApp();
     mainApp.Maina();
 
