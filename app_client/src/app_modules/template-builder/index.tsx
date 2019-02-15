@@ -26,7 +26,7 @@ class TemplateBuilder extends React.Component<ITemplateProps, ITemplateState> {
   constructor(props) {
     super(props);
     this.state = {
-      template: {}
+      template: this.props.template
     };
   }
 

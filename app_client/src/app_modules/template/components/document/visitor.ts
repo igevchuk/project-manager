@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import { DocElement, IVisitor } from './abstract';
 
 class ArticleVisitor implements IVisitor {

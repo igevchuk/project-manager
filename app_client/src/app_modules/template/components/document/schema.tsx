@@ -14,7 +14,7 @@ type metadata = {
   isSegment: boolean;
   paragraph: {
     id?: number;
-    blockId?: number;
+    blockId: number;
     type?: string;
     pStyle?: string;
   };
@@ -63,7 +63,9 @@ class TemplateComposite extends TemplateComponent {
   }
 
   public accept(visit: IVisitor): void {
-    return;
+    this.children.forEach(component => {
+      component.accept(visit);
+    });
   }
 }
 
@@ -85,6 +87,12 @@ class TemplateLeaf extends TemplateComponent {
   public accept(visit: IVisitor): void {
     return;
   }
+
+  // public accept(visit: IVisitor): void {
+  //   this.children.forEach(component => {
+  //     component.accept(visit);
+  //   });
+  // }
 }
 
 type ITemplate = {
@@ -150,7 +158,9 @@ class Schema {
       }) => {
         const metadata = {
           isSegment: true,
-          paragraph: {},
+          paragraph: {
+            blockId: -1
+          },
           segment: {
             id: textSegment.id,
             paragraphId: textSegment.ref.paragraphId,
@@ -173,7 +183,7 @@ class Schema {
         isSegment: false,
         paragraph: {
           id: paragraph.id,
-          blockId: paragraph.ref.block,
+          blockId: paragraph.ref.blockId,
           type: paragraph.type,
           pStyle: paragraph.properties.pStyle
         },
@@ -201,7 +211,7 @@ class Schema {
         isSegment: false,
         paragraph: {
           id: paragraph.id,
-          blockId: paragraph.ref.block,
+          blockId: paragraph.ref.blockId,
           type: paragraph.type,
           pStyle: paragraph.properties.pStyle
         },
@@ -227,7 +237,7 @@ class Schema {
         isSegment: false,
         paragraph: {
           id: paragraph.id,
-          blockId: paragraph.ref.block,
+          blockId: paragraph.ref.blockId,
           type: paragraph.type,
           pStyle: paragraph.properties.pStyle
         },
@@ -253,7 +263,7 @@ class Schema {
         isSegment: false,
         paragraph: {
           id: paragraph.id,
-          blockId: paragraph.ref.block,
+          blockId: paragraph.ref.blockId,
           type: paragraph.type,
           pStyle: paragraph.properties.pStyle
         },
@@ -267,6 +277,22 @@ class Schema {
       return articleTemplateComposite;
     });
     console.log(this.articleComponents);
+
+    this.articleComponents.sort((a, b) => {
+      const blockAId = a.metadata.paragraph.blockId;
+      // const blockASequence = (this.template.blocks as any).find(
+      //   block => block.id === blockAId
+      // )[0].sequence;
+
+      const blockBId = a.metadata.paragraph.blockId;
+      // const blockBSequence = (this.template.blocks as any).find(
+      //   block => block.id === blockBId
+      // )[0].sequence;
+
+      return blockAId - blockBId;
+    });
+
+    // console.log(this.articleComponents);
   }
 }
 

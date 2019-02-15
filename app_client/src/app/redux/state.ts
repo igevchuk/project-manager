@@ -18,7 +18,7 @@ export type template = {
   editIsLocked?: boolean;
   editLockedBy?: number;
 
-  blocks?: block[];
+  blocks: block[];
   paragraphs?: paragraph[];
   tables?: table[];
   tableRows?: tableRow[];
@@ -49,14 +49,14 @@ export type textSegment = {
 };
 
 export type block = {
-  id?: uuid;
-  sequence?: number;
+  id: uuid;
+  sequence: number;
 };
 
 export type paragraph = {
   id: uuid;
   ref: {
-    block: uuid;
+    blockId: uuid;
   };
   type: string; // Paragraph
   properties: {
