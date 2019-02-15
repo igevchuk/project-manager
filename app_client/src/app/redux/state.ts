@@ -56,10 +56,10 @@ export type block = {
 export type paragraph = {
   id: uuid;
   ref: {
-    blockId: uuid;
+    block: uuid;
   };
-  type?: string; // Paragraph
-  properties?: {
+  type: string; // Paragraph
+  properties: {
     pStyle: string; // Title
     jc: string; // center
     ind: number;

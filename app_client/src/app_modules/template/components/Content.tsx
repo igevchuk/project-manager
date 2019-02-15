@@ -220,22 +220,18 @@ class TemplateContent extends React.Component<IContentProps, any> {
 
   public render() {
     const { blocks, paragraphs, textSegments } = this.props.template;
+    // const mainApp = new MainApp(this.props.template as any);
+    // const asd = mainApp.Mainaa();
 
-    // const controller = new Controller(blocks);
-    // controller.getBlocks();
-
-    // console.log(this.props.template);
-    // console.log(textSegments);
-    const mainApp = new MainApp(this.props.template as any);
-    const asd = mainApp.Mainaa();
-    // console.log(asd);
+    const schema = new Schema({ ...this.props.template });
+    // const asd = schema.Maina();
 
     return (
       <Grid.Column width={12}>
         <StyledDocument>
           <div>
-            {asd}
-            <Schema template={this.state.template} />
+            {/* {asd} */}
+            {/* <Schema template={this.state.template} /> */}
             <Button.Group>
               <Button
                 disabled={this.state.visible}

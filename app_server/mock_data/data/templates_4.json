@@ -45,6 +45,7 @@
           "ref": {
             "block": 1
           },
+          "sequence": 1,
           "type": "Paragraph",
           "properties": {
             "pStyle": "Title",
@@ -60,6 +61,7 @@
           "ref": {
             "block": 2
           },
+          "sequence": 2,
           "type": "Paragraph",
           "properties": {
             "pStyle": "Title",
@@ -74,6 +76,7 @@
           "ref": {
             "block": 3
           },
+          "sequence": 3,
           "type": "Paragraph",
           "properties": {
             "pStyle": "Heading1"
@@ -87,6 +90,7 @@
           "ref": {
             "block": 4
           },
+          "sequence": 4,
           "type": "Paragraph",
           "properties": {
             "pStyle": "Heading2"
@@ -97,6 +101,9 @@
         },
         {
           "id": 501,
+          "ref": {
+            "block": 5
+          },
           "sequence": 5,
           "type": "Paragraph",
           "properties": {
@@ -111,6 +118,7 @@
           "ref": {
             "block": 6
           },
+          "sequence": 6,
           "type": "Paragraph",
           "properties": {
             "pStyle": "Heading4"
@@ -122,9 +130,9 @@
         {
           "id": 730,
           "ref": {
-            "tableCell": 720
+            "block": 7
           },
-          "sequence": null,
+          "sequence": 7,
           "type": "Paragraph",
           "properties": {
             "pStyle": null,
@@ -138,9 +146,9 @@
         {
           "id": 731,
           "ref": {
-            "tableCell": 721
+            "block": 8
           },
-          "sequence": null,
+          "sequence": 8,
           "type": "Paragraph",
           "properties": {
             "pStyle": null,
@@ -231,7 +239,7 @@
         {
           "id": 141,
           "ref": {
-            "paragraphs": 101
+            "paragraphId": 101
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -246,7 +254,7 @@
         {
           "id": 240,
           "ref": {
-            "paragraphs": 201
+            "paragraphId": 201
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -261,7 +269,7 @@
         {
           "id": 340,
           "ref": {
-            "paragraphs": 301
+            "paragraphId": 301
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -276,7 +284,7 @@
         {
           "id": 440,
           "ref": {
-            "paragraphs": 401
+            "paragraphId": 401
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -291,7 +299,7 @@
         {
           "id": 540,
           "ref": {
-            "paragraphs": 501
+            "paragraphId": 501
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -306,7 +314,7 @@
         {
           "id": 640,
           "ref": {
-            "paragraphs": 601
+            "paragraphId": 601
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -318,7 +326,7 @@
         {
           "id": 641,
           "ref": {
-            "paragraphs": 601
+            "paragraphId": 601
           },
           "sequence": 1,
           "type": "TextSegment",
@@ -333,7 +341,7 @@
         {
           "id": 740,
           "ref": {
-            "paragraphs": 730
+            "paragraphId": 730
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -348,7 +356,7 @@
         {
           "id": 741,
           "ref": {
-            "paragraphs": 731
+            "paragraphId": 731
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -363,7 +371,7 @@
         {
           "id": 742,
           "ref": {
-            "paragraphs": 731
+            "paragraphId": 731
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -378,7 +386,7 @@
         {
           "id": 743,
           "ref": {
-            "paragraphs": 731
+            "paragraphId": 731
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -393,7 +401,7 @@
         {
           "id": 840,
           "ref": {
-            "paragraphs": 501
+            "paragraphId": 501
           },
           "sequence": 0,
           "type": "TextSegment",
