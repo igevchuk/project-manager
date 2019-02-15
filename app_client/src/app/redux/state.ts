@@ -5,7 +5,7 @@ export type docType = { id: uuid; type?: string };
 
 export type IState = {
   activeId: uuid;
-  templates?: template[];
+  templates: template[];
 };
 
 export type template = {
@@ -50,7 +50,7 @@ export type textSegment = {
 
 export type block = {
   id: uuid;
-  sequence: number;
+  sequence: uuid;
 };
 
 export type paragraph = {

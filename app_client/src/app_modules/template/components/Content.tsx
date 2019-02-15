@@ -223,7 +223,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
     // const mainApp = new MainApp(this.props.template as any);
     // const asd = mainApp.Mainaa();
 
-    const schema = new Schema({ ...this.props.template });
+    const schema = new Schema({ blocks, paragraphs, textSegments });
     // const asd = schema.Maina();
 
     return (
