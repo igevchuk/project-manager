@@ -2,7 +2,19 @@ import * as React from 'react';
 import { DocElement, IVisitor } from './abstract';
 
 import * as templateState from '../../../../app/redux/state';
-import { EXITED } from 'react-transition-group/Transition';
+
+type ITemplate = {
+  id?: number;
+  name?: string;
+  version?: string;
+  lastSaved?: Date;
+  lastPublished?: Date;
+  blocks: templateState.block[];
+  paragraphs: templateState.paragraph[];
+  textSegments: templateState.textSegment[];
+};
+
+type paragraph = templateState.paragraph;
 
 type metadata = {
   isSegment: boolean;
@@ -90,17 +102,6 @@ class TemplateLeaf extends TemplateComponent {
   // }
 }
 
-type ITemplate = {
-  id?: number;
-  name?: string;
-  version?: string;
-  lastSaved?: Date;
-  lastPublished?: Date;
-  blocks: templateState.block[];
-  paragraphs: templateState.paragraph[];
-  textSegments: templateState.textSegment[];
-};
-type paragraph = templateState.paragraph;
 class Schema {
   public articles: paragraph[] = new Array<paragraph>();
   public sections: paragraph[] = new Array<paragraph>();
@@ -119,36 +120,83 @@ class Schema {
     this.articles = this.template.paragraphs.filter(paragraph => {
       return paragraph.properties.pStyle === 'Heading1';
     });
-
     this.sections = this.template.paragraphs.filter(paragraph => {
       return paragraph.properties.pStyle === 'Heading2';
     });
-
     this.subSections = this.template.paragraphs.filter(paragraph => {
       return paragraph.properties.pStyle === 'Heading3';
     });
-
     this.clauses = this.template.paragraphs.filter(paragraph => {
       return paragraph.properties.pStyle === 'Heading4';
     });
-
     this.subClauses = this.template.paragraphs.filter(paragraph => {
       return paragraph.properties.pStyle === 'Heading5';
     });
+  }
 
+  public initializeTemplate() {
     this.templateLeaves = this.getTemplateLeaves(this.template.textSegments);
 
-    this.clauseComponents = this.clauses.map(paragraph => {
+    this.clauseComponents = this.getComponents(this.clauses);
+    this.subSectionComponents = this.getComponents(this.subSections);
+    this.sectionComponents = this.getComponents(this.sections);
+    this.articleComponents = this.getComponents(this.articles);
+
+    this.articleComponents.sort((a, b) => {
+      const blockASequence = a.metadata.paragraph.blockSequence;
+      const blockBSequence = b.metadata.paragraph.blockSequence;
+      return blockASequence - blockBSequence;
+    });
+
+    this.articleComponents.reverse();
+
+    // embedding sectionComponents into articleComponents
+    this.embeddingChildren(this.articleComponents, this.sectionComponents);
+    // embedding subSectionComponents into sectionComponents
+    this.embeddingChildren(this.sectionComponents, this.subSectionComponents);
+    // embedding clauseComponents into subSectionComponents
+    this.embeddingChildren(this.subSectionComponents, this.clauseComponents);
+    // embedding subClauseComponents into clauseComponents
+    this.embeddingChildren(this.clauseComponents, this.subClauseComponents);
+    console.log(this.articleComponents);
+  }
+
+  public embeddingChildren(
+    parentComponent: TemplateComponent[],
+    childComponent: TemplateComponent[]
+  ) {
+    for (const component of parentComponent) {
+      const parentSequence = component.metadata.paragraph.blockSequence;
+
+      if (!childComponent) {
+        break;
+      }
+
+      const chilComponent = childComponent.filter(component => {
+        const blockSequence = component.metadata.paragraph.blockSequence;
+        return blockSequence > parentSequence;
+      });
+
+      if (chilComponent.length > 0) {
+        for (const subcomponent of chilComponent) {
+          component.Add(subcomponent);
+        }
+      }
+    }
+  }
+
+  public getComponents(elements: paragraph[]) {
+    const templateLeaves = this.templateLeaves;
+    const blocks = this.template.blocks;
+
+    return elements.map(paragraph => {
       const paragraphId = paragraph.id;
 
-      const clauseTemplateLeaves = this.templateLeaves.filter(templateLeaf => {
+      const clauseTemplateLeaves = templateLeaves.filter(templateLeaf => {
         return templateLeaf.metadata.segment.paragraphId === paragraphId;
       });
 
-      const blockASequence = this.getSequence(
-        this.template.blocks,
-        paragraph.ref.blockId
-      );
+      const blockASequence = this.getSequence(blocks, paragraph.ref.blockId);
 
       const metadata = {
         isSegment: false,
@@ -168,192 +216,6 @@ class Schema {
       });
       return clauseTemplateComposite;
     });
-
-    this.subSectionComponents = this.subSections.map(paragraph => {
-      const paragraphId = paragraph.id;
-
-      const subSectionTemplateLeaves = this.templateLeaves.filter(
-        templateLeaf => {
-          return templateLeaf.metadata.segment.paragraphId === paragraphId;
-        }
-      );
-
-      const blockASequence = this.getSequence(
-        this.template.blocks,
-        paragraph.ref.blockId
-      );
-
-      const metadata = {
-        isSegment: false,
-        paragraph: {
-          id: paragraph.id,
-          blockId: paragraph.ref.blockId,
-          blockSequence: blockASequence,
-          type: paragraph.type,
-          pStyle: paragraph.properties.pStyle
-        },
-        segment: {}
-      };
-
-      const subSectionTemplateComposite = new TemplateComposite(metadata);
-      subSectionTemplateLeaves.map(templateLeave => {
-        subSectionTemplateComposite.Add(templateLeave);
-      });
-      return subSectionTemplateComposite;
-    });
-
-    this.sectionComponents = this.sections.map(paragraph => {
-      const paragraphId = paragraph.id;
-
-      const sectionTemplateLeaves = this.templateLeaves.filter(templateLeaf => {
-        return templateLeaf.metadata.segment.paragraphId === paragraphId;
-      });
-
-      const blockASequence = this.getSequence(
-        this.template.blocks,
-        paragraph.ref.blockId
-      );
-
-      const metadata = {
-        isSegment: false,
-        paragraph: {
-          id: paragraph.id,
-          blockId: paragraph.ref.blockId,
-          blockSequence: blockASequence,
-          type: paragraph.type,
-          pStyle: paragraph.properties.pStyle
-        },
-        segment: {}
-      };
-
-      const sectionTemplateComposite = new TemplateComposite(metadata);
-      sectionTemplateLeaves.map(templateLeave => {
-        sectionTemplateComposite.Add(templateLeave);
-      });
-      return sectionTemplateComposite;
-    });
-
-    this.articleComponents = this.articles.map(paragraph => {
-      const paragraphId = paragraph.id;
-
-      const articleTemplateLeaves = this.templateLeaves.filter(templateLeaf => {
-        return templateLeaf.metadata.segment.paragraphId === paragraphId;
-      });
-
-      const blockASequence = this.getSequence(
-        this.template.blocks,
-        paragraph.ref.blockId
-      );
-
-      const metadata = {
-        isSegment: false,
-        paragraph: {
-          id: paragraph.id,
-          blockId: paragraph.ref.blockId,
-          blockSequence: blockASequence,
-          type: paragraph.type,
-          pStyle: paragraph.properties.pStyle
-        },
-        segment: {}
-      };
-
-      const articleTemplateComposite = new TemplateComposite(metadata);
-      articleTemplateLeaves.map(templateLeave => {
-        articleTemplateComposite.Add(templateLeave);
-      });
-      return articleTemplateComposite;
-    });
-
-    this.articleComponents.sort((a, b) => {
-      const blockASequence = a.metadata.paragraph.blockSequence;
-      const blockBSequence = b.metadata.paragraph.blockSequence;
-      return blockASequence - blockBSequence;
-    });
-
-    this.articleComponents.reverse();
-
-    // ====
-    for (const component of this.articleComponents) {
-      const parentSequence = component.metadata.paragraph.blockSequence;
-
-      if (!this.sectionComponents) {
-        break;
-      }
-
-      const sectionComponents = this.sectionComponents.filter(component => {
-        const blockSequence = component.metadata.paragraph.blockSequence;
-        return blockSequence > parentSequence;
-      });
-
-      if (sectionComponents.length > 0) {
-        for (const subcomponent of sectionComponents) {
-          component.Add(subcomponent);
-        }
-      }
-    }
-
-    // ====
-    for (const component of this.sectionComponents) {
-      const parentSequence = component.metadata.paragraph.blockSequence;
-
-      if (!this.subSectionComponents) {
-        break;
-      }
-
-      const subSectionComponent = this.subSectionComponents.filter(
-        component => {
-          const blockSequence = component.metadata.paragraph.blockSequence;
-          return blockSequence > parentSequence;
-        }
-      );
-
-      if (subSectionComponent.length > 0) {
-        for (const subcomponent of subSectionComponent) {
-          component.Add(subcomponent);
-        }
-      }
-    }
-
-    // ====
-    for (const component of this.subSectionComponents) {
-      const parentSequence = component.metadata.paragraph.blockSequence;
-
-      if (!this.clauseComponents) {
-        break;
-      }
-
-      const clauseComponents = this.clauseComponents.filter(component => {
-        const blockSequence = component.metadata.paragraph.blockSequence;
-        return blockSequence > parentSequence;
-      });
-
-      if (clauseComponents.length > 0) {
-        for (const subcomponent of clauseComponents) {
-          component.Add(subcomponent);
-        }
-      }
-    }
-
-    // ====
-    for (const component of this.clauseComponents) {
-      const parentSequence = component.metadata.paragraph.blockSequence;
-
-      if (!this.subClauseComponents) {
-        break;
-      }
-      const subClauseComponents = this.subClauseComponents.filter(component => {
-        const blockSequence = component.metadata.paragraph.blockSequence;
-        return blockSequence > parentSequence;
-      });
-
-      if (subClauseComponents.length > 0) {
-        for (const subcomponent of subClauseComponents) {
-          component.Add(subcomponent);
-        }
-      }
-    }
-
-    console.log(this.articleComponents);
   }
 
   public getSequence<Array>(

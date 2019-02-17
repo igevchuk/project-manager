@@ -224,7 +224,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
     // const asd = mainApp.Mainaa();
 
     const schema = new Schema({ blocks, paragraphs, textSegments });
-    // const asd = schema.Maina();
+    schema.initializeTemplate();
 
     return (
       <Grid.Column width={12}>
