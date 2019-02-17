@@ -1,38 +1,52 @@
 import * as React from 'react';
-import { DocElement, IVisitor } from './abstract';
+import { IVisitor, IStrategy, TemplateComponent } from './abstract';
 
-class ArticleVisitor implements IVisitor {
-  public visit(element: DocElement): void {
-    return;
+export class BaseVisitor implements IVisitor {
+  public strategy: IStrategy;
+
+  // or constructor
+  public setStrategy(strategy: IStrategy) {
+    this.strategy = strategy;
+  }
+
+  public visit(element: TemplateComponent): void {
+    this.strategy.execute(element);
   }
 }
 
-class SectionVisitor implements IVisitor {
-  public visit(element: DocElement): void {
-    return;
+// strategy is opertional. if following concreate types used, no strategy needed.
+class ArticleVisitor extends BaseVisitor {
+  public visit(element: TemplateComponent): void {
+    element.metadata.segment.text = 'ArticleVisitor';
   }
 }
 
-class SubSectionVisitor implements IVisitor {
-  public visit(element: DocElement): void {
-    return;
+class SectionVisitor extends BaseVisitor {
+  public visit(element: TemplateComponent): void {
+    element.metadata.segment.text = 'SectionVisitor';
   }
 }
 
-class ClauseVisitor implements IVisitor {
-  public visit(element: DocElement): void {
-    return;
+class SubSectionVisitor extends BaseVisitor {
+  public visit(element: TemplateComponent): void {
+    element.metadata.segment.text = 'SubSectionVisitor';
+  }
+}
+
+class ClauseVisitor extends BaseVisitor {
+  public visit(element: TemplateComponent): void {
+    element.metadata.segment.text = 'ClauseVisitor';
   }
 }
 
 class SubClauseVisitor implements IVisitor {
-  public visit(element: DocElement): void {
-    return;
+  public visit(element: TemplateComponent): void {
+    element.metadata.segment.text = 'SubClauseVisitor';
   }
 }
 
 class TextSegmentVisitor implements IVisitor {
-  public visit(element: DocElement): void {
-    return;
+  public visit(element: TemplateComponent): void {
+    element.metadata.segment.text = 'TextSegmentVisitor';
   }
 }

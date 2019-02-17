@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DocElement, IVisitor } from './abstract';
+import { metadata, TemplateComponent } from './abstract';
 
 import * as templateState from '../../../../app/redux/state';
 
@@ -16,36 +16,6 @@ type ITemplate = {
 
 type paragraph = templateState.paragraph;
 
-type metadata = {
-  isSegment: boolean;
-  paragraph: {
-    id?: number;
-    blockId: number;
-    blockSequence: number;
-    type?: string;
-    pStyle?: string;
-  };
-  segment: {
-    id?: number;
-    paragraphId?: number;
-    text?: string;
-  };
-};
-
-abstract class TemplateComponent extends DocElement {
-  public metadata: metadata;
-
-  public constructor(metadata: metadata) {
-    super();
-    this.metadata = metadata;
-  }
-
-  public abstract Add(c: TemplateComponent): void;
-  public abstract Remove(c: TemplateComponent): void;
-  public abstract Display(depth: number): void;
-  public abstract accept(visit: IVisitor): void;
-}
-
 class TemplateComposite extends TemplateComponent {
   private children: TemplateComponent[] = new Array();
 
@@ -53,26 +23,20 @@ class TemplateComposite extends TemplateComponent {
     super(metadata);
   }
 
-  public Add(component: TemplateComponent): void {
+  public add(component: TemplateComponent): void {
     this.children.push(component);
   }
 
-  public Remove(component: TemplateComponent): void {
+  public remove(component: TemplateComponent): void {
     this.children.pop();
   }
 
-  public Display(depth: number): void {
+  public display(depth: number): void {
     // Console.WriteLine(new String('-', depth) + name);
     console.log(`- ${depth}` + this.metadata.isSegment);
     // Recursively display child nodes
     this.children.forEach(component => {
-      component.Display(depth + 2);
-    });
-  }
-
-  public accept(visit: IVisitor): void {
-    this.children.forEach(component => {
-      component.accept(visit);
+      component.display(depth + 2);
     });
   }
 }
@@ -81,26 +45,16 @@ class TemplateLeaf extends TemplateComponent {
   public constructor(metadata: metadata) {
     super(metadata);
   }
-  public Add(c: TemplateComponent): void {
+  public add(c: TemplateComponent): void {
     console.log('Cannot add to a leaf ????');
   }
-  public Remove(c: TemplateComponent): void {
+  public remove(c: TemplateComponent): void {
     console.log('Cannot remove from a leaf');
   }
-  public Display(depth: number): void {
+  public display(depth: number): void {
     // console.log(new String('-', depth) + name);
     console.log(`- ${depth}` + this.metadata.isSegment);
   }
-
-  public accept(visit: IVisitor): void {
-    return;
-  }
-
-  // public accept(visit: IVisitor): void {
-  //   this.children.forEach(component => {
-  //     component.accept(visit);
-  //   });
-  // }
 }
 
 class Schema {
@@ -182,7 +136,7 @@ class Schema {
 
       if (chilComponent.length > 0) {
         for (const subcomponent of chilComponent) {
-          component.Add(subcomponent);
+          component.add(subcomponent);
         }
       }
     }
@@ -215,7 +169,7 @@ class Schema {
 
       const clauseTemplateComposite = new TemplateComposite(metadata);
       clauseTemplateLeaves.map(templateLeave => {
-        clauseTemplateComposite.Add(templateLeave);
+        clauseTemplateComposite.add(templateLeave);
       });
       return clauseTemplateComposite;
     });
