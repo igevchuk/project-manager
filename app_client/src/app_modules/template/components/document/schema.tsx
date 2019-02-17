@@ -34,6 +34,7 @@ type metadata = {
 
 abstract class TemplateComponent extends DocElement {
   public metadata: metadata;
+
   public constructor(metadata: metadata) {
     super();
     this.metadata = metadata;
@@ -134,13 +135,15 @@ class Schema {
     });
   }
 
-  public initializeTemplate() {
-    this.templateLeaves = this.getTemplateLeaves(this.template.textSegments);
+  public initTemplate() {
+    this.templateLeaves = this.generateTemplateLeaves(
+      this.template.textSegments
+    );
 
-    this.clauseComponents = this.getComponents(this.clauses);
-    this.subSectionComponents = this.getComponents(this.subSections);
-    this.sectionComponents = this.getComponents(this.sections);
-    this.articleComponents = this.getComponents(this.articles);
+    this.clauseComponents = this.generateComposites(this.clauses);
+    this.subSectionComponents = this.generateComposites(this.subSections);
+    this.sectionComponents = this.generateComposites(this.sections);
+    this.articleComponents = this.generateComposites(this.articles);
 
     this.articleComponents.sort((a, b) => {
       const blockASequence = a.metadata.paragraph.blockSequence;
@@ -151,17 +154,17 @@ class Schema {
     this.articleComponents.reverse();
 
     // embedding sectionComponents into articleComponents
-    this.embeddingChildren(this.articleComponents, this.sectionComponents);
+    this.chainingChildren(this.articleComponents, this.sectionComponents);
     // embedding subSectionComponents into sectionComponents
-    this.embeddingChildren(this.sectionComponents, this.subSectionComponents);
+    this.chainingChildren(this.sectionComponents, this.subSectionComponents);
     // embedding clauseComponents into subSectionComponents
-    this.embeddingChildren(this.subSectionComponents, this.clauseComponents);
+    this.chainingChildren(this.subSectionComponents, this.clauseComponents);
     // embedding subClauseComponents into clauseComponents
-    this.embeddingChildren(this.clauseComponents, this.subClauseComponents);
+    this.chainingChildren(this.clauseComponents, this.subClauseComponents);
     console.log(this.articleComponents);
   }
 
-  public embeddingChildren(
+  public chainingChildren(
     parentComponent: TemplateComponent[],
     childComponent: TemplateComponent[]
   ) {
@@ -185,7 +188,7 @@ class Schema {
     }
   }
 
-  public getComponents(elements: paragraph[]) {
+  public generateComposites(elements: paragraph[]) {
     const templateLeaves = this.templateLeaves;
     const blocks = this.template.blocks;
 
@@ -225,7 +228,7 @@ class Schema {
     return blocks.filter(block => block.id === blockId)[0].sequence;
   }
 
-  public getTemplateLeaves(
+  public generateTemplateLeaves(
     textSegments: templateState.textSegment[]
   ): TemplateLeaf[] {
     return textSegments.map(
