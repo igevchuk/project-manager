@@ -302,7 +302,7 @@
           "variantGroup": 1002,
           "variantType": "Standard/Neutral",
           "variantIsDefault": true,
-          "text": "[Agreement Title]",
+          "text": "[Agreement Title] 02",
           "revision": 0,
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"
@@ -317,7 +317,7 @@
           "variantGroup": 1002,
           "variantType": "Standard/Neutral",
           "variantIsDefault": true,
-          "text": "[Agreement Title] asd",
+          "text": "[Agreement Title] 01",
           "revision": 0,
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"

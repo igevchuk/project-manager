@@ -1,4 +1,10 @@
 import * as React from 'react';
+import ReactHtmlParser, {
+  processNodes,
+  convertNodeToElement,
+  htmlparser2
+} from 'react-html-parser';
+
 import { IVisitor, IStrategy, TemplateComponent } from './abstract';
 
 export class BaseVisitor implements IVisitor {
@@ -17,7 +23,10 @@ export class BaseVisitor implements IVisitor {
 // strategy is opertional. if following concreate types used, no strategy needed.
 export class ArticleVisitor extends BaseVisitor {
   public visit(element: TemplateComponent): void {
-    element.metadata.segment.text = 'ArticleVisitor';
+    element.metadata.segment.text = ReactHtmlParser(
+      '<h1>' + element.metadata.paragraph.pStyle + ' asd</h1>'
+    );
+    // console.log('asd' + element.metadata.segment.text);
   }
 }
 

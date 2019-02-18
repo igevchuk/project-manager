@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { metadata, TemplateComponent } from './abstract';
+import * as visitor from './visitor';
 
 import * as templateState from '../../../../app/redux/state';
 
@@ -33,10 +34,11 @@ class TemplateComposite extends TemplateComponent {
   }
 
   public display(depth: number): void {
-    // Console.WriteLine(new String('-', depth) + name);
-    console.log(`- ${depth}` + this.metadata.isSegment);
-    // Recursively display child nodes
+    // console.log(`- ${depth}` + this.children.length);
+
     this.children.forEach(component => {
+      const articleVisitor = new visitor.ArticleVisitor();
+      this.accept(articleVisitor);
       component.display(depth + 2);
     });
   }
@@ -53,10 +55,31 @@ class TemplateLeaf extends TemplateComponent {
     console.log('Cannot remove from a leaf');
   }
   public display(depth: number): void {
-    // console.log(new String('-', depth) + name);
-    console.log(`- ${depth}` + this.metadata.isSegment);
+    // console.log(this.metadata.segment.text);
+    // console.log(`- ${depth}` + this.metadata.segment.text);
+
+    switch (depth) {
+      case 2:
+        const articleVisitor = new visitor.ArticleVisitor();
+        this.accept(articleVisitor);
+        // const aass = <aa/>;
+        break;
+      case 4:
+        break;
+      case 6:
+        break;
+      case 8:
+        break;
+      case 10:
+        break;
+      default:
+    }
   }
 }
+
+export const aa = props => {
+  return <div>this is tesitng</div>;
+};
 
 class Schema {
   public articles: paragraph[] = new Array<paragraph>();
@@ -212,8 +235,6 @@ class Schema {
         )[0];
         const segmentStyling =
           segmentRun && segmentRun.properties ? segmentRun.properties : {};
-
-        // console.log(segmentStyling);
 
         const metadata = {
           isSegment: true,

@@ -1,4 +1,10 @@
 import * as React from 'react';
+import ReactHtmlParser, {
+  processNodes,
+  convertNodeToElement,
+  htmlparser2
+} from 'react-html-parser';
+
 import {
   Button,
   Header,
@@ -30,6 +36,8 @@ import Schema from './document/schema';
 import * as visitor from './document/visitor';
 import * as strategy from './document/strategy';
 import * as abstract from './document/abstract';
+
+import { Test } from './document/test';
 
 import * as templateState from '../../../app/redux/state';
 // import { any } from 'prop-types';
@@ -227,12 +235,24 @@ class TemplateContent extends React.Component<IContentProps, any> {
     const schema = new Schema({ blocks, paragraphs, textSegments, runs });
     schema.initTemplate();
     const Articles = schema.getArticleComponents();
-    console.log(Articles);
+    // console.log(Articles);
 
     const ArticlesDoc = Articles.map(Article => {
-      // const asd = !Article.metadata.isSegment ? Article.
-      // console.log(asd);
-    });
+      // const articleVisitor = new visitor.ArticleVisitor();
+      // Article.accept(articleVisitor);
+      // const asd = <h1>{Article.metadata.segment.text}</h1>;
+      Article.display(0);
+      console.log(Article.metadata.segment.text);
+      // return Article.metadata.segment.text;
+      return Article.metadata.segment.text;
+    })[0];
+
+    // const html = '<h1>Example HTML string</h1>';
+
+    const aaaa = new Test();
+    const renderHtml = <div>{aaaa.getHtml()}</div>;
+
+    console.log(ArticlesDoc);
 
     return (
       <Grid.Column width={12}>
@@ -285,7 +305,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
                   <br />
 
                   <br />
-                  {}
+                  {ArticlesDoc}
                 </Segment>
               </Sidebar.Pusher>
             </Sidebar.Pushable>
