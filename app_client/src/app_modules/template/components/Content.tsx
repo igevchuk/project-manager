@@ -27,9 +27,12 @@ import { contextWrapper } from './../TemplateContext';
 import Controller from './../controller';
 import MainApp from './document/doc.controller';
 import Schema from './document/schema';
+import * as visitor from './document/visitor';
+import * as strategy from './document/strategy';
+import * as abstract from './document/abstract';
 
 import * as templateState from '../../../app/redux/state';
-import { any } from 'prop-types';
+// import { any } from 'prop-types';
 
 const fakeSegments = [
   { id: 1, text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' },
@@ -226,6 +229,11 @@ class TemplateContent extends React.Component<IContentProps, any> {
     const Articles = schema.getArticleComponents();
     console.log(Articles);
 
+    const ArticlesDoc = Articles.map(Article => {
+      // const asd = !Article.metadata.isSegment ? Article.
+      // console.log(asd);
+    });
+
     return (
       <Grid.Column width={12}>
         <StyledDocument>
@@ -277,7 +285,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
                   <br />
 
                   <br />
-                  {/* {this.getArticles(contentOutine, paragraphs, textSegments)} */}
+                  {}
                 </Segment>
               </Sidebar.Pusher>
             </Sidebar.Pushable>

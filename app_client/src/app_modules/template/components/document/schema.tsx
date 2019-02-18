@@ -123,6 +123,10 @@ class Schema {
     return this.articleComponents;
   }
 
+  public getArticleComponentsasd() {
+    return <div>this is testing</div>;
+  }
+
   public chainingChildren(
     parentComponent: TemplateComponent[],
     childComponent: TemplateComponent[]

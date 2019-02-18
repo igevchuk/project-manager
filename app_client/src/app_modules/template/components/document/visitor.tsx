@@ -15,37 +15,37 @@ export class BaseVisitor implements IVisitor {
 }
 
 // strategy is opertional. if following concreate types used, no strategy needed.
-class ArticleVisitor extends BaseVisitor {
+export class ArticleVisitor extends BaseVisitor {
   public visit(element: TemplateComponent): void {
     element.metadata.segment.text = 'ArticleVisitor';
   }
 }
 
-class SectionVisitor extends BaseVisitor {
+export class SectionVisitor extends BaseVisitor {
   public visit(element: TemplateComponent): void {
     element.metadata.segment.text = 'SectionVisitor';
   }
 }
 
-class SubSectionVisitor extends BaseVisitor {
+export class SubSectionVisitor extends BaseVisitor {
   public visit(element: TemplateComponent): void {
     element.metadata.segment.text = 'SubSectionVisitor';
   }
 }
 
-class ClauseVisitor extends BaseVisitor {
+export class ClauseVisitor extends BaseVisitor {
   public visit(element: TemplateComponent): void {
     element.metadata.segment.text = 'ClauseVisitor';
   }
 }
 
-class SubClauseVisitor implements IVisitor {
+export class SubClauseVisitor implements IVisitor {
   public visit(element: TemplateComponent): void {
     element.metadata.segment.text = 'SubClauseVisitor';
   }
 }
 
-class TextSegmentVisitor implements IVisitor {
+export class TextSegmentVisitor implements IVisitor {
   public visit(element: TemplateComponent): void {
     element.metadata.segment.text = 'TextSegmentVisitor';
   }
