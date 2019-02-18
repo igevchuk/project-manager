@@ -37,7 +37,6 @@ export type textSegment = {
     paragraphId?: uuid;
   };
   sequence?: number;
-  styling?: {};
   type?: string; // TextSegment
   variantGroup?: number; // 1000
   variantType?: string; // Standard/Neutral
@@ -139,12 +138,12 @@ export type textVariant = {
 
 export type run = {
   id?: uuid;
-  ref?: {
+  ref: {
     textSegmentId?: uuid;
   };
   sequence?: number;
   type?: string; // Run
-  styling?: {
+  properties: {
     b?: null;
     i?: null;
     u?: null;

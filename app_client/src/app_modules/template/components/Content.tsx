@@ -54,6 +54,7 @@ interface IContentProps {
     blocks: templateState.block[];
     paragraphs: templateState.paragraph[];
     textSegments: templateState.textSegment[];
+    runs: templateState.run[];
   };
 }
 
@@ -219,10 +220,11 @@ class TemplateContent extends React.Component<IContentProps, any> {
   };
 
   public render() {
-    const { blocks, paragraphs, textSegments } = this.props.template;
-
-    const schema = new Schema({ blocks, paragraphs, textSegments });
+    const { blocks, paragraphs, textSegments, runs } = this.props.template;
+    const schema = new Schema({ blocks, paragraphs, textSegments, runs });
     schema.initTemplate();
+    const Articles = schema.getArticleComponents();
+    console.log(Articles);
 
     return (
       <Grid.Column width={12}>

@@ -60,6 +60,7 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
     if (!this.props.template) {
       return null;
     }
+    // console.log(this.props.template);
 
     return (
       <div>
@@ -92,6 +93,7 @@ const mapStateToProps = state => {
   if (templates.length === 0) {
     return {};
   }
+  // console.log(templates[0]);
   return { template: templates[0] };
 };
 

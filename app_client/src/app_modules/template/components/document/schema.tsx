@@ -12,6 +12,7 @@ type ITemplate = {
   blocks: templateState.block[];
   paragraphs: templateState.paragraph[];
   textSegments: templateState.textSegment[];
+  runs: templateState.run[];
 };
 
 type paragraph = templateState.paragraph;
@@ -115,7 +116,11 @@ class Schema {
     this.chainingChildren(this.subSectionComponents, this.clauseComponents);
     // embedding subClauseComponents into clauseComponents
     this.chainingChildren(this.clauseComponents, this.subClauseComponents);
-    console.log(this.articleComponents);
+    // console.log(this.articleComponents);
+  }
+
+  public getArticleComponents() {
+    return this.articleComponents;
   }
 
   public chainingChildren(
@@ -198,6 +203,14 @@ class Schema {
         variantIsDefault: boolean;
         text: string;
       }) => {
+        const segmentRun = this.template.runs.filter(
+          run => run.ref.textSegmentId === textSegment.id
+        )[0];
+        const segmentStyling =
+          segmentRun && segmentRun.properties ? segmentRun.properties : {};
+
+        // console.log(segmentStyling);
+
         const metadata = {
           isSegment: true,
           paragraph: {
@@ -207,7 +220,8 @@ class Schema {
           segment: {
             id: textSegment.id,
             paragraphId: textSegment.ref.paragraphId,
-            text: textSegment.text
+            text: textSegment.text,
+            run: segmentStyling
           }
         };
 

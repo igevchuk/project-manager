@@ -23,6 +23,7 @@ export type metadata = {
     id?: number;
     paragraphId?: number;
     text?: string;
+    run?: {};
   };
 };
 
