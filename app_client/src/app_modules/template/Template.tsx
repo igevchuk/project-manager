@@ -9,6 +9,9 @@ import { Grid } from 'semantic-ui-react';
 import Document from './components/Document';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
+import Header from './components/Header';
+import Toolbar from './components/Toolbar';
+
 import { Editor, EditorState } from 'draft-js';
 
 import HTML5Backend from 'react-dnd-html5-backend';
@@ -45,41 +48,51 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
     // this.timer = window.setInterval(() => console.log('testing'), 1000);
 
     this.setState(
-      (prevState, props) => ({ template: this.props.template }),
+      (prevState, props) => ({ template: this.props.template } as any),
       () => {
         // console.log(this.state.template);
       }
     );
   }
 
+  public addTextVariant = variant => {
+    const { template } = this.props;
+
+    console.log(variant);
+
+    // this.setState({
+    //   template: {
+    //     ...template, textVariants: [...template.textVariants, variant]
+    //   }
+    // });
+  };
+
   public onChange() {
     return;
   }
 
   public render() {
-    if (!this.props.template) {
+    const { template } = this.props;
+
+    if (!template) {
       return null;
     }
-    // console.log(this.props.template);
 
     return (
       <div>
-        <Navbar />
+        <Header template={template} />
+        <Provider value={{ template }}>
+          <Toolbar />
+        </Provider>
+
         <Grid style={{ marginTop: 0 }}>
-          {/* <Editor
-            editorState={this.state.editorState}
-            onChange={this.onChange}
-          /> */}
-
-          {/* <Provider value={{ template: this.props.template }}>
-            <Document />
-          </Provider> */}
-
-          <Provider value={{ template: this.props.template }}>
-            <Content asd={'asdf'} />
+          <Provider
+            value={{ template, handleAddTextVariant: this.addTextVariant }}
+          >
+            <Content />
           </Provider>
 
-          <Provider value={{ template: this.props.template }}>
+          <Provider value={{ template }}>
             <Sidebar />
           </Provider>
         </Grid>

@@ -1,270 +1,260 @@
 import * as React from 'react';
-import styled from 'styled-components';
-import * as moment from 'moment';
 
-import { Link } from 'react-router-dom';
-import { Dropdown, Icon } from 'semantic-ui-react';
-import FloatingActionButton from '../../../app/_styled_components/FloatingActionButton';
-import Button from '../../../app/_styled_components/Button';
-import ToolbarComponent from './Toolbar.style';
+import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
+import Book from '@material-ui/icons/Book';
+import Check from '@material-ui/icons/Check';
+import FormatAlignCenter from '@material-ui/icons/FormatAlignCenter';
+import FormatAlignJustify from '@material-ui/icons/FormatAlignJustify';
+import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft';
+import FormatAlignRight from '@material-ui/icons/FormatAlignRight';
+import FormatBold from '@material-ui/icons/FormatBold';
+import FormatItalic from '@material-ui/icons/FormatItalic';
+import FormatStrikethrough from '@material-ui/icons/FormatStrikethrough';
+import FormatUnderlined from '@material-ui/icons/FormatUnderlined';
+import FormatIndentDecrease from '@material-ui/icons/FormatIndentDecrease';
+import FormatIndentIncrease from '@material-ui/icons/FormatIndentIncrease';
+import Toggle from './../../../app/_styled_components/Toggle';
+import TextLevelDropdown, {
+  TextLevelDropdownMenu,
+  TextLevelDropdownItem
+} from './TextLevelDropdown';
+import {
+  Dropdown,
+  ToolbarWrap,
+  ToolbarGroup,
+  ToolbarItem,
+  Link,
+  Icon,
+  IconGroup,
+  IconGroupIcon
+} from './Toolbar.style';
 
-interface IToolbarProps {
-  currentTemplate?: any;
-  isCheckedOut?: boolean;
-  hasLock?: boolean;
-  status?: string;
-  templateId?: string;
-  variantId?: string;
-  user?: any;
+const fakeOptions = [
+  {
+    key: 1,
+    text: <b>156168719</b>
+  }
+];
+
+interface IToolbarState {
+  showNumbering?: boolean;
+  textLevel?: string;
 }
 
-const AdminNavButton = ({ currentTemplate, status, ...props }) => {
-  if (status === 'loading') {
-    return <div />;
-  } else if (currentTemplate.approval_required) {
-    return (
-      <div>
-        <Button disabled={true} secondary={true} style={{ color: 'black' }}>
-          SENT FOR REVIEW
-        </Button>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <Button
-          onClick={() => props.openDialog('checkin-dialog')}
-          // disabled={props.mode === 'running' ? true : false}
-          // primary='primary'
-          // raised='raised'
-          // key="checkin"
-        >
-          <Icon name="lock" />
-          Check In
-        </Button>
-        <Button
-          onClick={() => props.openReviewDialog()}
-          // disabled={props.mode === 'running'}
-          // secondary='secondary'
-          // raised='raised'
-          // key="publish"
-        >
-          SEND FOR REVIEW
-        </Button>
-      </div>
-    );
+const textLevelOptions = {
+  textSegment: {
+    html: 'No Indent Level',
+    text: 'No Indent Level',
+    value: 'textSegment'
+  },
+  article1: {
+    html: 'ARTICLE 1',
+    text: 'ARTICLE 1',
+    value: 'article1'
+  },
+  section: {
+    html: <span>&nbsp;1. Section</span>,
+    text: 'Section',
+    value: 'section'
+  },
+  subSection: {
+    html: <span>&nbsp;&nbsp;1.1 Subsection</span>,
+    text: 'Subsection',
+    value: 'subSection'
+  },
+  clause: {
+    html: <span>&nbsp;&nbsp;&nbsp;(a) Clause</span>,
+    text: 'Clause',
+    value: 'clause'
+  },
+  subClause: {
+    html: <span>&nbsp;&nbsp;&nbsp;&nbsp;(i) Subclause</span>,
+    text: 'Subclause',
+    value: 'subClause'
   }
 };
 
-const PMNavButton = ({ currentTemplate, status, ...props }) => {
-  const approvalStatus =
-    status === 'published'
-      ? 'TEMPLATE PUBLISHED'
-      : status === 'rejected'
-      ? 'TEMPLATE REJECTED'
-      : null;
-  if (status === 'loading') {
-    return <div />;
-  } else if (
-    currentTemplate.approval_required &&
-    status !== 'published' &&
-    status !== 'rejected'
-  ) {
-    return (
-      <div>
-        <Button
-          onClick={props.onReject}
-          // disabled={props.mode === 'running'}
-          // raised='raised'
-          // key="REJECT"
-          // style={{background:'#f44336', color:'white'}}
-        >
-          REJECT
-        </Button>
-        <Button
-          onClick={props.onPublish}
-          // disabled={props.mode === 'running'}
-          // secondary='true'
-          // raised='raised'
-          // key="APPROVE"
-        >
-          APPROVE
-        </Button>
-      </div>
-    );
-  } else {
-    return <span>{approvalStatus}</span>;
+class Toolbar extends React.Component<{}, IToolbarState> {
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
-};
 
-const Toolbar: React.SFC<IToolbarProps> = ({
-  currentTemplate,
-  templateId,
-  variantId,
-  isCheckedOut,
-  hasLock,
-  status,
-  user,
-  ...props
-}) => {
-  const formatDate = timestamp => {
-    if (!!timestamp) {
-      const date = moment(timestamp);
-
-      return moment(date).isValid()
-        ? `${date.format('LL')} at ${date.format('h:mm A')}`
-        : '';
-    }
+  public handleChange = (name: string, value: string): void => {
+    console.log(name, value);
   };
 
-  const getUpdateInfo = () => {
-    if (!currentTemplate) {
-      return null;
-    }
-
-    let text = '';
-    const { last_published, publisher, published } = currentTemplate;
-    if (published) {
-      text = `Last published `;
-      text += formatDate(last_published);
-      text += ` by ${publisher}`;
-    }
-
-    return text;
+  public handleSelectTextLevel = name => {
+    this.setState({ textLevel: name });
   };
 
-  const getCheckedOutLabel = (data: any, user: any): string => {
-    if (!data || !user || user.first_name === 'Legal') {
-      return '';
-    }
-    const { updaterid, updateremail, updater, creatorid } = data;
-    if (
-      (!updateremail.trim() && creatorid === user.id) ||
-      updaterid === user.id
-    ) {
-      return `Checked out by you`;
-    } else {
-      return `Checked out by ${updater}`;
-    }
+  public toggleNumbering = e => {
+    e.preventDefault();
+    this.setState({ showNumbering: !this.state.showNumbering });
   };
 
-  const DropdownTrigger = () => (
-    <FloatingActionButton mini={true}>
-      <Icon name="ellipsis vertical" />
-    </FloatingActionButton>
-  );
+  public renderTextLevelItem = key => {
+    const { textLevel } = this.state;
+    const item = textLevelOptions[key];
+    const isActive = key === textLevel;
 
-  const getApproverNav = () => {
     return (
-      <PMNavButton
-        {...props}
-        status={status}
-        currentTemplate={currentTemplate}
-      />
+      <TextLevelDropdownItem
+        key={key}
+        onClick={() => this.handleSelectTextLevel(key)}
+        active={isActive}
+      >
+        {item.html} {isActive ? <Check /> : null}
+      </TextLevelDropdownItem>
     );
   };
-  return (
-    <ToolbarComponent>
-      <div className="col">
-        <Link to="/templates" className="arrow-left">
-          <Icon name="chevron left" />
-        </Link>
 
-        <div>
-          {!!currentTemplate && <h2>{currentTemplate.value}</h2>}
+  public getTextLevelLabel = () => {
+    const { textLevel } = this.state;
 
-          <span>{getUpdateInfo()}</span>
-        </div>
-      </div>
+    if (!textLevel) {
+      return 'Text Level';
+    }
 
-      <div className="col">
-        {!!user && user.first_name === 'Legal' ? (
-          getApproverNav()
-        ) : isCheckedOut ? (
-          <React.Fragment>
-            {!!user && user.first_name !== 'Legal' && (
-              <React.Fragment>
-                <Icon name="pencil" />
-                <span className="col-info">
-                  Editing mode
-                  <small>{getCheckedOutLabel(currentTemplate, user)}</small>
-                </span>
-              </React.Fragment>
-            )}
+    return textLevelOptions[textLevel].text;
+  };
 
-            {status === 'draft' && (
-              <Button
-                // onClick={props.saveDraft}
-                // disabled={props.mode === 'running'}
-                primary={true}
-                raised={true}
-                key="draft"
+  public render() {
+    const { showNumbering, textLevel } = this.state;
+
+    return (
+      <ToolbarWrap>
+        <ToolbarGroup divided={true} horizontal={true} relaxed={true}>
+          <ToolbarItem>
+            <Link>
+              <TextLevelDropdown
+                fluid={true}
+                text={this.getTextLevelLabel()}
+                closeOnChange={false}
               >
-                <Icon name="save" />
-                Save Draft
-              </Button>
-            )}
+                <TextLevelDropdownMenu>
+                  {Object.keys(textLevelOptions).map(key =>
+                    this.renderTextLevelItem(key)
+                  )}
+                  <TextLevelDropdownItem>
+                    Link to Previous Segment <Check />
+                  </TextLevelDropdownItem>
+                  <TextLevelDropdownItem onClick={this.toggleNumbering}>
+                    Show Numbering{' '}
+                    <Toggle checked={showNumbering} size="small" />
+                  </TextLevelDropdownItem>
+                </TextLevelDropdownMenu>
+              </TextLevelDropdown>
+            </Link>
+            <Link>
+              <Icon link={true} name="setting" />
+            </Link>
+          </ToolbarItem>
 
-            {
-              <React.Fragment>
-                {!hasLock && !!user && user.first_name === 'Admin' && (
-                  <AdminNavButton
-                    {...props}
-                    status={status}
-                    currentTemplate={currentTemplate}
-                  />
-                )}
-              </React.Fragment>
-            }
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <Icon name="lock" />
-            <span className="col-info">View only mode</span>
-            {!!user &&
-            user.first_name === 'Admin' &&
-            currentTemplate.approval_required === true ? (
-              <Button disabled={true} style={{ color: 'black' }}>
-                SENT FOR REVIEW
-              </Button>
-            ) : (
-              <Button
-              // disabled={props.mode === 'running' || hasLock}
-              // onClick={props.handleCheckOut}
-              // primary={true}
-              // raise={true}
-              >
-                <Icon name="pencil" />
-                Check Out
-              </Button>
-            )}
-          </React.Fragment>
-        )}
+          <ToolbarItem>
+            <IconGroup>
+              <IconGroupIcon>
+                <FormatIndentIncrease />
+              </IconGroupIcon>
 
-        <Dropdown
-          floating={true}
-          trigger={<DropdownTrigger />}
-          direction="left"
-          icon={null}
-          upward={false}
-        >
-          <Dropdown.Menu>
-            <Dropdown.Item>
-              <Link
-                to={{
-                  pathname: `/template-history/${templateId}/variants/${variantId}/`,
-                  state: { referrer: location.pathname }
-                }}
-              >
-                <Icon name="clock outline" />
-                View Version History
-              </Link>
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      </div>
-    </ToolbarComponent>
-  );
-};
+              <IconGroupIcon>
+                <FormatIndentDecrease />
+              </IconGroupIcon>
+            </IconGroup>
+          </ToolbarItem>
+
+          <ToolbarItem>
+            <IconGroup>
+              <IconGroupIcon>
+                <FormatBold />
+              </IconGroupIcon>
+
+              <IconGroupIcon>
+                <FormatItalic />
+              </IconGroupIcon>
+
+              <IconGroupIcon>
+                <FormatUnderlined />
+              </IconGroupIcon>
+
+              <IconGroupIcon>
+                <FormatStrikethrough />
+              </IconGroupIcon>
+            </IconGroup>
+          </ToolbarItem>
+
+          <ToolbarItem>
+            <IconGroup>
+              <IconGroupIcon>
+                <FormatAlignLeft />
+              </IconGroupIcon>
+
+              <IconGroupIcon>
+                <FormatAlignCenter />
+              </IconGroupIcon>
+
+              <IconGroupIcon>
+                <FormatAlignJustify />
+              </IconGroupIcon>
+
+              <IconGroupIcon>
+                <FormatAlignRight />
+              </IconGroupIcon>
+            </IconGroup>
+          </ToolbarItem>
+
+          <ToolbarItem>
+            <Link>
+              <Dropdown
+                floating={true}
+                options={fakeOptions}
+                trigger={
+                  <span className="trigger-btn">
+                    <AddCircleOutline />
+                    &nbsp;Add
+                  </span>
+                }
+              />
+            </Link>
+          </ToolbarItem>
+
+          <ToolbarItem>
+            <Link>
+              <Book />
+              Clause Library
+            </Link>
+          </ToolbarItem>
+
+          <ToolbarItem>
+            <Link>
+              <Icon name="cube" />
+              Variables
+            </Link>
+          </ToolbarItem>
+
+          <ToolbarItem>
+            <Link>
+              <Icon link={true} name="list" />
+              Content Outline
+            </Link>
+          </ToolbarItem>
+
+          <ToolbarItem>
+            <Link>
+              <Icon name="resize horizontal" />
+              Resize Segments
+            </Link>
+          </ToolbarItem>
+
+          <ToolbarItem>
+            <Link>
+              <Icon link={true} name="ellipsis horizontal" />
+            </Link>
+          </ToolbarItem>
+        </ToolbarGroup>
+      </ToolbarWrap>
+    );
+  }
+}
 
 export default Toolbar;
