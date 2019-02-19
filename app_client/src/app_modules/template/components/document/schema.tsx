@@ -133,13 +133,16 @@ class Schema {
     this.sectionComponents = this.generateComposites(this.sections);
     this.articleComponents = this.generateComposites(this.articles);
 
+    // console.log(this.articleComponents);
+
     this.articleComponents.sort((a, b) => {
       const blockASequence = a.metadata.paragraph.blockSequence;
       const blockBSequence = b.metadata.paragraph.blockSequence;
       return blockASequence - blockBSequence;
     });
 
-    this.articleComponents.reverse();
+    // this.articleComponents.reverse();
+    // console.log(this.articleComponents);
 
     // embedding sectionComponents into articleComponents
     this.chainingChildren(this.articleComponents, this.sectionComponents);
@@ -189,7 +192,7 @@ class Schema {
     return elements.map(paragraph => {
       const paragraphId = paragraph.id;
 
-      const clauseTemplateLeaves = templateLeaves.filter(templateLeaf => {
+      const filterTemplateLeaves = templateLeaves.filter(templateLeaf => {
         return templateLeaf.metadata.segment.paragraphId === paragraphId;
       });
 
@@ -210,11 +213,11 @@ class Schema {
         }
       };
 
-      const clauseTemplateComposite = new TemplateComposite(metadata);
-      clauseTemplateLeaves.map(templateLeave => {
-        clauseTemplateComposite.add(templateLeave);
+      const templateComposite = new TemplateComposite(metadata);
+      filterTemplateLeaves.map(templateLeave => {
+        templateComposite.add(templateLeave);
       });
-      return clauseTemplateComposite;
+      return templateComposite;
     });
   }
 

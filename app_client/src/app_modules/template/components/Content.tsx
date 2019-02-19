@@ -252,6 +252,31 @@ class TemplateContent extends React.Component<IContentProps, any> {
     alert('aaaa');
   };
 
+  public renderDoc = () => {
+    // const aa = this.docPieces;
+
+    const result: docPiece[] = [];
+    const map = new Map();
+    for (const item of this.docPieces) {
+      if (!map.has(item.id)) {
+        map.set(item.id, true); // set any value to Map
+        result.push({
+          id: item.id,
+          text: item.text
+        });
+      }
+    }
+    console.log(result);
+
+    return result.map(docPiece => {
+      return (
+        <div key={docPiece.id}>
+          {this.renderSegment({ id: docPiece.id, text: docPiece.text })}
+        </div>
+      );
+    });
+  };
+
   public getDoc(composite: abstract.TemplateComponent) {
     const childrenComposites = composite.getChildren();
 
@@ -276,18 +301,13 @@ class TemplateContent extends React.Component<IContentProps, any> {
     schema.initTemplate();
     const Articles = schema.getArticleComponents();
 
-    const ArticlesDoc = Articles.map(article => {
+    Articles.map(article => {
       article.display(0);
       this.getDoc(article);
-
-      return article;
     });
 
-    const aaaa = new Test();
-    const renderHtml = <div>{aaaa.getHtml()}</div>;
-
-    console.log(this.docPieces);
-    // console.log(ArticlesDoc);
+    this.renderDoc();
+    // console.log(this.docPieces);
 
     return (
       <Grid.Column width={12}>
@@ -338,9 +358,8 @@ class TemplateContent extends React.Component<IContentProps, any> {
                 <Segment basic={true}>
                   {fakeSegments.map(segment => this.renderSegment(segment))}
                   <br />
-                  {renderHtml}
                   <br />
-                  {/* <div>{ArticlesDoc}</div> */}
+                  {this.renderDoc()}
                 </Segment>
               </Sidebar.Pusher>
             </Sidebar.Pushable>
