@@ -144,117 +144,11 @@ class TemplateContent extends React.Component<IContentProps, any> {
     );
   };
 
-  // public getArticles = (
-  //   paragraphs: templateState.paragraph[],
-  //   textSegments: templateState.textSegment[]
-  // ): any => {
-  //   return contentOutine.articles
-  //     .sort((a, b) => a.sequence - b.sequence)
-  //     .map(article => {
-  //       const blockId = article.blockId;
-
-  //       const paragraph = paragraphs.filter(
-  //         paragraph => paragraph.ref.blockId === blockId
-  //       )[0];
-
-  //       const filteredTextSegments = textSegments.filter(
-  //         textSegment => textSegment.ref.paragraphId === paragraph.id
-  //       )[0];
-
-  //       return (
-  //         <div key={article.id}>
-  //           <h1>{filteredTextSegments.text}</h1>
-  //           {this.getSecitons(paragraphs, textSegments, article.id)}
-  //           <br />
-  //         </div>
-  //       );
-  //     });
-  // };
-
-  // public getSecitons = (
-  //   paragraphs: templateState.paragraph[],
-  //   textSegments: templateState.textSegment[],
-  //   articleId?: number
-  // ): any => {
-  //   const filteredArray = contentOutine.sections.filter(
-  //     (section: {
-  //       id: number;
-  //       blockId: number;
-  //       sequence: number;
-  //       ref: { articleId: number };
-  //     }) => {
-  //       return section.ref.articleId === articleId;
-  //     }
-  //   );
-
-  //   return filteredArray.map(section => {
-  //     const blockId = section.blockId;
-
-  //     const paragraph = paragraphs.filter(
-  //       paragraph => paragraph.ref.blockId === blockId
-  //     )[0];
-
-  //     const filteredTextSegments = textSegments.filter(
-  //       textSegment => textSegment.ref.paragraphId === paragraph.id
-  //     )[0];
-
-  //     return (
-  //       <div key={section.id}>
-  //         <h2>
-  //           {`${filteredTextSegments.sequence}. ` + filteredTextSegments.text}
-  //         </h2>
-  //         {this.getSubSecitons(paragraphs, textSegments, section.id)}
-  //         <br />
-  //       </div>
-  //     );
-  //   });
-  // };
-
-  // public getSubSecitons = (
-  //   paragraphs: templateState.paragraph[],
-  //   textSegments: templateState.textSegment[],
-  //   sectionId?: number
-  // ): any => {
-  //   const filteredArray = contentOutine.subSections.filter(
-  //     (subSection: {
-  //       id: number;
-  //       blockId: number;
-  //       sequence: number;
-  //       ref: { sectionId: number };
-  //     }) => {
-  //       return subSection.ref.sectionId === sectionId;
-  //     }
-  //   );
-
-  //   return filteredArray.map(subSection => {
-  //     const blockId = subSection.blockId;
-
-  //     const paragraph = paragraphs.filter(
-  //       paragraph => paragraph.ref.blockId === blockId
-  //     )[0];
-
-  //     const filteredTextSegments = textSegments.filter(
-  //       textSegment => textSegment.ref.paragraphId === paragraph.id
-  //     );
-
-  //     console.log(filteredTextSegments);
-  //     return filteredTextSegments.map(textSegment => {
-  //       return (
-  //         <div key={textSegment.id}>
-  //           {this.renderSegment({ id: textSegment.id, text: textSegment.text })}
-  //         </div>
-  //       );
-  //     });
-  //   });
-  // };
-
   public asd = () => {
     alert('aaaa');
   };
 
   public renderDoc = () => {
-    // const aa = this.docPieces;
-
     const result: docPiece[] = [];
     const map = new Map();
     for (const item of this.docPieces) {
@@ -291,30 +185,27 @@ class TemplateContent extends React.Component<IContentProps, any> {
         this.getDoc(childComposite);
       }
     }
-    // console.log(this.docPieces);
   }
 
   public render() {
     const { blocks, paragraphs, textSegments, runs } = this.props.template;
 
+    // generating tree data from patterns
     const schema = new Schema({ blocks, paragraphs, textSegments, runs });
     schema.initTemplate();
     const Articles = schema.getArticleComponents();
 
+    // generating doc
     Articles.map(article => {
       article.display(0);
       this.getDoc(article);
     });
-
-    this.renderDoc();
     // console.log(this.docPieces);
 
     return (
       <Grid.Column width={12}>
         <StyledDocument>
           <div>
-            {/* {asd} */}
-            {/* <Schema template={this.state.template} /> */}
             <Button.Group>
               <Button
                 disabled={this.state.visible}
