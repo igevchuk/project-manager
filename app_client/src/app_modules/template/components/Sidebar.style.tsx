@@ -1,5 +1,29 @@
-import * as React from 'react';
 import styled, { css } from 'styled-components';
-import BaseComp from './../../../atomic/atoms/base-comp';
+import { Grid, Tab as TabBase } from 'semantic-ui-react';
 
-export const StyledSidebar = styled(BaseComp)``;
+export default styled(Grid.Column)`
+  &&&.column {
+    box-shadow: 0 1px 2px 1px rgba(34, 36, 38, 0.1);
+    padding-left: 0;
+  }
+`;
+
+export const Tab = styled(TabBase)`
+  border: none;
+  box-shadow: none;
+  & .ui.secondary.pointing.menu .item {
+    justify-content: center;
+    text-align: center;
+    width: 50%;
+    &.active {
+      border-color: rgb(0, 40, 136);
+    }
+  }
+`;
+
+export const TabPane = styled(TabBase.Pane)`
+  &.ui.segment.tab {
+    border: none;
+    box-shadow: none;
+  }
+`;

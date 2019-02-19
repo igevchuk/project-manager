@@ -14,23 +14,23 @@ class Variant extends React.Component<IVariantProps, {}> {
     super(props);
   }
 
-  public getTitle = (title) => {
+  public getTitle = title => {
     return title.trim() || 'New Variant';
-  }
+  };
 
   public handleEditTitle = ({ target }) => {
     const { variant, onUpdate } = this.props;
-    const updatedVariant = {...variant, title: target.textContent};
+    const updatedVariant = { ...variant, title: target.textContent };
 
     // onUpdate(updatedVariant);
-  }
+  };
 
   public handleEditText = ({ target }) => {
     const { variant, onUpdate } = this.props;
-    const updatedVariant = {...variant, title: target.innerHTML};
+    const updatedVariant = { ...variant, title: target.innerHTML };
 
     // onUpdate(updatedVariant);
-  }
+  };
 
   public render() {
     const { variant } = this.props;
@@ -39,16 +39,18 @@ class Variant extends React.Component<IVariantProps, {}> {
       <Form.Field>
         <label>{variant.sequence}.</label>
 
-        <label contentEditable={true} onBlur={this.handleEditTitle}>{this.getTitle(variant.title)}</label>
+        <label contentEditable={true} onBlur={this.handleEditTitle}>
+          {this.getTitle(variant.title)}
+        </label>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Editable contentEditable={true} onBlur={this.handleEditText}>
-            { variant.text }
+            {variant.text}
           </Editable>
 
-          <Icon link={true} name='move' />
+          <Icon link={true} name="move" />
         </div>
       </Form.Field>
-    )
+    );
   }
 }
 

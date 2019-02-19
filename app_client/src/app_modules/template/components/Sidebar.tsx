@@ -1,27 +1,49 @@
 import * as React from 'react';
-import { Grid, Tab } from 'semantic-ui-react';
 
-import SidebarContent from './SidebarContent';
-import SidebarPlaybook from './SidebarPlaybook';
-import SidebarHistory from './SidebarHistory';
+import { Grid } from 'semantic-ui-react';
+import { contextWrapper } from '../TemplateContext';
+import PlaybookRule from './PlaybookRule';
+import StyledSidebar, { Tab, TabPane } from './Sidebar.style';
+import * as templateState from '../../../app/redux/state';
+
+interface ISidebarProps {
+  template: {
+    id: number;
+    name: string;
+    // contentOutline: templateState.contentOutline;
+    blocks: templateState.block[];
+    paragraphs: templateState.paragraph[];
+    textSegments?: templateState.textSegment[];
+  };
+}
 
 const panes = [
   {
     menuItem: 'PLAYBOOK',
-    render: () => <SidebarContent render={<SidebarPlaybook aaa={'dd'} />} />
+    render: () => (
+      <TabPane attached={false}>
+        <PlaybookRule />
+      </TabPane>
+    )
   },
   {
     menuItem: 'HISTORY',
-    render: () => <SidebarContent render={<SidebarHistory />} />
+    render: () => <TabPane attached={false}>HISTORY</TabPane>
   }
 ];
 
-const Sidebar: React.SFC = () => {
-  return (
-    <Grid.Column width={4}>
-      <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
-    </Grid.Column>
-  );
-};
+class Sidebar extends React.Component<ISidebarProps, any> {
+  constructor(props) {
+    super(props);
+  }
 
-export default Sidebar;
+  public render() {
+    return (
+      <StyledSidebar width={4}>
+        <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+      </StyledSidebar>
+    );
+  }
+}
+
+export default contextWrapper(Sidebar);
