@@ -36,10 +36,12 @@ import Schema from './document/schema';
 import * as visitor from './document/visitor';
 import * as strategy from './document/strategy';
 import * as abstract from './document/abstract';
+import * as schemaInstanc from './document/schema';
 
 import { Test } from './document/test';
 
 import * as templateState from '../../../app/redux/state';
+import { instanceOf } from 'prop-types';
 // import { any } from 'prop-types';
 
 const fakeSegments = [
@@ -58,6 +60,15 @@ const fakeSegments = [
   { id: 5, text: 'Mauris ultricies pellentesque est vel maximus. ' }
 ];
 
+type docPiece = {
+  id: number;
+  text: string;
+  // blockId?: number;
+  // paragraphId?: number;
+  // textSegmentId?: number;
+  // run?: {};
+};
+
 interface IContentProps {
   template: {
     id: number;
@@ -70,12 +81,23 @@ interface IContentProps {
 }
 
 class TemplateContent extends React.Component<IContentProps, any> {
+  public docPieces: docPiece[] = [];
+
   constructor(props: any) {
     super(props);
     this.state = {
       activeSegment: null,
       visible: false,
-      template: {}
+      template: {},
+      docPieces: [
+        {
+          blockId: -1,
+          paragraphId: -1,
+          textSegmentId: -1,
+          text: '',
+          run: {}
+        }
+      ]
     };
   }
 
@@ -230,29 +252,42 @@ class TemplateContent extends React.Component<IContentProps, any> {
     alert('aaaa');
   };
 
+  public getDoc(composite: abstract.TemplateComponent) {
+    const childrenComposites = composite.getChildren();
+
+    for (const childComposite of childrenComposites) {
+      if (childComposite.metadata.isSegment) {
+        const docPiece = {
+          id: childComposite.metadata.segment.id,
+          text: childComposite.metadata.segment.text
+        };
+        this.docPieces.push(docPiece);
+      } else {
+        this.getDoc(childComposite);
+      }
+    }
+    // console.log(this.docPieces);
+  }
+
   public render() {
     const { blocks, paragraphs, textSegments, runs } = this.props.template;
+
     const schema = new Schema({ blocks, paragraphs, textSegments, runs });
     schema.initTemplate();
     const Articles = schema.getArticleComponents();
-    // console.log(Articles);
 
-    const ArticlesDoc = Articles.map(Article => {
-      // const articleVisitor = new visitor.ArticleVisitor();
-      // Article.accept(articleVisitor);
-      // const asd = <h1>{Article.metadata.segment.text}</h1>;
-      Article.display(0);
-      console.log(Article.metadata.segment.text);
-      // return Article.metadata.segment.text;
-      return Article.metadata.segment.text;
-    })[0];
+    const ArticlesDoc = Articles.map(article => {
+      article.display(0);
+      this.getDoc(article);
 
-    // const html = '<h1>Example HTML string</h1>';
+      return article;
+    });
 
     const aaaa = new Test();
     const renderHtml = <div>{aaaa.getHtml()}</div>;
 
-    console.log(ArticlesDoc);
+    console.log(this.docPieces);
+    // console.log(ArticlesDoc);
 
     return (
       <Grid.Column width={12}>
@@ -303,9 +338,9 @@ class TemplateContent extends React.Component<IContentProps, any> {
                 <Segment basic={true}>
                   {fakeSegments.map(segment => this.renderSegment(segment))}
                   <br />
-
+                  {renderHtml}
                   <br />
-                  {ArticlesDoc}
+                  {/* <div>{ArticlesDoc}</div> */}
                 </Segment>
               </Sidebar.Pusher>
             </Sidebar.Pushable>

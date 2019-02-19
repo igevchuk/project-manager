@@ -18,7 +18,7 @@ type ITemplate = {
 
 type paragraph = templateState.paragraph;
 
-class TemplateComposite extends TemplateComponent {
+export class TemplateComposite extends TemplateComponent {
   private children: TemplateComponent[] = new Array();
 
   public constructor(metadata: metadata) {
@@ -33,18 +33,21 @@ class TemplateComposite extends TemplateComponent {
     this.children.pop();
   }
 
+  public getChildren(): TemplateComponent[] {
+    return this.children;
+  }
   public display(depth: number): void {
     // console.log(`- ${depth}` + this.children.length);
 
     this.children.forEach(component => {
-      const articleVisitor = new visitor.ArticleVisitor();
-      this.accept(articleVisitor);
+      // const articleVisitor = new visitor.ArticleVisitor();
+      // this.accept(articleVisitor);
       component.display(depth + 2);
     });
   }
 }
 
-class TemplateLeaf extends TemplateComponent {
+export class TemplateLeaf extends TemplateComponent {
   public constructor(metadata: metadata) {
     super(metadata);
   }
@@ -54,15 +57,21 @@ class TemplateLeaf extends TemplateComponent {
   public remove(c: TemplateComponent): void {
     console.log('Cannot remove from a leaf');
   }
+
+  public getChildren(): TemplateComponent[] {
+    return [];
+  }
+
   public display(depth: number): void {
     // console.log(this.metadata.segment.text);
     // console.log(`- ${depth}` + this.metadata.segment.text);
 
     switch (depth) {
       case 2:
+        // console.log(this.metadata.segment.text);
         const articleVisitor = new visitor.ArticleVisitor();
         this.accept(articleVisitor);
-        // const aass = <aa/>;
+        // console.log(this.metadata.segment.text);
         break;
       case 4:
         break;
@@ -73,6 +82,7 @@ class TemplateLeaf extends TemplateComponent {
       case 10:
         break;
       default:
+        break;
     }
   }
 }
@@ -140,14 +150,12 @@ class Schema {
     // embedding subClauseComponents into clauseComponents
     this.chainingChildren(this.clauseComponents, this.subClauseComponents);
     // console.log(this.articleComponents);
+
+    // this.articleComponents.reverse();
   }
 
   public getArticleComponents() {
     return this.articleComponents;
-  }
-
-  public getArticleComponentsasd() {
-    return <div>this is testing</div>;
   }
 
   public chainingChildren(
@@ -196,7 +204,10 @@ class Schema {
           type: paragraph.type,
           pStyle: paragraph.properties.pStyle
         },
-        segment: {}
+        segment: {
+          id: -1,
+          text: ''
+        }
       };
 
       const clauseTemplateComposite = new TemplateComposite(metadata);

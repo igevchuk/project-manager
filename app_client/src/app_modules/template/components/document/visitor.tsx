@@ -24,9 +24,9 @@ export class BaseVisitor implements IVisitor {
 export class ArticleVisitor extends BaseVisitor {
   public visit(element: TemplateComponent): void {
     element.metadata.segment.text = ReactHtmlParser(
-      '<h1>' + element.metadata.paragraph.pStyle + ' asd</h1>'
+      '<h1>' + element.metadata.segment.text + ' asd</h1>'
     );
-    // console.log('asd' + element.metadata.segment.text);
+    // console.log(element.metadata.segment.text);
   }
 }
 

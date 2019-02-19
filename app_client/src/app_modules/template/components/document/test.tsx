@@ -7,7 +7,12 @@ import ReactHtmlParser, {
 
 export class Test {
   public getHtml(): any {
-    const aa = 'tesing  nngngn';
-    return ReactHtmlParser('<h4>' + aa + '</h4>');
+    const aa = '<span>aaaa</span>';
+    const asd = '<h1>testing</h1>';
+    const more = '<div>more testing</div>';
+    const bb = '<span>bbbb</span>';
+    const cc = ReactHtmlParser(aa + asd + more + bb);
+
+    return cc;
   }
 }

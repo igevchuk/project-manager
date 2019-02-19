@@ -20,9 +20,9 @@ export type metadata = {
     pStyle?: string;
   };
   segment: {
-    id?: number;
+    id: number;
     paragraphId?: number;
-    text?: string;
+    text: string;
     run?: {};
   };
 };
@@ -38,6 +38,7 @@ export abstract class TemplateComponent extends DocElement {
   public abstract add(c: TemplateComponent): void;
   public abstract remove(c: TemplateComponent): void;
   public abstract display(depth: number): void;
+  public abstract getChildren(): TemplateComponent[];
   public accept(visitor: IVisitor): void {
     visitor.visit(this);
   }
