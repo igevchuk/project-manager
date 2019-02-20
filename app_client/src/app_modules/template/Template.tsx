@@ -80,7 +80,7 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
 
     return (
       <div>
-        {/* <Header template={template} /> */}
+        <Header template={template} />
         <Provider value={{ template }}>
           <Toolbar />
         </Provider>

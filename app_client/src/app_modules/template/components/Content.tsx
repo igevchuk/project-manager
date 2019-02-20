@@ -147,12 +147,12 @@ class TemplateContent extends React.Component<IContentProps, any> {
   };
 
   public renderDoc = () => {
-    const result: docPiece[] = [];
+    const docPieces: docPiece[] = [];
     const map = new Map();
     for (const item of this.docPieces) {
       if (!map.has(item.id)) {
         map.set(item.id, true); // set any value to Map
-        result.push({
+        docPieces.push({
           id: item.id,
           text: item.text
         });
@@ -160,7 +160,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
     }
     // console.log(result);
 
-    return <RenderSegments segments={result} />;
+    return <RenderSegments segments={docPieces} />;
 
     // return result.map(docPiece => {
     //   return (

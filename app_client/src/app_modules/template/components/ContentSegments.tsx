@@ -1,20 +1,45 @@
+// 1874
+
 import * as React from 'react';
 import { Form, Icon } from 'semantic-ui-react';
 import * as sortableHoc from 'react-sortable-hoc';
+import { v4 } from 'uuid';
+
+import Variants from './Variants';
+import {
+  StyledDocument,
+  TextHover,
+  TextHoverFeature,
+  TextNode,
+  VariantCount
+} from './Document.style';
 
 const DragHandle = sortableHoc.SortableHandle(() => (
   <span>
-    <Icon link={true} name="move" />
+    <Icon name="move" size="small" />
   </span>
 ));
 
+const handleEscapeOutside = (): void => {
+  // this.setState({ activeSegment: null });
+};
 const SortableItem = sortableHoc.SortableElement(
-  ({ value }: { value: string }) => (
-    <div>
-      <DragHandle />
-      <span>{value}</span>
-    </div>
-  )
+  ({ value }: { value: string }) => {
+    if (true) {
+      return (
+        <div>
+          <TextHover key={v4()}>
+            <TextHoverFeature className="text-hover-feat">
+              <DragHandle />
+            </TextHoverFeature>
+            <TextNode className="text-node">{value}</TextNode>
+          </TextHover>
+        </div>
+      );
+    }
+
+    return <Variants segment={value} onEscapeOutside={handleEscapeOutside} />;
+  }
 );
 
 const SortableContainer = sortableHoc.SortableContainer(({ children }) => {
@@ -25,12 +50,22 @@ type segment = {
   id: number;
   text: string;
 };
+
+type docPiece = {
+  id?: number;
+  text?: string;
+  // blockId?: number;
+  // paragraphId?: number;
+  // textSegmentId?: number;
+  // run?: {};
+};
 interface ISegmentProps {
   segments: segment[];
 }
 
 interface ISegmentState {
   segments: segment[];
+  activeSegment: docPiece;
   items: string[];
 }
 
@@ -41,6 +76,7 @@ class SegmentsComponent extends React.PureComponent<
   constructor(props: any) {
     super(props);
     this.state = {
+      activeSegment: {},
       segments: this.props.segments,
       items: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6']
     };
