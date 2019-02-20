@@ -23,22 +23,33 @@ const DragHandle = sortableHoc.SortableHandle(() => (
 const handleEscapeOutside = (): void => {
   // this.setState({ activeSegment: null });
 };
+
+const handleClick = (e: any, value: any): void => {
+  console.log(value);
+};
+
 const SortableItem = sortableHoc.SortableElement(
-  ({ value }: { value: string }) => {
-    if (true) {
+  ({ value }: { value: { id: number; text: string } }) => {
+    const [activeSegment, setActiveSegment] = React.useState({
+      id: -1,
+      text: ''
+    });
+    console.log(activeSegment);
+    if (!activeSegment || value.id !== activeSegment.id) {
       return (
         <div>
-          <TextHover key={v4()}>
+          <TextHover key={v4()} onClick={() => setActiveSegment(value)}>
             <TextHoverFeature className="text-hover-feat">
               <DragHandle />
             </TextHoverFeature>
-            <TextNode className="text-node">{value}</TextNode>
+            <TextNode className="text-node">{value.text}</TextNode>
           </TextHover>
         </div>
       );
     }
-
-    return <Variants segment={value} onEscapeOutside={handleEscapeOutside} />;
+    console.log('handleEscapeOutside');
+    return <div>lskdjflskdfjsf</div>;
+    // return <Variants segment={value} onEscapeOutside={handleEscapeOutside} />;
   }
 );
 
@@ -82,6 +93,29 @@ class SegmentsComponent extends React.PureComponent<
     };
   }
 
+  public handleClick = (e: any, value: any): void => {
+    console.log(value);
+  };
+
+  // public SortableItemasd = () => {
+  //   return sortableHoc.SortableElement(({ value }: { value: string }) => {
+  //     if (true) {
+  //       return (
+  //         <div>
+  //           <TextHover key={v4()}>
+  //             <TextHoverFeature className="text-hover-feat">
+  //               <DragHandle />
+  //             </TextHoverFeature>
+  //             <TextNode className="text-node">{{value, handleClick}}</TextNode>
+  //           </TextHover>
+  //         </div>
+  //       );
+  //     }
+
+  //     return <Variants segment={value} onEscapeOutside={handleEscapeOutside} />;
+  //   });
+  // };
+
   public onSortEnd = ({ oldIndex, newIndex }) => {
     console.log(oldIndex);
     this.setState(({ segments }) => ({
@@ -99,7 +133,8 @@ class SegmentsComponent extends React.PureComponent<
           <SortableItem
             key={`item-${index}`}
             index={index}
-            value={segment.text}
+            value={segment}
+            // config={this.handleClick}
           />
         ))}
       </SortableContainer>

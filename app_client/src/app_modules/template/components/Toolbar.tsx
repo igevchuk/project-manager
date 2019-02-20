@@ -37,7 +37,15 @@ const fakeOptionForHorizontalDots = [
 const fakeOptions = [
   {
     key: 1,
-    text: <b>156168719</b>
+    text: 'Text Segment'
+  },
+  {
+    key: 2,
+    text: 'Table'
+  },
+  {
+    key: 3,
+    text: 'Page Break'
   }
 ];
 
