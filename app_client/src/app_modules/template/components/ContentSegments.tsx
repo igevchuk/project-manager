@@ -1,5 +1,3 @@
-// 1874
-
 import * as React from 'react';
 import { Form, Icon } from 'semantic-ui-react';
 import * as sortableHoc from 'react-sortable-hoc';
@@ -20,14 +18,6 @@ const DragHandle = sortableHoc.SortableHandle(() => (
   </span>
 ));
 
-// const handleEscapeOutside = (): void => {
-//   // this.setState({ activeSegment: null });
-// };
-
-// const handleClick = (e: any, value: any): void => {
-//   console.log(value);
-// };
-
 const SortableItem = sortableHoc.SortableElement(
   ({ value }: { value: { id: number; text: string } }) => {
     const [activeSegment, setActiveSegment] = React.useState({
@@ -35,10 +25,10 @@ const SortableItem = sortableHoc.SortableElement(
       text: ''
     });
     const segmentVariants = [
-      { id: 1, text: 'text01 asd', title: 'text01' },
-      { id: 2, text: 'text02 dsa', title: 'text02' },
-      { id: 3, text: 'text03 cde', title: 'text03' },
-      { id: 4, text: 'text04 rdx', title: 'text04' }
+      { id: 1, text: 'text01 asd', title: 'text01', sequence: 1 },
+      { id: 2, text: 'text02 dsa', title: 'text02', sequence: 2 },
+      { id: 3, text: 'text03 cde', title: 'text03', sequence: 3 },
+      { id: 4, text: 'text04 rdx', title: 'text04', sequence: 4 }
     ]; // this.getTextVariants(segment);
 
     // textVariant = {
@@ -51,7 +41,6 @@ const SortableItem = sortableHoc.SortableElement(
     //   };
     // };
 
-    // console.log(activeSegment);
     if (!activeSegment || value.id !== activeSegment.id) {
       return (
         <div>
@@ -64,7 +53,7 @@ const SortableItem = sortableHoc.SortableElement(
         </div>
       );
     }
-    // console.log('handleEscapeOutside');
+
     return (
       <Variants
         segmentId={value.id}
