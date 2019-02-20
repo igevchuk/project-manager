@@ -37,6 +37,8 @@ import * as visitor from './document/visitor';
 import * as strategy from './document/strategy';
 import * as abstract from './document/abstract';
 import * as schemaInstanc from './document/schema';
+import ContentSegmentDND from './ContentSegmentDND';
+import ContentSegments from './ContentSegments';
 
 import { Test } from './document/test';
 
@@ -125,23 +127,19 @@ class TemplateContent extends React.Component<IContentProps, any> {
   public renderSegment = (segment: any): any => {
     const { activeSegment } = this.state;
 
-    if (!activeSegment || segment.id !== activeSegment.id) {
-      return [
-        <TextHover key={v4()} onClick={e => this.handleClick(e, segment)}>
-          <TextHoverFeature className="text-hover-feat">
-            <Icon name="move" size="small" />
-          </TextHoverFeature>
-          <TextNode className="text-node">{segment.text}</TextNode>
-        </TextHover>,
-        <VariantCount key={v4()} className="variant-count">
-          3 <CompareArrows />
-        </VariantCount>
-      ];
-    }
+    // if (!activeSegment || segment.id !== activeSegment.id) {
+    //   return [
+    //     // <ContentSegmentDND segment={segment} key={v4()} />,
+    //     <ContentSegmentDND key={v4()} />,
+    //     <VariantCount key={v4()} className="variant-count">
+    //       3 <CompareArrows />
+    //     </VariantCount>
+    //   ];
+    // }
 
-    return (
-      <Variants segment={segment} onEscapeOutside={this.handleEscapeOutside} />
-    );
+    // return (
+    //   <Variants segment={segment} onEscapeOutside={this.handleEscapeOutside} />
+    // );
   };
 
   public asd = () => {
@@ -162,13 +160,15 @@ class TemplateContent extends React.Component<IContentProps, any> {
     }
     console.log(result);
 
-    return result.map(docPiece => {
-      return (
-        <div key={docPiece.id}>
-          {this.renderSegment({ id: docPiece.id, text: docPiece.text })}
-        </div>
-      );
-    });
+    return <ContentSegments result={result} />;
+
+    // return result.map(docPiece => {
+    //   return (
+    //     <div key={docPiece.id}>
+    //       {this.renderSegment({ id: docPiece.id, text: docPiece.text })}
+    //     </div>
+    //   );
+    // });
   };
 
   public getDoc(composite: abstract.TemplateComponent) {
@@ -200,7 +200,6 @@ class TemplateContent extends React.Component<IContentProps, any> {
       article.display(0);
       this.getDoc(article);
     });
-    // console.log(this.docPieces);
 
     return (
       <Grid.Column width={12}>
