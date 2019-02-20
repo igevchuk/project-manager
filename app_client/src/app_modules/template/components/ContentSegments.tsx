@@ -20,13 +20,13 @@ const DragHandle = sortableHoc.SortableHandle(() => (
   </span>
 ));
 
-const handleEscapeOutside = (): void => {
-  // this.setState({ activeSegment: null });
-};
+// const handleEscapeOutside = (): void => {
+//   // this.setState({ activeSegment: null });
+// };
 
-const handleClick = (e: any, value: any): void => {
-  console.log(value);
-};
+// const handleClick = (e: any, value: any): void => {
+//   console.log(value);
+// };
 
 const SortableItem = sortableHoc.SortableElement(
   ({ value }: { value: { id: number; text: string } }) => {
@@ -34,7 +34,24 @@ const SortableItem = sortableHoc.SortableElement(
       id: -1,
       text: ''
     });
-    console.log(activeSegment);
+    const segmentVariants = [
+      { id: 1, text: 'text01 asd', title: 'text01' },
+      { id: 2, text: 'text02 dsa', title: 'text02' },
+      { id: 3, text: 'text03 cde', title: 'text03' },
+      { id: 4, text: 'text04 rdx', title: 'text04' }
+    ]; // this.getTextVariants(segment);
+
+    // textVariant = {
+    //   id?: uuid;
+    //   title?: string;
+    //   text?: string;
+    //   sequence?: number;
+    //   ref?: {
+    //     segmentId?: uuid;
+    //   };
+    // };
+
+    // console.log(activeSegment);
     if (!activeSegment || value.id !== activeSegment.id) {
       return (
         <div>
@@ -47,9 +64,14 @@ const SortableItem = sortableHoc.SortableElement(
         </div>
       );
     }
-    console.log('handleEscapeOutside');
-    return <div>lskdjflskdfjsf</div>;
-    // return <Variants segment={value} onEscapeOutside={handleEscapeOutside} />;
+    // console.log('handleEscapeOutside');
+    return (
+      <Variants
+        segmentId={value.id}
+        textVariants={segmentVariants}
+        onEscapeOutside={() => setActiveSegment({ id: -1, text: '' })}
+      />
+    );
   }
 );
 
@@ -97,25 +119,6 @@ class SegmentsComponent extends React.PureComponent<
     console.log(value);
   };
 
-  // public SortableItemasd = () => {
-  //   return sortableHoc.SortableElement(({ value }: { value: string }) => {
-  //     if (true) {
-  //       return (
-  //         <div>
-  //           <TextHover key={v4()}>
-  //             <TextHoverFeature className="text-hover-feat">
-  //               <DragHandle />
-  //             </TextHoverFeature>
-  //             <TextNode className="text-node">{{value, handleClick}}</TextNode>
-  //           </TextHover>
-  //         </div>
-  //       );
-  //     }
-
-  //     return <Variants segment={value} onEscapeOutside={handleEscapeOutside} />;
-  //   });
-  // };
-
   public onSortEnd = ({ oldIndex, newIndex }) => {
     console.log(oldIndex);
     this.setState(({ segments }) => ({
@@ -125,17 +128,11 @@ class SegmentsComponent extends React.PureComponent<
 
   public render() {
     const { items, segments } = this.state;
-    // console.log(segments);
 
     return (
       <SortableContainer onSortEnd={this.onSortEnd} useDragHandle={true}>
         {segments.map((segment, index) => (
-          <SortableItem
-            key={`item-${index}`}
-            index={index}
-            value={segment}
-            // config={this.handleClick}
-          />
+          <SortableItem key={`item-${index}`} index={index} value={segment} />
         ))}
       </SortableContainer>
     );

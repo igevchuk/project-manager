@@ -60,6 +60,8 @@ class Variants extends React.Component<any, any> {
     const restVariants = textVariants.slice(1, textVariants.length);
     console.log(textVariants);
 
+    return <div>lskdjf</div>;
+
     return (
       <EscapeOutside onEscapeOutside={onEscapeOutside} key={segmentId}>
         <StyledVariants>
