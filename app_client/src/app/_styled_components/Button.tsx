@@ -22,7 +22,10 @@ const ButtonComponent: React.SFC<IButtonComponentProps> = ({
 const Button = styled(ButtonComponent)`
   background: ${props => props.primary && props.theme.colorRoles.primary};
   background: ${props => props.secondary && props.theme.colorRoles.secondary};
-  color: ${props => (props.primary || props.secondary) ? '#ffffff' : props.theme.colorRoles.default};
+  color: ${props =>
+    props.primary || props.secondary
+      ? '#ffffff'
+      : props.theme.colorRoles.default};
   display: inline-flex;
   justify-content: center;
   align-items: center;

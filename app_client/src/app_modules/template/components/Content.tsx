@@ -38,7 +38,7 @@ import * as strategy from './document/strategy';
 import * as abstract from './document/abstract';
 import * as schemaInstanc from './document/schema';
 import ContentSegmentDND from './ContentSegmentDND';
-import ContentSegments from './ContentSegments';
+import RenderSegments from './ContentSegments';
 
 import { Test } from './document/test';
 
@@ -158,9 +158,9 @@ class TemplateContent extends React.Component<IContentProps, any> {
         });
       }
     }
-    console.log(result);
+    // console.log(result);
 
-    return <ContentSegments result={result} />;
+    return <RenderSegments segments={result} />;
 
     // return result.map(docPiece => {
     //   return (
@@ -246,8 +246,9 @@ class TemplateContent extends React.Component<IContentProps, any> {
 
               <Sidebar.Pusher>
                 <Segment basic={true}>
-                  {fakeSegments.map(segment => this.renderSegment(segment))}
+                  {/* {fakeSegments.map(segment => this.renderSegment(segment))} */}
                   <br />
+
                   <br />
                   {this.renderDoc()}
                 </Segment>
