@@ -29,6 +29,11 @@ import {
   IconGroupIcon
 } from './Toolbar.style';
 
+const fakeOptionForHorizontalDots = [
+  { key: 1, text: 'Option 1', value: 'Option 1' },
+  { key: 2, text: 'Option 2', value: 'Option 2' },
+  { key: 3, text: 'Option 3', value: 'Option 3' }
+];
 const fakeOptions = [
   {
     key: 1,
@@ -247,9 +252,17 @@ class Toolbar extends React.Component<{}, IToolbarState> {
           </ToolbarItem>
 
           <ToolbarItem>
-            <Link>
+            {/* <Link>
               <Icon link={true} name="ellipsis horizontal" />
-            </Link>
+            </Link> */}
+            <Dropdown
+              direction="left"
+              floating={true}
+              icon="ellipsis horizontal"
+              options={fakeOptionForHorizontalDots}
+              pointing={false}
+              selection={false}
+            />
           </ToolbarItem>
         </ToolbarGroup>
       </ToolbarWrap>
