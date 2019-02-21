@@ -127,11 +127,7 @@ class Variants extends React.Component<any, any> {
   public onSortEnd = ({ oldIndex, newIndex }) => {
     console.log(oldIndex);
     this.setState(({ textVariants }) => ({
-      segmetextVariantsnts: sortableHoc.arrayMove(
-        textVariants,
-        oldIndex,
-        newIndex
-      )
+      textVariants: sortableHoc.arrayMove(textVariants, oldIndex, newIndex)
     }));
   };
 

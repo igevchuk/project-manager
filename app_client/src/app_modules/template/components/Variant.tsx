@@ -7,7 +7,7 @@ import * as sortableHoc from 'react-sortable-hoc';
 
 const DragHandle = sortableHoc.SortableHandle(() => (
   <span>
-    <Icon name="move" size="small" />
+    <Icon name="move" link={true} />
   </span>
 ));
 
@@ -50,12 +50,11 @@ class Variant extends React.Component<IVariantProps, {}> {
           {this.getTitle(variant.title)}
         </label>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <DragHandle />
           <Editable contentEditable={true} onBlur={this.handleEditText}>
             {variant.text}
           </Editable>
-
-          <Icon link={true} name="move" />
+          <DragHandle />
+          {/* <Icon link={true} name="move" /> */}
         </div>
       </Form.Field>
     );
