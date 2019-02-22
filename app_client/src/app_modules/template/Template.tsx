@@ -7,10 +7,10 @@ type Action = ActionType<typeof actions>;
 
 import { Grid } from 'semantic-ui-react';
 import Document from './components/document/Document';
-import Navbar from './components/Navbar';
+import Navbar from './components/navbar/Navbar';
 import Sidebar from './components/sidebar/Sidebar';
-import Header from './components/Header';
-import Toolbar from './components/Toolbar';
+import Header from './components/header/Header';
+import Toolbar from './components/toolbar/Toolbar';
 
 import { Editor, EditorState } from 'draft-js';
 
