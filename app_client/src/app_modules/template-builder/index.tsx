@@ -5,11 +5,11 @@ import { ActionType } from 'typesafe-actions';
 
 import { Provider } from './TemplateContext';
 import { Grid } from 'semantic-ui-react';
-import Content from './components/Content';
+// import Content from './components/Content';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Toolbar from './components/Toolbar';
-import Variant from '../template/components/Variant';
+// import Variant from '../template/components/Variant_';
 import * as state from './../../app/redux/state';
 import * as actions from './../../app/redux/actions';
 
@@ -66,7 +66,7 @@ class TemplateBuilder extends React.Component<ITemplateProps, ITemplateState> {
           <Provider
             value={{ template, handleAddTextVariant: this.addTextVariant }}
           >
-            <Content />
+            {/* <Content /> */}
           </Provider>
 
           <Provider value={{ template }}>

@@ -30,8 +30,8 @@ import { Icon } from 'semantic-ui-react';
 import CompareArrows from '@material-ui/icons/CompareArrows';
 import Variant from './Variant';
 import { StyledVariants, VariantForm, Divider } from './Variants.style';
-import { VariantCount } from './Content.style';
-import { textVariant } from '../../../app/redux/state';
+// import { VariantCount } from './Content.style';
+import { textVariant } from '../../../../app/redux/state';
 
 import * as sortableHoc from 'react-sortable-hoc';
 

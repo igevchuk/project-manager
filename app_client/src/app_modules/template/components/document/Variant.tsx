@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Form, Icon } from 'semantic-ui-react';
 import { Editable } from './Variants.style';
-import { textVariant } from '../../../app/redux/state';
+import { textVariant } from '../../../../app/redux/state';
 import * as sortableHoc from 'react-sortable-hoc';
 
 const DragHandle = sortableHoc.SortableHandle(() => (

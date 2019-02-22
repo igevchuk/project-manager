@@ -277,10 +277,11 @@
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"
         },
+
         {
           "id": 240,
           "ref": {
-            "paragraphIes": 201
+            "paragraphId": 201
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -292,6 +293,52 @@
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"
         },
+        {
+          "id": 241,
+          "ref": {
+            "paragraphId": 201
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1001,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": false,
+          "text": "[NEW ARTICLE TITLE]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 242,
+          "ref": {
+            "paragraphId": 201
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1001,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": false,
+          "text": "[NEW ARTICLE TITLE]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+        {
+          "id": 243,
+          "ref": {
+            "paragraphId": 201
+          },
+          "sequence": 0,
+          "type": "TextSegment",
+          "variantGroup": 1001,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": false,
+          "text": "[NEW ARTICLE TITLE]",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        },
+
         {
           "id": 340,
           "ref": {
@@ -737,21 +784,7 @@
           "revisionCreatedBy": "7006"
         }
       ],
-      "variables": [
-        {
-          "id": 2001,
-          "type": "String",
-          "placeholder": "{{FirstName}}",
-          "description": "Customer First Name",
-          "isGlobal": false,
-          "variableGroupId": 1001,
-          "variableGroupName": "Personal Information",
-          "groupType": "I forgot why I had Group Type for variables...",
-          "revision": 0,
-          "revisionCreatedDateTime": "2019-01-01 14:00:05",
-          "revisionCreatedBy": "7006"
-        }
-      ],
+
       "history": {
         "blocks": [
           {

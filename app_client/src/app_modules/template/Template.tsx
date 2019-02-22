@@ -6,9 +6,9 @@ import * as actions from '../../app/redux/actions';
 type Action = ActionType<typeof actions>;
 
 import { Grid } from 'semantic-ui-react';
-import Document from './components/Document';
+import Document from './components/document/Document';
 import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar';
+import Sidebar from './components/sidebar/Sidebar';
 import Header from './components/Header';
 import Toolbar from './components/Toolbar';
 
@@ -19,7 +19,7 @@ import { DragDropContext } from 'react-dnd';
 
 import * as state from '../../app/redux/state';
 import { Provider } from './TemplateContext';
-import Content from './components/Content';
+// import Content from './components/Contentasd';
 
 interface ITemplateProps {
   template: state.template;
@@ -89,7 +89,7 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
           <Provider
             value={{ template, handleAddTextVariant: this.addTextVariant }}
           >
-            <Content />
+            <Document />
           </Provider>
 
           <Provider value={{ template }}>

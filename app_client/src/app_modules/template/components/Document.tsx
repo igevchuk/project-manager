@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Grid, Icon } from 'semantic-ui-react';
 import CompareArrows from '@material-ui/icons/CompareArrows';
-import Variants from './Variants';
+// import Variants from './Variants_';
 import {
   StyledDocument,
   TextHover,
@@ -61,9 +61,8 @@ export default class Document extends React.Component<any, any> {
       ];
     }
 
-    return (
-      <Variants segment={segment} onEscapeOutside={this.handleEscapeOutside} />
-    );
+    return null;
+    // <Variants segment={segment} onEscapeOutside={this.handleEscapeOutside} />
   };
 
   public render() {

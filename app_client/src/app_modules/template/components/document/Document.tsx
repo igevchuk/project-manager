@@ -29,16 +29,16 @@ import {
 
 import { v4 } from 'uuid';
 
-import { contextWrapper } from './../TemplateContext';
-import Schema from './../controllers/doc-generator/schema';
-import * as visitor from './../controllers/doc-generator/visitor';
-import * as strategy from './../controllers/doc-generator/strategy';
-import * as abstract from './../controllers/doc-generator/abstract';
-import * as schemaInstanc from './../controllers/doc-generator/schema';
+import { contextWrapper } from '../../TemplateContext';
+import Schema from '../../controllers/document/schema';
+import * as visitor from '../../controllers/document/visitor';
+import * as strategy from '../../controllers/document/strategy';
+import * as abstract from '../../controllers/document/abstract';
+import * as schemaInstanc from '../../controllers/document/schema';
 // import ContentSegmentDND from './ContentSegmentDND';
 import RenderSegments from './ContentSegments';
 
-import * as templateState from '../../../app/redux/state';
+import * as templateState from '../../../../app/redux/state';
 import { instanceOf } from 'prop-types';
 // import { any } from 'prop-types';
 
