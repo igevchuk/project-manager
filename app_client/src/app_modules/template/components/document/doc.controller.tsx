@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import * as templateState from '../../../../app/redux/state';
-import { DocElement, IVisitor } from '../../controllers/generator/abstract';
+// import { DocElement, IVisitor } from '../../controllers/generator/abstract';
 
 type IContentProps = {
   // template: {

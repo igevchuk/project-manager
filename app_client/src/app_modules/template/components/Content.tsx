@@ -30,17 +30,13 @@ import {
 import { v4 } from 'uuid';
 
 import { contextWrapper } from './../TemplateContext';
-import Controller from './../controller';
-import MainApp from './document/doc.controller';
-import Schema from './document/schema';
-import * as visitor from './document/visitor';
-import * as strategy from './document/strategy';
-import * as abstract from './document/abstract';
-import * as schemaInstanc from './document/schema';
-import ContentSegmentDND from './ContentSegmentDND';
+import Schema from './../controllers/doc-generator/schema';
+import * as visitor from './../controllers/doc-generator/visitor';
+import * as strategy from './../controllers/doc-generator/strategy';
+import * as abstract from './../controllers/doc-generator/abstract';
+import * as schemaInstanc from './../controllers/doc-generator/schema';
+// import ContentSegmentDND from './ContentSegmentDND';
 import RenderSegments from './ContentSegments';
-
-import { Test } from './document/test';
 
 import * as templateState from '../../../app/redux/state';
 import { instanceOf } from 'prop-types';

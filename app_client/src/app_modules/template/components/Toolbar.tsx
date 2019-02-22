@@ -41,11 +41,11 @@ const fakeOptions = [
   },
   {
     key: 2,
-    text: 'Table'
+    text: 'Content Block'
   },
   {
     key: 3,
-    text: 'Page Break'
+    text: 'Signature Block'
   }
 ];
 
@@ -248,7 +248,7 @@ class Toolbar extends React.Component<{}, IToolbarState> {
           <ToolbarItem>
             <Link>
               <Icon link={true} name="list" />
-              Content Outline
+              Doc Outline
             </Link>
           </ToolbarItem>
 

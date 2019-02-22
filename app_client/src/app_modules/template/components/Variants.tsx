@@ -1,3 +1,29 @@
+// const TodosDispatch = React.createContext(null);
+
+// function TodosApp() {
+//   // Note: `dispatch` won't change between re-renders
+//   const [todos, dispatch] = useReducer(todosReducer);
+
+//   return (
+//     <TodosDispatch.Provider value={dispatch}>
+//       <DeepTree todos={todos} />
+//     </TodosDispatch.Provider>
+//   );
+// }
+
+// function DeepChild(props) {
+//   // If we want to perform an action, we can get dispatch from context.
+//   const dispatch = useContext(TodosDispatch);
+
+//   function handleClick() {
+//     dispatch({ type: 'add', text: 'hello' });
+//   }
+
+//   return (
+//     <button onClick={handleClick}>Add todo</button>
+//   );
+// }
+
 import * as React from 'react';
 import EscapeOutside from 'react-escape-outside';
 import { Icon } from 'semantic-ui-react';
