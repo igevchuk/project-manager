@@ -186,6 +186,10 @@ class TemplateContent extends React.Component<IContentProps, any> {
   public render() {
     const { blocks, paragraphs, textSegments, runs } = this.props.template;
 
+    //
+
+    console.log(this.props);
+
     // generating tree data from patterns
     const schema = new Schema({ blocks, paragraphs, textSegments, runs });
     schema.initTemplate();

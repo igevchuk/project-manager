@@ -1,9 +1,38 @@
+// const TodosDispatch = React.createContext(null);
+
+// function TodosApp() {
+//   // Note: `dispatch` won't change between re-renders
+//   const [todos, dispatch] = useReducer(todosReducer);
+
+//   return (
+//     <TodosDispatch.Provider value={dispatch}>
+//       <DeepTree todos={todos} />
+//     </TodosDispatch.Provider>
+//   );
+// }
+
+// function DeepChild(props) {
+//   // If we want to perform an action, we can get dispatch from context.
+//   const dispatch = useContext(TodosDispatch);
+
+//   function handleClick() {
+//     dispatch({ type: 'add', text: 'hello' });
+//   }
+
+//   return (
+//     <button onClick={handleClick}>Add todo</button>
+//   );
+// }
+
 import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { ActionType } from 'typesafe-actions';
 import * as actions from '../../app/redux/actions';
-type Action = ActionType<typeof actions>;
+import { Editor, EditorState } from 'draft-js';
+
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DragDropContext } from 'react-dnd';
 
 import { Grid } from 'semantic-ui-react';
 import Document from './components/document/Document';
@@ -11,15 +40,13 @@ import Navbar from './components/navbar/Navbar';
 import Sidebar from './components/sidebar/Sidebar';
 import Header from './components/header/Header';
 import Toolbar from './components/toolbar/Toolbar';
-
-import { Editor, EditorState } from 'draft-js';
-
-import HTML5Backend from 'react-dnd-html5-backend';
-import { DragDropContext } from 'react-dnd';
-
 import * as state from '../../app/redux/state';
+import templateReducer from '../../app/redux/reducer';
+
 import { Provider } from './TemplateContext';
-// import Content from './components/Contentasd';
+import Template2 from './Template2';
+
+type Action = ActionType<typeof actions>;
 
 interface ITemplateProps {
   template: state.template;
@@ -45,8 +72,6 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
   }
 
   public componentDidMount() {
-    // this.timer = window.setInterval(() => console.log('testing'), 1000);
-
     this.setState(
       (prevState, props) => ({ template: this.props.template } as any),
       () => {
@@ -57,8 +82,6 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
 
   public addTextVariant = variant => {
     const { template } = this.props;
-
-    console.log(variant);
 
     // this.setState({
     //   template: {
@@ -73,29 +96,30 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
 
   public render() {
     const { template } = this.props;
-
     if (!template) {
-      return null;
+      return 'loading ....';
     }
+
+    // console.log(template);
+    const docValue = { template, handleAddTextVariant: this.addTextVariant };
 
     return (
       <div>
-        {/* <Header template={template} /> */}
+        {/* <Header template={template} />
         <Provider value={{ template }}>
           <Toolbar />
         </Provider>
 
         <Grid style={{ marginTop: 0 }}>
-          <Provider
-            value={{ template, handleAddTextVariant: this.addTextVariant }}
-          >
+          <Provider value={docValue}>
             <Document />
           </Provider>
 
           <Provider value={{ template }}>
             <Sidebar />
           </Provider>
-        </Grid>
+        </Grid> */}
+        <Template2 template={template} />
       </div>
     );
   }
@@ -103,17 +127,11 @@ class Template extends React.Component<ITemplateProps, ITemplateState> {
 
 const mapStateToProps = state => {
   const templates = state.templateReducer.templates;
-  if (templates.length === 0) {
-    return {};
-  }
-  // console.log(templates[0]);
   return { template: templates[0] };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
-  return {
-    // onFetchForm: () => dispatch(actions.fetchForm())
-  };
+  return {};
 };
 
 const TemplateContainer = connect(
