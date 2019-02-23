@@ -25,19 +25,19 @@
 // }
 
 import * as React from 'react';
-import * as actions from '../../app/redux/actions';
+import * as actions from '../../../app/redux/actions';
 
 import { Grid } from 'semantic-ui-react';
-import Document from './components/document/Document';
-import Sidebar from './components/sidebar/Sidebar';
-import Header from './components/header/Header';
-import Toolbar from './components/toolbar/Toolbar';
-import * as state from '../../app/redux/state';
-import templateReducer from '../../app/redux/reducer';
+import Document from './document/Document';
+import Sidebar from './sidebar/Sidebar';
+import Header from './header/Header';
+import Toolbar from './toolbar/Toolbar';
+import * as state from '../../../app/redux/state';
+import templateReducer from '../../../app/redux/reducer';
 import { ActionType } from 'typesafe-actions';
 // import * as actions from '../../app/redux/actions';
 
-import { Provider } from './TemplateContext';
+import { Provider } from '../TemplateContext';
 
 type Action = ActionType<typeof actions>;
 
