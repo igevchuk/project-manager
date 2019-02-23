@@ -76,6 +76,7 @@ interface IContentProps {
     textSegments: templateState.textSegment[];
     runs: templateState.run[];
   };
+  dispatch: any;
 }
 
 class TemplateContent extends React.Component<IContentProps, any> {
@@ -186,8 +187,6 @@ class TemplateContent extends React.Component<IContentProps, any> {
   public render() {
     const { blocks, paragraphs, textSegments, runs } = this.props.template;
 
-    //
-
     console.log(this.props);
 
     // generating tree data from patterns
@@ -205,6 +204,20 @@ class TemplateContent extends React.Component<IContentProps, any> {
       <Grid.Column width={12}>
         <StyledDocument>
           <div>
+            <button
+              onClick={() =>
+                this.props.dispatch({
+                  type: 'FETCH_FORM_FULFILLED',
+                  payload: {
+                    id: 114,
+                    name: 'this is name'
+                  }
+                })
+              }
+            >
+              +
+            </button>
+
             <Button.Group>
               <Button
                 disabled={this.state.visible}

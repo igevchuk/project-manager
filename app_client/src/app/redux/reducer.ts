@@ -23,7 +23,10 @@ export default function reducer(state = initialState, action) {
 
       return newState;
     }
-
+    case 'FETCH_FORM_FULFILLED': {
+      console.log(action.payload);
+      return state;
+    }
     default:
       return state;
   }

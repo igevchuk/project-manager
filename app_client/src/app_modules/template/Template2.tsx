@@ -70,8 +70,11 @@ export function Templateaa(props) {
   // const docValue = { template, handleAddTextVariant: addTextVariant };
 
   return (
-    <Provider value={dispatch}>
-      <Document template={templateState.templates[0]} />
+    // <Provider value={dispatch}>
+    //   <Document template={templateState.templates[0]} />
+    // </Provider>
+    <Provider value={{ dispatch, template }}>
+      <Document />
     </Provider>
   );
 
