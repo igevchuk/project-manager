@@ -73,8 +73,8 @@ export function Templateaa(props) {
     // <Provider value={dispatch}>
     //   <Document template={templateState.templates[0]} />
     // </Provider>
-    <Provider value={{ dispatch, template }}>
-      <Document />
+    <Provider value={{ dispatch }}>
+      <Document template={template} />
     </Provider>
   );
 
