@@ -310,6 +310,9 @@
           },
           "sequence": 0,
           "type": "TextSegment",
+          "variantGroup": 1006,
+          "variantType": "Standard/Neutral",
+          "variantIsDefault": false,
           "text": "[It is further agreed between the parties as follows.]",
           "revision": 0,
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
@@ -395,7 +398,7 @@
           "ref": {
             "paragraphs": 501
           },
-          "sequence": 0,
+          "sequence": 1,
           "type": "TextSegment",
           "variantGroup": 1009,
           "variantType": "Standard/Neutral",

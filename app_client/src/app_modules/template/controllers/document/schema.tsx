@@ -270,10 +270,19 @@ class Schema {
             return sequenceA - sequenceB;
           });
 
-        console.log(segmentRun);
+        // console.log(segmentRun);
 
-        // const segmentStyling =
-        //   segmentRun && segmentRun.properties ? segmentRun.properties : {};
+        const runs = segmentRun.map(run => {
+          const aa = {
+            runId: run.id,
+            segmentId: run.ref.textSegmentId,
+            properties: run.properties,
+            t: run.t
+          };
+          return aa;
+        });
+
+        console.log(runs);
 
         const metadata = {
           isSegment: true,
@@ -285,6 +294,7 @@ class Schema {
             id: textSegment.id,
             paragraphId: textSegment.ref.paragraphId,
             text: textSegment.text
+            // txt:
             // run: segmentStyling
           },
           txtSegment: textSegment
