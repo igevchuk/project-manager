@@ -3,6 +3,7 @@ import { metadata, TemplateComponent } from './abstract';
 import * as visitor from './visitor';
 
 import * as templateState from '../../../../app/redux/state';
+import { AnyAaaaRecord } from 'dns';
 
 type ITemplate = {
   id?: number;
@@ -219,9 +220,12 @@ class Schema {
         },
         segment: {
           id: -1,
+          blockId: -1,
           text: ''
         },
-        txtSegment: {}
+        variant: {
+          id: -1
+        }
       };
 
       const templateComposite = new TemplateComposite(metadata);
@@ -237,6 +241,20 @@ class Schema {
     blockId: number
   ): number {
     return blocks.filter(block => block.id === blockId)[0].sequence;
+  }
+
+  public getBlockIdAndPStyule(
+    paragraphs: templateState.paragraph[],
+    paragraphId: number
+  ): any {
+    const paragraph = paragraphs.filter(
+      paragraph => paragraph.id === paragraphId
+    )[0];
+
+    return {
+      blockId: paragraph.ref.blockId,
+      pStyle: paragraph.properties.pStyle
+    };
   }
 
   public generateTemplateLeaves(
@@ -281,7 +299,12 @@ class Schema {
           };
         });
 
-        console.log(extractRun);
+        // console.log(extractRun);
+
+        const blockIdAndPStyule = this.getBlockIdAndPStyule(
+          this.template.paragraphs,
+          textSegment.ref.paragraphId
+        );
 
         const metadata = {
           isSegment: true,
@@ -291,11 +314,13 @@ class Schema {
           },
           segment: {
             id: textSegment.id,
+            blockId: blockIdAndPStyule.blockId,
             paragraphId: textSegment.ref.paragraphId,
             text: textSegment.text,
-            runs: extractRun
+            runs: extractRun,
+            pStyle: blockIdAndPStyule.pStyle
           },
-          txtSegment: textSegment
+          variant: textSegment
         };
 
         return new TemplateLeaf(metadata);

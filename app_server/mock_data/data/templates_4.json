@@ -288,7 +288,7 @@
           "variantGroup": 1001,
           "variantType": "Standard/Neutral",
           "variantIsDefault": true,
-          "text": "[NEW ARTICLE TITLE]",
+          "text": "[NEW ARTICLE TITLE] 01",
           "revision": 0,
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"
@@ -303,7 +303,7 @@
           "variantGroup": 1001,
           "variantType": "Standard/Neutral",
           "variantIsDefault": false,
-          "text": "[NEW ARTICLE TITLE]",
+          "text": "[NEW ARTICLE TITLE] 02",
           "revision": 0,
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"
@@ -318,7 +318,7 @@
           "variantGroup": 1001,
           "variantType": "Standard/Neutral",
           "variantIsDefault": false,
-          "text": "[NEW ARTICLE TITLE]",
+          "text": "[NEW ARTICLE TITLE] 03",
           "revision": 0,
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"
@@ -333,7 +333,7 @@
           "variantGroup": 1001,
           "variantType": "Standard/Neutral",
           "variantIsDefault": false,
-          "text": "[NEW ARTICLE TITLE]",
+          "text": "[NEW ARTICLE TITLE] 04",
           "revision": 0,
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"

@@ -73,21 +73,49 @@ type segment = {
   text: string;
 };
 
+// type docPiece = {
+//   id?: number;
+//   text?: string;
+//   // blockId?: number;
+//   // paragraphId?: number;
+//   // textSegmentId?: number;
+//   // run?: {};
+// };
+
 type docPiece = {
-  id?: number;
-  text?: string;
-  // blockId?: number;
-  // paragraphId?: number;
-  // textSegmentId?: number;
-  // run?: {};
+  id: number;
+  segment: {
+    id: number;
+    blockId?: number;
+    paragraphId?: number;
+    text: string;
+    run?: {};
+    pStyle?: string;
+  };
+  variant: {
+    id: number;
+    ref?: {
+      paragraphId?: number;
+    };
+    sequence?: number;
+    type?: string;
+    variantGroup?: number;
+    variantType?: string;
+    variantIsDefault?: boolean;
+    text?: string;
+    revision?: number;
+    revisionCreatedDateTime?: Date;
+    revisionCreatedBy?: string;
+  };
 };
+
 interface ISegmentProps {
-  segments: segment[];
+  segments: docPiece[];
 }
 
 interface ISegmentState {
-  segments: segment[];
-  activeSegment: docPiece;
+  segments: docPiece[];
+  // activeSegment: docPiece;
   items: string[];
 }
 
@@ -98,7 +126,7 @@ class SegmentsComponent extends React.PureComponent<
   constructor(props: any) {
     super(props);
     this.state = {
-      activeSegment: {},
+      // activeSegment: {},
       segments: this.props.segments,
       items: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6']
     };
@@ -118,13 +146,14 @@ class SegmentsComponent extends React.PureComponent<
   public render() {
     const { items, segments } = this.state;
 
-    return (
-      <SortableContainer onSortEnd={this.onSortEnd} useDragHandle={true}>
-        {segments.map((segment, index) => (
-          <SortableItem key={`item-${index}`} index={index} value={segment} />
-        ))}
-      </SortableContainer>
-    );
+    return <div>sldkfj</div>;
+    // return (
+    //   <SortableContainer onSortEnd={this.onSortEnd} useDragHandle={true}>
+    //     {segments.map((segment, index) => (
+    //       <SortableItem key={`item-${index}`} index={index} value={segment} />
+    //     ))}
+    //   </SortableContainer>
+    // );
   }
 }
 

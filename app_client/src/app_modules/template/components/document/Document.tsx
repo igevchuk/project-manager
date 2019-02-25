@@ -58,11 +58,29 @@ const fakeSegments = [
 
 type docPiece = {
   id: number;
-  text: string;
-  // blockId?: number;
-  // paragraphId?: number;
-  // textSegmentId?: number;
-  // run?: {};
+  segment: {
+    id: number;
+    blockId?: number;
+    paragraphId?: number;
+    text: string;
+    run?: {};
+    pStyle?: string;
+  };
+  variant: {
+    id: number;
+    ref?: {
+      paragraphId?: number;
+    };
+    sequence?: number;
+    type?: string;
+    variantGroup?: number;
+    variantType?: string;
+    variantIsDefault?: boolean;
+    text?: string;
+    revision?: number;
+    revisionCreatedDateTime?: Date;
+    revisionCreatedBy?: string;
+  };
 };
 
 interface IContentProps {
@@ -91,11 +109,11 @@ class TemplateContent extends React.Component<IContentProps, any> {
       template: {},
       docPieces: [
         {
-          blockId: -1,
-          paragraphId: -1,
-          textSegmentId: -1,
-          text: '',
-          run: {}
+          // blockId: -1,
+          // paragraphId: -1,
+          // textSegmentId: -1,
+          // text: '',
+          // run: {}
         }
       ]
     };
@@ -150,16 +168,14 @@ class TemplateContent extends React.Component<IContentProps, any> {
     for (const item of this.docPieces) {
       if (!map.has(item.id)) {
         map.set(item.id, true); // set any value to Map
-        docPieces.push({
-          id: item.id,
-          text: item.text
-        });
+        docPieces.push(item);
       }
     }
-    // console.log(result);
+    // console.log(docPieces);
 
     return <RenderSegments segments={docPieces} />;
 
+    return <div>ALSKDJF</div>;
     // return result.map(docPiece => {
     //   return (
     //     <div key={docPiece.id}>
@@ -170,19 +186,26 @@ class TemplateContent extends React.Component<IContentProps, any> {
   };
 
   public getDoc(composite: abstract.TemplateComponent) {
+    // console.log(composite);
     const childrenComposites = composite.getChildren();
 
     for (const childComposite of childrenComposites) {
       if (childComposite.metadata.isSegment) {
         const docPiece = {
+          // id: childComposite.metadata.segment.id,
+          // text: childComposite.metadata.segment.text
+          // paragraph: childComposite.metadata.paragraph
           id: childComposite.metadata.segment.id,
-          text: childComposite.metadata.segment.text
+          segment: childComposite.metadata.segment,
+          variant: childComposite.metadata.variant
         };
         this.docPieces.push(docPiece);
       } else {
         this.getDoc(childComposite);
       }
     }
+
+    console.log(this.docPieces);
   }
 
   public render() {
@@ -191,18 +214,24 @@ class TemplateContent extends React.Component<IContentProps, any> {
     if (!this.state.template) {
       return 'loading ....';
     }
-    // console.log(this.state.template);
 
     // generating tree data from patterns
     const schema = new Schema({ blocks, paragraphs, textSegments, runs });
     schema.initTemplate();
     const Articles = schema.getArticleComponents();
 
-    // generating doc
-    Articles.map(article => {
-      article.display(0);
-      this.getDoc(article);
-    });
+    // console.log(Articles);
+
+    // // generating doc
+    // Articles.map(article => {
+    //   // applying vistor pattern
+    //   article.display(0);
+    //   this.getDoc(article);
+    // });
+
+    const article = Articles[0];
+    article.display(0);
+    this.getDoc(article);
 
     return (
       <Grid.Column width={12}>

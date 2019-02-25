@@ -21,9 +21,26 @@ export type metadata = {
   };
   segment: {
     id: number;
+    blockId: number;
     paragraphId?: number;
     text: string;
     run?: {};
+    pStyle?: string;
+  };
+  variant: {
+    id: number;
+    ref?: {
+      paragraphId?: number;
+    };
+    sequence?: number;
+    type?: string;
+    variantGroup?: number;
+    variantType?: string;
+    variantIsDefault?: boolean;
+    text?: string;
+    revision?: number;
+    revisionCreatedDateTime?: Date;
+    revisionCreatedBy?: string;
   };
 };
 

@@ -23,9 +23,9 @@ export class BaseVisitor implements IVisitor {
 // strategy is opertional. if following concreate types used, no strategy needed.
 export class ArticleVisitor extends BaseVisitor {
   public visit(element: TemplateComponent): void {
-    element.metadata.segment.text = ReactHtmlParser(
-      '<h1>' + element.metadata.segment.text + ' asd</h1>'
-    );
+    // element.metadata.segment.text = ReactHtmlParser(
+    //   '<h1>' + element.metadata.segment.text + ' asd</h1>'
+    // );
     // console.log(element.metadata.segment.text);
   }
 }
