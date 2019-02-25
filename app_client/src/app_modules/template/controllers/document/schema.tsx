@@ -272,17 +272,16 @@ class Schema {
 
         // console.log(segmentRun);
 
-        const runs = segmentRun.map(run => {
-          const aa = {
+        const extractRun = segmentRun.map(run => {
+          return {
             runId: run.id,
             segmentId: run.ref.textSegmentId,
             properties: run.properties,
             t: run.t
           };
-          return aa;
         });
 
-        console.log(runs);
+        console.log(extractRun);
 
         const metadata = {
           isSegment: true,
@@ -293,9 +292,8 @@ class Schema {
           segment: {
             id: textSegment.id,
             paragraphId: textSegment.ref.paragraphId,
-            text: textSegment.text
-            // txt:
-            // run: segmentStyling
+            text: textSegment.text,
+            runs: extractRun
           },
           txtSegment: textSegment
         };
