@@ -10,10 +10,18 @@ type ITemplate = {
   version?: string;
   lastSaved?: Date;
   lastPublished?: Date;
+
   blocks: templateState.block[];
   paragraphs: templateState.paragraph[];
+
+  tableRows?: templateState.tableRow[];
+  tableCells?: templateState.tableCell[];
+  tableParagraphs?: templateState.tableParagraph[];
+
   textSegments: templateState.textSegment[];
   runs: templateState.run[];
+  variables?: templateState.variable[];
+  history?: templateState.history;
 };
 
 type paragraph = templateState.paragraph;
@@ -87,9 +95,9 @@ export class TemplateLeaf extends TemplateComponent {
   }
 }
 
-export const aa = props => {
-  return <div>this is tesitng</div>;
-};
+// export const aa = props => {
+//   return <div>this is tesitng</div>;
+// };
 
 class Schema {
   public articles: paragraph[] = new Array<paragraph>();
@@ -103,6 +111,7 @@ class Schema {
   public subSectionComponents: TemplateComponent[];
   public clauseComponents: TemplateComponent[];
   public subClauseComponents: TemplateComponent[];
+
   public templateLeaves: TemplateLeaf[];
 
   public constructor(public template: ITemplate) {
@@ -125,7 +134,8 @@ class Schema {
 
   public initTemplate() {
     this.templateLeaves = this.generateTemplateLeaves(
-      this.template.textSegments
+      this.template.textSegments,
+      this.template.runs
     );
 
     this.clauseComponents = this.generateComposites(this.clauses);
@@ -210,7 +220,8 @@ class Schema {
         segment: {
           id: -1,
           text: ''
-        }
+        },
+        txtSegment: {}
       };
 
       const templateComposite = new TemplateComposite(metadata);
@@ -229,8 +240,11 @@ class Schema {
   }
 
   public generateTemplateLeaves(
-    textSegments: templateState.textSegment[]
+    textSegments: templateState.textSegment[],
+    runs: templateState.run[]
   ): TemplateLeaf[] {
+    // console.log(runs);
+
     return textSegments.map(
       (textSegment: {
         id: number;
@@ -244,11 +258,22 @@ class Schema {
         variantIsDefault: boolean;
         text: string;
       }) => {
-        const segmentRun = this.template.runs.filter(
-          run => run.ref.textSegmentId === textSegment.id
-        )[0];
-        const segmentStyling =
-          segmentRun && segmentRun.properties ? segmentRun.properties : {};
+        // const segmentRun = this.template.runs.filter(
+        //   run => run.ref.textSegmentId === textSegment.id
+        // )[0];
+
+        const segmentRun = this.template.runs
+          .filter(run => run.ref.textSegmentId === textSegment.id)
+          .sort((a, b) => {
+            const sequenceA = a.sequence;
+            const sequenceB = b.sequence;
+            return sequenceA - sequenceB;
+          });
+
+        console.log(segmentRun);
+
+        // const segmentStyling =
+        //   segmentRun && segmentRun.properties ? segmentRun.properties : {};
 
         const metadata = {
           isSegment: true,
@@ -259,9 +284,10 @@ class Schema {
           segment: {
             id: textSegment.id,
             paragraphId: textSegment.ref.paragraphId,
-            text: textSegment.text,
-            run: segmentStyling
-          }
+            text: textSegment.text
+            // run: segmentStyling
+          },
+          txtSegment: textSegment
         };
 
         return new TemplateLeaf(metadata);

@@ -26,7 +26,7 @@ export type template = {
   tableParagraphs?: tableParagraph[];
   textSegments?: textSegment[];
   textVariants?: textVariant[];
-  runs?: run[];
+  runs: run[];
   variables?: variable[];
   history?: history;
 };
@@ -141,7 +141,7 @@ export type run = {
   ref: {
     textSegmentId?: uuid;
   };
-  sequence?: number;
+  sequence: number;
   type?: string; // Run
   properties: {
     b?: null;

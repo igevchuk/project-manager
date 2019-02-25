@@ -35,9 +35,7 @@ import * as visitor from '../../controllers/document/visitor';
 import * as strategy from '../../controllers/document/strategy';
 import * as abstract from '../../controllers/document/abstract';
 import * as schemaInstanc from '../../controllers/document/schema';
-// import ContentSegmentDND from './ContentSegmentDND';
 import RenderSegments from './ContentSegments';
-
 import * as templateState from '../../../../app/redux/state';
 import { instanceOf } from 'prop-types';
 // import { any } from 'prop-types';
@@ -74,9 +72,12 @@ interface IContentProps {
     blocks: templateState.block[];
     paragraphs: templateState.paragraph[];
     textSegments: templateState.textSegment[];
+    tables: templateState.table[];
+    tableRows: templateState.tableRow[];
+    tableCells: templateState.tableCell[];
     runs: templateState.run[];
   };
-  dispatch: any;
+  dispatch: React.Dispatch<any>;
 }
 
 class TemplateContent extends React.Component<IContentProps, any> {
@@ -190,7 +191,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
     if (!this.state.template) {
       return 'loading ....';
     }
-    console.log(this.state.template);
+    // console.log(this.state.template);
 
     // generating tree data from patterns
     const schema = new Schema({ blocks, paragraphs, textSegments, runs });

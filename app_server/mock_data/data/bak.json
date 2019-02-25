@@ -37,27 +37,14 @@
         {
           "id": 7,
           "sequence": 6
-        },
-        {
-          "id": 8,
-          "sequence": 7
-        },
-        {
-          "id": 9,
-          "sequence": 8
-        },
-        {
-          "id": 10,
-          "sequence": 9
         }
       ],
       "paragraphs": [
         {
           "id": 101,
           "ref": {
-            "blockId": 1
+            "block": 1
           },
-          "sequence": 1,
           "type": "Paragraph",
           "properties": {
             "pStyle": "Title",
@@ -71,9 +58,8 @@
         {
           "id": 201,
           "ref": {
-            "blockId": 2
+            "block": 2
           },
-          "sequence": 2,
           "type": "Paragraph",
           "properties": {
             "pStyle": "Title",
@@ -86,23 +72,8 @@
         {
           "id": 301,
           "ref": {
-            "blockId": 3
+            "block": 3
           },
-          "sequence": 3,
-          "type": "Paragraph",
-          "properties": {
-            "pStyle": "Heading1"
-          },
-          "revision": 0,
-          "revisionCreatedDateTime": "2019-01-01 14:00:05",
-          "revisionCreatedBy": "7006"
-        },
-        {
-          "id": 302,
-          "ref": {
-            "blockId": 8
-          },
-          "sequence": 4,
           "type": "Paragraph",
           "properties": {
             "pStyle": "Heading1"
@@ -114,9 +85,8 @@
         {
           "id": 401,
           "ref": {
-            "blockId": 4
+            "block": 4
           },
-          "sequence": 4,
           "type": "Paragraph",
           "properties": {
             "pStyle": "Heading2"
@@ -127,9 +97,6 @@
         },
         {
           "id": 501,
-          "ref": {
-            "blockId": 5
-          },
           "sequence": 5,
           "type": "Paragraph",
           "properties": {
@@ -142,9 +109,8 @@
         {
           "id": 601,
           "ref": {
-            "blockId": 6
+            "block": 6
           },
-          "sequence": 6,
           "type": "Paragraph",
           "properties": {
             "pStyle": "Heading4"
@@ -156,9 +122,9 @@
         {
           "id": 730,
           "ref": {
-            "blockId": 7
+            "tableCell": 720
           },
-          "sequence": 7,
+          "sequence": null,
           "type": "Paragraph",
           "properties": {
             "pStyle": null,
@@ -172,9 +138,9 @@
         {
           "id": 731,
           "ref": {
-            "blockId": 8
+            "tableCell": 721
           },
-          "sequence": 8,
+          "sequence": null,
           "type": "Paragraph",
           "properties": {
             "pStyle": null,
@@ -265,7 +231,7 @@
         {
           "id": 141,
           "ref": {
-            "paragraphId": 101
+            "paragraphs": 101
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -277,11 +243,10 @@
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"
         },
-
         {
           "id": 240,
           "ref": {
-            "paragraphId": 501
+            "paragraphs": 201
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -294,77 +259,16 @@
           "revisionCreatedBy": "7006"
         },
         {
-          "id": 241,
-          "ref": {
-            "paragraphId": 501
-          },
-          "sequence": 0,
-          "type": "TextSegment",
-          "variantGroup": 1001,
-          "variantType": "Standard/Neutral",
-          "variantIsDefault": false,
-          "text": "[NEW ARTICLE TITLE]",
-          "revision": 0,
-          "revisionCreatedDateTime": "2019-01-01 14:00:05",
-          "revisionCreatedBy": "7006"
-        },
-        {
-          "id": 242,
-          "ref": {
-            "paragraphId": 501
-          },
-          "sequence": 0,
-          "type": "TextSegment",
-          "variantGroup": 1001,
-          "variantType": "Standard/Neutral",
-          "variantIsDefault": false,
-          "text": "[NEW ARTICLE TITLE]",
-          "revision": 0,
-          "revisionCreatedDateTime": "2019-01-01 14:00:05",
-          "revisionCreatedBy": "7006"
-        },
-        {
-          "id": 243,
-          "ref": {
-            "paragraphId": 501
-          },
-          "sequence": 0,
-          "type": "TextSegment",
-          "variantGroup": 1001,
-          "variantType": "Standard/Neutral",
-          "variantIsDefault": false,
-          "text": "[NEW ARTICLE TITLE]",
-          "revision": 0,
-          "revisionCreatedDateTime": "2019-01-01 14:00:05",
-          "revisionCreatedBy": "7006"
-        },
-
-        {
           "id": 340,
           "ref": {
-            "paragraphId": 301
+            "paragraphs": 301
           },
           "sequence": 0,
           "type": "TextSegment",
           "variantGroup": 1002,
           "variantType": "Standard/Neutral",
           "variantIsDefault": true,
-          "text": "[Agreement Title] 02",
-          "revision": 0,
-          "revisionCreatedDateTime": "2019-01-01 14:00:05",
-          "revisionCreatedBy": "7006"
-        },
-        {
-          "id": 341,
-          "ref": {
-            "paragraphId": 302
-          },
-          "sequence": 0,
-          "type": "TextSegment",
-          "variantGroup": 1003,
-          "variantType": "Standard/Neutral",
-          "variantIsDefault": true,
-          "text": "[Agreement Title] 01",
+          "text": "[Agreement Title]",
           "revision": 0,
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"
@@ -372,7 +276,7 @@
         {
           "id": 440,
           "ref": {
-            "paragraphId": 401
+            "paragraphs": 401
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -387,9 +291,9 @@
         {
           "id": 540,
           "ref": {
-            "paragraphId": 501
+            "paragraphs": 501
           },
-          "sequence": 1,
+          "sequence": 0,
           "type": "TextSegment",
           "variantGroup": 1005,
           "variantType": "Standard/Neutral",
@@ -402,7 +306,7 @@
         {
           "id": 640,
           "ref": {
-            "paragraphId": 601
+            "paragraphs": 601
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -414,7 +318,7 @@
         {
           "id": 641,
           "ref": {
-            "paragraphId": 601
+            "paragraphs": 601
           },
           "sequence": 1,
           "type": "TextSegment",
@@ -429,7 +333,7 @@
         {
           "id": 740,
           "ref": {
-            "paragraphId": 730
+            "paragraphs": 730
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -444,7 +348,7 @@
         {
           "id": 741,
           "ref": {
-            "paragraphId": 731
+            "paragraphs": 731
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -459,7 +363,7 @@
         {
           "id": 742,
           "ref": {
-            "paragraphId": 731
+            "paragraphs": 731
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -474,7 +378,7 @@
         {
           "id": 743,
           "ref": {
-            "paragraphId": 731
+            "paragraphs": 731
           },
           "sequence": 0,
           "type": "TextSegment",
@@ -489,9 +393,9 @@
         {
           "id": 840,
           "ref": {
-            "paragraphId": 501
+            "paragraphs": 501
           },
-          "sequence": 2,
+          "sequence": 0,
           "type": "TextSegment",
           "variantGroup": 1009,
           "variantType": "Standard/Neutral",
@@ -506,7 +410,7 @@
         {
           "id": 150,
           "ref": {
-            "textSegmentId": 141
+            "textSegments": 140
           },
           "sequence": 0,
           "type": "Run",
@@ -525,7 +429,7 @@
         {
           "id": 250,
           "ref": {
-            "textSegmentId": 240
+            "textSegments": 240
           },
           "sequence": 0,
           "type": "Run",
@@ -542,28 +446,9 @@
           "revisionCreatedBy": "7006"
         },
         {
-          "id": 251,
-          "ref": {
-            "textSegmentId": 240
-          },
-          "sequence": 1,
-          "type": "Run",
-          "properties": {
-            "b": null,
-            "i": null,
-            "u": null,
-            "strike": null,
-            "vertAlign": "superscript"
-          },
-          "t": "SECOND [NEW ARTICLE TITLE]",
-          "revision": 0,
-          "revisionCreatedDateTime": "2019-01-01 14:00:05",
-          "revisionCreatedBy": "7006"
-        },
-        {
           "id": 350,
           "ref": {
-            "textSegmentId": 340
+            "textSegments": 340
           },
           "sequence": 0,
           "type": "Run",
@@ -580,7 +465,7 @@
         {
           "id": 450,
           "ref": {
-            "textSegmentId": 440
+            "textSegments": 440
           },
           "sequence": 0,
           "type": "Run",
@@ -597,7 +482,7 @@
         {
           "id": 550,
           "ref": {
-            "textSegmentId": 540
+            "textSegments": 540
           },
           "sequence": 0,
           "type": "Run",
@@ -614,7 +499,7 @@
         {
           "id": 650,
           "ref": {
-            "textSegmentId": 640
+            "textSegments": 640
           },
           "sequence": 0,
           "type": "Run",
@@ -631,7 +516,7 @@
         {
           "id": 651,
           "ref": {
-            "textSegmentId": 641
+            "textSegments": 641
           },
           "sequence": 0,
           "type": "Run",
@@ -648,7 +533,7 @@
         {
           "id": 652,
           "ref": {
-            "textSegmentId": 641
+            "textSegments": 641
           },
           "sequence": 1,
           "type": "Run",
@@ -665,7 +550,7 @@
         {
           "id": 653,
           "ref": {
-            "textSegmentId": 641
+            "textSegments": 641
           },
           "sequence": 2,
           "type": "Run",
@@ -682,7 +567,7 @@
         {
           "id": 750,
           "ref": {
-            "textSegmentId": 740
+            "textSegments": 740
           },
           "sequence": 0,
           "type": "Run",
@@ -699,7 +584,7 @@
         {
           "id": 751,
           "ref": {
-            "textSegmentId": 741
+            "textSegments": 741
           },
           "sequence": 0,
           "type": "Run",
@@ -716,7 +601,7 @@
         {
           "id": 752,
           "ref": {
-            "textSegmentId": 742
+            "textSegments": 742
           },
           "sequence": 0,
           "type": "Run",
@@ -733,7 +618,7 @@
         {
           "id": 753,
           "ref": {
-            "textSegmentId": 742
+            "textSegments": 742
           },
           "sequence": 1,
           "type": "Run",
@@ -750,7 +635,7 @@
         {
           "id": 754,
           "ref": {
-            "textSegmentId": 743
+            "textSegments": 743
           },
           "sequence": 0,
           "type": "Run",
@@ -767,7 +652,7 @@
         {
           "id": 850,
           "ref": {
-            "textSegmentId": 840
+            "textSegments": 840
           },
           "sequence": 0,
           "type": "Run",
@@ -784,7 +669,7 @@
         {
           "id": 851,
           "ref": {
-            "textSegmentId": 840
+            "textSegments": 840
           },
           "sequence": 1,
           "type": "Run",
@@ -803,7 +688,21 @@
           "revisionCreatedBy": "7006"
         }
       ],
-
+      "variables": [
+        {
+          "id": 2001,
+          "type": "String",
+          "placeholder": "{{FirstName}}",
+          "description": "Customer First Name",
+          "isGlobal": false,
+          "variableGroupId": 1001,
+          "variableGroupName": "Personal Information",
+          "groupType": "I forgot why I had Group Type for variables...",
+          "revision": 0,
+          "revisionCreatedDateTime": "2019-01-01 14:00:05",
+          "revisionCreatedBy": "7006"
+        }
+      ],
       "history": {
         "blocks": [
           {
