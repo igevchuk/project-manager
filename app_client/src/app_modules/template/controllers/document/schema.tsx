@@ -276,10 +276,6 @@ class Schema {
         variantIsDefault: boolean;
         text: string;
       }) => {
-        // const segmentRun = this.template.runs.filter(
-        //   run => run.ref.textSegmentId === textSegment.id
-        // )[0];
-
         const segmentRun = this.template.runs
           .filter(run => run.ref.textSegmentId === textSegment.id)
           .sort((a, b) => {
