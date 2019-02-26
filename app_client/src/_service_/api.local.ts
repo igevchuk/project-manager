@@ -9,7 +9,7 @@ interface IApiLocal {
 }
 
 class ApiLocal extends ApiBase implements IApiLocal {
-  private baseUrl = 'http://localhost:3004';
+  private baseUrl = process.env.NODE_ENV === "production"? '/template':'http://localhost:3004';
 
   // public getLocalForm = (): Observable<vm.form> => {
   //   const url = `${this.baseUrl}/form/`;
@@ -73,7 +73,7 @@ class ApiLocal extends ApiBase implements IApiLocal {
       }
     ];
 
-    fetch('http://localhost:3004/templates', {
+    fetch(`${this.baseUrl}/templates/`, {
       method: 'POST',
       body: JSON.stringify(body),
       headers: { 'Content-Type': 'application/json' }
@@ -97,7 +97,7 @@ class ApiLocal extends ApiBase implements IApiLocal {
     //   .then(res => res.json())
     //   .then(json => console.log(json));
 
-    return this.sendRequest('http://localhost:3004/user/', 'POST', body);
+    return this.sendRequest(`${this.baseUrl}/templates/`, 'POST', body);
   };
 }
 export default new ApiLocal();
