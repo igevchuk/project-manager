@@ -499,7 +499,7 @@
           "variantGroup": 1009,
           "variantType": "Standard/Neutral",
           "variantIsDefault": true,
-          "text": "First Name: {{FirstName}}",
+          "text": "First Name: {{FirstName}} is another run",
           "revision": 0,
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"
@@ -575,7 +575,7 @@
             "i": null,
             "u": null
           },
-          "t": "[Agreement Title]",
+          "t": "[Agreement Title] is an article",
           "revision": 0,
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"
@@ -592,7 +592,7 @@
             "i": null,
             "u": null
           },
-          "t": "[This is a description of the contract]",
+          "t": "[This is a description of the contract] is a section ",
           "revision": 0,
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"
@@ -609,7 +609,7 @@
             "i": null,
             "u": null
           },
-          "t": "[The Services to be provided under this contract are described herein.",
+          "t": "[The Services to be provided under this contract are described herein.] ",
           "revision": 0,
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"
@@ -643,7 +643,7 @@
             "i": null,
             "u": null
           },
-          "t": "Additional ",
+          "t": "Additional is from run. ",
           "revision": 0,
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"
@@ -660,7 +660,7 @@
             "i": null,
             "u": null
           },
-          "t": "Text",
+          "t": "Text is fron run. ",
           "revision": 0,
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"
@@ -677,7 +677,7 @@
             "i": null,
             "u": null
           },
-          "t": " Segment",
+          "t": " Segment is also from run. ",
           "revision": 0,
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"
@@ -779,7 +779,7 @@
             "i": null,
             "u": null
           },
-          "t": "First Name: ",
+          "t": "First Name: is a run. ",
           "revision": 0,
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"
@@ -800,7 +800,7 @@
             "i": null,
             "u": true
           },
-          "t": "{{FirstName}}",
+          "t": "{{FirstName}} is inside run",
           "revision": 0,
           "revisionCreatedDateTime": "2019-01-01 14:00:05",
           "revisionCreatedBy": "7006"

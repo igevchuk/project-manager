@@ -193,9 +193,6 @@ class TemplateContent extends React.Component<IContentProps, any> {
     for (const childComposite of childrenComposites) {
       if (childComposite.metadata.isSegment) {
         const docPiece = {
-          // id: childComposite.metadata.segment.id,
-          // text: childComposite.metadata.segment.text
-          // paragraph: childComposite.metadata.paragraph
           id: childComposite.metadata.segment.id,
           blockId: childComposite.metadata.segment.blockId,
           segment: childComposite.metadata.segment,
@@ -224,16 +221,15 @@ class TemplateContent extends React.Component<IContentProps, any> {
 
     // console.log(Articles);
 
-    // // generating doc
-    // Articles.map(article => {
-    //   // applying vistor pattern
-    //   article.display(0);
-    //   this.getDoc(article);
-    // });
+    // generating doc
+    Articles.map(article => {
+      article.display(0);
+      this.getDoc(article);
+    });
 
-    const article = Articles[0];
-    article.display(0);
-    this.getDoc(article);
+    // const article = Articles[0];
+    // article.display(0);
+    // this.getDoc(article);
 
     return (
       <Grid.Column width={12}>

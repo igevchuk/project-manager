@@ -139,7 +139,7 @@ class SegmentsComponent extends React.PureComponent<
     const groupedTextsegments = this.groupBy(this.state.segments, 'blockId');
     const keys = Object.keys(groupedTextsegments);
 
-    // console.log(groupedTextsegments);
+    console.log(groupedTextsegments);
 
     const grpTextsegments = keys.map(key => {
       const segments = groupedTextsegments[key];
@@ -148,8 +148,8 @@ class SegmentsComponent extends React.PureComponent<
       let redering = <></>;
 
       const renderTextSegments = segments.map(paragraph => {
-        console.log(paragraph.segment);
-        debugger;
+        // console.log(paragraph.segment);
+        // debugger;
         switch (paragraph.segment.pStyle) {
           case 'Heading1':
             // redering = <h1 key={paragraph.id}>ss</h1>;
@@ -185,16 +185,19 @@ class SegmentsComponent extends React.PureComponent<
             break;
           case 'Heading3':
             if (paragraph.segment.runs.length === 0) {
-              return <div key={paragraph.id}>{''}</div>;
+              return null;
             }
 
-            let result = '';
-            for (const run of paragraph.segment.runs) {
-              // result = ReactHtmlParser(result + `<span>${run.t}</span>`);
-              result = result + ' ==== ' + `${run.t}`;
-            }
-
-            redering = <div key={paragraph.id}>{result}</div>;
+            redering = (
+              <div>
+                {paragraph.segment.runs.map(run => {
+                  const asd = (
+                    <TextNode className="text-node">{`  ${run.t}`}</TextNode>
+                  );
+                  return asd;
+                })}
+              </div>
+            );
 
             break;
           case 'Heading4':
@@ -202,24 +205,34 @@ class SegmentsComponent extends React.PureComponent<
               return <div key={paragraph.id}>{''}</div>;
             }
 
-            let resulta = '';
-            for (const run of paragraph.segment.runs) {
-              resulta = resulta + ' ==== ' + `${run.t}`;
-            }
+            redering = (
+              <div>
+                {paragraph.segment.runs.map(run => {
+                  const asd = (
+                    <TextNode className="text-node">{`  ${run.t}`}</TextNode>
+                  );
+                  return asd;
+                })}
+              </div>
+            );
 
-            redering = <div key={paragraph.id}>{resulta}</div>;
             break;
           default:
             if (paragraph.segment.runs.length === 0) {
               return <div key={paragraph.id}>{''}</div>;
             }
 
-            let resultas = '';
-            for (const run of paragraph.segment.runs) {
-              resultas = resultas + ' ==== ' + `<span>${run.t}</span>`;
-            }
+            redering = (
+              <div>
+                {paragraph.segment.runs.map(run => {
+                  const asd = (
+                    <TextNode className="text-node">{`  ${run.t}`}</TextNode>
+                  );
+                  return asd;
+                })}
+              </div>
+            );
 
-            redering = <div key={paragraph.id}>{resultas}</div>;
             break;
         }
 
