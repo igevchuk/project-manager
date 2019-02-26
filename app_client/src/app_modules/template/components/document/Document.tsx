@@ -58,6 +58,7 @@ const fakeSegments = [
 
 type docPiece = {
   id: number;
+  blockId: number;
   segment: {
     id: number;
     blockId?: number;
@@ -196,6 +197,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
           // text: childComposite.metadata.segment.text
           // paragraph: childComposite.metadata.paragraph
           id: childComposite.metadata.segment.id,
+          blockId: childComposite.metadata.segment.blockId,
           segment: childComposite.metadata.segment,
           variant: childComposite.metadata.variant
         };
@@ -205,7 +207,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
       }
     }
 
-    console.log(this.docPieces);
+    // console.log(this.docPieces);
   }
 
   public render() {

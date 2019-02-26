@@ -115,8 +115,6 @@ interface ISegmentProps {
 
 interface ISegmentState {
   segments: docPiece[];
-  // activeSegment: docPiece;
-  items: string[];
 }
 
 class SegmentsComponent extends React.PureComponent<
@@ -126,9 +124,7 @@ class SegmentsComponent extends React.PureComponent<
   constructor(props: any) {
     super(props);
     this.state = {
-      // activeSegment: {},
-      segments: this.props.segments,
-      items: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6']
+      segments: this.props.segments
     };
   }
 
@@ -143,8 +139,25 @@ class SegmentsComponent extends React.PureComponent<
     }));
   };
 
+  public groupBy = (items, key) =>
+    items.reduce(
+      (result, item) => ({
+        ...result,
+        [item[key]]: [...(result[item[key]] || []), item]
+      }),
+      {}
+    );
+
   public render() {
-    const { items, segments } = this.state;
+    const { segments } = this.state;
+
+    const groupedTextsegments = this.groupBy(segments, 'blockId');
+    const keys = Object.keys(groupedTextsegments);
+
+    keys.map(key => {
+      console.log(groupedTextsegments[key]);
+      // const asd = groupedTextsegments[key]
+    });
 
     return <div>sldkfj</div>;
     // return (
