@@ -47,3 +47,6 @@
 
 # excludes new feature
 /app_server/__resource__
+
+**/node_modules
+**/build
