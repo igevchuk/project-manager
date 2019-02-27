@@ -29,40 +29,40 @@ type variantt = {
 export type metadata = {
   isSegment: boolean;
   paragraph: {
-    id?: number;
+    id?: string;
     blockId: number;
     blockSequence: number;
     type?: string;
     pStyle?: string;
   };
   segment: {
-    id: number;
+    id: string;
     blockId: number;
-    paragraphId?: number;
+    paragraphId?: string;
     text: string;
     run?: {};
     pStyle?: string;
   };
   variant: {
-    id: number;
+    id: string;
     ref?: {
-      paragraphId?: number;
+      paragraphId?: string;
     };
     sequence?: number;
     type?: string;
-    variantGroup?: number;
-    variantType?: string;
+    variantGroup?: string;
+    variantDescription?: string;
     variantIsDefault?: boolean;
     text?: string;
-    revision?: number;
     revisionCreatedDateTime?: Date;
     revisionCreatedBy?: string;
+    properties?: {};
   };
   ref?: {
-    id: number;
-    blockId: number;
+    id?: number;
+    blockId?: number;
     paragraphId?: number;
-    text: string;
+    text?: string;
     run?: [];
     pStyle?: string;
   };

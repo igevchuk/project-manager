@@ -57,30 +57,30 @@ const fakeSegments = [
 ];
 
 type docPiece = {
-  id: number;
+  id: string;
   blockId: number;
   segment: {
-    id: number;
+    id: string;
     blockId?: number;
-    paragraphId?: number;
+    paragraphId?: string;
     text: string;
     run?: {};
     pStyle?: string;
   };
   variant: {
-    id: number;
+    id: string;
     ref?: {
-      paragraphId?: number;
+      paragraphId?: string;
     };
     sequence?: number;
     type?: string;
-    variantGroup?: number;
-    variantType?: string;
+    variantGroup?: string;
+    variantDescription?: string;
     variantIsDefault?: boolean;
     text?: string;
-    revision?: number;
     revisionCreatedDateTime?: Date;
     revisionCreatedBy?: string;
+    properties?: {};
   };
 };
 

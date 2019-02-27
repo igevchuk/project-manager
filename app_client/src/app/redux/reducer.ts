@@ -8,7 +8,7 @@ import { IState } from './state';
 
 const initialState: IState = {
   isLocal: true,
-  activeId: 1,
+  activeId: '',
   templates: []
 };
 

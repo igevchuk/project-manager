@@ -15,7 +15,7 @@ interface IProps {
 
 const Entry: React.SFC<IProps> = props => {
   const [templateState, dispatch] = React.useReducer(templateReducer, {
-    activeId: 1,
+    activeId: '',
     templates: [props.template]
   });
 

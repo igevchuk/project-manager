@@ -45,7 +45,7 @@ export function Templateaa(props) {
   const aaaa = props.template;
 
   const [templateState, dispatch] = React.useReducer(templateReducer, {
-    activeId: 1,
+    activeId: '',
     templates: [aaaa]
   });
 

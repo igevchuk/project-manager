@@ -72,7 +72,7 @@ type segment = {
   text: string;
 };
 
-type docPiece = {
+type docPiecebak = {
   id: number;
   segment: {
     id: number;
@@ -96,6 +96,34 @@ type docPiece = {
     revision?: number;
     revisionCreatedDateTime?: Date;
     revisionCreatedBy?: string;
+  };
+};
+
+type docPiece = {
+  id: string;
+  blockId: number;
+  segment: {
+    id: string;
+    blockId?: number;
+    paragraphId?: string;
+    text: string;
+    run?: {};
+    pStyle?: string;
+  };
+  variant: {
+    id: string;
+    ref?: {
+      paragraphId?: string;
+    };
+    sequence?: number;
+    type?: string;
+    variantGroup?: string;
+    variantDescription?: string;
+    variantIsDefault?: boolean;
+    text?: string;
+    revisionCreatedDateTime?: Date;
+    revisionCreatedBy?: string;
+    properties?: {};
   };
 };
 

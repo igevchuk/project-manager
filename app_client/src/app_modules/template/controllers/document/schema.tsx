@@ -133,6 +133,47 @@ class Schema {
     });
   }
 
+  public generateNav() {
+    //
+  }
+
+  public initTemplate2() {
+    console.log(this.articles);
+
+    this.templateLeaves = this.generateTemplateLeaves(
+      this.template.textSegments,
+      this.template.runs
+    );
+
+    this.clauseComponents = this.generateComposites(this.clauses);
+    this.subSectionComponents = this.generateComposites(this.subSections);
+    this.sectionComponents = this.generateComposites(this.sections);
+    this.articleComponents = this.generateComposites(this.articles);
+
+    // console.log(this.articleComponents);
+
+    this.articleComponents.sort((a, b) => {
+      const blockASequence = a.metadata.paragraph.blockSequence;
+      const blockBSequence = b.metadata.paragraph.blockSequence;
+      return blockASequence - blockBSequence;
+    });
+
+    // this.articleComponents.reverse();
+    // console.log(this.articleComponents);
+
+    // embedding sectionComponents into articleComponents
+    this.chainingChildren(this.articleComponents, this.sectionComponents);
+    // embedding subSectionComponents into sectionComponents
+    this.chainingChildren(this.sectionComponents, this.subSectionComponents);
+    // embedding clauseComponents into subSectionComponents
+    this.chainingChildren(this.subSectionComponents, this.clauseComponents);
+    // embedding subClauseComponents into clauseComponents
+    this.chainingChildren(this.clauseComponents, this.subClauseComponents);
+    // console.log(this.articleComponents);
+
+    // this.articleComponents.reverse();
+  }
+
   public initTemplate() {
     console.log(this.articles);
 
@@ -221,13 +262,15 @@ class Schema {
           pStyle: paragraph.properties.pStyle
         },
         segment: {
-          id: -1,
+          id: '',
           blockId: -1,
           text: ''
         },
         variant: {
-          id: -1
-        }
+          id: ''
+        },
+        ref: {},
+        variants: []
       };
 
       const templateComposite = new TemplateComposite(metadata);
@@ -247,7 +290,7 @@ class Schema {
 
   public getBlockIdAndPStyule(
     paragraphs: templateState.paragraph[],
-    paragraphId: number
+    paragraphId: string
   ): any {
     const paragraph = paragraphs.filter(
       paragraph => paragraph.id === paragraphId
@@ -267,18 +310,18 @@ class Schema {
 
     return textSegments.map(
       (textSegment: {
-        id: number;
+        id: string;
         ref: {
-          paragraphId: number;
+          paragraphId: string;
         };
         sequence: number;
         type: string;
-        variantGroup: number;
-        variantType: string;
+        variantGroup: string;
+        variantDescription: string;
         variantIsDefault: boolean;
         text: string;
       }) => {
-        const segmentRun = this.template.runs
+        const sortedRun = this.template.runs
           .filter(run => run.ref.textSegmentId === textSegment.id)
           .sort((a, b) => {
             const sequenceA = a.sequence;
@@ -286,9 +329,9 @@ class Schema {
             return sequenceA - sequenceB;
           });
 
-        // console.log(segmentRun);
+        // console.log(sortedRun);
 
-        const extractRun = segmentRun.map(run => {
+        const extractRun = sortedRun.map(run => {
           return {
             runId: run.id,
             segmentId: run.ref.textSegmentId,
@@ -312,22 +355,15 @@ class Schema {
           },
           segment: {
             id: textSegment.id,
-            blockId: blockIdAndPStyule.blockId,
+            blockId: 12, // blockIdAndPStyule.blockId
             paragraphId: textSegment.ref.paragraphId,
             text: textSegment.text,
             runs: extractRun,
             pStyle: blockIdAndPStyule.pStyle
           },
           variant: textSegment,
-          ref: {
-            id: textSegment.id,
-            blockId: blockIdAndPStyule.blockId,
-            paragraphId: textSegment.ref.paragraphId,
-            text: textSegment.text,
-            runs: extractRun,
-            pStyle: blockIdAndPStyule.pStyle
-          },
-          variants: [textSegment]
+          ref: {},
+          variants: []
         };
 
         return new TemplateLeaf(metadata);

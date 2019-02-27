@@ -1,4 +1,4 @@
-export type uuid = number;
+export type uuid = string;
 
 export type docTypes = docType[];
 export type docType = { id: uuid; type?: string };
@@ -24,47 +24,49 @@ export type template = {
   tables?: table[];
   tableRows?: tableRow[];
   tableCells?: tableCell[];
-  tableParagraphs?: tableParagraph[];
   textSegments?: textSegment[];
-  textVariants?: textVariant[];
   runs: run[];
   variables?: variable[];
   history?: history;
+
+  // will be removed
+  textVariants?: textVariant[];
 };
 
 export type textSegment = {
-  id?: uuid;
-  ref?: {
-    paragraphId?: uuid;
+  id: uuid;
+  ref: {
+    paragraphId: uuid;
   };
-  sequence?: number;
-  type?: string; // TextSegment
-  variantGroup?: number; // 1000
-  variantType?: string; // Standard/Neutral
-  variantIsDefault?: boolean;
-  text?: string; // ARTICLE I
-  revision?: number;
+  sequence: number;
+  type: string; // TextSegment
+  variantGroup: uuid; // 1000
+  variantDescription?: string;
+  variantIsDefault: boolean;
+  text: string; // ARTICLE I
+  // revision?: number;
   revisionCreatedDateTime?: Date;
   revisionCreatedBy?: string;
+  properties?: {};
 };
 
 export type block = {
-  id: uuid;
-  sequence: uuid;
+  id: number;
+  sequence: number;
 };
 
 export type paragraph = {
   id: uuid;
   ref: {
-    blockId: uuid;
+    blockId: number;
   };
   type: string; // Paragraph
   properties: {
-    pStyle: string; // Title
-    jc: string; // center
-    ind: number;
+    pStyle?: string; // Title
+    jc?: string; // center
+    ind?: number;
   };
-  revision?: number;
+  // revision?: number;
   revisionCreatedDateTime?: Date;
   revisionCreatedBy?: string; // 7006
 };
@@ -89,7 +91,7 @@ export type table = {
       width: number;
     }
   ];
-  revision?: number;
+  // revision?: number;
   revisionCreatedDateTime?: Date;
   revisionCreatedBy?: string; // 7006
 };
@@ -104,7 +106,7 @@ export type tableRow = {
   props?: {
     height?: number;
   };
-  revision?: number;
+  // revision?: number;
   revisionCreatedDateTime?: Date;
   revisionCreatedBy?: string; // 7006
 };
@@ -121,7 +123,7 @@ export type tableCell = {
     rowSpan?: null;
     colSpan?: null;
   };
-  revision?: number;
+  // revision?: number;
   revisionCreatedDateTime?: Date;
   revisionCreatedBy?: string;
 };
@@ -152,7 +154,7 @@ export type run = {
     vertAlign?: string; // subscript
   };
   t?: string; // ARTICLE I
-  revision?: number;
+  // revision?: number;
   revisionCreatedDateTime?: Date; // 2019-01-01 14:00:05
   revisionCreatedBy?: string; // 7006
 };
@@ -166,16 +168,19 @@ export type variable = {
   variableGroupId?: number;
   variableGroupName?: string;
   groupType?: string;
-  revision?: number;
+  // revision?: number;
   revisionCreatedDateTime?: Date;
   revisionCreatedBy?: string;
 };
 
 export type history = {
-  blocks?: block[];
+  blocks: block[];
+  paragraphs?: paragraph[];
+  tables?: table[];
   tableRows?: tableRow[];
   tableCells?: tableCell[];
-  tableParagraphs?: tableParagraph[];
   textSegments?: textSegment[];
-  runs?: run;
+  runs: run[];
+  // variables?: variable[];
+  // history?: history;
 };
