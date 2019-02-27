@@ -3,23 +3,25 @@ import { metadata, TemplateComponent } from './abstract';
 import * as visitor from './visitor';
 
 import * as templateState from '../../../../app/redux/state';
-// import { AnyAaaaRecord } from 'dns';
 
 type ITemplate = {
-  id?: number;
+  id?: string;
   name?: string;
   version?: string;
+  versionIsPublished?: boolean;
   lastSaved?: Date;
   lastPublished?: Date;
+  editIsLocked?: boolean;
+  editLockedBy?: number;
 
   blocks: templateState.block[];
   paragraphs: templateState.paragraph[];
 
+  tables?: templateState.table[];
   tableRows?: templateState.tableRow[];
   tableCells?: templateState.tableCell[];
-  tableParagraphs?: templateState.tableParagraph[];
-
   textSegments: templateState.textSegment[];
+
   runs: templateState.run[];
   variables?: templateState.variable[];
   history?: templateState.history;
@@ -46,11 +48,7 @@ export class TemplateComposite extends TemplateComponent {
     return this.children;
   }
   public display(depth: number): void {
-    // console.log(`- ${depth}` + this.children.length);
-
     this.children.forEach(component => {
-      // const articleVisitor = new visitor.ArticleVisitor();
-      // this.accept(articleVisitor);
       component.display(depth + 2);
     });
   }
@@ -72,33 +70,28 @@ export class TemplateLeaf extends TemplateComponent {
   }
 
   public display(depth: number): void {
-    // console.log(this.metadata.segment.text);
-    // console.log(`- ${depth}` + this.metadata.segment.text);
-
     switch (depth) {
       case 2:
-        // console.log(this.metadata.segment.text);
         const articleVisitor = new visitor.ArticleVisitor();
         this.accept(articleVisitor);
-        // console.log(this.metadata.segment.text);
         break;
       case 4:
+        const ectionVisitor = new visitor.SectionVisitor();
+        this.accept(ectionVisitor);
         break;
       case 6:
+        const subSectionVisitor = new visitor.SubSectionVisitor();
+        this.accept(subSectionVisitor);
         break;
       case 8:
-        break;
-      case 10:
+        const clauseVisitor = new visitor.ClauseVisitor();
+        this.accept(clauseVisitor);
         break;
       default:
         break;
     }
   }
 }
-
-// export const aa = props => {
-//   return <div>this is tesitng</div>;
-// };
 
 class Schema {
   public articles: paragraph[] = new Array<paragraph>();
@@ -306,8 +299,6 @@ class Schema {
     textSegments: templateState.textSegment[],
     runs: templateState.run[]
   ): TemplateLeaf[] {
-    // console.log(runs);
-
     return textSegments.map(
       (textSegment: {
         id: string;

@@ -1,6 +1,14 @@
 {
   "templates": [
     {
+      "editIsLocked": false,
+      "editLockedBy": null,
+      "id": "b8c49d68-03b3-46f1-a079-0f83e0151573",
+      "lastPublished": null,
+      "lastSaved": null,
+      "name": "Test Template",
+      "version": 0,
+      "versionIsPublished": false,
       "blocks": [
         {
           "id": 0,
@@ -27,12 +35,6 @@
           "sequence": 5
         }
       ],
-      "editIsLocked": false,
-      "editLockedBy": null,
-      "id": "b8c49d68-03b3-46f1-a079-0f83e0151573",
-      "lastPublished": null,
-      "lastSaved": null,
-      "name": "Test Template",
       "paragraphs": [
         {
           "properties": {
@@ -416,9 +418,7 @@
             "paragraphId": "acb64f7d-134c-4425-85ea-bc33f35a9143"
           }
         }
-      ],
-      "version": 0,
-      "versionIsPublished": false
+      ]
     }
   ]
 }
