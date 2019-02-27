@@ -9,7 +9,10 @@ interface IApiLocal {
 }
 
 class ApiLocal extends ApiBase implements IApiLocal {
-  private baseUrl = process.env.NODE_ENV === "production"? '/template':'http://localhost:3004';
+  private baseUrl =
+    process.env.NODE_ENV === 'production'
+      ? '/template'
+      : 'http://localhost:3004';
 
   // public getLocalForm = (): Observable<vm.form> => {
   //   const url = `${this.baseUrl}/form/`;
@@ -17,8 +20,19 @@ class ApiLocal extends ApiBase implements IApiLocal {
   //   return forms$;
   // };
 
+  // api/v1/template_data/b8c49d68-03b3-46f1-a079-0f83e0151573/
+
   public getLocalForm = (): Observable<any> => {
     const url = `${this.baseUrl}/templates/`;
+    // const url = `https://dtrax-tm2.analytics.deloitte.ca/template/api/v1/template_data/b8c49d68-03b3-46f1-a079-0f83e0151573/`;
+    const forms$ = this.sendRequest(url);
+    return forms$;
+  };
+
+  public getLocalForma = (): Observable<any> => {
+    const url = `${
+      this.baseUrl
+    }/templates/api/v1/template_data/b8c49d68-03b3-46f1-a079-0f83e0151573`;
     const forms$ = this.sendRequest(url);
     return forms$;
   };

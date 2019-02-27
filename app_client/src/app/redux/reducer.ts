@@ -7,6 +7,7 @@ import * as types from './actions';
 import { IState } from './state';
 
 const initialState: IState = {
+  isLocal: true,
   activeId: 1,
   templates: []
 };
@@ -14,14 +15,22 @@ const initialState: IState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case types.FETCH_FORM_FULFILLED: {
-      const templates = action.payload;
-      const newState = {
-        ...state,
-        templates: Array(templates)[0]
-      };
-      // console.log(newState.templates[0]);
+      if (state.isLocal) {
+        const templates = action.payload;
+        const newState = {
+          ...state,
+          templates: Array(templates)[0]
+        };
 
-      return newState;
+        return newState;
+      }
+
+      // console.log(action.payload);
+      // const templates = action.payload;
+      // const newState = {
+      //   ...state,
+      //   templates: Array(templates)[0]
+      // };
     }
     case 'FETCH_FORM_FULFILLED': {
       console.log(action.payload);

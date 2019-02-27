@@ -4,6 +4,7 @@ export type docTypes = docType[];
 export type docType = { id: uuid; type?: string };
 
 export type IState = {
+  isLocal?: boolean;
   activeId: uuid;
   templates: template[];
 };

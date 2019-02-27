@@ -15,6 +15,9 @@ import {
   TextHover,
   TextHoverFeature,
   TextNode,
+  Button1,
+  Button2,
+  TextNode02,
   VariantCount
 } from './Document.style';
 
@@ -139,7 +142,7 @@ class SegmentsComponent extends React.PureComponent<
     const groupedTextsegments = this.groupBy(this.state.segments, 'blockId');
     const keys = Object.keys(groupedTextsegments);
 
-    console.log(groupedTextsegments);
+    // console.log(groupedTextsegments);
 
     const grpTextsegments = keys.map(key => {
       const segments = groupedTextsegments[key];
@@ -250,6 +253,15 @@ class SegmentsComponent extends React.PureComponent<
     const asd = this.getDoc();
 
     return <div>{asd}</div>;
+
+    return (
+      <div>
+        <Button1 selected={true}>this is testing</Button1>
+        <TextNode02 color={'orange'} border={4}>
+          aaaaa
+        </TextNode02>
+      </div>
+    );
     // return (
     //   <SortableContainer onSortEnd={this.onSortEnd} useDragHandle={true}>
     //     {segments.map((segment, index) => (

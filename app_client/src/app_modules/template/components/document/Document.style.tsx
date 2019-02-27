@@ -1,6 +1,22 @@
 import styled from 'styled-components';
 import { Grid } from 'semantic-ui-react';
 
+interface IButton {
+  selected?: boolean;
+}
+export const Button2 = styled.div<IButton>`
+  background: ${props => (props.selected ? 'red' : 'blue')};
+`;
+
+export const Button1 = styled.div<{ selected?: boolean }>`
+  background: ${props => (props.selected ? 'red' : 'blue')};
+`;
+
+export const TextNode02 = styled.span<{ color?: string; border?: number }>`
+  color: ${props => (props.color ? 'red' : 'blue')};
+  border: ${props => props.border || '4px'} solid 'black';
+`;
+
 export const StyledDocument = styled(Grid.Column)`
   margin: 50px 5vmax;
   padding: 1em;

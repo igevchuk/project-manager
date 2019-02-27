@@ -15,12 +15,16 @@ class Template extends React.Component<ITemplateProps> {
       return 'loading ....';
     }
 
+    // console.log(this.props.template);
+
     return <Entry template={this.props.template} />;
   }
 }
 
 const mapStateToProps = templateState => {
   const templates = templateState.templateReducer.templates;
+  // console.log(templates);
+
   return { template: templates[0] };
 };
 const TemplateContainer = connect(mapStateToProps)(Template);

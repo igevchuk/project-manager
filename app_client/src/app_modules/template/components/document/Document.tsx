@@ -209,6 +209,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
 
   public render() {
     const { blocks, paragraphs, textSegments, runs } = this.props.template;
+    // console.log(this.props.template);
 
     if (!this.state.template) {
       return 'loading ....';
@@ -218,10 +219,6 @@ class TemplateContent extends React.Component<IContentProps, any> {
     const schema = new Schema({ blocks, paragraphs, textSegments, runs });
     schema.initTemplate();
     const Articles = schema.getArticleComponents();
-
-    // console.log(Articles);
-
-    // generating doc
     Articles.map(article => {
       article.display(0);
       this.getDoc(article);

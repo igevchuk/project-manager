@@ -10,6 +10,22 @@ export interface IStrategy {
   execute(element: TemplateComponent): void;
 }
 
+type variantt = {
+  id: number;
+  ref?: {
+    paragraphId?: number;
+  };
+  sequence?: number;
+  type?: string;
+  variantGroup?: number;
+  variantType?: string;
+  variantIsDefault?: boolean;
+  text?: string;
+  revision?: number;
+  revisionCreatedDateTime?: Date;
+  revisionCreatedBy?: string;
+};
+
 export type metadata = {
   isSegment: boolean;
   paragraph: {
@@ -42,6 +58,15 @@ export type metadata = {
     revisionCreatedDateTime?: Date;
     revisionCreatedBy?: string;
   };
+  ref?: {
+    id: number;
+    blockId: number;
+    paragraphId?: number;
+    text: string;
+    run?: [];
+    pStyle?: string;
+  };
+  variants?: variantt[];
 };
 
 export abstract class TemplateComponent extends DocElement {
