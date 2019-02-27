@@ -39,7 +39,7 @@ export type textSegment = {
     paragraphId: uuid;
   };
   sequence: number;
-  type: string; // TextSegment
+  // type: string; // TextSegment
   variantGroup: uuid; // 1000
   variantDescription?: string;
   variantIsDefault: boolean;

@@ -176,6 +176,8 @@ class SegmentsComponent extends React.PureComponent<
       const segments = groupedTextsegments[key];
       // console.log(segments);
 
+      const aaaa = <div key={key}>aaaa</div>;
+
       let redering = <></>;
 
       const renderTextSegments = segments.map(paragraph => {
@@ -223,7 +225,9 @@ class SegmentsComponent extends React.PureComponent<
               <div>
                 {paragraph.segment.runs.map(run => {
                   const asd = (
-                    <TextNode className="text-node">{`  ${run.t}`}</TextNode>
+                    <TextNode key={run.id} className="text-node">{`  ${
+                      run.t
+                    }`}</TextNode>
                   );
                   return asd;
                 })}
@@ -240,7 +244,9 @@ class SegmentsComponent extends React.PureComponent<
               <div>
                 {paragraph.segment.runs.map(run => {
                   const asd = (
-                    <TextNode className="text-node">{`  ${run.t}`}</TextNode>
+                    <TextNode key={run.id} className="text-node">{`  ${
+                      run.t
+                    }`}</TextNode>
                   );
                   return asd;
                 })}
@@ -257,7 +263,9 @@ class SegmentsComponent extends React.PureComponent<
               <div>
                 {paragraph.segment.runs.map(run => {
                   const asd = (
-                    <TextNode className="text-node">{`  ${run.t}`}</TextNode>
+                    <TextNode key={run.id} className="text-node">{`  ${
+                      run.t
+                    }`}</TextNode>
                   );
                   return asd;
                 })}

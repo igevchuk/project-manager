@@ -228,6 +228,8 @@ class TemplateContent extends React.Component<IContentProps, any> {
     // article.display(0);
     // this.getDoc(article);
 
+    // return <div>tisting </div>;
+
     return (
       <Grid.Column width={12}>
         <StyledDocument>

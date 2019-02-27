@@ -16,12 +16,10 @@ type ITemplate = {
 
   blocks: templateState.block[];
   paragraphs: templateState.paragraph[];
-
   tables?: templateState.table[];
   tableRows?: templateState.tableRow[];
   tableCells?: templateState.tableCell[];
   textSegments: templateState.textSegment[];
-
   runs: templateState.run[];
   variables?: templateState.variable[];
   history?: templateState.history;
@@ -112,6 +110,7 @@ class Schema {
     this.articles = this.template.paragraphs.filter(paragraph => {
       return paragraph.properties.pStyle === 'Title';
     });
+
     this.sections = this.template.paragraphs.filter(paragraph => {
       return paragraph.properties.pStyle === 'Heading 1';
     });
@@ -128,6 +127,15 @@ class Schema {
 
   public generateNav() {
     //
+  }
+
+  public getSortedBlocks() {
+    this.template.blocks.sort((a, b) => {
+      const blockASequence = a.sequence;
+      const blockBSequence = b.sequence;
+
+      return blockASequence - blockBSequence;
+    });
   }
 
   public initTemplate2() {
@@ -168,23 +176,53 @@ class Schema {
   }
 
   public initTemplate() {
-    console.log(this.articles);
+    this.getSortedBlocks();
+    const blocks = this.template.blocks;
+    console.log(blocks);
+
+    const paragraphs = blocks.map(block => {
+      const blockId = block.id;
+
+      const paragraph = this.template.paragraphs.filter(paragraph => {
+        return paragraph.ref.blockId === blockId;
+      })[0];
+      return paragraph;
+    });
+
+    console.log(paragraphs);
+
+    const textSegments = paragraphs.map(paragraph => {
+      const paragraphId = paragraph.id;
+
+      const subTextSegments = this.template.textSegments.filter(segment => {
+        return segment.ref.paragraphId === paragraphId;
+      });
+      return subTextSegments;
+    });
+
+    console.log(textSegments);
+
+    debugger;
 
     this.templateLeaves = this.generateTemplateLeaves(
       this.template.textSegments,
       this.template.runs
     );
 
+    // console.log(this.templateLeaves);
+
     this.clauseComponents = this.generateComposites(this.clauses);
     this.subSectionComponents = this.generateComposites(this.subSections);
     this.sectionComponents = this.generateComposites(this.sections);
     this.articleComponents = this.generateComposites(this.articles);
 
-    // console.log(this.articleComponents);
+    console.log(this.articleComponents);
 
     this.articleComponents.sort((a, b) => {
       const blockASequence = a.metadata.paragraph.blockSequence;
       const blockBSequence = b.metadata.paragraph.blockSequence;
+      // console.log(blockASequence, blockBSequence);
+
       return blockASequence - blockBSequence;
     });
 
@@ -346,7 +384,7 @@ class Schema {
           },
           segment: {
             id: textSegment.id,
-            blockId: 12, // blockIdAndPStyule.blockId
+            blockId: blockIdAndPStyule.blockId,
             paragraphId: textSegment.ref.paragraphId,
             text: textSegment.text,
             runs: extractRun,
