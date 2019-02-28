@@ -4,12 +4,6 @@ import * as sortableHoc from 'react-sortable-hoc';
 import { v4 } from 'uuid';
 import * as templateState from '../../../../app/redux/state';
 
-import ReactHtmlParser, {
-  processNodes,
-  convertNodeToElement,
-  htmlparser2
-} from 'react-html-parser';
-
 import Variants from './Variants';
 import {
   StyledDocument,
@@ -80,43 +74,6 @@ type segment = {
   text: string;
 };
 
-type block01 = {
-  order: number;
-  paragraph: {
-    id: string;
-    ref: {
-      blockId: number;
-    };
-    type: string;
-    properties: {
-      pStyle?: string;
-      jc?: string;
-      ind?: number;
-    };
-    revisionCreatedDateTime?: Date;
-    revisionCreatedBy?: string;
-  };
-  segments: [
-    {
-      runs: templateState.run[];
-      segment: {
-        id: string;
-        ref: {
-          paragraphId: string;
-        };
-        sequence: number;
-        variantGroup: string;
-        variantDescription?: string;
-        variantIsDefault: boolean;
-        text: string;
-        revisionCreatedDateTime?: Date;
-        revisionCreatedBy?: string;
-        properties?: {};
-      };
-    }
-  ];
-};
-
 type block = {
   order: number;
   paragraph: templateState.paragraph;
@@ -154,12 +111,6 @@ type docPiece = {
     revisionCreatedBy?: string;
     properties?: {};
   };
-};
-
-type templateModel = {
-  order: number;
-  paragraph: {};
-  segments: [{}];
 };
 
 interface ISegmentProps {
@@ -201,126 +152,7 @@ class SegmentsComponent extends React.PureComponent<
       {}
     );
 
-  public getDoc = (): React.ReactNode => {
-    const groupedTextsegments = this.groupBy(this.state.segments, 'blockId');
-    const keys = Object.keys(groupedTextsegments);
-
-    // console.log(groupedTextsegments);
-
-    const grpTextsegments = keys.map(key => {
-      const segments = groupedTextsegments[key];
-      // console.log(segments);
-
-      const aaaa = <div key={key}>aaaa</div>;
-
-      let redering = <></>;
-
-      const renderTextSegments = segments.map(paragraph => {
-        // console.log(paragraph.segment);
-        // debugger;
-        switch (paragraph.segment.pStyle) {
-          case 'Heading1':
-            // redering = <h1 key={paragraph.id}>ss</h1>;
-
-            if (paragraph.segment.runs.length === 0) {
-              return <div key={paragraph.id}>{''}</div>;
-            }
-
-            let resultasd = '';
-            for (const run of paragraph.segment.runs) {
-              // result = ReactHtmlParser(result + `<span>${run.t}</span>`);
-              resultasd = resultasd + ' ' + `${run.t}`;
-            }
-
-            redering = <h1 key={paragraph.id}>{resultasd}</h1>;
-
-            break;
-          case 'Heading2':
-            // redering = <h2 key={paragraph.id}>{'h2'}</h2>;
-
-            if (paragraph.segment.runs.length === 0) {
-              return <div key={paragraph.id}>{''}</div>;
-            }
-
-            let resultad = '';
-            for (const run of paragraph.segment.runs) {
-              // result = ReactHtmlParser(result + `<span>${run.t}</span>`);
-              resultad = resultad + ' ' + `${run.t}`;
-            }
-
-            redering = <h2 key={paragraph.id}>{resultad}</h2>;
-
-            break;
-          case 'Heading3':
-            if (paragraph.segment.runs.length === 0) {
-              return null;
-            }
-
-            redering = (
-              <div>
-                {paragraph.segment.runs.map(run => {
-                  const asd = (
-                    <TextNode key={run.id} className="text-node">{`  ${
-                      run.t
-                    }`}</TextNode>
-                  );
-                  return asd;
-                })}
-              </div>
-            );
-
-            break;
-          case 'Heading4':
-            if (paragraph.segment.runs.length === 0) {
-              return <div key={paragraph.id}>{''}</div>;
-            }
-
-            redering = (
-              <div>
-                {paragraph.segment.runs.map(run => {
-                  const asd = (
-                    <TextNode key={run.id} className="text-node">{`  ${
-                      run.t
-                    }`}</TextNode>
-                  );
-                  return asd;
-                })}
-              </div>
-            );
-
-            break;
-          default:
-            if (paragraph.segment.runs.length === 0) {
-              return <div key={paragraph.id}>{''}</div>;
-            }
-
-            redering = (
-              <div>
-                {paragraph.segment.runs.map(run => {
-                  const asd = (
-                    <TextNode key={run.id} className="text-node">{`  ${
-                      run.t
-                    }`}</TextNode>
-                  );
-                  return asd;
-                })}
-              </div>
-            );
-
-            break;
-        }
-
-        return redering;
-      });
-
-      // each block
-      return renderTextSegments;
-    });
-
-    return <div>{grpTextsegments}</div>;
-  };
-
-  public getDocs = (blocks: block[]): React.ReactNode => {
+  public getDoc = (blocks: block[]): React.ReactNode => {
     const asd = blocks.map(block => {
       switch (block.paragraph.properties.pStyle) {
         case 'Title':
@@ -462,7 +294,7 @@ class SegmentsComponent extends React.PureComponent<
 
   public render() {
     console.log(this.props.blocks);
-    const doc = this.getDocs(this.props.blocks);
+    const doc = this.getDoc(this.props.blocks);
 
     // console.log(doc);
     return <div>{doc}</div>;
