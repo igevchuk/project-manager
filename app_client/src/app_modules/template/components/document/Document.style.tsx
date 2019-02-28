@@ -17,6 +17,31 @@ export const TextNode02 = styled.span<{ color?: string; border?: number }>`
   border: ${props => props.border || '4px'} solid 'black';
 `;
 
+export const TitleNode = styled.span<{ color?: string; border?: number }>`
+  color: ${props => (props.color ? 'red' : 'blue')};
+  border: ${props => props.border || '4px'} solid 'black';
+`;
+
+export const SectionNode = styled.span<{ color?: string; border?: number }>`
+  color: ${props => (props.color ? 'red' : 'blue')};
+  border: ${props => props.border || '4px'} solid 'black';
+`;
+
+export const SebSectionNode = styled.span<{ color?: string; border?: number }>`
+  color: ${props => (props.color ? 'red' : 'blue')};
+  border: ${props => props.border || '4px'} solid 'black';
+`;
+
+export const ClauseNode = styled.span<{ color?: string; border?: number }>`
+  color: ${props => (props.color ? 'red' : 'blue')};
+  border: ${props => props.border || '4px'} solid 'black';
+`;
+
+export const SubClauseNode = styled.span<{ color?: string; border?: number }>`
+  color: ${props => (props.color ? 'red' : 'blue')};
+  border: ${props => props.border || '4px'} solid 'black';
+`;
+
 export const StyledDocument = styled(Grid.Column)`
   margin: 50px 5vmax;
   padding: 1em;

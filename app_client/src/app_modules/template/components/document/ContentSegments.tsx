@@ -19,6 +19,11 @@ import {
   Button1,
   Button2,
   TextNode02,
+  TitleNode,
+  SectionNode,
+  SebSectionNode,
+  ClauseNode,
+  SubClauseNode,
   VariantCount
 } from './Document.style';
 
@@ -317,21 +322,124 @@ class SegmentsComponent extends React.PureComponent<
 
   public getDocs = (blocks: block[]): React.ReactNode => {
     const asd = blocks.map(block => {
-      // console.log(block.segments);
-
       switch (block.paragraph.properties.pStyle) {
         case 'Title':
-          console.log('block.segments');
-
-          if (!block.segments) {
+          if (!(block.segments.length > 0)) {
             return null;
           }
 
-          const aa = (
+          let innerKey = 1;
+          return (
             <div key={block.order}>
               {block.segments.map(segment => {
                 const sredering = (
-                  <div>
+                  <div key={innerKey++}>
+                    {segment.runs.map(run => {
+                      const asd = (
+                        <TitleNode key={run.id} className="text-node">{`  ${
+                          run.t
+                        }`}</TitleNode>
+                      );
+                      return asd;
+                    })}
+                  </div>
+                );
+                return sredering;
+              })}
+            </div>
+          );
+          break;
+        case 'Heading 1':
+          return (
+            <div key={block.order}>
+              {block.segments.map(segment => {
+                const sredering = (
+                  <div key={block.order++}>
+                    {segment.runs.map(run => {
+                      const asd = (
+                        <SectionNode key={run.id} className="text-node">{`  ${
+                          run.t
+                        }`}</SectionNode>
+                      );
+                      return asd;
+                    })}
+                  </div>
+                );
+                return sredering;
+              })}
+            </div>
+          );
+          break;
+        case 'Heading 2':
+          return (
+            <div key={block.order}>
+              {block.segments.map(segment => {
+                const sredering = (
+                  <div key={block.order++}>
+                    {segment.runs.map(run => {
+                      const asd = (
+                        <SebSectionNode
+                          key={run.id}
+                          className="text-node"
+                        >{`  ${run.t}`}</SebSectionNode>
+                      );
+                      return asd;
+                    })}
+                  </div>
+                );
+                return sredering;
+              })}
+            </div>
+          );
+          break;
+        case 'Heading 3':
+          return (
+            <div key={block.order}>
+              {block.segments.map(segment => {
+                const sredering = (
+                  <div key={block.order++}>
+                    {segment.runs.map(run => {
+                      const asd = (
+                        <ClauseNode key={run.id} className="text-node">{`  ${
+                          run.t
+                        }`}</ClauseNode>
+                      );
+                      return asd;
+                    })}
+                  </div>
+                );
+                return sredering;
+              })}
+            </div>
+          );
+          break;
+        case 'Heading 4':
+          return (
+            <div key={block.order}>
+              {block.segments.map(segment => {
+                const sredering = (
+                  <div key={block.order++}>
+                    {segment.runs.map(run => {
+                      const asd = (
+                        <SubClauseNode key={run.id} className="text-node">{`  ${
+                          run.t
+                        }`}</SubClauseNode>
+                      );
+                      return asd;
+                    })}
+                  </div>
+                );
+                return sredering;
+              })}
+            </div>
+          );
+          break;
+        default:
+          return (
+            <div key={block.order}>
+              {block.segments.map(segment => {
+                const sredering = (
+                  <div key={block.order++}>
                     {segment.runs.map(run => {
                       const asd = (
                         <TextNode key={run.id} className="text-node">{`  ${
@@ -342,171 +450,15 @@ class SegmentsComponent extends React.PureComponent<
                     })}
                   </div>
                 );
+                return sredering;
               })}
             </div>
           );
-
-          // console.log(aa);
-
-          return aa;
           break;
-        case 'Heading 1':
-          // return <h1 key={block.order}>{block.paragraph.properties.pStyle}</h1>;
-          break;
-        // if (paragraph.segment.runs.length === 0) {
-        //   return <div key={paragraph.id}>{''}</div>;
-        // }
-
-        // let resultasd = '';
-        // for (const run of paragraph.segment.runs) {
-        //   // result = ReactHtmlParser(result + `<span>${run.t}</span>`);
-        //   resultasd = resultasd + ' ' + `${run.t}`;
-        // }
-
-        // redering = <h1 key={paragraph.id}>{resultasd}</h1>;
-
-        case 'Heading 2':
-          // return <h1 key={block.order}>{block.paragraph.properties.pStyle}</h1>;
-          break;
-
-        default:
-          break;
-        // if (paragraph.segment.runs.length === 0) {
-        //   return <div key={paragraph.id}>{''}</div>;
-        // }
-
-        // redering = (
-        //   <div>
-        //     {paragraph.segment.runs.map(run => {
-        //       const asd = (
-        //         <TextNode key={run.id} className="text-node">{`  ${
-        //           run.t
-        //         }`}</TextNode>
-        //       );
-        //       return asd;
-        //     })}
-        //   </div>
-        // );
       }
     });
-    // console.log(asd);
     return asd;
   };
-
-  ////////
-  //
-  //
-  // switch (block.paragraph.properties.pStyle) {
-  //   case 'Title':
-  //     redering = (
-  //       <h1 key={block.sequence}>{block.paragraph.properties.pStyle}</h1>
-  //     );
-
-  //     //    redering = (
-  //     //   <div>
-  //     //     {paragraph.segment.runs.map(run => {
-  //     //       const asd = (
-  //     //         <TextNode key={run.id} className="text-node">{`  ${
-  //     //           run.t
-  //     //         }`}</TextNode>
-  //     //       );
-  //     //       return asd;
-  //     //     })}
-  //     //   </div>
-  //     // );
-
-  //     break;
-  //   case 'Heading1':
-  //     // redering = <h1 key={paragraph.id}>ss</h1>;
-
-  //     // if (paragraph.segment.runs.length === 0) {
-  //     //   return <div key={paragraph.id}>{''}</div>;
-  //     // }
-
-  //     // let resultasd = '';
-  //     // for (const run of paragraph.segment.runs) {
-  //     //   // result = ReactHtmlParser(result + `<span>${run.t}</span>`);
-  //     //   resultasd = resultasd + ' ' + `${run.t}`;
-  //     // }
-
-  //     // redering = <h1 key={paragraph.id}>{resultasd}</h1>;
-
-  //     break;
-  //   //   case 'Heading2':
-  //   //     // redering = <h2 key={paragraph.id}>{'h2'}</h2>;
-
-  //   //     if (paragraph.segment.runs.length === 0) {
-  //   //       return <div key={paragraph.id}>{''}</div>;
-  //   //     }
-
-  //   //     let resultad = '';
-  //   //     for (const run of paragraph.segment.runs) {
-  //   //       // result = ReactHtmlParser(result + `<span>${run.t}</span>`);
-  //   //       resultad = resultad + ' ' + `${run.t}`;
-  //   //     }
-
-  //   //     redering = <h2 key={paragraph.id}>{resultad}</h2>;
-
-  //   //     break;
-  //   //   case 'Heading3':
-  //   //     if (paragraph.segment.runs.length === 0) {
-  //   //       return null;
-  //   //     }
-
-  //   //     redering = (
-  //   //       <div>
-  //   //         {paragraph.segment.runs.map(run => {
-  //   //           const asd = (
-  //   //             <TextNode key={run.id} className="text-node">{`  ${
-  //   //               run.t
-  //   //             }`}</TextNode>
-  //   //           );
-  //   //           return asd;
-  //   //         })}
-  //   //       </div>
-  //   //     );
-
-  //   //     break;
-  //   //   case 'Heading4':
-  //   //     if (paragraph.segment.runs.length === 0) {
-  //   //       return <div key={paragraph.id}>{''}</div>;
-  //   //     }
-
-  //   //     redering = (
-  //   //       <div>
-  //   //         {paragraph.segment.runs.map(run => {
-  //   //           const asd = (
-  //   //             <TextNode key={run.id} className="text-node">{`  ${
-  //   //               run.t
-  //   //             }`}</TextNode>
-  //   //           );
-  //   //           return asd;
-  //   //         })}
-  //   //       </div>
-  //   //     );
-
-  //   //     break;
-  //   default:
-  //     // if (paragraph.segment.runs.length === 0) {
-  //     //   return <div key={paragraph.id}>{''}</div>;
-  //     // }
-
-  //     // redering = (
-  //     //   <div>
-  //     //     {paragraph.segment.runs.map(run => {
-  //     //       const asd = (
-  //     //         <TextNode key={run.id} className="text-node">{`  ${
-  //     //           run.t
-  //     //         }`}</TextNode>
-  //     //       );
-  //     //       return asd;
-  //     //     })}
-  //     //   </div>
-  //     // );
-
-  //     break;
-  // }
-  // });
 
   public render() {
     console.log(this.props.blocks);
