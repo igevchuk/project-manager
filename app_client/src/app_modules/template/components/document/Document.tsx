@@ -47,34 +47,6 @@ const fakeSegments = [
   { id: 5, text: 'Mauris ultricies pellentesque est vel maximus. ' }
 ];
 
-type docPiece = {
-  id: string;
-  blockId: number;
-  segment: {
-    id: string;
-    blockId?: number;
-    paragraphId?: string;
-    text: string;
-    run?: {};
-    pStyle?: string;
-  };
-  variant: {
-    id: string;
-    ref?: {
-      paragraphId?: string;
-    };
-    sequence?: number;
-    type?: string;
-    variantGroup?: string;
-    variantDescription?: string;
-    variantIsDefault?: boolean;
-    text?: string;
-    revisionCreatedDateTime?: Date;
-    revisionCreatedBy?: string;
-    properties?: {};
-  };
-};
-
 interface IContentProps {
   template: {
     id: number;
@@ -91,23 +63,12 @@ interface IContentProps {
 }
 
 class TemplateContent extends React.Component<IContentProps, any> {
-  public docPieces: docPiece[] = [];
-
   constructor(props: any) {
     super(props);
     this.state = {
       activeSegment: null,
       visible: false,
-      template: {},
-      docPieces: [
-        {
-          // blockId: -1,
-          // paragraphId: -1,
-          // textSegmentId: -1,
-          // text: '',
-          // run: {}
-        }
-      ]
+      template: {}
     };
   }
 
@@ -150,64 +111,9 @@ class TemplateContent extends React.Component<IContentProps, any> {
     // );
   };
 
-  // public asd = () => {
-  //   alert('aaaa');
-  // };
-
-  public renderDoca = () => {
-    const docPieces: docPiece[] = [];
-    const map = new Map();
-    for (const item of this.docPieces) {
-      if (!map.has(item.id)) {
-        map.set(item.id, true); // set any value to Map
-        docPieces.push(item);
-      }
-    }
-    // console.log(docPieces);
-
-    return <RenderSegments segments={docPieces} />;
-
-    return <div>ALSKDJF</div>;
-    // return result.map(docPiece => {
-    //   return (
-    //     <div key={docPiece.id}>
-    //       {this.renderSegment({ id: docPiece.id, text: docPiece.text })}
-    //     </div>
-    //   );
-    // });
-  };
-
   public renderDoc = (docData: any) => {
-    return <RenderSegments segments={docData} />;
-    // console.log(docData);
-
-    return <div>ALSKDJF</div>;
-    // return result.map(docPiece => {
-    //   return (
-    //     <div key={docPiece.id}>
-    //       {this.renderSegment({ id: docPiece.id, text: docPiece.text })}
-    //     </div>
-    //   );
-    // });
+    return <RenderSegments segments={docData} blocks={docData} />;
   };
-
-  public getDoc(composite: abstract.TemplateComponent) {
-    const childrenComposites = composite.getChildren();
-
-    for (const childComposite of childrenComposites) {
-      if (childComposite.metadata.isSegment) {
-        const docPiece = {
-          id: childComposite.metadata.segment.id,
-          blockId: childComposite.metadata.segment.blockId,
-          segment: childComposite.metadata.segment,
-          variant: childComposite.metadata.variant
-        };
-        this.docPieces.push(docPiece);
-      } else {
-        this.getDoc(childComposite);
-      }
-    }
-  }
 
   public render() {
     const { blocks, paragraphs, textSegments, runs } = this.props.template;
@@ -221,7 +127,6 @@ class TemplateContent extends React.Component<IContentProps, any> {
     schema.initTemplate();
     const docData = schema.SortedBlocks;
     const template = this.renderDoc(docData);
-    // console.log(docData);
 
     return (
       <Grid.Column width={12}>

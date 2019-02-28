@@ -21,6 +21,8 @@ import {
   VariantCount
 } from './Document.style';
 
+type pStyle = 'Title' | 'Title' | 'Title' | 'Title' | 'Title';
+
 const DragHandle = sortableHoc.SortableHandle(() => (
   <span>
     <Icon name="move" size="small" />
@@ -127,8 +129,15 @@ type docPiece = {
   };
 };
 
+type templateModel = {
+  order: number;
+  paragraph: {};
+  segments: [{}];
+};
+
 interface ISegmentProps {
   segments: docPiece[];
+  blocks: templateModel;
 }
 
 interface ISegmentState {
@@ -285,12 +294,184 @@ class SegmentsComponent extends React.PureComponent<
     return <div>{grpTextsegments}</div>;
   };
 
+  public getDocs = (blocks: any): React.ReactNode => {
+    const asd = blocks.map(block => {
+      switch (block.paragraph.properties.pStyle) {
+        case 'Title':
+          return <h1 key={block.order}>{block.paragraph.properties.pStyle}</h1>;
+
+          //    redering = (
+          //   <div>
+          //     {paragraph.segment.runs.map(run => {
+          //       const asd = (
+          //         <TextNode key={run.id} className="text-node">{`  ${
+          //           run.t
+          //         }`}</TextNode>
+          //       );
+          //       return asd;
+          //     })}
+          //   </div>
+          // );
+
+          break;
+        case 'Heading 1':
+          return <h1 key={block.order}>{block.paragraph.properties.pStyle}</h1>;
+          break;
+        // if (paragraph.segment.runs.length === 0) {
+        //   return <div key={paragraph.id}>{''}</div>;
+        // }
+
+        // let resultasd = '';
+        // for (const run of paragraph.segment.runs) {
+        //   // result = ReactHtmlParser(result + `<span>${run.t}</span>`);
+        //   resultasd = resultasd + ' ' + `${run.t}`;
+        // }
+
+        // redering = <h1 key={paragraph.id}>{resultasd}</h1>;
+
+        case 'Heading 2':
+          return <h1 key={block.order}>{block.paragraph.properties.pStyle}</h1>;
+          break;
+
+        default:
+          break;
+        // if (paragraph.segment.runs.length === 0) {
+        //   return <div key={paragraph.id}>{''}</div>;
+        // }
+
+        // redering = (
+        //   <div>
+        //     {paragraph.segment.runs.map(run => {
+        //       const asd = (
+        //         <TextNode key={run.id} className="text-node">{`  ${
+        //           run.t
+        //         }`}</TextNode>
+        //       );
+        //       return asd;
+        //     })}
+        //   </div>
+        // );
+      }
+    });
+
+    return asd;
+  };
+
+  // switch (block.paragraph.properties.pStyle) {
+  //   case 'Title':
+  //     redering = (
+  //       <h1 key={block.sequence}>{block.paragraph.properties.pStyle}</h1>
+  //     );
+
+  //     //    redering = (
+  //     //   <div>
+  //     //     {paragraph.segment.runs.map(run => {
+  //     //       const asd = (
+  //     //         <TextNode key={run.id} className="text-node">{`  ${
+  //     //           run.t
+  //     //         }`}</TextNode>
+  //     //       );
+  //     //       return asd;
+  //     //     })}
+  //     //   </div>
+  //     // );
+
+  //     break;
+  //   case 'Heading1':
+  //     // redering = <h1 key={paragraph.id}>ss</h1>;
+
+  //     // if (paragraph.segment.runs.length === 0) {
+  //     //   return <div key={paragraph.id}>{''}</div>;
+  //     // }
+
+  //     // let resultasd = '';
+  //     // for (const run of paragraph.segment.runs) {
+  //     //   // result = ReactHtmlParser(result + `<span>${run.t}</span>`);
+  //     //   resultasd = resultasd + ' ' + `${run.t}`;
+  //     // }
+
+  //     // redering = <h1 key={paragraph.id}>{resultasd}</h1>;
+
+  //     break;
+  //   //   case 'Heading2':
+  //   //     // redering = <h2 key={paragraph.id}>{'h2'}</h2>;
+
+  //   //     if (paragraph.segment.runs.length === 0) {
+  //   //       return <div key={paragraph.id}>{''}</div>;
+  //   //     }
+
+  //   //     let resultad = '';
+  //   //     for (const run of paragraph.segment.runs) {
+  //   //       // result = ReactHtmlParser(result + `<span>${run.t}</span>`);
+  //   //       resultad = resultad + ' ' + `${run.t}`;
+  //   //     }
+
+  //   //     redering = <h2 key={paragraph.id}>{resultad}</h2>;
+
+  //   //     break;
+  //   //   case 'Heading3':
+  //   //     if (paragraph.segment.runs.length === 0) {
+  //   //       return null;
+  //   //     }
+
+  //   //     redering = (
+  //   //       <div>
+  //   //         {paragraph.segment.runs.map(run => {
+  //   //           const asd = (
+  //   //             <TextNode key={run.id} className="text-node">{`  ${
+  //   //               run.t
+  //   //             }`}</TextNode>
+  //   //           );
+  //   //           return asd;
+  //   //         })}
+  //   //       </div>
+  //   //     );
+
+  //   //     break;
+  //   //   case 'Heading4':
+  //   //     if (paragraph.segment.runs.length === 0) {
+  //   //       return <div key={paragraph.id}>{''}</div>;
+  //   //     }
+
+  //   //     redering = (
+  //   //       <div>
+  //   //         {paragraph.segment.runs.map(run => {
+  //   //           const asd = (
+  //   //             <TextNode key={run.id} className="text-node">{`  ${
+  //   //               run.t
+  //   //             }`}</TextNode>
+  //   //           );
+  //   //           return asd;
+  //   //         })}
+  //   //       </div>
+  //   //     );
+
+  //   //     break;
+  //   default:
+  //     // if (paragraph.segment.runs.length === 0) {
+  //     //   return <div key={paragraph.id}>{''}</div>;
+  //     // }
+
+  //     // redering = (
+  //     //   <div>
+  //     //     {paragraph.segment.runs.map(run => {
+  //     //       const asd = (
+  //     //         <TextNode key={run.id} className="text-node">{`  ${
+  //     //           run.t
+  //     //         }`}</TextNode>
+  //     //       );
+  //     //       return asd;
+  //     //     })}
+  //     //   </div>
+  //     // );
+
+  //     break;
+  // }
+  // });
+
   public render() {
-    // const asd = this.getDoc();
-
-    // console.log(docData);
-
-    return <div>{'asd'}</div>;
+    const doc = this.getDocs(this.props.blocks);
+    return <div>{doc}</div>;
 
     return (
       <div>
