@@ -47,6 +47,17 @@ const fakeSegments = [
   { id: 5, text: 'Mauris ultricies pellentesque est vel maximus. ' }
 ];
 
+type block = {
+  order: number;
+  paragraph: templateState.paragraph;
+  segments: [
+    {
+      runs: templateState.run[];
+      segment: templateState.textSegment;
+    }
+  ];
+};
+
 interface IContentProps {
   template: {
     id: number;
@@ -111,8 +122,8 @@ class TemplateContent extends React.Component<IContentProps, any> {
     // );
   };
 
-  public renderDoc = (docData: any) => {
-    return <RenderSegments segments={docData} blocks={docData} />;
+  public renderDoc = (docData: block[]) => {
+    return <RenderSegments blocks={docData} />;
   };
 
   public render() {
@@ -125,7 +136,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
     // generating Doc data
     const schema = new Schema({ blocks, paragraphs, textSegments, runs });
     schema.initTemplate();
-    const docData = schema.SortedBlocks;
+    const docData = schema.SortedBlocks as block[];
     const template = this.renderDoc(docData);
 
     return (

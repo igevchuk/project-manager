@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Form, Icon } from 'semantic-ui-react';
 import * as sortableHoc from 'react-sortable-hoc';
 import { v4 } from 'uuid';
+import * as templateState from '../../../../app/redux/state';
 
 import ReactHtmlParser, {
   processNodes,
@@ -74,31 +75,52 @@ type segment = {
   text: string;
 };
 
-type docPiecebak = {
-  id: number;
-  segment: {
-    id: number;
-    blockId?: number;
-    paragraphId?: number;
-    text: string;
-    run?: {};
-    pStyle?: string;
-  };
-  variant: {
-    id: number;
-    ref?: {
-      paragraphId?: number;
+type block01 = {
+  order: number;
+  paragraph: {
+    id: string;
+    ref: {
+      blockId: number;
     };
-    sequence?: number;
-    type?: string;
-    variantGroup?: number;
-    variantType?: string;
-    variantIsDefault?: boolean;
-    text?: string;
-    revision?: number;
+    type: string;
+    properties: {
+      pStyle?: string;
+      jc?: string;
+      ind?: number;
+    };
     revisionCreatedDateTime?: Date;
     revisionCreatedBy?: string;
   };
+  segments: [
+    {
+      runs: templateState.run[];
+      segment: {
+        id: string;
+        ref: {
+          paragraphId: string;
+        };
+        sequence: number;
+        variantGroup: string;
+        variantDescription?: string;
+        variantIsDefault: boolean;
+        text: string;
+        revisionCreatedDateTime?: Date;
+        revisionCreatedBy?: string;
+        properties?: {};
+      };
+    }
+  ];
+};
+
+type block = {
+  order: number;
+  paragraph: templateState.paragraph;
+  segments: [
+    {
+      runs: templateState.run[];
+      segment: templateState.textSegment;
+    }
+  ];
 };
 
 type docPiece = {
@@ -136,8 +158,7 @@ type templateModel = {
 };
 
 interface ISegmentProps {
-  segments: docPiece[];
-  blocks: templateModel;
+  blocks: block[];
 }
 
 interface ISegmentState {
@@ -151,7 +172,7 @@ class SegmentsComponent extends React.PureComponent<
   constructor(props: any) {
     super(props);
     this.state = {
-      segments: this.props.segments
+      segments: []
     };
   }
 
@@ -294,28 +315,43 @@ class SegmentsComponent extends React.PureComponent<
     return <div>{grpTextsegments}</div>;
   };
 
-  public getDocs = (blocks: any): React.ReactNode => {
+  public getDocs = (blocks: block[]): React.ReactNode => {
     const asd = blocks.map(block => {
+      // console.log(block.segments);
+
       switch (block.paragraph.properties.pStyle) {
         case 'Title':
-          return <h1 key={block.order}>{block.paragraph.properties.pStyle}</h1>;
+          console.log('block.segments');
 
-          //    redering = (
-          //   <div>
-          //     {paragraph.segment.runs.map(run => {
-          //       const asd = (
-          //         <TextNode key={run.id} className="text-node">{`  ${
-          //           run.t
-          //         }`}</TextNode>
-          //       );
-          //       return asd;
-          //     })}
-          //   </div>
-          // );
+          if (!block.segments) {
+            return null;
+          }
 
+          const aa = (
+            <div key={block.order}>
+              {block.segments.map(segment => {
+                const sredering = (
+                  <div>
+                    {segment.runs.map(run => {
+                      const asd = (
+                        <TextNode key={run.id} className="text-node">{`  ${
+                          run.t
+                        }`}</TextNode>
+                      );
+                      return asd;
+                    })}
+                  </div>
+                );
+              })}
+            </div>
+          );
+
+          // console.log(aa);
+
+          return aa;
           break;
         case 'Heading 1':
-          return <h1 key={block.order}>{block.paragraph.properties.pStyle}</h1>;
+          // return <h1 key={block.order}>{block.paragraph.properties.pStyle}</h1>;
           break;
         // if (paragraph.segment.runs.length === 0) {
         //   return <div key={paragraph.id}>{''}</div>;
@@ -330,7 +366,7 @@ class SegmentsComponent extends React.PureComponent<
         // redering = <h1 key={paragraph.id}>{resultasd}</h1>;
 
         case 'Heading 2':
-          return <h1 key={block.order}>{block.paragraph.properties.pStyle}</h1>;
+          // return <h1 key={block.order}>{block.paragraph.properties.pStyle}</h1>;
           break;
 
         default:
@@ -353,10 +389,13 @@ class SegmentsComponent extends React.PureComponent<
         // );
       }
     });
-
+    // console.log(asd);
     return asd;
   };
 
+  ////////
+  //
+  //
   // switch (block.paragraph.properties.pStyle) {
   //   case 'Title':
   //     redering = (
@@ -470,7 +509,10 @@ class SegmentsComponent extends React.PureComponent<
   // });
 
   public render() {
+    console.log(this.props.blocks);
     const doc = this.getDocs(this.props.blocks);
+
+    // console.log(doc);
     return <div>{doc}</div>;
 
     return (

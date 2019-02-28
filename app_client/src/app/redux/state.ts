@@ -140,7 +140,7 @@ export type textVariant = {
 };
 
 export type run = {
-  id?: uuid;
+  id: uuid;
   ref: {
     textSegmentId?: uuid;
   };

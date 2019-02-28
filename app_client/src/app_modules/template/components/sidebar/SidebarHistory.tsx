@@ -17,7 +17,7 @@ interface IProps {
     blocks: templateState.block[];
     tableRows: templateState.tableRow[];
     tableColumns: templateState.tableCell[];
-    tableParagraphs: templateState.tableParagraph[];
+    // tableParagraphs: templateState.tableParagraph[];
     textSegments: templateState.textSegment[];
     variables: templateState.variable[];
     runs: templateState.run[];

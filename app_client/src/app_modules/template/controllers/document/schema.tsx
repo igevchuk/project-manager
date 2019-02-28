@@ -28,6 +28,17 @@ type ITemplate = {
   history?: templateState.history;
 };
 
+type block = {
+  order: number;
+  paragraph: templateState.paragraph;
+  segments: [
+    {
+      runs: templateState.run[];
+      segment: templateState.textSegment;
+    }
+  ];
+};
+
 type paragraph = templateState.paragraph;
 
 export class TemplateComposite extends TemplateComponent {
@@ -180,10 +191,9 @@ class Schema {
           });
 
         return {
-          run: sortedRun,
+          runs: sortedRun,
           segment: txtSegment
         };
-        //
       });
 
       const source = from(sgments);
