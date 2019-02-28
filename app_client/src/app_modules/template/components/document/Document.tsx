@@ -1,10 +1,4 @@
 import * as React from 'react';
-import ReactHtmlParser, {
-  processNodes,
-  convertNodeToElement,
-  htmlparser2
-} from 'react-html-parser';
-
 import {
   Button,
   Header,
@@ -15,10 +9,9 @@ import {
   Sidebar,
   Grid
 } from 'semantic-ui-react';
-
-// import { Grid, Icon } from 'semantic-ui-react';
 import CompareArrows from '@material-ui/icons/CompareArrows';
 import Variants from './Variants';
+
 import {
   StyledDocument,
   TextHover,
@@ -28,7 +21,6 @@ import {
 } from './Document.style';
 
 import { v4 } from 'uuid';
-
 import { contextWrapper } from '../../TemplateContext';
 import Schema from '../../controllers/document/schema';
 import * as visitor from '../../controllers/document/visitor';
@@ -38,7 +30,6 @@ import * as schemaInstanc from '../../controllers/document/schema';
 import RenderSegments from './ContentSegments';
 import * as templateState from '../../../../app/redux/state';
 import { instanceOf } from 'prop-types';
-// import { any } from 'prop-types';
 
 const fakeSegments = [
   { id: 1, text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' },
@@ -159,9 +150,9 @@ class TemplateContent extends React.Component<IContentProps, any> {
     // );
   };
 
-  public asd = () => {
-    alert('aaaa');
-  };
+  // public asd = () => {
+  //   alert('aaaa');
+  // };
 
   public renderDoc = () => {
     const docPieces: docPiece[] = [];
@@ -187,7 +178,6 @@ class TemplateContent extends React.Component<IContentProps, any> {
   };
 
   public getDoc(composite: abstract.TemplateComponent) {
-    // console.log(composite);
     const childrenComposites = composite.getChildren();
 
     for (const childComposite of childrenComposites) {
@@ -203,32 +193,21 @@ class TemplateContent extends React.Component<IContentProps, any> {
         this.getDoc(childComposite);
       }
     }
-
-    // console.log(this.docPieces);
   }
 
   public render() {
     const { blocks, paragraphs, textSegments, runs } = this.props.template;
-    // console.log(this.props.template);
 
     if (!this.state.template) {
       return 'loading ....';
     }
 
-    // generating tree data from patterns
+    // generating doc data
     const schema = new Schema({ blocks, paragraphs, textSegments, runs });
     schema.initTemplate();
-    const Articles = schema.getArticleComponents();
-    Articles.map(article => {
-      article.display(0);
-      this.getDoc(article);
-    });
+    const docData = schema.SortedBlocks;
 
-    // const article = Articles[0];
-    // article.display(0);
-    // this.getDoc(article);
-
-    // return <div>tisting </div>;
+    console.log(docData);
 
     return (
       <Grid.Column width={12}>
@@ -248,55 +227,11 @@ class TemplateContent extends React.Component<IContentProps, any> {
               +
             </button>
 
-            <Button.Group>
-              <Button
-                disabled={this.state.visible}
-                onClick={this.handleShowClick}
-              >
-                Show sidebar
-              </Button>
-              <Button
-                disabled={!this.state.visible}
-                onClick={this.handleHideClick}
-              >
-                Hide sidebar
-              </Button>
-            </Button.Group>
-
-            <Sidebar.Pushable as={Segment}>
-              <Sidebar
-                as={Menu}
-                animation="overlay"
-                icon="labeled"
-                inverted={true}
-                onHide={this.handleSidebarHide}
-                vertical={true}
-                visible={this.state.visible}
-                width="wide"
-              >
-                <div>
-                  <Menu.Item as="a" header={true}>
-                    Content Outline
-                  </Menu.Item>
-                  <Menu.Item as="a">
-                    <div onClick={this.asd}>ARTICLE 1</div>
-                  </Menu.Item>
-                  <Menu.Item as="a">ARTICLE 2</Menu.Item>
-                  <Menu.Item as="a">ARTICLE 3</Menu.Item>
-                  <Menu.Item as="a">ARTICLE 4</Menu.Item>
-                </div>
-              </Sidebar>
-
-              <Sidebar.Pusher>
-                <Segment basic={true}>
-                  {/* {fakeSegments.map(segment => this.renderSegment(segment))} */}
-                  <br />
-
-                  <br />
-                  {this.renderDoc()}
-                </Segment>
-              </Sidebar.Pusher>
-            </Sidebar.Pushable>
+            <Segment basic={true}>
+              {/* {fakeSegments.map(segment => this.renderSegment(segment))} */}
+              <br />
+              {/* {this.renderDoc()} */}
+            </Segment>
           </div>
         </StyledDocument>
       </Grid.Column>

@@ -12,11 +12,11 @@
       "blocks": [
         {
           "id": 0,
-          "sequence": 0
+          "sequence": 1
         },
         {
           "id": 1,
-          "sequence": 1
+          "sequence": 0
         },
         {
           "id": 2,
@@ -275,22 +275,18 @@
       "tables": [],
       "textSegments": [
         {
-          "properties": {},
-          "properties_metadata": "{}",
-          "object_metadata": "{'variantGroup': 'c0446c53-3b9d-440b-8e1a-a7de1286a826', 'variantDescription': 'Neutral', 'variantIsDefault': True, 'text': 'ARTICLE'}",
-          "id": "b709de36-50bf-4429-97d4-cd660ea0ac3a",
-          "parent_uuid": "0018fff1-1eab-4fe9-90f1-f3c76e549702",
-          "template_uuid": "b8c49d68-03b3-46f1-a079-0f83e0151573",
-          "sequence": 0,
           "revision_created_date_time": "2019-02-26T18:19:43.608000Z",
           "revision_created_by": 2,
           "variantGroup": "c0446c53-3b9d-440b-8e1a-a7de1286a826",
           "variantDescription": "Neutral",
           "variantIsDefault": true,
           "text": "ARTICLE",
+          "id": "b709de36-50bf-4429-97d4-cd660ea0ac3a",
           "ref": {
             "paragraphId": "0018fff1-1eab-4fe9-90f1-f3c76e549702"
-          }
+          },
+          "sequence": 0,
+          "properties": {}
         },
         {
           "properties": {},
