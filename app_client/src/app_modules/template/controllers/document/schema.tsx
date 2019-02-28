@@ -2,6 +2,9 @@ import * as React from 'react';
 import { metadata, TemplateComponent } from './abstract';
 import * as visitor from './visitor';
 
+import { from } from 'rxjs';
+import { groupBy, mergeMap, toArray } from 'rxjs/operators';
+
 import * as templateState from '../../../../app/redux/state';
 
 type ITemplate = {
@@ -138,39 +141,6 @@ class Schema {
     });
   }
 
-  // public initTemplate2() {
-  //   console.log(this.articles);
-
-  //   this.templateLeaves = this.generateTemplateLeaves(
-  //     this.template.textSegments,
-  //     this.template.runs
-  //   );
-
-  //   this.clauseComponents = this.generateComposites(this.clauses);
-  //   this.subSectionComponents = this.generateComposites(this.subSections);
-  //   this.sectionComponents = this.generateComposites(this.sections);
-  //   this.articleComponents = this.generateComposites(this.articles);
-
-  //   this.articleComponents.sort((a, b) => {
-  //     const blockASequence = a.metadata.paragraph.blockSequence;
-  //     const blockBSequence = b.metadata.paragraph.blockSequence;
-  //     return blockASequence - blockBSequence;
-  //   });
-
-  //   // this.articleComponents.reverse();
-  //   // embedding sectionComponents into articleComponents
-  //   this.chainingChildren(this.articleComponents, this.sectionComponents);
-  //   // embedding subSectionComponents into sectionComponents
-  //   this.chainingChildren(this.sectionComponents, this.subSectionComponents);
-  //   // embedding clauseComponents into subSectionComponents
-  //   this.chainingChildren(this.subSectionComponents, this.clauseComponents);
-  //   // embedding subClauseComponents into clauseComponents
-  //   this.chainingChildren(this.clauseComponents, this.subClauseComponents);
-  //   // console.log(this.articleComponents);
-
-  //   // this.articleComponents.reverse();
-  // }
-
   public initTemplate() {
     this.getSortedBlocks();
     const blocks = this.template.blocks;
@@ -200,32 +170,69 @@ class Schema {
       const para = paragraphs[i];
       const txtSegments = textSegments[i];
 
-      const sgments = [{}];
-      for (const textSegment of txtSegments) {
+      const sgments = txtSegments.map(txtSegment => {
         const sortedRun = this.template.runs
-          .filter(run => run.ref.textSegmentId === textSegment.id)
+          .filter(run => run.ref.textSegmentId === txtSegment.id)
           .sort((a, b) => {
             const sequenceA = a.sequence;
             const sequenceB = b.sequence;
             return sequenceA - sequenceB;
           });
 
-        sgments.push({
-          textSegment,
-          run: sortedRun
-        });
-      }
-      sgments.shift();
+        return {
+          run: sortedRun,
+          segment: txtSegment
+        };
+        //
+      });
+
+      const source = from(sgments);
+      const example = source.pipe(
+        groupBy(pSegment => pSegment.segment.variantGroup),
+        mergeMap(group => group.pipe(toArray()))
+      );
+      const subscribe = example.subscribe(val => {
+        // return console.log(val);
+        // const sortedBlock = {
+        //   order: block.sequence + 1,
+        //   paragraph: para,
+        //   segments: val
+        // };
+        // this.sortedBlocks.push(sortedBlock);
+      });
 
       const sortedBlock = {
         order: block.sequence + 1,
         paragraph: para,
+        // segments: [
+        //   {
+        //     activeId: '',
+        //     segmentGroup: [
+        //       {
+        //         run: [],
+        //         segment: {} // sequence = 0 and variantIsDefault = true
+        //       },
+        //       {
+        //         run: [],
+        //         segment: {} // sequence 0 and variantIsDefault = false
+        //       }
+        //     ]
+        //   },
+        //   {
+        //     // activeId: '',
+        //     segmentGroup: [
+        //       {
+        //         run: [],
+        //         segment: {} // sequence 1 and variantIsDefault = true
+        //       }
+        //     ]
+        //   }
+        // ]
         segments: sgments
       };
       this.sortedBlocks.push(sortedBlock);
     }
     this.sortedBlocks.shift();
-    // console.log(this.sortedBlocks);
 
     return;
 

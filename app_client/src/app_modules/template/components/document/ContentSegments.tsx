@@ -286,9 +286,11 @@ class SegmentsComponent extends React.PureComponent<
   };
 
   public render() {
-    const asd = this.getDoc();
+    // const asd = this.getDoc();
 
-    return <div>{asd}</div>;
+    // console.log(docData);
+
+    return <div>{'asd'}</div>;
 
     return (
       <div>

@@ -154,7 +154,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
   //   alert('aaaa');
   // };
 
-  public renderDoc = () => {
+  public renderDoca = () => {
     const docPieces: docPiece[] = [];
     const map = new Map();
     for (const item of this.docPieces) {
@@ -166,6 +166,20 @@ class TemplateContent extends React.Component<IContentProps, any> {
     // console.log(docPieces);
 
     return <RenderSegments segments={docPieces} />;
+
+    return <div>ALSKDJF</div>;
+    // return result.map(docPiece => {
+    //   return (
+    //     <div key={docPiece.id}>
+    //       {this.renderSegment({ id: docPiece.id, text: docPiece.text })}
+    //     </div>
+    //   );
+    // });
+  };
+
+  public renderDoc = (docData: any) => {
+    return <RenderSegments segments={docData} />;
+    // console.log(docData);
 
     return <div>ALSKDJF</div>;
     // return result.map(docPiece => {
@@ -202,12 +216,12 @@ class TemplateContent extends React.Component<IContentProps, any> {
       return 'loading ....';
     }
 
-    // generating doc data
+    // generating Doc data
     const schema = new Schema({ blocks, paragraphs, textSegments, runs });
     schema.initTemplate();
     const docData = schema.SortedBlocks;
-
-    console.log(docData);
+    const template = this.renderDoc(docData);
+    // console.log(docData);
 
     return (
       <Grid.Column width={12}>
@@ -230,7 +244,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
             <Segment basic={true}>
               {/* {fakeSegments.map(segment => this.renderSegment(segment))} */}
               <br />
-              {/* {this.renderDoc()} */}
+              {template}
             </Segment>
           </div>
         </StyledDocument>
