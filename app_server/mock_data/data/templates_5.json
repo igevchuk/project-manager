@@ -152,6 +152,22 @@
         {
           "properties": {},
           "properties_metadata": "{}",
+          "object_metadata": "{'t': 'ARTICLE'}",
+          "id": "1ccf08b1-8c41-448b-81bc-e8f22a30aaab",
+          "parent_uuid": "b709de36-50bf-4429-97d4-cd660ea0ac4a",
+          "template_uuid": "b8c49d68-03b3-46f1-a079-0f83e0151573",
+          "sequence": 0,
+          "revision_created_date_time": "2019-02-26T18:24:57.679000Z",
+          "revision_created_by": 2,
+          "t": "ARTICLE",
+          "ref": {
+            "textSegmentId": "b709de36-50bf-4429-97d4-cd660ea0ac4a"
+          }
+        },
+
+        {
+          "properties": {},
+          "properties_metadata": "{}",
           "object_metadata": "{'t': ' I'}",
           "id": "cd5b5399-1a1a-444e-b901-a2dc74836696",
           "parent_uuid": "8226fbe5-e111-4816-b853-8b7e43410139",
@@ -288,6 +304,21 @@
           "sequence": 0,
           "properties": {}
         },
+        {
+          "revision_created_date_time": "2019-02-26T18:19:43.608000Z",
+          "revision_created_by": 2,
+          "variantGroup": "c0446c53-3b9d-440b-8e1a-a7de1286a826",
+          "variantDescription": "Neutral",
+          "variantIsDefault": false,
+          "text": "ARTICLE",
+          "id": "b709de36-50bf-4429-97d4-cd660ea0ac4a",
+          "ref": {
+            "paragraphId": "0018fff1-1eab-4fe9-90f1-f3c76e549702"
+          },
+          "sequence": 0,
+          "properties": {}
+        },
+
         {
           "properties": {},
           "properties_metadata": "{}",
