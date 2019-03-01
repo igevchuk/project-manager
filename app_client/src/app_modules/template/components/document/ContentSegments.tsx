@@ -10,6 +10,7 @@ import {
   TextHoverFeature,
   TextNode,
   ArticleAndSectonNode,
+  NormalSectonNode,
   SegmentNode,
   SegmentHover,
   SegmentHoverFeature,
@@ -73,32 +74,23 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     );
   };
 
-  const getHtmlDoc = (blocks: block[]) => {
-    return 'aaaabb';
-  };
-
-  //   <Section key={innerKey++} background="cornflowerblue">
-  //   ✨ Magic ${segment.runs.length}`}
-  // </Section>
-
   const getSegment = (segmentSource: {
     runs: templateState.run[];
     segment: templateState.textSegment;
   }) => {
-    const asd = (
+    const segment = (
       <SegmentNode key={v4()}>
         <SegmentHover key={v4()} onClick={e => handleClick(e, segmentSource)}>
           <SegmentHoverFeature className="text-hover-feat">
             <Icon name="move" size="small" />
           </SegmentHoverFeature>
-          {segmentSource.runs.map(run => {
-            const runNode = <TextNode key={run.id}>{`  ${run.t}`}</TextNode>;
-            return runNode;
-          })}
+          {segmentSource.runs.map(run => (
+            <TextNode key={v4()}> {`✨ ${run.t}`}</TextNode>
+          ))}
         </SegmentHover>
       </SegmentNode>
     );
-    return asd;
+    return segment;
   };
 
   const getDoc = (blocks: block[]): React.ReactNode => {
@@ -114,7 +106,6 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
               {block.segments.map(segmentNode => getSegment(segmentNode))}
             </ArticleAndSectonNode>
           );
-
           return articleNode;
         case 'Heading 1':
           const sectionNode = (
@@ -126,74 +117,35 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
               {block.segments.map(segmentNode => getSegment(segmentNode))}
             </ArticleAndSectonNode>
           );
-
           return sectionNode;
-
-        case 'Heading2':
-          return (
-            <div key={block.order}>
-              {block.segments.map(segment => {
-                const sredering = (
-                  <div key={block.order++}>
-                    {segment.runs.map(run => {
-                      const asd = (
-                        <Section key={run.id} background="cornflowerblue">
-                          ✨ Magic ${run.t}`}
-                        </Section>
-                      );
-                      return asd;
-                    })}
-                  </div>
-                );
-                return sredering;
-              })}
-            </div>
+        case 'Heading 2':
+          const subSectionNode = (
+            <NormalSectonNode key={v4()} background="orange">
+              {block.segments.map(segmentNode => getSegment(segmentNode))}
+            </NormalSectonNode>
           );
-          break;
+          return subSectionNode;
         case 'Heading3':
-          return (
-            <div key={block.order}>
-              {block.segments.map(segment => {
-                const sredering = (
-                  <div key={block.order++}>
-                    {segment.runs.map(run => {
-                      const asd = (
-                        <ClauseNode key={run.id} className="text-node">{`  ${
-                          run.t
-                        }`}</ClauseNode>
-                      );
-                      return asd;
-                    })}
-                  </div>
-                );
-                return sredering;
-              })}
-            </div>
+          const clauseNode = (
+            <NormalSectonNode key={v4()} background={'rgb(159,168,218)'}>
+              {block.segments.map(segmentNode => getSegment(segmentNode))}
+            </NormalSectonNode>
           );
-          break;
+          return clauseNode;
         case 'Heading4':
-          return (
-            <div key={block.order}>
-              {block.segments.map(segment => {
-                const sredering = (
-                  <div key={block.order++}>
-                    {segment.runs.map(run => {
-                      const asd = (
-                        <SubClauseNode key={run.id} className="text-node">{`  ${
-                          run.t
-                        }`}</SubClauseNode>
-                      );
-                      return asd;
-                    })}
-                  </div>
-                );
-                return sredering;
-              })}
-            </div>
+          const subClauseNode = (
+            <NormalSectonNode key={v4()} background="orange">
+              {block.segments.map(segmentNode => getSegment(segmentNode))}
+            </NormalSectonNode>
           );
-          break;
+          return subClauseNode;
         default:
-          return null;
+          const normalNode = (
+            <NormalSectonNode key={v4()} background="orange">
+              {block.segments.map(segmentNode => getSegment(segmentNode))}
+            </NormalSectonNode>
+          );
+          return normalNode;
           break;
       }
     });

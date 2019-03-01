@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import { Grid } from 'semantic-ui-react';
 import * as templateState from '../../../../app/redux/state';
 
-interface IButton {
-  selected?: boolean;
-}
+type IArticleProps = {
+  background?: string;
+  isTitle?: boolean;
+};
 
 type IRunProps = {
   properties?: {
@@ -16,18 +17,19 @@ type IRunProps = {
   };
 };
 
-type IArticleProps = {
-  background?: string;
-  isTitle?: boolean;
-};
-
 export const TextNode = styled.span<IRunProps>``;
 
 const articlePadding = '4em';
 const sectionPadding = '1em';
+const mormalSecitonPadding = '1em';
 export const ArticleAndSectonNode = styled.section<IArticleProps>`
   text-align: ${props => (props.isTitle ? 'center' : null)};
   padding: ${props => (props.isTitle ? articlePadding : sectionPadding)};
+  background: ${props => props.background};
+`;
+
+export const NormalSectonNode = styled.section<IArticleProps>`
+  padding: ${mormalSecitonPadding};
   background: ${props => props.background};
 `;
 
@@ -66,9 +68,6 @@ export const SegmentHoverFeature = styled.span`
 `;
 
 ////////////////////////////////
-export const Button = styled.div<IButton>`
-  background: ${props => (props.selected ? 'red' : 'blue')};
-`;
 
 const padding = '1em';
 
@@ -137,6 +136,9 @@ export const SubClauseNode = styled.span<{ color?: string; border?: number }>`
   border: ${props => props.border || '4px'} solid 'black';
 `;
 
+//
+//
+//
 export const StyledDocument = styled(Grid.Column)`
   margin: 50px 5vmax;
   padding: 1em;
