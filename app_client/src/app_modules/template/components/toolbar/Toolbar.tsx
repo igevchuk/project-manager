@@ -3,6 +3,7 @@ import * as React from 'react';
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
 import Book from '@material-ui/icons/Book';
 import Check from '@material-ui/icons/Check';
+import ClauseLibraryModal from '../clause_library/Modal';
 import FormatAlignCenter from '@material-ui/icons/FormatAlignCenter';
 import FormatAlignJustify from '@material-ui/icons/FormatAlignJustify';
 import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft';
@@ -232,10 +233,14 @@ class Toolbar extends React.Component<{}, IToolbarState> {
           </ToolbarItem>
 
           <ToolbarItem>
-            <Link>
-              <Book />
-              Clause Library
-            </Link>
+            <ClauseLibraryModal
+              trigger={
+                <Link>
+                  <Book />
+                Clause Library
+                </Link>
+              }
+            />
           </ToolbarItem>
 
           <ToolbarItem>
