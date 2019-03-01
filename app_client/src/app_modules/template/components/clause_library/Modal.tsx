@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Header, Modal } from 'semantic-ui-react'
+import { Modal, Icon } from 'semantic-ui-react'
 
 interface IClauseLibraryProps {
   trigger: object;
@@ -11,6 +11,7 @@ class ClauseLibraryModal extends React.Component<IClauseLibraryProps> {
      <Modal
       closeOnEscape={true}
       trigger={this.props.trigger}
+      closeIcon={<Icon name="close" color="red"/>}
     >
         <Modal.Header>Clause Library</Modal.Header>
         <Modal.Content>
