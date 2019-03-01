@@ -3,6 +3,7 @@ import * as React from 'react';
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
 import Book from '@material-ui/icons/Book';
 import Check from '@material-ui/icons/Check';
+import ClauseLibraryModal from '../clause_library/Modal';
 import FormatAlignCenter from '@material-ui/icons/FormatAlignCenter';
 import FormatAlignJustify from '@material-ui/icons/FormatAlignJustify';
 import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft';
@@ -14,6 +15,7 @@ import FormatUnderlined from '@material-ui/icons/FormatUnderlined';
 import FormatIndentDecrease from '@material-ui/icons/FormatIndentDecrease';
 import FormatIndentIncrease from '@material-ui/icons/FormatIndentIncrease';
 import Toggle from './../../../../app/_styled_components/Toggle';
+import VariableLibraryModal from '../variable_library/Modal';
 import TextLevelDropdown, {
   TextLevelDropdownMenu,
   TextLevelDropdownItem
@@ -232,17 +234,25 @@ class Toolbar extends React.Component<{}, IToolbarState> {
           </ToolbarItem>
 
           <ToolbarItem>
-            <Link>
-              <Book />
-              Clause Library
-            </Link>
+            <ClauseLibraryModal
+              trigger={
+                <Link>
+                  <Book />
+                Clause Library
+                </Link>
+              }
+            />
           </ToolbarItem>
 
           <ToolbarItem>
-            <Link>
-              <Icon name="cube" />
-              Variables
-            </Link>
+            <VariableLibraryModal
+              trigger={
+                <Link>
+                  <Icon name="cube" />
+                  Variables
+                </Link>
+              }
+              />
           </ToolbarItem>
 
           <ToolbarItem>
