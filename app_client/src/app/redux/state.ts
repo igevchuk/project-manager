@@ -147,10 +147,10 @@ export type run = {
   sequence: number;
   type?: string; // Run
   properties: {
-    b?: null;
-    i?: null;
-    u?: null;
-    strike?: null;
+    b?: boolean;
+    i?: boolean;
+    u?: boolean;
+    strike?: boolean;
     vertAlign?: string; // subscript
   };
   t?: string; // ARTICLE I

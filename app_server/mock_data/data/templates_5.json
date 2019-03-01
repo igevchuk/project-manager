@@ -198,6 +198,21 @@
         {
           "properties": {},
           "properties_metadata": "{}",
+          "object_metadata": "{'t': 'NEW ARTICLE TITLE'}",
+          "id": "11303f49-5615-44dd-b9ce-5a2bd21a4345",
+          "parent_uuid": "0e88bc61-78e5-463b-892d-9425e19f0396",
+          "template_uuid": "b8c49d68-03b3-46f1-a079-0f83e0151573",
+          "sequence": 1,
+          "revision_created_date_time": "2019-02-26T18:24:57.679000Z",
+          "revision_created_by": 2,
+          "t": " PLUS MORE",
+          "ref": {
+            "textSegmentId": "0e88bc61-78e5-463b-892d-9425e19f0396"
+          }
+        },
+        {
+          "properties": {},
+          "properties_metadata": "{}",
           "object_metadata": "{'t': 'Agreement Title'}",
           "id": "8995c5bb-7dcb-45bf-8218-67e60dce3c54",
           "parent_uuid": "a57236e8-6fa6-494a-80c7-41459c85bc50",

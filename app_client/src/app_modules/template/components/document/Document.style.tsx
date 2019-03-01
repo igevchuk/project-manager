@@ -1,14 +1,66 @@
 import styled from 'styled-components';
 import { Grid } from 'semantic-ui-react';
+import * as templateState from '../../../../app/redux/state';
 
 interface IButton {
   selected?: boolean;
 }
-export const Button2 = styled.div<IButton>`
-  background: ${props => (props.selected ? 'red' : 'blue')};
+
+type IRunProps = {
+  properties?: {
+    b?: boolean;
+    i?: boolean;
+    u?: boolean;
+    strike?: boolean;
+    vertAlign?: string;
+  };
+};
+
+export const TextNode = styled.span<IRunProps>``;
+
+const articlePadding = '2em';
+export const ArticleNode = styled.section<{ background?: string }>`
+  text-align: center;
+  padding: ${articlePadding};
+  background: ${props => props.background};
 `;
 
-export const Button1 = styled.div<{ selected?: boolean }>`
+export const SegmentHover = styled.span`
+  position: relative;
+  &:hover {
+    outline: 2px solid orange;
+    background-color: rgb(255, 252, 220);
+    cursor: pointer;
+    .text-hover-feat {
+      display: block;
+    }
+  }
+  &:hover + .variant-count {
+    display: inline-flex;
+  }
+`;
+
+export const SegmentHoverFeature = styled.span`
+  background-color: orange;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  display: none;
+  left: -2px;
+  line-height: 1.2em;
+  padding: 0 10px;
+  position: absolute;
+  text-align: center;
+  top: -16px;
+  & .icon {
+    color: #ffffff;
+    height: auto;
+    margin: 0;
+    width: auto;
+  }
+`;
+
+////////////////////////////////
+export const Button = styled.div<IButton>`
   background: ${props => (props.selected ? 'red' : 'blue')};
 `;
 
@@ -24,9 +76,6 @@ export const Section = styled.section<{ background?: string }>`
   background: ${props => props.background};
 `;
 
-export const TextNode = styled.span``;
-export const TextNode01 = styled.div``;
-
 export const TextNode02 = styled.div<{ color?: string; border?: number }>`
   display: flex;
   align-items: center;
@@ -34,7 +83,9 @@ export const TextNode02 = styled.div<{ color?: string; border?: number }>`
   border: ${props => props.border || '4px'} solid 'black';
 `;
 
-export const TitleNode = styled.section<{
+export const SegmentNode = styled.span<{}>``;
+
+export const TitleNode2 = styled.section<{
   color?: string;
   border?: number;
   background?: string;

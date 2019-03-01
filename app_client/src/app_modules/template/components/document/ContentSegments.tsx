@@ -9,11 +9,11 @@ import {
   TextHover,
   TextHoverFeature,
   TextNode,
-  Button1,
-  Button2,
-  TextNode01,
   TextNode02,
-  TitleNode,
+  ArticleNode,
+  SegmentNode,
+  SegmentHover,
+  SegmentHoverFeature,
   SectionNode,
   Section,
   SebSectionNode,
@@ -54,12 +54,12 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     // if (!activeSegment || segment.id !== activeSegment.id) {
     if (true) {
       return [
-        <TextHover key={v4()} onClick={e => handleClick(e, segment)}>
-          <TextHoverFeature className="text-hover-feat">
+        <SegmentHover key={v4()} onClick={e => handleClick(e, segment)}>
+          <SegmentHoverFeature className="text-hover-feat">
             <Icon name="move" size="small" />
-          </TextHoverFeature>
+          </SegmentHoverFeature>
           <TextNode className="text-node">{segment.text}</TextNode>
-        </TextHover>,
+        </SegmentHover>,
         <VariantCount key={v4()} className="variant-count">
           {/* {segmentVariants.length} <CompareArrows /> */}
         </VariantCount>
@@ -84,29 +84,35 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
 
   const getDoc = (blocks: block[]): React.ReactNode => {
     const asd = blocks.map(block => {
-      // debugger;
       switch (block.paragraph.properties.pStyle) {
         case 'Title':
-          if (!(block.segments.length > 0)) {
-            return null;
-          }
-
-          let innerKey = 1;
-
-          return (
-            <div key={block.order}>
+          const articleNode = (
+            <ArticleNode key={block.order} background="cornflowerblue">
               {block.segments.map(segment => {
-                const sredering = (
-                  <Section key={innerKey++} background="cornflowerblue">
-                    ✨ Magic ${segment.runs.length}`}
-                  </Section>
+                const segmentNode = (
+                  <SegmentNode key={v4()}>
+                    <SegmentHover
+                      key={v4()}
+                      onClick={e => handleClick(e, segment)}
+                    >
+                      <SegmentHoverFeature className="text-hover-feat">
+                        <Icon name="move" size="small" />
+                      </SegmentHoverFeature>
+                      {segment.runs.map(run => {
+                        const runNode = (
+                          <TextNode key={run.id}>{`  ${run.t}`}</TextNode>
+                        );
+                        return runNode;
+                      })}
+                    </SegmentHover>
+                  </SegmentNode>
                 );
-                return sredering;
+                return segmentNode;
               })}
-            </div>
+            </ArticleNode>
           );
 
-          break;
+          return articleNode;
         case 'Heading1':
           return (
             <div key={block.order}>
@@ -188,7 +194,7 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
           );
           break;
         default:
-          return 'null';
+          return null;
           break;
       }
     });
