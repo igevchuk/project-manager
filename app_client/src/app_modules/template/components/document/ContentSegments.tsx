@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { Form, Icon } from 'semantic-ui-react';
 import * as sortableHoc from 'react-sortable-hoc';
-import { v4 } from 'uuid';
-import * as templateState from '../../../../app/redux/state';
+import styled from 'styled-components';
 
-import Variants from './Variants';
+import * as templateState from '../../../../app/redux/state';
 import {
   StyledDocument,
   TextHover,
@@ -12,16 +11,194 @@ import {
   TextNode,
   Button1,
   Button2,
+  TextNode01,
   TextNode02,
   TitleNode,
   SectionNode,
+  Section,
   SebSectionNode,
   ClauseNode,
   SubClauseNode,
   VariantCount
 } from './Document.style';
 
-type pStyle = 'Title' | 'Title' | 'Title' | 'Title' | 'Title';
+import { v4 } from 'uuid';
+import Variants from './Variants';
+
+type block = {
+  order: number;
+  paragraph: templateState.paragraph;
+  segments: [
+    {
+      runs: templateState.run[];
+      segment: templateState.textSegment;
+    }
+  ];
+};
+
+interface ISectionProps {
+  blocks: block[];
+}
+
+export const HtmlSections: React.SFC<ISectionProps> = props => {
+  console.log(props.blocks);
+
+  const handleClick = (e: any, value: any): void => {
+    console.log(value);
+  };
+
+  const nodeStyling = (
+    segment: { id: string; text?: string },
+    activeSegment?: { id: number; text: string }
+  ) => {
+    // if (!activeSegment || segment.id !== activeSegment.id) {
+    if (true) {
+      return [
+        <TextHover key={v4()} onClick={e => handleClick(e, segment)}>
+          <TextHoverFeature className="text-hover-feat">
+            <Icon name="move" size="small" />
+          </TextHoverFeature>
+          <TextNode className="text-node">{segment.text}</TextNode>
+        </TextHover>,
+        <VariantCount key={v4()} className="variant-count">
+          {/* {segmentVariants.length} <CompareArrows /> */}
+        </VariantCount>
+      ];
+    }
+    return (
+      <Variants
+      // segmentId={segment.id}
+      // textVariants={segmentVariants}
+      // onEscapeOutside={this.handleEscapeOutside}
+      />
+    );
+  };
+
+  const getHtmlDoc = (blocks: block[]) => {
+    return 'aaaabb';
+  };
+
+  //   <Section key={innerKey++} background="cornflowerblue">
+  //   ✨ Magic ${segment.runs.length}`}
+  // </Section>
+
+  const getDoc = (blocks: block[]): React.ReactNode => {
+    const asd = blocks.map(block => {
+      // debugger;
+      switch (block.paragraph.properties.pStyle) {
+        case 'Title':
+          if (!(block.segments.length > 0)) {
+            return null;
+          }
+
+          let innerKey = 1;
+
+          return (
+            <div key={block.order}>
+              {block.segments.map(segment => {
+                const sredering = (
+                  <Section key={innerKey++} background="cornflowerblue">
+                    ✨ Magic ${segment.runs.length}`}
+                  </Section>
+                );
+                return sredering;
+              })}
+            </div>
+          );
+
+          break;
+        case 'Heading1':
+          return (
+            <div key={block.order}>
+              {block.segments.map(segment => {
+                const sredering = (
+                  <div key={block.order++}>
+                    {segment.runs.map(run => {
+                      return nodeStyling({ id: run.id, text: run.t });
+                    })}
+                  </div>
+                );
+                return sredering;
+              })}
+            </div>
+          );
+
+          break;
+        case 'Heading2':
+          return (
+            <div key={block.order}>
+              {block.segments.map(segment => {
+                const sredering = (
+                  <div key={block.order++}>
+                    {segment.runs.map(run => {
+                      const asd = (
+                        <Section key={run.id} background="cornflowerblue">
+                          ✨ Magic ${run.t}`}
+                        </Section>
+                      );
+                      return asd;
+                    })}
+                  </div>
+                );
+                return sredering;
+              })}
+            </div>
+          );
+          break;
+        case 'Heading3':
+          return (
+            <div key={block.order}>
+              {block.segments.map(segment => {
+                const sredering = (
+                  <div key={block.order++}>
+                    {segment.runs.map(run => {
+                      const asd = (
+                        <ClauseNode key={run.id} className="text-node">{`  ${
+                          run.t
+                        }`}</ClauseNode>
+                      );
+                      return asd;
+                    })}
+                  </div>
+                );
+                return sredering;
+              })}
+            </div>
+          );
+          break;
+        case 'Heading4':
+          return (
+            <div key={block.order}>
+              {block.segments.map(segment => {
+                const sredering = (
+                  <div key={block.order++}>
+                    {segment.runs.map(run => {
+                      const asd = (
+                        <SubClauseNode key={run.id} className="text-node">{`  ${
+                          run.t
+                        }`}</SubClauseNode>
+                      );
+                      return asd;
+                    })}
+                  </div>
+                );
+                return sredering;
+              })}
+            </div>
+          );
+          break;
+        default:
+          return 'null';
+          break;
+      }
+    });
+    return asd;
+  };
+
+  return <div>{getDoc(props.blocks)}</div>;
+};
+
+/////////////////////
 
 const DragHandle = sortableHoc.SortableHandle(() => (
   <span>
@@ -68,22 +245,6 @@ const SortableItem = sortableHoc.SortableElement(
 const SortableContainer = sortableHoc.SortableContainer(({ children }) => {
   return <div>{children}</div>;
 });
-
-type segment = {
-  id: number;
-  text: string;
-};
-
-type block = {
-  order: number;
-  paragraph: templateState.paragraph;
-  segments: [
-    {
-      runs: templateState.run[];
-      segment: templateState.textSegment;
-    }
-  ];
-};
 
 type docPiece = {
   id: string;
@@ -152,8 +313,36 @@ class SegmentsComponent extends React.PureComponent<
       {}
     );
 
+  public nodeStyling = (
+    segment: { id: string; text?: string },
+    activeSegment?: { id: number; text: string }
+  ) => {
+    // if (!activeSegment || segment.id !== activeSegment.id) {
+    if (true) {
+      return [
+        <TextHover key={v4()} onClick={e => this.handleClick(e, segment)}>
+          <TextHoverFeature className="text-hover-feat">
+            <Icon name="move" size="small" />
+          </TextHoverFeature>
+          <TextNode className="text-node">{segment.text}</TextNode>
+        </TextHover>,
+        <VariantCount key={v4()} className="variant-count">
+          {/* {segmentVariants.length} <CompareArrows /> */}
+        </VariantCount>
+      ];
+    }
+    return (
+      <Variants
+      // segmentId={segment.id}
+      // textVariants={segmentVariants}
+      // onEscapeOutside={this.handleEscapeOutside}
+      />
+    );
+  };
+
   public getDoc = (blocks: block[]): React.ReactNode => {
     const asd = blocks.map(block => {
+      // debugger;
       switch (block.paragraph.properties.pStyle) {
         case 'Title':
           if (!(block.segments.length > 0)) {
@@ -161,6 +350,20 @@ class SegmentsComponent extends React.PureComponent<
           }
 
           let innerKey = 1;
+
+          return (
+            <div key={block.order}>
+              {block.segments.map(segment => {
+                const sredering = (
+                  <Section key={innerKey++} background="cornflowerblue">
+                    ✨ Magic ${segment.runs.length}`}
+                  </Section>
+                );
+                return sredering;
+              })}
+            </div>
+          );
+
           return (
             <div key={block.order}>
               {block.segments.map(segment => {
@@ -168,9 +371,9 @@ class SegmentsComponent extends React.PureComponent<
                   <div key={innerKey++}>
                     {segment.runs.map(run => {
                       const asd = (
-                        <TitleNode key={run.id} className="text-node">{`  ${
-                          run.t
-                        }`}</TitleNode>
+                        <Section key={run.id} background="cornflowerblue">
+                          ✨ Magic ${run.t}`}
+                        </Section>
                       );
                       return asd;
                     })}
@@ -180,8 +383,26 @@ class SegmentsComponent extends React.PureComponent<
               })}
             </div>
           );
+
           break;
-        case 'Heading 1':
+        case 'Heading1':
+          return (
+            <div key={block.order}>
+              {block.segments.map(segment => {
+                const sredering = (
+                  <div key={block.order++}>
+                    {segment.runs.map(run => {
+                      return this.nodeStyling({ id: run.id, text: run.t });
+                    })}
+                  </div>
+                );
+                return sredering;
+              })}
+            </div>
+          );
+
+          break;
+        case 'Heading2':
           return (
             <div key={block.order}>
               {block.segments.map(segment => {
@@ -189,9 +410,9 @@ class SegmentsComponent extends React.PureComponent<
                   <div key={block.order++}>
                     {segment.runs.map(run => {
                       const asd = (
-                        <SectionNode key={run.id} className="text-node">{`  ${
-                          run.t
-                        }`}</SectionNode>
+                        <Section key={run.id} background="cornflowerblue">
+                          ✨ Magic ${run.t}`}
+                        </Section>
                       );
                       return asd;
                     })}
@@ -202,29 +423,7 @@ class SegmentsComponent extends React.PureComponent<
             </div>
           );
           break;
-        case 'Heading 2':
-          return (
-            <div key={block.order}>
-              {block.segments.map(segment => {
-                const sredering = (
-                  <div key={block.order++}>
-                    {segment.runs.map(run => {
-                      const asd = (
-                        <SebSectionNode
-                          key={run.id}
-                          className="text-node"
-                        >{`  ${run.t}`}</SebSectionNode>
-                      );
-                      return asd;
-                    })}
-                  </div>
-                );
-                return sredering;
-              })}
-            </div>
-          );
-          break;
-        case 'Heading 3':
+        case 'Heading3':
           return (
             <div key={block.order}>
               {block.segments.map(segment => {
@@ -245,7 +444,7 @@ class SegmentsComponent extends React.PureComponent<
             </div>
           );
           break;
-        case 'Heading 4':
+        case 'Heading4':
           return (
             <div key={block.order}>
               {block.segments.map(segment => {
@@ -267,25 +466,7 @@ class SegmentsComponent extends React.PureComponent<
           );
           break;
         default:
-          return (
-            <div key={block.order}>
-              {block.segments.map(segment => {
-                const sredering = (
-                  <div key={block.order++}>
-                    {segment.runs.map(run => {
-                      const asd = (
-                        <TextNode key={run.id} className="text-node">{`  ${
-                          run.t
-                        }`}</TextNode>
-                      );
-                      return asd;
-                    })}
-                  </div>
-                );
-                return sredering;
-              })}
-            </div>
-          );
+          return 'null';
           break;
       }
     });
@@ -295,18 +476,8 @@ class SegmentsComponent extends React.PureComponent<
   public render() {
     console.log(this.props.blocks);
     const doc = this.getDoc(this.props.blocks);
-
-    // console.log(doc);
     return <div>{doc}</div>;
 
-    return (
-      <div>
-        <Button1 selected={true}>this is testing</Button1>
-        <TextNode02 color={'orange'} border={4}>
-          aaaaa
-        </TextNode02>
-      </div>
-    );
     // return (
     //   <SortableContainer onSortEnd={this.onSortEnd} useDragHandle={true}>
     //     {segments.map((segment, index) => (

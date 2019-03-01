@@ -12,18 +12,56 @@ export const Button1 = styled.div<{ selected?: boolean }>`
   background: ${props => (props.selected ? 'red' : 'blue')};
 `;
 
-export const TextNode02 = styled.span<{ color?: string; border?: number }>`
+const padding = '1em';
+
+export const Section = styled.section<{ background?: string }>`
+  // color: white;
+  text-align: center;
+  /* Pass variables as inputs */
+  padding: ${padding};
+
+  /* Adjust the background from the properties */
+  background: ${props => props.background};
+`;
+
+export const TextNode = styled.span``;
+export const TextNode01 = styled.div``;
+
+export const TextNode02 = styled.div<{ color?: string; border?: number }>`
+  display: flex;
+  align-items: center;
   color: ${props => (props.color ? 'red' : 'blue')};
   border: ${props => props.border || '4px'} solid 'black';
 `;
 
-export const TitleNode = styled.span<{ color?: string; border?: number }>`
-  color: ${props => (props.color ? 'red' : 'blue')};
+export const TitleNode = styled.section<{
+  color?: string;
+  border?: number;
+  background?: string;
+}>`
+  display: flex;
+  // align-items: center;
+  text-align: center;
+
+  &:hover {
+    outline: 2px solid orange;
+    background-color: rgb(255, 252, 220);
+    cursor: pointer;
+    .text-hover-feat {
+      display: block;
+    }
+  }
+
+  color: ${props => (props.color ? 'orange' : 'blue')};
   border: ${props => props.border || '4px'} solid 'black';
+
+  padding: ${padding};
+
+  background: ${props => props.background};
 `;
 
-export const SectionNode = styled.span<{ color?: string; border?: number }>`
-  color: ${props => (props.color ? 'red' : 'blue')};
+export const SectionNode = styled.div<{ color: string; border?: number }>`
+  color: ${props => (props.color ? props.color : 'blue')};
   border: ${props => props.border || '4px'} solid 'black';
 `;
 
@@ -80,8 +118,6 @@ export const TextHoverFeature = styled.span`
     width: auto;
   }
 `;
-
-export const TextNode = styled.span``;
 
 export const VariantCount = styled.span`
   align-items: center;

@@ -27,7 +27,7 @@ import * as visitor from '../../controllers/document/visitor';
 import * as strategy from '../../controllers/document/strategy';
 import * as abstract from '../../controllers/document/abstract';
 import * as schemaInstanc from '../../controllers/document/schema';
-import RenderSegments from './ContentSegments';
+import RenderSegments, { HtmlSections } from './ContentSegments';
 import * as templateState from '../../../../app/redux/state';
 import { instanceOf } from 'prop-types';
 
@@ -76,20 +76,31 @@ interface IContentProps {
 class TemplateContent extends React.Component<IContentProps, any> {
   constructor(props: any) {
     super(props);
+
+    const { blocks, paragraphs, textSegments, runs } = props.template;
+    const schema = new Schema({ blocks, paragraphs, textSegments, runs });
+    schema.initTemplate();
+    const sections = schema.SortedBlocks as block[];
+
     this.state = {
       activeSegment: null,
       visible: false,
-      template: {}
+      template: props.template,
+      docData: sections
     };
   }
 
   public componentDidMount() {
-    this.setState(
-      (prevState, props) => ({ template: this.props.template }),
-      () => {
-        // console.log(this.state.template);
-      }
-    );
+    // const { blocks, paragraphs, textSegments, runs } = this.state.template;
+    // const schema = new Schema({ blocks, paragraphs, textSegments, runs });
+    // schema.initTemplate();
+    // const docData = schema.SortedBlocks as block[];
+    // this.setState(
+    //   (prevState, props) => ({ docData }),
+    //   () => {
+    //     console.log(this.state.docData);
+    //   }
+    // );
   }
 
   public handleHideClick = () => this.setState({ visible: false });
@@ -123,21 +134,18 @@ class TemplateContent extends React.Component<IContentProps, any> {
   };
 
   public renderDoc = (docData: block[]) => {
+    // console.log(docData);
+
+    return <HtmlSections blocks={docData} />;
     return <RenderSegments blocks={docData} />;
   };
 
   public render() {
-    const { blocks, paragraphs, textSegments, runs } = this.props.template;
-
-    if (!this.state.template) {
+    if (!this.state.docData) {
       return 'loading ....';
     }
 
-    // generating Doc data
-    const schema = new Schema({ blocks, paragraphs, textSegments, runs });
-    schema.initTemplate();
-    const docData = schema.SortedBlocks as block[];
-    const template = this.renderDoc(docData);
+    const template = this.renderDoc(this.state.docData);
 
     return (
       <Grid.Column width={12}>

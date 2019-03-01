@@ -38,7 +38,7 @@
       "paragraphs": [
         {
           "properties": {
-            "pStyle": "Title"
+            "pStyle": "Heading 2"
           },
           "properties_metadata": "{'pStyle': 'Title'}",
           "object_metadata": "{}",
