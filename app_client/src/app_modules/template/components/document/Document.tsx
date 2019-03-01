@@ -145,13 +145,18 @@ class TemplateContent extends React.Component<IContentProps, any> {
       return 'loading ....';
     }
 
-    const template = this.renderDoc(this.state.docData);
+    const htmlSections = this.renderDoc(this.state.docData);
 
     return (
       <Grid.Column width={12}>
         <StyledDocument>
           <div>
+            <Segment basic={true}>
+              {htmlSections}
+              {/* {fakeSegments.map(segment => this.renderSegment(segment))} */}
+            </Segment>
             <button
+              hidden={true}
               onClick={() =>
                 this.props.dispatch({
                   type: 'FETCH_FORM_FULFILLED',
@@ -164,12 +169,6 @@ class TemplateContent extends React.Component<IContentProps, any> {
             >
               +
             </button>
-
-            <Segment basic={true}>
-              {/* {fakeSegments.map(segment => this.renderSegment(segment))} */}
-              <br />
-              {template}
-            </Segment>
           </div>
         </StyledDocument>
       </Grid.Column>

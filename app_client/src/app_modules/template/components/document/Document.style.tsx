@@ -16,12 +16,18 @@ type IRunProps = {
   };
 };
 
+type IArticleProps = {
+  background?: string;
+  isTitle?: boolean;
+};
+
 export const TextNode = styled.span<IRunProps>``;
 
-const articlePadding = '2em';
-export const ArticleNode = styled.section<{ background?: string }>`
-  text-align: center;
-  padding: ${articlePadding};
+const articlePadding = '4em';
+const sectionPadding = '1em';
+export const ArticleAndSectonNode = styled.section<IArticleProps>`
+  text-align: ${props => (props.isTitle ? 'center' : null)};
+  padding: ${props => (props.isTitle ? articlePadding : sectionPadding)};
   background: ${props => props.background};
 `;
 

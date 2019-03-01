@@ -9,8 +9,7 @@ import {
   TextHover,
   TextHoverFeature,
   TextNode,
-  TextNode02,
-  ArticleNode,
+  ArticleAndSectonNode,
   SegmentNode,
   SegmentHover,
   SegmentHoverFeature,
@@ -82,54 +81,54 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
   //   ✨ Magic ${segment.runs.length}`}
   // </Section>
 
+  const getSegment = (segmentSource: {
+    runs: templateState.run[];
+    segment: templateState.textSegment;
+  }) => {
+    const asd = (
+      <SegmentNode key={v4()}>
+        <SegmentHover key={v4()} onClick={e => handleClick(e, segmentSource)}>
+          <SegmentHoverFeature className="text-hover-feat">
+            <Icon name="move" size="small" />
+          </SegmentHoverFeature>
+          {segmentSource.runs.map(run => {
+            const runNode = <TextNode key={run.id}>{`  ${run.t}`}</TextNode>;
+            return runNode;
+          })}
+        </SegmentHover>
+      </SegmentNode>
+    );
+    return asd;
+  };
+
   const getDoc = (blocks: block[]): React.ReactNode => {
     const asd = blocks.map(block => {
       switch (block.paragraph.properties.pStyle) {
         case 'Title':
           const articleNode = (
-            <ArticleNode key={block.order} background="cornflowerblue">
-              {block.segments.map(segment => {
-                const segmentNode = (
-                  <SegmentNode key={v4()}>
-                    <SegmentHover
-                      key={v4()}
-                      onClick={e => handleClick(e, segment)}
-                    >
-                      <SegmentHoverFeature className="text-hover-feat">
-                        <Icon name="move" size="small" />
-                      </SegmentHoverFeature>
-                      {segment.runs.map(run => {
-                        const runNode = (
-                          <TextNode key={run.id}>{`  ${run.t}`}</TextNode>
-                        );
-                        return runNode;
-                      })}
-                    </SegmentHover>
-                  </SegmentNode>
-                );
-                return segmentNode;
-              })}
-            </ArticleNode>
+            <ArticleAndSectonNode
+              key={v4()}
+              isTitle={true}
+              background="cornflowerblue"
+            >
+              {block.segments.map(segmentNode => getSegment(segmentNode))}
+            </ArticleAndSectonNode>
           );
 
           return articleNode;
-        case 'Heading1':
-          return (
-            <div key={block.order}>
-              {block.segments.map(segment => {
-                const sredering = (
-                  <div key={block.order++}>
-                    {segment.runs.map(run => {
-                      return nodeStyling({ id: run.id, text: run.t });
-                    })}
-                  </div>
-                );
-                return sredering;
-              })}
-            </div>
+        case 'Heading 1':
+          const sectionNode = (
+            <ArticleAndSectonNode
+              key={v4()}
+              isTitle={false}
+              background="palevioletred"
+            >
+              {block.segments.map(segmentNode => getSegment(segmentNode))}
+            </ArticleAndSectonNode>
           );
 
-          break;
+          return sectionNode;
+
         case 'Heading2':
           return (
             <div key={block.order}>
