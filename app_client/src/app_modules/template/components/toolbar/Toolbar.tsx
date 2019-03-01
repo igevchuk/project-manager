@@ -15,6 +15,7 @@ import FormatUnderlined from '@material-ui/icons/FormatUnderlined';
 import FormatIndentDecrease from '@material-ui/icons/FormatIndentDecrease';
 import FormatIndentIncrease from '@material-ui/icons/FormatIndentIncrease';
 import Toggle from './../../../../app/_styled_components/Toggle';
+import VariableLibraryModal from '../variable_library/Modal';
 import TextLevelDropdown, {
   TextLevelDropdownMenu,
   TextLevelDropdownItem
@@ -244,10 +245,14 @@ class Toolbar extends React.Component<{}, IToolbarState> {
           </ToolbarItem>
 
           <ToolbarItem>
-            <Link>
-              <Icon name="cube" />
-              Variables
-            </Link>
+            <VariableLibraryModal
+              trigger={
+                <Link>
+                  <Icon name="cube" />
+                  Variables
+                </Link>
+              }
+              />
           </ToolbarItem>
 
           <ToolbarItem>
