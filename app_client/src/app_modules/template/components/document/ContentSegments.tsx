@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { Form, Icon } from 'semantic-ui-react';
 import * as sortableHoc from 'react-sortable-hoc';
-import styled from 'styled-components';
-import { v4 } from 'uuid';
 import CompareArrows from '@material-ui/icons/CompareArrows';
+import { v4 } from 'uuid';
 
-import * as templateState from '../../../../app/redux/state';
 import {
   TextHover,
   TextHoverFeature,
@@ -18,14 +16,26 @@ import {
   SegmentHover,
   SegmentHoverFeature,
   Section,
-  SebSectionNode,
   ClauseNode,
   SubClauseNode,
   VariantCount
 } from './Document.style';
 
+import * as templateState from '../../../../app/redux/state';
 import Variants from './Variants';
 
+enum PStyle {
+  Articl = 'Title',
+  Heading1 = 'Heading 1',
+  Heading2 = 'Heading 2',
+  Heading3 = 'Heading 3',
+  Heading4 = 'Heading 4'
+}
+
+type segmentSource = {
+  runs: templateState.run[];
+  segment: templateState.textSegment;
+};
 type block = {
   order: number;
   paragraph: templateState.paragraph;
@@ -41,49 +51,94 @@ interface ISectionProps {
   blocks: block[];
 }
 
+const SortableItema = sortableHoc.SortableElement(
+  ({ value }: { value: { id: number; text: string } }) => {
+    const [activeSegment, setActiveSegment] = React.useState({
+      id: -1,
+      text: ''
+    });
+    const segmentVariants = [
+      { id: 1, text: 'text01 asd', title: 'text01', sequence: 1 },
+      { id: 2, text: 'text02 dsa', title: 'text02', sequence: 2 },
+      { id: 3, text: 'text03 cde', title: 'text03', sequence: 3 },
+      { id: 4, text: 'text04 rdx', title: 'text04', sequence: 4 }
+    ]; // this.getTextVariants(segment);
+
+    if (!activeSegment || value.id !== activeSegment.id) {
+      return (
+        <div>
+          <TextHover key={v4()} onClick={() => setActiveSegment(value)}>
+            <TextHoverFeature className="text-hover-feat">
+              <DragHandle />
+            </TextHoverFeature>
+            <TextNode className="text-node">{value.text}</TextNode>
+          </TextHover>
+        </div>
+      );
+    }
+
+    return (
+      <Variants
+        segmentId={value.id}
+        textVariants={segmentVariants}
+        onEscapeOutside={() => setActiveSegment({ id: -1, text: '' })}
+      />
+    );
+  }
+);
+
 export const HtmlSections: React.SFC<ISectionProps> = props => {
   console.log(props.blocks);
 
-  const handleClick = (e: any, value: any): void => {
-    console.log(value);
+  const [activeSegment, setActiveSegment] = React.useState({});
+
+  const handleClick = (value: segmentSource): void => {
+    // console.log(value);
+    setActiveSegment(value);
   };
 
-  const nodeStyling = (
-    segment: { id: string; text?: string },
-    activeSegment?: { id: number; text: string }
-  ) => {
-    // if (!activeSegment || segment.id !== activeSegment.id) {
-    if (true) {
-      return [
-        <SegmentHover key={v4()} onClick={e => handleClick(e, segment)}>
-          <SegmentHoverFeature className="text-hover-feat">
-            <Icon name="move" size="small" />
-          </SegmentHoverFeature>
-          <TextNode className="text-node">{segment.text}</TextNode>
-        </SegmentHover>,
-        <VariantCount key={v4()} className="variant-count">
-          {/* {segmentVariants.length} <CompareArrows /> */}
-        </VariantCount>
-      ];
-    }
-    return (
-      <Variants
-      // segmentId={segment.id}
-      // textVariants={segmentVariants}
-      // onEscapeOutside={this.handleEscapeOutside}
-      />
-    );
-  };
+  // public handleClick = (e: any, segment: any): void => {
+  //   this.setState({ activeSegment: segment });
+  // };
+
+  // const nodeStyling = (
+  //   segment: { id: string; text?: string },
+  //   activeSegment?: { id: number; text: string }
+  // ) => {
+  //   if (!activeSegment || segment.id !== activeSegment.id) {
+  //   if (true) {
+  //     return [
+  //       <SegmentHover key={v4()} onClick={e => handleClick(segment)}>
+  //         <SegmentHoverFeature className="text-hover-feat">
+  //           <Icon name="move" size="small" />
+  //         </SegmentHoverFeature>
+  //         <TextNode className="text-node">{segment.text}</TextNode>
+  //       </SegmentHover>,
+  //       <VariantCount key={v4()} className="variant-count">
+  //         {segmentVariants.length} <CompareArrows />
+  //       </VariantCount>
+  //     ];
+  //   }
+  //   return (
+  //     <Variants
+  //     segmentId={segment.id}
+  //     textVariants={segmentVariants}
+  //     onEscapeOutside={this.handleEscapeOutside}
+  //     />
+  //   );
+  // };
 
   const getSegment = (segmentSource: {
     runs: templateState.run[];
     segment: templateState.textSegment;
   }) => {
+    console.log(activeSegment);
+
     const segment = (
       <SegmentNode key={v4()}>
-        <SegmentHover key={v4()} onClick={e => handleClick(e, segmentSource)}>
+        <SegmentHover key={v4()} onClick={e => handleClick(segmentSource)}>
           <SegmentHoverFeature className="text-hover-feat">
-            <Icon name="move" size="small" />
+            <DragHandle />
           </SegmentHoverFeature>
           {segmentSource.runs.map(run => (
             <TextNode key={v4()}> {run.t}</TextNode>
@@ -100,28 +155,28 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
   const getDoc = (blocks: block[]): React.ReactNode => {
     const asd = blocks.map(block => {
       switch (block.paragraph.properties.pStyle) {
-        case 'Title':
+        case PStyle.Articl:
           const titleNode = (
             <TitleNode key={v4()} isTitle={true} background="cornflowerblue">
               {block.segments.map(segmentNode => getSegment(segmentNode))}
             </TitleNode>
           );
           return titleNode;
-        case 'Heading 1':
+        case PStyle.Heading1:
           const sectionNode = (
             <SectionNode key={v4()} background="palevioletred">
               {block.segments.map(segmentNode => getSegment(segmentNode))}
             </SectionNode>
           );
           return sectionNode;
-        case 'Heading 2':
+        case PStyle.Heading2:
           const subSectionNode = (
             <SegmentsNode key={v4()} background="red" indLevel={2}>
               {block.segments.map(segmentNode => getSegment(segmentNode))}
             </SegmentsNode>
           );
           return subSectionNode;
-        case 'Heading 3':
+        case PStyle.Heading3:
           const clauseNode = (
             <SegmentsNode
               key={v4()}
@@ -132,7 +187,7 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
             </SegmentsNode>
           );
           return clauseNode;
-        case 'Heading 4':
+        case PStyle.Heading4:
           const subClauseNode = (
             <SegmentsNode key={v4()} background="orange" indLevel={6}>
               {block.segments.map(segmentNode => getSegment(segmentNode))}
@@ -169,6 +224,7 @@ const SortableItem = sortableHoc.SortableElement(
       id: -1,
       text: ''
     });
+
     const segmentVariants = [
       { id: 1, text: 'text01 asd', title: 'text01', sequence: 1 },
       { id: 2, text: 'text02 dsa', title: 'text02', sequence: 2 },
