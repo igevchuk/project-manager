@@ -51,24 +51,44 @@ const segmentVariants = [
   { id: 4, text: 'text04 rdx', title: 'text04', sequence: 4 }
 ]; // this.getTextVariants(segment);
 
-export const HtmlSections: React.SFC<ISectionProps> = props => {
-  console.log(props.blocks);
+// const SortableItema = sortableHoc.SortableElement(
+//   ({ value }: { value: { id: number; text: string } }) => {
 
-  const [activeSegment, setActiveSegment] = React.useState({});
-  const [activateVariant, setActivateVariant] = React.useState(false);
+//     const [activeSegment, setActiveSegment] = React.useState({
+//       id: -1,
+//       text: ''
+//     });
+
+//     console.log(value);
+
+//     return ;
+//   }
+// )
+
+export const HtmlSections: React.SFC<ISectionProps> = props => {
+  // console.log(props.blocks);
+
+  const [activeSegment, setActiveSegment] = React.useState({
+    id: '',
+    ref: {},
+    sequence: -1,
+    variantGroup: ''
+  });
+  const [segmentSources, setSegmentSources] = React.useState(
+    [] as segmentSource[][]
+  );
 
   const handleClick = (value: segmentSource): void => {
-    setActiveSegment(value);
-    setActivateVariant(true);
+    setActiveSegment(value.segment);
   };
 
   const handleEscapeOutside = (): void => {
     // this.setState({ activeSegment: null });
-    setActivateVariant(true);
+    // setActivateVariant('');
   };
 
-  const getSegment = (segmentSource: segmentSource) => {
-    console.log(activeSegment);
+  const getSegment = (blockOrder: number, segmentSource: segmentSource) => {
+    const isActive = segmentSource.segment.variantIsDefault;
 
     const segment = (
       <SegmentNode key={v4()}>
@@ -86,42 +106,75 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
       </SegmentNode>
     );
 
-    const variant = (
-      <Variants
-        segmentSource={segmentSource}
-        textVariants={segmentVariants}
-        onEscapeOutside={handleEscapeOutside}
-      />
-    );
+    // const variant = (
+    //   <Variants
+    //     segmentSource={segmentSource}
+    //     textVariants={segmentVariants}
+    //     onEscapeOutside={handleEscapeOutside}
+    //   />
+    // );
 
-    if (!activateVariant) {
-      return segment;
-    } else {
-      // return variant;
+    // return segment;
+
+    if (!isActive) {
+      return null;
     }
+
+    if (!activeSegment || segmentSource.segment.id !== activeSegment.id) {
+      return segment;
+    }
+    debugger;
+    console.log(blockOrder);
+    console.log(segmentSources[blockOrder]);
+
+    return 'asdfasdfasdfasdf';
+
+    // if (!activeSegment || activeSegmentId !== activeSegment.id) {
+    //   return segment;
+    // } else {
+    //   // return variant;
+    // }
   };
 
+  // const segmentSourcess: segmentSource[][] = [];
+
   const getDoc = (blocks: block[]): React.ReactNode => {
-    const asd = blocks.map(block => {
+    const sources: segmentSource[][] = [];
+    // debugger;
+    if (segmentSources.length === 0) {
+      blocks.map(block => {
+        sources.push(block.segments);
+      });
+
+      setSegmentSources(sources);
+    }
+
+    const htmlSections = blocks.map(block => {
       switch (block.paragraph.properties.pStyle) {
         case PStyle.Articl:
           const titleNode = (
             <TitleNode key={v4()} isTitle={true} background="cornflowerblue">
-              {block.segments.map(segmentNode => getSegment(segmentNode))}
+              {block.segments.map(segmentNode =>
+                getSegment(block.order, segmentNode)
+              )}
             </TitleNode>
           );
           return titleNode;
         case PStyle.Heading1:
           const sectionNode = (
             <SectionNode key={v4()} background="palevioletred">
-              {block.segments.map(segmentNode => getSegment(segmentNode))}
+              {block.segments.map(segmentNode =>
+                getSegment(block.order, segmentNode)
+              )}
             </SectionNode>
           );
           return sectionNode;
         case PStyle.Heading2:
           const subSectionNode = (
             <SegmentsNode key={v4()} background="red" indLevel={2}>
-              {block.segments.map(segmentNode => getSegment(segmentNode))}
+              {block.segments.map(segmentNode =>
+                getSegment(block.order, segmentNode)
+              )}
             </SegmentsNode>
           );
           return subSectionNode;
@@ -132,28 +185,34 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
               background={'rgb(159,168,218)'}
               indLevel={4}
             >
-              {block.segments.map(segmentNode => getSegment(segmentNode))}
+              {block.segments.map(segmentNode =>
+                getSegment(block.order, segmentNode)
+              )}
             </SegmentsNode>
           );
           return clauseNode;
         case PStyle.Heading4:
           const subClauseNode = (
             <SegmentsNode key={v4()} background="orange" indLevel={6}>
-              {block.segments.map(segmentNode => getSegment(segmentNode))}
+              {block.segments.map(segmentNode =>
+                getSegment(block.order, segmentNode)
+              )}
             </SegmentsNode>
           );
           return subClauseNode;
         default:
           const normalNode = (
             <SegmentsNode key={v4()} background="orange">
-              {block.segments.map(segmentNode => getSegment(segmentNode))}
+              {block.segments.map(segmentNode =>
+                getSegment(block.order, segmentNode)
+              )}
             </SegmentsNode>
           );
           return normalNode;
           break;
       }
     });
-    return asd;
+    return htmlSections;
   };
 
   return <ArticleNode>{getDoc(props.blocks)}</ArticleNode>;
