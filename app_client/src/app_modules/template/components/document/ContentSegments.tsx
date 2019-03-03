@@ -36,15 +36,11 @@ type segmentSource = {
   runs: templateState.run[];
   segment: templateState.textSegment;
 };
+
 type block = {
   order: number;
   paragraph: templateState.paragraph;
-  segments: [
-    {
-      runs: templateState.run[];
-      segment: templateState.textSegment;
-    }
-  ];
+  segments: segmentSource[];
 };
 
 interface ISectionProps {
@@ -91,47 +87,19 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
   console.log(props.blocks);
 
   const [activeSegment, setActiveSegment] = React.useState({});
+  const [activateVariant, setActivateVariant] = React.useState(false);
 
   const handleClick = (value: segmentSource): void => {
-    // console.log(value);
     setActiveSegment(value);
+    setActivateVariant(true);
   };
 
-  // public handleClick = (e: any, segment: any): void => {
-  //   this.setState({ activeSegment: segment });
-  // };
+  const handleEscapeOutside = (): void => {
+    // this.setState({ activeSegment: null });
+    setActivateVariant(true);
+  };
 
-  // const nodeStyling = (
-  //   segment: { id: string; text?: string },
-  //   activeSegment?: { id: number; text: string }
-  // ) => {
-  //   if (!activeSegment || segment.id !== activeSegment.id) {
-  //   if (true) {
-  //     return [
-  //       <SegmentHover key={v4()} onClick={e => handleClick(segment)}>
-  //         <SegmentHoverFeature className="text-hover-feat">
-  //           <Icon name="move" size="small" />
-  //         </SegmentHoverFeature>
-  //         <TextNode className="text-node">{segment.text}</TextNode>
-  //       </SegmentHover>,
-  //       <VariantCount key={v4()} className="variant-count">
-  //         {segmentVariants.length} <CompareArrows />
-  //       </VariantCount>
-  //     ];
-  //   }
-  //   return (
-  //     <Variants
-  //     segmentId={segment.id}
-  //     textVariants={segmentVariants}
-  //     onEscapeOutside={this.handleEscapeOutside}
-  //     />
-  //   );
-  // };
-
-  const getSegment = (segmentSource: {
-    runs: templateState.run[];
-    segment: templateState.textSegment;
-  }) => {
+  const getSegment = (segmentSource: segmentSource) => {
     console.log(activeSegment);
 
     const segment = (
@@ -149,7 +117,19 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
         </VariantCount>
       </SegmentNode>
     );
-    return segment;
+
+    const variant = (
+      <Variants
+        segmentSource={segmentSource}
+        onEscapeOutside={handleEscapeOutside}
+      />
+    );
+
+    if (!activateVariant) {
+      return segment;
+    } else {
+      // return variant;
+    }
   };
 
   const getDoc = (blocks: block[]): React.ReactNode => {
@@ -326,170 +306,10 @@ class SegmentsComponent extends React.PureComponent<
       {}
     );
 
-  public nodeStyling = (
-    segment: { id: string; text?: string },
-    activeSegment?: { id: number; text: string }
-  ) => {
-    // if (!activeSegment || segment.id !== activeSegment.id) {
-    if (true) {
-      return [
-        <TextHover key={v4()} onClick={e => this.handleClick(e, segment)}>
-          <TextHoverFeature className="text-hover-feat">
-            <Icon name="move" size="small" />
-          </TextHoverFeature>
-          <TextNode className="text-node">{segment.text}</TextNode>
-        </TextHover>,
-        <VariantCount key={v4()} className="variant-count">
-          {/* {segmentVariants.length} <CompareArrows /> */}
-        </VariantCount>
-      ];
-    }
-    return (
-      <Variants
-      // segmentId={segment.id}
-      // textVariants={segmentVariants}
-      // onEscapeOutside={this.handleEscapeOutside}
-      />
-    );
-  };
-
-  public getDoc = (blocks: block[]): React.ReactNode => {
-    const asd = blocks.map(block => {
-      // debugger;
-      switch (block.paragraph.properties.pStyle) {
-        case 'Title':
-          if (!(block.segments.length > 0)) {
-            return null;
-          }
-
-          let innerKey = 1;
-
-          return (
-            <div key={block.order}>
-              {block.segments.map(segment => {
-                const sredering = (
-                  <Section key={innerKey++} background="cornflowerblue">
-                    ✨ Magic ${segment.runs.length}`}
-                  </Section>
-                );
-                return sredering;
-              })}
-            </div>
-          );
-
-          return (
-            <div key={block.order}>
-              {block.segments.map(segment => {
-                const sredering = (
-                  <div key={innerKey++}>
-                    {segment.runs.map(run => {
-                      const asd = (
-                        <Section key={run.id} background="cornflowerblue">
-                          ✨ Magic ${run.t}`}
-                        </Section>
-                      );
-                      return asd;
-                    })}
-                  </div>
-                );
-                return sredering;
-              })}
-            </div>
-          );
-
-          break;
-        case 'Heading1':
-          return (
-            <div key={block.order}>
-              {block.segments.map(segment => {
-                const sredering = (
-                  <div key={block.order++}>
-                    {segment.runs.map(run => {
-                      return this.nodeStyling({ id: run.id, text: run.t });
-                    })}
-                  </div>
-                );
-                return sredering;
-              })}
-            </div>
-          );
-
-          break;
-        case 'Heading2':
-          return (
-            <div key={block.order}>
-              {block.segments.map(segment => {
-                const sredering = (
-                  <div key={block.order++}>
-                    {segment.runs.map(run => {
-                      const asd = (
-                        <Section key={run.id} background="cornflowerblue">
-                          ✨ Magic ${run.t}`}
-                        </Section>
-                      );
-                      return asd;
-                    })}
-                  </div>
-                );
-                return sredering;
-              })}
-            </div>
-          );
-          break;
-        case 'Heading3':
-          return (
-            <div key={block.order}>
-              {block.segments.map(segment => {
-                const sredering = (
-                  <div key={block.order++}>
-                    {segment.runs.map(run => {
-                      const asd = (
-                        <ClauseNode key={run.id} className="text-node">{`  ${
-                          run.t
-                        }`}</ClauseNode>
-                      );
-                      return asd;
-                    })}
-                  </div>
-                );
-                return sredering;
-              })}
-            </div>
-          );
-          break;
-        case 'Heading4':
-          return (
-            <div key={block.order}>
-              {block.segments.map(segment => {
-                const sredering = (
-                  <div key={block.order++}>
-                    {segment.runs.map(run => {
-                      const asd = (
-                        <SubClauseNode key={run.id} className="text-node">{`  ${
-                          run.t
-                        }`}</SubClauseNode>
-                      );
-                      return asd;
-                    })}
-                  </div>
-                );
-                return sredering;
-              })}
-            </div>
-          );
-          break;
-        default:
-          return 'null';
-          break;
-      }
-    });
-    return asd;
-  };
-
   public render() {
-    console.log(this.props.blocks);
-    const doc = this.getDoc(this.props.blocks);
-    return <div>{doc}</div>;
+    // console.log(this.props.blocks);
+    // const doc = this.getDoc(this.props.blocks);
+    return <div>{'doc'}</div>;
 
     // return (
     //   <SortableContainer onSortEnd={this.onSortEnd} useDragHandle={true}>
