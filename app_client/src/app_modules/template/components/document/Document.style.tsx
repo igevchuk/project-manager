@@ -4,7 +4,16 @@ import * as templateState from '../../../../app/redux/state';
 
 type IArticleProps = {
   background?: string;
+};
+
+type ITitleProps = {
+  background?: string;
   isTitle?: boolean;
+};
+
+type ISectionProps = {
+  background?: string;
+  indLevel?: number;
 };
 
 type IRunProps = {
@@ -19,18 +28,49 @@ type IRunProps = {
 
 export const TextNode = styled.span<IRunProps>``;
 
-const articlePadding = '4em';
+const articlePadding = '0em';
+const titlePadding = '4em';
 const sectionPadding = '1em';
 const mormalSecitonPadding = '1em';
-export const ArticleAndSectonNode = styled.section<IArticleProps>`
+
+export const ArticleNode = styled.article<IArticleProps>`
+  padding: ${articlePadding};
+  background: ${props => props.background};
+
+  counter-reset: section 0;
+`;
+
+export const StyledDocument = styled(Grid.Column)`
+  margin: 10px 5vmax;
+  padding: 1em;
+`;
+
+export const TitleNode = styled.article<ITitleProps>`
   text-align: ${props => (props.isTitle ? 'center' : null)};
-  padding: ${props => (props.isTitle ? articlePadding : sectionPadding)};
+  padding: ${titlePadding};
   background: ${props => props.background};
 `;
 
-export const NormalSectonNode = styled.section<IArticleProps>`
+export const SectionNode = styled.section<ISectionProps>`
+  padding: ${sectionPadding};
+  background: ${props => props.background};
+  &::before {
+    content: counter(section, decimal) '.';
+    counter-increment: section 1;
+  }
+`;
+
+// export const SectionNode = styled.div<{ color: string; border?: number }>`
+//   color: ${props => (props.color ? props.color : 'blue')};
+//   border: ${props => props.border || '4px'} solid 'black';
+// `;
+
+export const NormalSectonNode = styled.section<ISectionProps>`
   padding: ${mormalSecitonPadding};
   background: ${props => props.background};
+  // text-indent: 20em; ✨
+  // padding-left: 2em;
+  margin-left: ${props => props.indLevel || 2}em;
 `;
 
 export const SegmentHover = styled.span`
@@ -116,11 +156,6 @@ export const TitleNode2 = styled.section<{
   background: ${props => props.background};
 `;
 
-export const SectionNode = styled.div<{ color: string; border?: number }>`
-  color: ${props => (props.color ? props.color : 'blue')};
-  border: ${props => props.border || '4px'} solid 'black';
-`;
-
 export const SebSectionNode = styled.span<{ color?: string; border?: number }>`
   color: ${props => (props.color ? 'red' : 'blue')};
   border: ${props => props.border || '4px'} solid 'black';
@@ -139,10 +174,10 @@ export const SubClauseNode = styled.span<{ color?: string; border?: number }>`
 //
 //
 //
-export const StyledDocument = styled(Grid.Column)`
-  margin: 50px 5vmax;
-  padding: 1em;
-`;
+// export const StyledDocument = styled(Grid.Column)`
+//   margin: 50px 5vmax;
+//   padding: 1em;
+// `;
 
 export const TextHover = styled.span`
   position: relative;

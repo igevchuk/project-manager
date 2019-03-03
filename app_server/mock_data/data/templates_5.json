@@ -38,7 +38,7 @@
       "paragraphs": [
         {
           "properties": {
-            "pStyle": "Heading 2"
+            "pStyle": "Heading 1"
           },
           "properties_metadata": "{'pStyle': 'Title'}",
           "object_metadata": "{}",
@@ -70,7 +70,7 @@
         },
         {
           "properties": {
-            "pStyle": "Heading 1"
+            "pStyle": "Heading 2"
           },
           "properties_metadata": "{'pStyle': 'Heading 1'}",
           "object_metadata": "{}",
@@ -118,7 +118,7 @@
         },
         {
           "properties": {
-            "pStyle": "Heading 4"
+            "pStyle": "Heading 1"
           },
           "properties_metadata": "{'pStyle': 'Heading 4'}",
           "object_metadata": "{}",

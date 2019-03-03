@@ -2,19 +2,20 @@ import * as React from 'react';
 import { Form, Icon } from 'semantic-ui-react';
 import * as sortableHoc from 'react-sortable-hoc';
 import styled from 'styled-components';
+import { v4 } from 'uuid';
 
 import * as templateState from '../../../../app/redux/state';
 import {
-  StyledDocument,
   TextHover,
   TextHoverFeature,
   TextNode,
-  ArticleAndSectonNode,
+  ArticleNode,
+  TitleNode,
+  SectionNode,
   NormalSectonNode,
   SegmentNode,
   SegmentHover,
   SegmentHoverFeature,
-  SectionNode,
   Section,
   SebSectionNode,
   ClauseNode,
@@ -22,7 +23,6 @@ import {
   VariantCount
 } from './Document.style';
 
-import { v4 } from 'uuid';
 import Variants from './Variants';
 
 type block = {
@@ -85,7 +85,7 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
             <Icon name="move" size="small" />
           </SegmentHoverFeature>
           {segmentSource.runs.map(run => (
-            <TextNode key={v4()}> {`✨ ${run.t}`}</TextNode>
+            <TextNode key={v4()}> {run.t}</TextNode>
           ))}
         </SegmentHover>
       </SegmentNode>
@@ -97,44 +97,40 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     const asd = blocks.map(block => {
       switch (block.paragraph.properties.pStyle) {
         case 'Title':
-          const articleNode = (
-            <ArticleAndSectonNode
-              key={v4()}
-              isTitle={true}
-              background="cornflowerblue"
-            >
+          const titleNode = (
+            <TitleNode key={v4()} isTitle={true} background="cornflowerblue">
               {block.segments.map(segmentNode => getSegment(segmentNode))}
-            </ArticleAndSectonNode>
+            </TitleNode>
           );
-          return articleNode;
+          return titleNode;
         case 'Heading 1':
           const sectionNode = (
-            <ArticleAndSectonNode
-              key={v4()}
-              isTitle={false}
-              background="palevioletred"
-            >
+            <SectionNode key={v4()} background="palevioletred">
               {block.segments.map(segmentNode => getSegment(segmentNode))}
-            </ArticleAndSectonNode>
+            </SectionNode>
           );
           return sectionNode;
         case 'Heading 2':
           const subSectionNode = (
-            <NormalSectonNode key={v4()} background="orange">
+            <NormalSectonNode key={v4()} background="red" indLevel={2}>
               {block.segments.map(segmentNode => getSegment(segmentNode))}
             </NormalSectonNode>
           );
           return subSectionNode;
-        case 'Heading3':
+        case 'Heading 3':
           const clauseNode = (
-            <NormalSectonNode key={v4()} background={'rgb(159,168,218)'}>
+            <NormalSectonNode
+              key={v4()}
+              background={'rgb(159,168,218)'}
+              indLevel={4}
+            >
               {block.segments.map(segmentNode => getSegment(segmentNode))}
             </NormalSectonNode>
           );
           return clauseNode;
-        case 'Heading4':
+        case 'Heading 4':
           const subClauseNode = (
-            <NormalSectonNode key={v4()} background="orange">
+            <NormalSectonNode key={v4()} background="orange" indLevel={6}>
               {block.segments.map(segmentNode => getSegment(segmentNode))}
             </NormalSectonNode>
           );
@@ -152,7 +148,7 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     return asd;
   };
 
-  return <div>{getDoc(props.blocks)}</div>;
+  return <ArticleNode>{getDoc(props.blocks)}</ArticleNode>;
 };
 
 /////////////////////
