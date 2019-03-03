@@ -15,9 +15,6 @@ import {
   SegmentNode,
   SegmentHover,
   SegmentHoverFeature,
-  Section,
-  ClauseNode,
-  SubClauseNode,
   VariantCount
 } from './Document.style';
 
@@ -47,41 +44,12 @@ interface ISectionProps {
   blocks: block[];
 }
 
-const SortableItema = sortableHoc.SortableElement(
-  ({ value }: { value: { id: number; text: string } }) => {
-    const [activeSegment, setActiveSegment] = React.useState({
-      id: -1,
-      text: ''
-    });
-    const segmentVariants = [
-      { id: 1, text: 'text01 asd', title: 'text01', sequence: 1 },
-      { id: 2, text: 'text02 dsa', title: 'text02', sequence: 2 },
-      { id: 3, text: 'text03 cde', title: 'text03', sequence: 3 },
-      { id: 4, text: 'text04 rdx', title: 'text04', sequence: 4 }
-    ]; // this.getTextVariants(segment);
-
-    if (!activeSegment || value.id !== activeSegment.id) {
-      return (
-        <div>
-          <TextHover key={v4()} onClick={() => setActiveSegment(value)}>
-            <TextHoverFeature className="text-hover-feat">
-              <DragHandle />
-            </TextHoverFeature>
-            <TextNode className="text-node">{value.text}</TextNode>
-          </TextHover>
-        </div>
-      );
-    }
-
-    return (
-      <Variants
-        segmentId={value.id}
-        textVariants={segmentVariants}
-        onEscapeOutside={() => setActiveSegment({ id: -1, text: '' })}
-      />
-    );
-  }
-);
+const segmentVariants = [
+  { id: 1, text: 'text01 asd', title: 'text01', sequence: 1 },
+  { id: 2, text: 'text02 dsa', title: 'text02', sequence: 2 },
+  { id: 3, text: 'text03 cde', title: 'text03', sequence: 3 },
+  { id: 4, text: 'text04 rdx', title: 'text04', sequence: 4 }
+]; // this.getTextVariants(segment);
 
 export const HtmlSections: React.SFC<ISectionProps> = props => {
   console.log(props.blocks);
@@ -121,6 +89,7 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     const variant = (
       <Variants
         segmentSource={segmentSource}
+        textVariants={segmentVariants}
         onEscapeOutside={handleEscapeOutside}
       />
     );
