@@ -65,7 +65,7 @@ export const SectionNode = styled.section<ISectionProps>`
 //   border: ${props => props.border || '4px'} solid 'black';
 // `;
 
-export const NormalSectonNode = styled.section<ISectionProps>`
+export const SegmentsNode = styled.section<ISectionProps>`
   padding: ${mormalSecitonPadding};
   background: ${props => props.background};
   // text-indent: 20em; ✨
@@ -223,7 +223,7 @@ export const VariantCount = styled.span`
   font-weight: bold;
   padding: 0 0.5em;
   position: absolute;
-  left: 1.5vmax;
+  left: -2.4vmax;
   & svg {
     font-size: 20px;
   }

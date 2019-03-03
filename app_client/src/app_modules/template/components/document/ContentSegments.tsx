@@ -3,6 +3,7 @@ import { Form, Icon } from 'semantic-ui-react';
 import * as sortableHoc from 'react-sortable-hoc';
 import styled from 'styled-components';
 import { v4 } from 'uuid';
+import CompareArrows from '@material-ui/icons/CompareArrows';
 
 import * as templateState from '../../../../app/redux/state';
 import {
@@ -12,7 +13,7 @@ import {
   ArticleNode,
   TitleNode,
   SectionNode,
-  NormalSectonNode,
+  SegmentsNode,
   SegmentNode,
   SegmentHover,
   SegmentHoverFeature,
@@ -88,6 +89,9 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
             <TextNode key={v4()}> {run.t}</TextNode>
           ))}
         </SegmentHover>
+        <VariantCount key={v4()} className="variant-count">
+          {4} <CompareArrows />
+        </VariantCount>
       </SegmentNode>
     );
     return segment;
@@ -112,34 +116,34 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
           return sectionNode;
         case 'Heading 2':
           const subSectionNode = (
-            <NormalSectonNode key={v4()} background="red" indLevel={2}>
+            <SegmentsNode key={v4()} background="red" indLevel={2}>
               {block.segments.map(segmentNode => getSegment(segmentNode))}
-            </NormalSectonNode>
+            </SegmentsNode>
           );
           return subSectionNode;
         case 'Heading 3':
           const clauseNode = (
-            <NormalSectonNode
+            <SegmentsNode
               key={v4()}
               background={'rgb(159,168,218)'}
               indLevel={4}
             >
               {block.segments.map(segmentNode => getSegment(segmentNode))}
-            </NormalSectonNode>
+            </SegmentsNode>
           );
           return clauseNode;
         case 'Heading 4':
           const subClauseNode = (
-            <NormalSectonNode key={v4()} background="orange" indLevel={6}>
+            <SegmentsNode key={v4()} background="orange" indLevel={6}>
               {block.segments.map(segmentNode => getSegment(segmentNode))}
-            </NormalSectonNode>
+            </SegmentsNode>
           );
           return subClauseNode;
         default:
           const normalNode = (
-            <NormalSectonNode key={v4()} background="orange">
+            <SegmentsNode key={v4()} background="orange">
               {block.segments.map(segmentNode => getSegment(segmentNode))}
-            </NormalSectonNode>
+            </SegmentsNode>
           );
           return normalNode;
           break;
