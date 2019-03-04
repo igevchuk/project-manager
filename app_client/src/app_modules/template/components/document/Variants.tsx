@@ -32,6 +32,7 @@ import Variant from './Variant';
 import { StyledVariants, VariantForm, Divider } from './Variants.style';
 import { VariantCount } from './Document.style';
 import { textVariant } from '../../../../app/redux/state';
+import * as templateState from '../../../../app/redux/state';
 
 import * as sortableHoc from 'react-sortable-hoc';
 
@@ -104,17 +105,25 @@ const SortableContainer = sortableHoc.SortableContainer(({ children }) => {
   return <div>{children}</div>;
 });
 
+type segmentSource = {
+  runs: templateState.run[];
+  segment: templateState.textSegment;
+};
+
 interface IVariantsProps {
-  segmentId: number;
-  textVariants?: textVariant[];
+  variants?: segmentSource[];
   onEscapeOutside?: () => void;
 }
 
-interface IVariantsState {
-  textVariants?: textVariant[];
-}
+export const Variants: React.SFC<IVariantsProps> = props => {
+  const [variants, setActiveSegment] = React.useState({ ...props });
 
-class Variants extends React.Component<any, any> {
+  console.log(variants);
+
+  return <div>lsdkfj</div>;
+};
+
+class Variantsa extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
 

@@ -119,14 +119,14 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     if (!activeSegment || segmentSource.segment.id !== activeSegment.id) {
       return segment;
     }
-    debugger;
-    console.log(blockOrder);
-    console.log(segmentSources[blockOrder]);
+    // console.log(blockOrder);
+    // console.log(segmentSources[blockOrder]);
 
+    const segmentVariants = segmentSources[blockOrder];
     const variant = (
       <Variants
-        segmentSource={segmentSource}
-        textVariants={segmentVariants}
+        key={v4()}
+        variants={segmentVariants}
         onEscapeOutside={handleEscapeOutside}
       />
     );
@@ -250,8 +250,8 @@ const SortableItem = sortableHoc.SortableElement(
 
     return (
       <Variants
-        segmentId={value.id}
-        textVariants={segmentVariants}
+        // segmentId={value.id}
+        // textVariants={segmentVariants}
         onEscapeOutside={() => setActiveSegment({ id: -1, text: '' })}
       />
     );
