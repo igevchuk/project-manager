@@ -56,7 +56,8 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     id: '',
     ref: {},
     sequence: -1,
-    variantGroup: ''
+    variantGroup: '',
+    variantIsDefault: false
   });
   const [segmentSources, setSegmentSources] = React.useState(
     [] as segmentSource[][]
