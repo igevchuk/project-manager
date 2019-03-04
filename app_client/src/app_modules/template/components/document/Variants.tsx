@@ -35,6 +35,7 @@ import { textVariant } from '../../../../app/redux/state';
 import * as templateState from '../../../../app/redux/state';
 
 import * as sortableHoc from 'react-sortable-hoc';
+import { v4 } from 'uuid';
 
 const DragHandle = sortableHoc.SortableHandle(() => (
   <span>
@@ -116,11 +117,31 @@ interface IVariantsProps {
 }
 
 export const Variants: React.SFC<IVariantsProps> = props => {
-  const [variants, setActiveSegment] = React.useState({ ...props });
+  const [variants, setActiveSegment] = React.useState({
+    ...(props as segmentSource[])
+  });
 
-  // console.log(variants);
+  console.log(variants);
 
-  return <div>lsdkfj</div>;
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    // console.log(oldIndex);
+    // this.setState(({ textVariants }) => ({
+    //   textVariants: sortableHoc.arrayMove(textVariants, oldIndex, newIndex)
+    // }));
+  };
+
+  return (
+    <EscapeOutside key={v4()} onEscapeOutside={() => null}>
+      <SortableContainer onSortEnd={onSortEnd} useDragHandle={true}>
+        <StyledVariants>
+          <span className="enumerate">1.1</span>
+          <VariantCount className="variant-count">
+            {variants && variants.length} <CompareArrows />
+          </VariantCount>
+        </StyledVariants>
+      </SortableContainer>
+    </EscapeOutside>
+  );
 };
 
 class Variantsa extends React.Component<any, any> {
@@ -159,7 +180,7 @@ class Variantsa extends React.Component<any, any> {
     );
   };
 
-  public onSortEnd = ({ oldIndex, newIndex }) => {
+  public onSortEnda = ({ oldIndex, newIndex }) => {
     console.log(oldIndex);
     this.setState(({ textVariants }) => ({
       textVariants: sortableHoc.arrayMove(textVariants, oldIndex, newIndex)
@@ -204,7 +225,7 @@ class Variantsa extends React.Component<any, any> {
 
     return (
       <EscapeOutside onEscapeOutside={onEscapeOutside} key={segmentId}>
-        <SortableContainer onSortEnd={this.onSortEnd} useDragHandle={true}>
+        <SortableContainer onSortEnd={this.onSortEnda} useDragHandle={true}>
           <StyledVariants>
             <span className="enumerate">1.1</span>
             <VariantCount className="variant-count">

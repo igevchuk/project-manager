@@ -63,6 +63,8 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     [] as segmentSource[][]
   );
 
+  const [blocks, setBlocks] = React.useState(props.blocks);
+
   const handleClick = (value: segmentSource): void => {
     setActiveSegment(value.segment);
   };
@@ -134,7 +136,7 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
 
   const getDoc = (blocks: block[]): React.ReactNode => {
     const sources: segmentSource[][] = [];
-
+    // console.log(blocks);
     if (segmentSources.length === 0) {
       blocks.map(block => {
         sources.push(block.segments);
@@ -209,7 +211,7 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     return htmlSections;
   };
 
-  return <ArticleNode>{getDoc(props.blocks)}</ArticleNode>;
+  return <ArticleNode>{getDoc(blocks)}</ArticleNode>;
 };
 
 /////////////////////
