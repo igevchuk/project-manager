@@ -93,6 +93,7 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
 
   const getSegment = (blockOrder: number, segmentSource: segmentSource) => {
     const isActive = segmentSource.segment.variantIsDefault;
+    const segmentVariants = segmentSources[blockOrder];
 
     const segment = (
       // <SortableContainer onSortEnd={onSortEnd} useDragHandle={true}>
@@ -106,7 +107,7 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
           ))}
         </SegmentHover>
         <VariantCount key={v4()} className="variant-count">
-          {4} <CompareArrows />
+          {segmentVariants && segmentVariants.length - 1} <CompareArrows />
         </VariantCount>
       </SegmentNode>
       // </SortableContainer>
@@ -119,10 +120,7 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     if (!activeSegment || segmentSource.segment.id !== activeSegment.id) {
       return segment;
     }
-    // console.log(blockOrder);
-    // console.log(segmentSources[blockOrder]);
 
-    const segmentVariants = segmentSources[blockOrder];
     const variant = (
       <Variants
         key={v4()}
@@ -136,6 +134,7 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
 
   const getDoc = (blocks: block[]): React.ReactNode => {
     const sources: segmentSource[][] = [];
+
     if (segmentSources.length === 0) {
       blocks.map(block => {
         sources.push(block.segments);

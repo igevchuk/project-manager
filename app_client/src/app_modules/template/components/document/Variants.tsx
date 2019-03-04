@@ -118,7 +118,7 @@ interface IVariantsProps {
 export const Variants: React.SFC<IVariantsProps> = props => {
   const [variants, setActiveSegment] = React.useState({ ...props });
 
-  console.log(variants);
+  // console.log(variants);
 
   return <div>lsdkfj</div>;
 };
