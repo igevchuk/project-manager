@@ -30,16 +30,16 @@ import { Icon } from 'semantic-ui-react';
 import CompareArrows from '@material-ui/icons/CompareArrows';
 import Variant from './Variant';
 import { StyledVariants, VariantForm, Divider } from './Variants.style';
-// import { VariantCount } from './Content.style';
+import { VariantCount } from './Document.style';
 import { textVariant } from '../../../../app/redux/state';
 
 import * as sortableHoc from 'react-sortable-hoc';
 
-// const DragHandle = sortableHoc.SortableHandle(() => (
-//   <span>
-//     <Icon name="move" size="small" />
-//   </span>
-// ));
+const DragHandle = sortableHoc.SortableHandle(() => (
+  <span>
+    <Icon name="move" size="small" />
+  </span>
+));
 
 const handleAdd = () => {
   // const newVariant = {
@@ -59,11 +59,11 @@ const SortableItem = sortableHoc.SortableElement(
         {value.sequence === 1 && (
           <VariantForm>
             {renderVariantForm(value)}
-            {/* <Divider>
+            <Divider>
               <span>
                 Variants <Icon name="info circle" />
               </span>
-            </Divider> */}
+            </Divider>
           </VariantForm>
         )}
 
@@ -198,10 +198,9 @@ class Variants extends React.Component<any, any> {
         <SortableContainer onSortEnd={this.onSortEnd} useDragHandle={true}>
           <StyledVariants>
             <span className="enumerate">1.1</span>
-            {variantsasd}
-            {/* <VariantCount className="variant-count">
+            <VariantCount className="variant-count">
               {textVariants.length} <CompareArrows />
-            </VariantCount> */}
+            </VariantCount>
           </StyledVariants>
         </SortableContainer>
       </EscapeOutside>
