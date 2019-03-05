@@ -2,10 +2,10 @@ import { Observable } from 'rxjs';
 import fetch from 'window-fetch';
 
 import { ApiBase } from './api.base';
-// import * as vm from './view_model/vm.module1';
+import * as vm from './view_model/appModule';
 
 interface IApiLocal {
-  getTemplate: () => Observable<any>;
+  getTemplate: () => Observable<vm.template>;
 }
 
 class ApiLocal extends ApiBase implements IApiLocal {
@@ -15,7 +15,7 @@ class ApiLocal extends ApiBase implements IApiLocal {
       : 'http://localhost:3004';
 
   // api/v1/template_data/b8c49d68-03b3-46f1-a079-0f83e0151573/
-  public getTemplate = (): Observable<any> => {
+  public getTemplate = (): Observable<vm.template> => {
     const url = `${this.baseUrl}/templates/`;
     // const url = `https://dtrax-tm2.analytics.deloitte.ca/template/api/v1/template_data/b8c49d68-03b3-46f1-a079-0f83e0151573/`;
     const forms$ = this.sendRequest(url);

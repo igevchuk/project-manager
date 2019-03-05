@@ -7,8 +7,8 @@ import StyledHeader, {
   HeaderActions,
   HeaderAction
 } from './Header.style';
-import Button from './../../../../atomic/_styled_components/Button';
-import Dropdown from './../../../../atomic/_styled_components/Dropdown';
+import Button from './../../../../atomic/atoms/Button';
+import Dropdown from './../../../../atomic/atoms/Dropdown';
 import * as state from '../../../../app/redux/state';
 import utils from './../../../../app/utils';
 
