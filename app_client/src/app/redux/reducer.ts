@@ -1,9 +1,7 @@
-// import update from 'immutability-helper';
+import update from 'immutability-helper';
 import { handleActions, Action } from 'redux-actions';
-
 import { FETCH_FORM, FETCH_FORM_FULFILLED } from './actions';
 import * as types from './actions';
-
 import { IState } from './state';
 
 const initialState: IState = {
@@ -40,28 +38,3 @@ export default function reducer(state = initialState, action) {
       return state;
   }
 }
-
-// export default handleActions<IState>(
-//   {
-//     [FETCH_FORM]: (state: IState, action: Action<IState>): IState => {
-//       return state;
-//     },
-
-//     [FETCH_FORM_FULFILLED]: (state: IState, action: Action<IState>): IState => {
-//       const aa = action.payload;
-//       console.log(aa);
-
-//       const newState = {
-//         ...state,
-//         article: {
-//           id: 2,
-//           name: 'stringaaa',
-//           ref: { templateId: 111 }
-//         }
-//       };
-
-//       return newState;
-//     }
-//   },
-//   initialState
-// );

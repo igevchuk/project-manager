@@ -2,10 +2,10 @@ import { Observable } from 'rxjs';
 import fetch from 'window-fetch';
 
 import { ApiBase } from './api.base';
-import * as vm from './view_model/vm.module1';
+// import * as vm from './view_model/vm.module1';
 
 interface IApiLocal {
-  getLocalForm: () => Observable<vm.form>;
+  getTemplate: () => Observable<any>;
 }
 
 class ApiLocal extends ApiBase implements IApiLocal {
@@ -14,36 +14,15 @@ class ApiLocal extends ApiBase implements IApiLocal {
       ? '/template'
       : 'http://localhost:3004';
 
-  // public getLocalForm = (): Observable<vm.form> => {
-  //   const url = `${this.baseUrl}/form/`;
-  //   const forms$ = this.sendRequest(url);
-  //   return forms$;
-  // };
-
   // api/v1/template_data/b8c49d68-03b3-46f1-a079-0f83e0151573/
-
-  public getLocalForm = (): Observable<any> => {
+  public getTemplate = (): Observable<any> => {
     const url = `${this.baseUrl}/templates/`;
     // const url = `https://dtrax-tm2.analytics.deloitte.ca/template/api/v1/template_data/b8c49d68-03b3-46f1-a079-0f83e0151573/`;
     const forms$ = this.sendRequest(url);
     return forms$;
   };
 
-  public getLocalForma = (): Observable<any> => {
-    const url = `${
-      this.baseUrl
-    }/templates/api/v1/template_data/b8c49d68-03b3-46f1-a079-0f83e0151573`;
-    const forms$ = this.sendRequest(url);
-    return forms$;
-  };
-
-  public postLocalForm0 = (): Observable<any> => {
-    const url = `${this.baseUrl}/templates/`;
-    const forms$ = this.sendRequest(url);
-    return forms$;
-  };
-
-  public postCreateForm = () => {
+  public postCreateTemplate = () => {
     const body = [
       {
         id: 1,
@@ -96,7 +75,7 @@ class ApiLocal extends ApiBase implements IApiLocal {
       .then(json => console.log(json));
   };
 
-  public postCreateForm10 = (): Observable<any> => {
+  public postCreateTemplate2 = (): Observable<any> => {
     const body = {
       id: 4104424,
       name: 'eu do nulla labore quis',

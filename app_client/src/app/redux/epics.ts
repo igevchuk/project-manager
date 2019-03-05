@@ -2,10 +2,7 @@ import { from, of } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators'; // filter
 import { Epic, ofType } from 'redux-observable'; // ofType
 import { ActionType } from 'typesafe-actions'; // isActionOf
-
 import * as actions from './actions';
-// import { IState } from './state';
-
 import repo from './../../_service_/repository';
 
 type Action = ActionType<typeof actions>;
@@ -20,8 +17,7 @@ const fetchLocalFormEpic: Epic<Action, Action, {}> = (action$, store) =>
         ref: { templateId: 111 }
       };
 
-      const templates = repo.getLocalForm();
-      // console.log(templates);
+      const templates = repo.getTemplate();
       return from(templates).pipe(
         map(response => actions.fetchFormFulfilled(response)),
         catchError(error => of(actions.formErrorAction(error)))
