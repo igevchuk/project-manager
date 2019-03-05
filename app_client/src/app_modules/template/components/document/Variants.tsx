@@ -54,7 +54,42 @@ const handleAdd = () => {
   // });
 };
 
+type segmentSource = {
+  runs: templateState.run[];
+  segment: templateState.textSegment;
+};
+
 const SortableItem = sortableHoc.SortableElement(
+  ({ value }: { value: segmentSource }) => {
+    const aaaa = (
+      <div>
+        {value.segment.id === '8995c5bb-7dcb-45bf-8218-67e60dce3c54' && (
+          <VariantForm>
+            {renderVariantForm(value)}
+            <Divider>
+              <span>
+                Variants <Icon name="info circle" />
+              </span>
+            </Divider>
+          </VariantForm>
+        )}
+
+        {value.segment.id !== '8995c5bb-7dcb-45bf-8218-67e60dce3c54' && (
+          <VariantForm>
+            {renderVariantForm(value)}
+            <button onClick={handleAdd}>
+              <Icon name="plus circle" />
+              Add Variant
+            </button>
+          </VariantForm>
+        )}
+      </div>
+    );
+
+    return aaaa;
+  }
+);
+const SortableItema = sortableHoc.SortableElement(
   ({ value }: { value: { id: number; text: string; sequence: number } }) => {
     const aaaa = (
       <div>
@@ -106,10 +141,10 @@ const SortableContainer = sortableHoc.SortableContainer(({ children }) => {
   return <div>{children}</div>;
 });
 
-type segmentSource = {
-  runs: templateState.run[];
-  segment: templateState.textSegment;
-};
+// type segmentSource = {
+//   runs: templateState.run[];
+//   segment: templateState.textSegment;
+// };
 
 interface IVariantsProps {
   segmentVariants: segmentSource[];
@@ -132,32 +167,11 @@ export const Variants: React.SFC<IVariantsProps> = props => {
 
   const variantsasd = (
     <div>
-      {/* {textVariants.map((variant, index) => (
+      {segmentVariants.segmentVariants.map((variant, index) => (
         <SortableItem key={`item-${index}`} index={index} value={variant} />
-      ))} */}
-      {'thisis testing'}
-
-      {/* <SegmentNode key={v4()}>
-        <SegmentHover key={v4()} onClick={e => handleClick(segmentSource)}>
-          <SegmentHoverFeature className="text-hover-feat">
-            <DragHandle />
-          </SegmentHoverFeature>
-          {segmentSource.runs.map(run => (
-            <TextNode key={v4()}> {run.t}</TextNode>
-          ))}
-        </SegmentHover>
-        <VariantCount key={v4()} className="variant-count">
-          {segmentVariants && segmentVariants.length - 1} <CompareArrows />
-        </VariantCount>
-      </SegmentNode> */}
+      ))}
     </div>
   );
-
-  // const variants = (
-  //   <div>
-  //     <VariantForm>{'aaaaaaaa'}</VariantForm>
-  //   </div>
-  // );
 
   const variants = (
     <div>
@@ -191,7 +205,7 @@ export const Variants: React.SFC<IVariantsProps> = props => {
       <SortableContainer onSortEnd={onSortEnd} useDragHandle={true}>
         <StyledVariants>
           <span className="enumerate">1.1</span>
-          {variants}
+          {variantsasd}
           <VariantCount className="variant-count">
             {/* segmentVariants && segmentVariants.segmentVariants.length */}
             {'4'} <CompareArrows />
