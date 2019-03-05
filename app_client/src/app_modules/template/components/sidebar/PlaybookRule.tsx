@@ -1,7 +1,8 @@
 import * as React from 'react';
 
 import { Button, Icon, Segment } from 'semantic-ui-react';
-import Toggle from './../../../../app/_styled_components/Toggle';
+import Toggle from './../../../../atomic/_styled_components/Toggle';
+
 import StyledPlaybookRule, {
   PlaybookGroup,
   PlaybookHeader,
