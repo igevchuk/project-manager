@@ -112,16 +112,16 @@ type segmentSource = {
 };
 
 interface IVariantsProps {
-  variants?: segmentSource[];
+  segmentVariants: segmentSource[];
   onEscapeOutside?: () => void;
 }
 
 export const Variants: React.SFC<IVariantsProps> = props => {
-  const [variants, setActiveSegment] = React.useState({
-    ...(props as segmentSource[])
+  const [segmentVariants, setActiveSegment] = React.useState({
+    ...props
   });
 
-  console.log(variants);
+  console.log(segmentVariants);
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
     // console.log(oldIndex);
@@ -130,13 +130,71 @@ export const Variants: React.SFC<IVariantsProps> = props => {
     // }));
   };
 
+  const variantsasd = (
+    <div>
+      {/* {textVariants.map((variant, index) => (
+        <SortableItem key={`item-${index}`} index={index} value={variant} />
+      ))} */}
+      {'thisis testing'}
+
+      {/* <SegmentNode key={v4()}>
+        <SegmentHover key={v4()} onClick={e => handleClick(segmentSource)}>
+          <SegmentHoverFeature className="text-hover-feat">
+            <DragHandle />
+          </SegmentHoverFeature>
+          {segmentSource.runs.map(run => (
+            <TextNode key={v4()}> {run.t}</TextNode>
+          ))}
+        </SegmentHover>
+        <VariantCount key={v4()} className="variant-count">
+          {segmentVariants && segmentVariants.length - 1} <CompareArrows />
+        </VariantCount>
+      </SegmentNode> */}
+    </div>
+  );
+
+  // const variants = (
+  //   <div>
+  //     <VariantForm>{'aaaaaaaa'}</VariantForm>
+  //   </div>
+  // );
+
+  const variants = (
+    <div>
+      {segmentVariants.segmentVariants[0] && (
+        <VariantForm>
+          {renderVariantForm(segmentVariants.segmentVariants[0])}
+        </VariantForm>
+      )}
+
+      {segmentVariants.segmentVariants.length > 0 && (
+        <VariantForm>
+          <Divider>
+            <span>
+              Variants <Icon name="info circle" />
+            </span>
+          </Divider>
+          {segmentVariants.segmentVariants.map(variant =>
+            renderVariantForm(variant)
+          )}
+          <button onClick={handleAdd}>
+            <Icon name="plus circle" />
+            Add Variant
+          </button>
+        </VariantForm>
+      )}
+    </div>
+  );
+
   return (
-    <EscapeOutside key={v4()} onEscapeOutside={() => null}>
+    <EscapeOutside key={v4()} onEscapeOutside={segmentVariants.onEscapeOutside}>
       <SortableContainer onSortEnd={onSortEnd} useDragHandle={true}>
         <StyledVariants>
           <span className="enumerate">1.1</span>
+          {variants}
           <VariantCount className="variant-count">
-            {variants && variants.length} <CompareArrows />
+            {/* segmentVariants && segmentVariants.segmentVariants.length */}
+            {'4'} <CompareArrows />
           </VariantCount>
         </StyledVariants>
       </SortableContainer>
@@ -144,6 +202,7 @@ export const Variants: React.SFC<IVariantsProps> = props => {
   );
 };
 
+// ////////////////////////////////////
 class Variantsa extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -228,6 +287,7 @@ class Variantsa extends React.Component<any, any> {
         <SortableContainer onSortEnd={this.onSortEnda} useDragHandle={true}>
           <StyledVariants>
             <span className="enumerate">1.1</span>
+            {variantsasd}
             <VariantCount className="variant-count">
               {textVariants.length} <CompareArrows />
             </VariantCount>

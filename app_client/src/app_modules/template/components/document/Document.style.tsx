@@ -35,7 +35,7 @@ const mormalSecitonPadding = '1em';
 
 export const ArticleNode = styled.article<IArticleProps>`
   padding: ${articlePadding};
-  background: ${props => props.background};
+  // background: ${props => props.background};
 
   counter-reset: section 0;
 `;
@@ -48,12 +48,12 @@ export const StyledDocument = styled(Grid.Column)`
 export const TitleNode = styled.article<ITitleProps>`
   text-align: ${props => (props.isTitle ? 'center' : null)};
   padding: ${titlePadding};
-  background: ${props => props.background};
+  // background: ${props => props.background};
 `;
 
 export const SectionNode = styled.section<ISectionProps>`
   padding: ${sectionPadding};
-  background: ${props => props.background};
+  // background: ${props => props.background};
   &::before {
     content: counter(section, decimal) '.';
     counter-increment: section 1;
@@ -67,7 +67,7 @@ export const SectionNode = styled.section<ISectionProps>`
 
 export const SegmentsNode = styled.section<ISectionProps>`
   padding: ${mormalSecitonPadding};
-  background: ${props => props.background};
+  // background: ${props => props.background};
   // text-indent: 20em; ✨
   // padding-left: 2em;
   margin-left: ${props => props.indLevel || 2}em;

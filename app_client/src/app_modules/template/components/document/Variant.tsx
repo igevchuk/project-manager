@@ -22,7 +22,7 @@ class Variant extends React.Component<IVariantProps, {}> {
   }
 
   public getTitle = title => {
-    return title.trim() || 'New Variant';
+    return 'ssss'; // title.trim() || 'New Variant';
   };
 
   public handleEditTitle = ({ target }) => {
