@@ -4,11 +4,11 @@ import fetch from 'window-fetch';
 import { ApiBase } from './api.base';
 import * as vm from './view_model/appModule';
 
-interface IApiLocal {
+interface IApiEndpoints {
   getTemplate: () => Observable<vm.template>;
 }
 
-class ApiLocal extends ApiBase implements IApiLocal {
+class ApiEndpoints extends ApiBase implements ApiEndpoints {
   private baseUrl =
     process.env.NODE_ENV === 'production'
       ? '/template'
@@ -93,4 +93,4 @@ class ApiLocal extends ApiBase implements IApiLocal {
     return this.sendRequest(`${this.baseUrl}/templates/`, 'POST', body);
   };
 }
-export default new ApiLocal();
+export default new ApiEndpoints();
