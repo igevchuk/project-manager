@@ -121,7 +121,7 @@ export const Variants: React.SFC<IVariantsProps> = props => {
     ...props
   });
 
-  console.log(segmentVariants);
+  // console.log(segmentVariants);
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
     // console.log(oldIndex);

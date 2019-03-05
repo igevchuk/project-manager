@@ -4,6 +4,7 @@ import { Form, Icon } from 'semantic-ui-react';
 import { Editable } from './Variants.style';
 import { textVariant } from '../../../../app/redux/state';
 import * as sortableHoc from 'react-sortable-hoc';
+import * as templateState from '../../../../app/redux/state';
 
 const DragHandle = sortableHoc.SortableHandle(() => (
   <span>
@@ -11,8 +12,13 @@ const DragHandle = sortableHoc.SortableHandle(() => (
   </span>
 ));
 
+type segmentSource = {
+  runs: templateState.run[];
+  segment: templateState.textSegment;
+};
+
 interface IVariantProps {
-  variant: textVariant;
+  variant: segmentSource;
   onUpdate: (textVariant: textVariant) => void;
 }
 
@@ -41,17 +47,19 @@ class Variant extends React.Component<IVariantProps, {}> {
 
   public render() {
     const { variant } = this.props;
+    console.log(variant);
 
     return (
       <Form.Field>
-        <label>{variant.sequence}.</label>
+        <label>{variant.segment.id}.</label>
 
         <label contentEditable={true} onBlur={this.handleEditTitle}>
-          {this.getTitle(variant.title)}
+          {this.getTitle(variant.segment.text)}
         </label>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Editable contentEditable={true} onBlur={this.handleEditText}>
-            {variant.text}
+            {variant.segment.text +
+              'aaaa aaaa aaaaaaaa aaaa aaaaaaaa aaaa aaaaaaaa aaaa aaaaaaaa aaaa aaaaaaaa aaaa aaaaaaaa aaaa aaaa'}
           </Editable>
           <DragHandle />
           {/* <Icon link={true} name="move" /> */}

@@ -45,7 +45,13 @@ interface ISectionProps {
 }
 
 const segmentVariants = [
-  { id: 1, text: 'text01 asd', title: 'text01', sequence: 1 },
+  {
+    id: 1,
+    text:
+      'text01 asd text01 asd text01 asd text01 asd text01 asd text01 asd text01 asd text01 asd text01 asd text01 asd ',
+    title: 'text01',
+    sequence: 1
+  },
   { id: 2, text: 'text02 dsa', title: 'text02', sequence: 2 },
   { id: 3, text: 'text03 cde', title: 'text03', sequence: 3 },
   { id: 4, text: 'text04 rdx', title: 'text04', sequence: 4 }
@@ -101,7 +107,7 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
 
   const getSegment = (blockOrder: number, segmentSource: segmentSource) => {
     const isActive = segmentSource.segment.variantIsDefault;
-    const segmentVariants = segmentSources[blockOrder];
+    const variants = segmentSources[blockOrder];
 
     const segment = (
       // <SortableContainer onSortEnd={onSortEnd} useDragHandle={true}>
@@ -115,7 +121,7 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
           ))}
         </SegmentHover>
         <VariantCount key={v4()} className="variant-count">
-          {segmentVariants && segmentVariants.length - 1} <CompareArrows />
+          {variants && variants.length - 1} <CompareArrows />
         </VariantCount>
       </SegmentNode>
       // </SortableContainer>
@@ -129,10 +135,13 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
       return segment;
     }
 
+    // console.log(segmentVariants);
+
     const variant = (
       <Variants
         key={v4()}
-        segmentVariants={segmentVariants}
+        // segmentId={4}
+        segmentVariants={variants}
         onEscapeOutside={handleEscapeOutside}
       />
     );
