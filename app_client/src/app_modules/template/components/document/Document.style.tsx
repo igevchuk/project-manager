@@ -45,13 +45,21 @@ export const ArticleNode = styled.article<IArticleProps>`
   counter-reset: section 0;
 `;
 
-export const TitleNode = styled.h1<ITitleProps>`
+export const TitleNode = styled.section<ITitleProps>`
+  font-weight: bold;
+  font-style: normal;
+  font-size: 14px;
+  
   text-align: ${props => (props.isTitle ? 'center' : null)};
   padding: ${titlePadding};
   // background: ${props => props.background};
 `;
 
-export const SectionNode = styled.h1<ISectionProps>`
+export const SectionNode = styled.section<ISectionProps>`
+  font-weight: bold;
+  font-style: normal;
+  font-size: 14px;
+
   padding: ${sectionPadding};
   // background: ${props => props.background};
   &::before {

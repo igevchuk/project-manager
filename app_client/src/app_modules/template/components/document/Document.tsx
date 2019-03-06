@@ -3,7 +3,7 @@ import { Segment, Grid } from 'semantic-ui-react';
 import { StyledDocument } from './Document.style';
 import { contextWrapper } from '../../TemplateContext';
 import Schema from '../../controllers/document/schema';
-import { HtmlSections } from './ContentSegments';
+import { HtmlSections } from './DocSegments';
 import * as templateState from '../../../../app/redux/state';
 
 type block = {

@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import fetch from 'window-fetch';
 
 import { ApiBase } from './api.base';
-import * as vm from './view_model/appModule';
+import * as vm from './view_model/appModel';
 
 interface IApiEndpoints {
   getTemplate: () => Observable<vm.template>;
