@@ -5,6 +5,7 @@ import { Editable } from './Variants.style';
 import { textVariant } from '../../../../app/redux/state';
 import * as sortableHoc from 'react-sortable-hoc';
 import * as templateState from '../../../../app/redux/state';
+import ContentEditable from 'react-contenteditable';
 
 const DragHandle = sortableHoc.SortableHandle(() => (
   <span>
@@ -28,7 +29,7 @@ class Variant extends React.Component<IVariantProps, {}> {
   }
 
   public getTitle = title => {
-    return 'ssss'; // title.trim() || 'New Variant';
+    return title.trim() || 'New Variant';
   };
 
   public handleEditTitle = ({ target }) => {
@@ -52,17 +53,19 @@ class Variant extends React.Component<IVariantProps, {}> {
     return (
       <Form.Field>
         <label>{variant.segment.id}.</label>
+        <ContentEditable
+          html={this.getTitle(variant.segment.text)}
+          disabled={false}
+          onChange={this.handleEditTitle}
+        />
 
-        <label contentEditable={true} onBlur={this.handleEditTitle}>
-          {this.getTitle(variant.segment.text)}
-        </label>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Editable contentEditable={true} onBlur={this.handleEditText}>
-            {variant.segment.text +
-              'aaaa aaaa aaaaaaaa aaaa aaaaaaaa aaaa aaaaaaaa aaaa aaaaaaaa aaaa aaaaaaaa aaaa aaaaaaaa aaaa aaaa'}
-          </Editable>
+          <Editable
+            onChange={this.handleEditText}
+            disabled={false}
+            html={this.getTitle(variant.segment.text)}
+          />
           <DragHandle />
-          {/* <Icon link={true} name="move" /> */}
         </div>
       </Form.Field>
     );

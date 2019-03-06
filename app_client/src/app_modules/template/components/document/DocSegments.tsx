@@ -44,19 +44,6 @@ interface ISectionProps {
   blocks: block[];
 }
 
-const segmentVariants = [
-  {
-    id: 1,
-    text:
-      'text01 asd text01 asd text01 asd text01 asd text01 asd text01 asd text01 asd text01 asd text01 asd text01 asd ',
-    title: 'text01',
-    sequence: 1
-  },
-  { id: 2, text: 'text02 dsa', title: 'text02', sequence: 2 },
-  { id: 3, text: 'text03 cde', title: 'text03', sequence: 3 },
-  { id: 4, text: 'text04 rdx', title: 'text04', sequence: 4 }
-]; // this.getTextVariants(segment);
-
 export const HtmlSections: React.SFC<ISectionProps> = props => {
   const [activeSegment, setActiveSegment] = React.useState({
     id: '',
@@ -135,8 +122,6 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
       return segment;
     }
 
-    // console.log(segmentVariants);
-
     const variant = (
       <Variants
         key={v4()}
@@ -152,11 +137,13 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
   const getDoc = (blocks: block[]): React.ReactNode => {
     const sources: segmentSource[][] = [];
     // console.log(blocks);
+
     if (segmentSources.length === 0) {
       blocks.map(block => {
         sources.push(block.segments);
       });
 
+      console.log(blocks);
       setSegmentSources(sources);
     }
 
@@ -236,44 +223,6 @@ const DragHandle = sortableHoc.SortableHandle(() => (
     <Icon name="move" size="small" />
   </span>
 ));
-
-// const SortableItem = sortableHoc.SortableElement(
-//   ({ value }: { value: { id: number; text: string } }) => {
-//     const [activeSegment, setActiveSegment] = React.useState({
-//       id: -1,
-//       text: ''
-//     });
-
-//     const segmentVariants = [
-//       { id: 1, text: 'text01 asd', title: 'text01', sequence: 1 },
-//       { id: 2, text: 'text02 dsa', title: 'text02', sequence: 2 },
-//       { id: 3, text: 'text03 cde', title: 'text03', sequence: 3 },
-//       { id: 4, text: 'text04 rdx', title: 'text04', sequence: 4 }
-//     ]; // this.getTextVariants(segment);
-
-//     if (!activeSegment || value.id !== activeSegment.id) {
-//       return (
-//         <div>
-//           <TextHover key={v4()} onClick={() => setActiveSegment(value)}>
-//             <TextHoverFeature className="text-hover-feat">
-//               <DragHandle />
-//             </TextHoverFeature>
-//             <TextNode className="text-node">{value.text}</TextNode>
-//           </TextHover>
-//         </div>
-//       );
-//     }
-
-//     return (
-//       // <Variants
-//       //   // segmentId={value.id}
-//       //   // textVariants={segmentVariants}
-//       //   onEscapeOutside={() => setActiveSegment({ id: -1, text: '' })}
-//       // />
-//       ''
-//     );
-//   }
-// );
 
 const SortableContainer = sortableHoc.SortableContainer(({ children }) => {
   return <div>{children}</div>;

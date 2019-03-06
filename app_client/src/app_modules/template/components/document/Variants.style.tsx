@@ -1,6 +1,6 @@
-
 import styled from 'styled-components';
 import { Form } from 'semantic-ui-react';
+import ContentEditable from 'react-contenteditable';
 
 export const StyledVariants = styled.div`
   align-items: top;
@@ -8,17 +8,17 @@ export const StyledVariants = styled.div`
   border-left: 2px solid orange;
   display: flex;
   margin: 1em -2em;
-  padding: 1em 1em 0 1em; 
+  padding: 1em 1em 0 1em;
   & .enumerate {
     margin-right: 1em;
   }
   & > .variant-count {
     display: inline-flex;
   }
-`
+`;
 
 export const VariantForm = styled(Form)`
-  border: 1px solid rgba(34, 36, 38, 0.15); 
+  border: 1px solid rgba(34, 36, 38, 0.15);
   flex: 1;
   padding: 1em 1em 1em 2em;
   margin-bottom: 1em;
@@ -33,7 +33,8 @@ export const VariantForm = styled(Form)`
     cursor: pointer;
     font-size: 12px;
     padding: 0;
-    &, & > .icon {
+    &,
+    & > .icon {
       color: #2185d0;
     }
     &:focus {
@@ -44,7 +45,7 @@ export const VariantForm = styled(Form)`
 
 export const Divider = styled.div`
   & > span {
-    background-color: #f5f5f5; 
+    background-color: #f5f5f5;
     font-size: 12px;
     font-weight: bold;
     line-height: 1.5em;
@@ -55,17 +56,17 @@ export const Divider = styled.div`
   }
 `;
 
-export const Editable = styled.div`
+export const Editable = styled(ContentEditable)`
   width: 100%;
   flex: auto;
   outline: 0;
   text-align: left;
   line-height: 1.5em;
-  padding: .67857143em 1em;
+  padding: 0.67857143em 1em;
   margin-right: 1em;
   background: #fff;
-  color: rgba(0,0,0,.87);
-  border-radius: .28571429rem;
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 0.28571429rem;
   position: relative;
   &:before {
     content: '';
@@ -75,11 +76,11 @@ export const Editable = styled.div`
     left: 0;
     right: 0;
     top: 0;
-    border: 1px solid rgba(34,36,38,.15);
-    border-radius: .28571429rem;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+    border-radius: 0.28571429rem;
   }
   &:hover {
-    background: rgb(255,252,220);
+    background: rgb(255, 252, 220);
   }
   &:hover:before {
     border: 2px solid orange;

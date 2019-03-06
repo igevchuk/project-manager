@@ -243,6 +243,21 @@
         {
           "properties": {},
           "properties_metadata": "{}",
+          "object_metadata": "{'t': 'Agreement Title'}",
+          "id": "8995c5bb-7dcb-45bf-8218-67e60dce3c55",
+          "parent_uuid": "a57236e8-6fa6-494a-80c7-41459c85bc52",
+          "template_uuid": "b8c49d68-03b3-46f1-a079-0f83e0151573",
+          "sequence": 0,
+          "revision_created_date_time": "2019-02-26T18:24:57.679000Z",
+          "revision_created_by": 2,
+          "t": "Agreement Title more asd",
+          "ref": {
+            "textSegmentId": "a57236e8-6fa6-494a-80c7-41459c85bc52"
+          }
+        },
+        {
+          "properties": {},
+          "properties_metadata": "{}",
           "object_metadata": "{'t': 'This is a description of the contract.'}",
           "id": "e7c60236-a1a2-4d17-8b34-e761582366af",
           "parent_uuid": "722d4399-12cb-497f-8e29-5f1dc08b0230",
@@ -416,7 +431,25 @@
           "variantGroup": "09051cc2-7710-4293-ba97-0d54fd3b32ac",
           "variantDescription": "Neutral",
           "variantIsDefault": false,
-          "text": "Agreement Title",
+          "text": "Agreement Title variantIsDefault",
+          "ref": {
+            "paragraphId": "a159439b-05af-4d31-a174-5fcd5b2e2d94"
+          }
+        },
+        {
+          "properties": {},
+          "properties_metadata": "{}",
+          "object_metadata": "{'variantGroup': '09051cc2-7710-4293-ba97-0d54fd3b32ac', 'variantDescription': 'Neutral', 'variantIsDefault': True, 'text': 'Agreement Title'}",
+          "id": "a57236e8-6fa6-494a-80c7-41459c85bc52",
+          "parent_uuid": "a159439b-05af-4d31-a174-5fcd5b2e2d94",
+          "template_uuid": "b8c49d68-03b3-46f1-a079-0f83e0151573",
+          "sequence": 0,
+          "revision_created_date_time": "2019-02-26T18:19:43.608000Z",
+          "revision_created_by": 2,
+          "variantGroup": "09051cc2-7710-4293-ba97-0d54fd3b32ac",
+          "variantDescription": "Neutral",
+          "variantIsDefault": false,
+          "text": "Agreement Title variantIsDefault more",
           "ref": {
             "paragraphId": "a159439b-05af-4d31-a174-5fcd5b2e2d94"
           }
