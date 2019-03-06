@@ -14,7 +14,7 @@ import FormatStrikethrough from '@material-ui/icons/FormatStrikethrough';
 import FormatUnderlined from '@material-ui/icons/FormatUnderlined';
 import FormatIndentDecrease from '@material-ui/icons/FormatIndentDecrease';
 import FormatIndentIncrease from '@material-ui/icons/FormatIndentIncrease';
-import Toggle from './../../../../app/_styled_components/Toggle';
+import Toggle from './../../../../atomic/atoms/Toggle';
 import VariableLibraryModal from '../variable_library/VariableLibraryModal';
 import TextLevelDropdown, {
   TextLevelDropdownMenu,
@@ -238,7 +238,7 @@ class Toolbar extends React.Component<{}, IToolbarState> {
               trigger={
                 <Link>
                   <Book />
-                Clause Library
+                  Clause Library
                 </Link>
               }
             />
@@ -252,7 +252,7 @@ class Toolbar extends React.Component<{}, IToolbarState> {
                   Variables
                 </Link>
               }
-              />
+            />
           </ToolbarItem>
 
           <ToolbarItem>

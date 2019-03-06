@@ -35,6 +35,7 @@ import { textVariant } from '../../../../app/redux/state';
 import * as templateState from '../../../../app/redux/state';
 
 import * as sortableHoc from 'react-sortable-hoc';
+import { v4 } from 'uuid';
 
 const DragHandle = sortableHoc.SortableHandle(() => (
   <span>
@@ -53,7 +54,42 @@ const handleAdd = () => {
   // });
 };
 
+type segmentSource = {
+  runs: templateState.run[];
+  segment: templateState.textSegment;
+};
+
 const SortableItem = sortableHoc.SortableElement(
+  ({ value }: { value: segmentSource }) => {
+    const aaaa = (
+      <div>
+        {value.segment.id === '8995c5bb-7dcb-45bf-8218-67e60dce3c54' && (
+          <VariantForm>
+            {renderVariantForm(value)}
+            <Divider>
+              <span>
+                Variants <Icon name="info circle" />
+              </span>
+            </Divider>
+          </VariantForm>
+        )}
+
+        {value.segment.id !== '8995c5bb-7dcb-45bf-8218-67e60dce3c54' && (
+          <VariantForm>
+            {renderVariantForm(value)}
+            <button onClick={handleAdd}>
+              <Icon name="plus circle" />
+              Add Variant
+            </button>
+          </VariantForm>
+        )}
+      </div>
+    );
+
+    return aaaa;
+  }
+);
+const SortableItema = sortableHoc.SortableElement(
   ({ value }: { value: { id: number; text: string; sequence: number } }) => {
     const aaaa = (
       <div>
@@ -105,24 +141,82 @@ const SortableContainer = sortableHoc.SortableContainer(({ children }) => {
   return <div>{children}</div>;
 });
 
-type segmentSource = {
-  runs: templateState.run[];
-  segment: templateState.textSegment;
-};
+// type segmentSource = {
+//   runs: templateState.run[];
+//   segment: templateState.textSegment;
+// };
 
 interface IVariantsProps {
-  variants?: segmentSource[];
+  segmentVariants: segmentSource[];
   onEscapeOutside?: () => void;
 }
 
 export const Variants: React.SFC<IVariantsProps> = props => {
-  const [variants, setActiveSegment] = React.useState({ ...props });
+  const [segmentVariants, setActiveSegment] = React.useState({
+    ...props
+  });
 
-  // console.log(variants);
+  // console.log(segmentVariants);
 
-  return <div>lsdkfj</div>;
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    // console.log(oldIndex);
+    // this.setState(({ textVariants }) => ({
+    //   textVariants: sortableHoc.arrayMove(textVariants, oldIndex, newIndex)
+    // }));
+  };
+
+  const variantsasd = (
+    <div>
+      {segmentVariants.segmentVariants.map((variant, index) => (
+        <SortableItem key={`item-${index}`} index={index} value={variant} />
+      ))}
+    </div>
+  );
+
+  const variants = (
+    <div>
+      {segmentVariants.segmentVariants[0] && (
+        <VariantForm>
+          {renderVariantForm(segmentVariants.segmentVariants[0])}
+        </VariantForm>
+      )}
+
+      {segmentVariants.segmentVariants.length > 0 && (
+        <VariantForm>
+          <Divider>
+            <span>
+              Variants <Icon name="info circle" />
+            </span>
+          </Divider>
+          {segmentVariants.segmentVariants.map(variant =>
+            renderVariantForm(variant)
+          )}
+          <button onClick={handleAdd}>
+            <Icon name="plus circle" />
+            Add Variant
+          </button>
+        </VariantForm>
+      )}
+    </div>
+  );
+
+  return (
+    <EscapeOutside key={v4()} onEscapeOutside={segmentVariants.onEscapeOutside}>
+      <SortableContainer onSortEnd={onSortEnd} useDragHandle={true}>
+        <StyledVariants>
+          <span className="enumerate">1.1</span>
+          {variantsasd}
+          <VariantCount className="variant-count">
+            {/* segmentVariants && segmentVariants.segmentVariants.length */}
+            {'4'} <CompareArrows />
+          </VariantCount>
+        </StyledVariants>
+      </SortableContainer>
+    </EscapeOutside>
+  );
 };
 
+// ////////////////////////////////////
 class Variantsa extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -159,7 +253,7 @@ class Variantsa extends React.Component<any, any> {
     );
   };
 
-  public onSortEnd = ({ oldIndex, newIndex }) => {
+  public onSortEnda = ({ oldIndex, newIndex }) => {
     console.log(oldIndex);
     this.setState(({ textVariants }) => ({
       textVariants: sortableHoc.arrayMove(textVariants, oldIndex, newIndex)
@@ -204,9 +298,10 @@ class Variantsa extends React.Component<any, any> {
 
     return (
       <EscapeOutside onEscapeOutside={onEscapeOutside} key={segmentId}>
-        <SortableContainer onSortEnd={this.onSortEnd} useDragHandle={true}>
+        <SortableContainer onSortEnd={this.onSortEnda} useDragHandle={true}>
           <StyledVariants>
             <span className="enumerate">1.1</span>
+            {variantsasd}
             <VariantCount className="variant-count">
               {textVariants.length} <CompareArrows />
             </VariantCount>

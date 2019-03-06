@@ -2,48 +2,27 @@ import { Observable } from 'rxjs';
 import fetch from 'window-fetch';
 
 import { ApiBase } from './api.base';
-import * as vm from './view_model/vm.module1';
+import * as vm from './view_model/appModule';
 
-interface IApiLocal {
-  getLocalForm: () => Observable<vm.form>;
+interface IApiEndpoints {
+  getTemplate: () => Observable<vm.template>;
 }
 
-class ApiLocal extends ApiBase implements IApiLocal {
+class ApiEndpoints extends ApiBase implements ApiEndpoints {
   private baseUrl =
     process.env.NODE_ENV === 'production'
       ? '/template'
       : 'http://localhost:3004';
 
-  // public getLocalForm = (): Observable<vm.form> => {
-  //   const url = `${this.baseUrl}/form/`;
-  //   const forms$ = this.sendRequest(url);
-  //   return forms$;
-  // };
-
   // api/v1/template_data/b8c49d68-03b3-46f1-a079-0f83e0151573/
-
-  public getLocalForm = (): Observable<any> => {
+  public getTemplate = (): Observable<vm.template> => {
     const url = `${this.baseUrl}/templates/`;
     // const url = `https://dtrax-tm2.analytics.deloitte.ca/template/api/v1/template_data/b8c49d68-03b3-46f1-a079-0f83e0151573/`;
     const forms$ = this.sendRequest(url);
     return forms$;
   };
 
-  public getLocalForma = (): Observable<any> => {
-    const url = `${
-      this.baseUrl
-    }/templates/api/v1/template_data/b8c49d68-03b3-46f1-a079-0f83e0151573`;
-    const forms$ = this.sendRequest(url);
-    return forms$;
-  };
-
-  public postLocalForm0 = (): Observable<any> => {
-    const url = `${this.baseUrl}/templates/`;
-    const forms$ = this.sendRequest(url);
-    return forms$;
-  };
-
-  public postCreateForm = () => {
+  public postCreateTemplate = () => {
     const body = [
       {
         id: 1,
@@ -96,7 +75,7 @@ class ApiLocal extends ApiBase implements IApiLocal {
       .then(json => console.log(json));
   };
 
-  public postCreateForm10 = (): Observable<any> => {
+  public postCreateTemplate2 = (): Observable<any> => {
     const body = {
       id: 4104424,
       name: 'eu do nulla labore quis',
@@ -114,4 +93,4 @@ class ApiLocal extends ApiBase implements IApiLocal {
     return this.sendRequest(`${this.baseUrl}/templates/`, 'POST', body);
   };
 }
-export default new ApiLocal();
+export default new ApiEndpoints();

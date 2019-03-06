@@ -7,11 +7,9 @@ import StyledHeader, {
   HeaderActions,
   HeaderAction
 } from './Header.style';
-import Button from './../../../../app/_styled_components/Button';
-import Dropdown from './../../../../app/_styled_components/Dropdown';
-// import { state } from './../redux';
+import Button from './../../../../atomic/atoms/Button';
+import Dropdown from './../../../../atomic/atoms/Dropdown';
 import * as state from '../../../../app/redux/state';
-
 import utils from './../../../../app/utils';
 
 interface IHeaderProps {
