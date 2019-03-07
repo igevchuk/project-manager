@@ -4,7 +4,7 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
 import * as state from '../../app/redux/state';
-import Entry from './components';
+import Entry from './components/index';
 
 interface ITemplateProps {
   template: state.template;
@@ -15,9 +15,7 @@ class Template extends React.Component<ITemplateProps> {
       return 'loading ....';
     }
 
-    // return <Entry template={this.props.template} />;
-
-    return <Entry />;
+    return <Entry template={this.props.template} />;
   }
 }
 
