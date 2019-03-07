@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const HeaderComponent = styled.div`
   padding: 0 32px;
   background-color: ${props => props.theme.darkblue};
-  color: #FFFFFF;
+  color: #ffffff;
   position: fixed;
   top: 0;
   left: 0;
@@ -22,7 +22,7 @@ export const HeaderBrand = styled.div`
   a {
     padding: 6px 12px 6px 0;
     display: inline-block;
-    border-right: 1px solid #FFFFFF;
+    border-right: 1px solid #ffffff;
   }
   img {
     max-width: 84px;

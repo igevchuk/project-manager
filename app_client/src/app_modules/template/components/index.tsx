@@ -1,70 +1,43 @@
 import * as React from 'react';
-import { Grid } from 'semantic-ui-react';
+import styled, { css } from 'styled-components';
+import chroma from 'chroma-js';
 
-import Document from './document/Document';
-import Sidebar from './sidebar/Sidebar';
-import Header from './header/Header';
-import Toolbar from './toolbar/Toolbar';
-import { Provider } from './../TemplateContext';
-import templateReducer from '../../../app/redux/reducer';
-import * as state from '../../../app/redux/state';
+import './../../../app/App.style';
 
-interface IProps {
-  template: state.template;
-}
+export const Item = styled.div`
+  display: flex
+  justify-content: center
+  padding: .5rem
 
-const Entry: React.SFC<IProps> = props => {
-  const [templateState, dispatch] = React.useReducer(templateReducer, {
-    activeId: '',
-    templates: [props.template]
-  });
+  ${({ color = chroma.random() }) =>
+    css`
+      background-color: ${color}
+      color: ${chroma.contrast(color, 'black') >= 4 ? 'black' : 'white'}
+      font-size: 18px
+      font-weight: bold
+    `}
+`;
 
-  const template = templateState.templates[0];
+export const Grid = styled.div`
+  display: grid
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 50px 50px
+  grid-gap: 5px
+`;
 
+function Entry() {
   return (
-    <div>
-      {/* <Header template={template} /> */}
-      <Provider value={{ dispatch }}>
-        <Toolbar />
-      </Provider>
-
-      <Grid style={{ marginTop: 0 }}>
-        <Provider value={{ dispatch }}>
-          <Document template={template} />
-        </Provider>
-
-        <Provider value={{ dispatch }}>
-          <Sidebar template={template} />
-        </Provider>
+    <div className="App">
+      <Grid>
+        <Item>1</Item>
+        <Item>2</Item>
+        <Item>3</Item>
+        <Item>4</Item>
+        <Item>5</Item>
+        <Item>6</Item>
       </Grid>
     </div>
   );
-};
+}
 
 export default Entry;
-
-// const TodosDispatch = React.createContext(null);
-
-// function TodosApp() {
-//   // Note: `dispatch` won't change between re-renders
-//   const [todos, dispatch] = useReducer(todosReducer);
-
-//   return (
-//     <TodosDispatch.Provider value={dispatch}>
-//       <DeepTree todos={todos} />
-//     </TodosDispatch.Provider>
-//   );
-// }
-
-// function DeepChild(props) {
-//   // If we want to perform an action, we can get dispatch from context.
-//   const dispatch = useContext(TodosDispatch);
-
-//   function handleClick() {
-//     dispatch({ type: 'add', text: 'hello' });
-//   }
-
-//   return (
-//     <button onClick={handleClick}>Add todo</button>
-//   );
-// }

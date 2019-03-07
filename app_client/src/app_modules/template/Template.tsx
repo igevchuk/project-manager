@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 import * as state from '../../app/redux/state';
 import Entry from './components';
@@ -15,16 +15,14 @@ class Template extends React.Component<ITemplateProps> {
       return 'loading ....';
     }
 
-    // console.log(this.props.template);
+    // return <Entry template={this.props.template} />;
 
-    return <Entry template={this.props.template} />;
+    return <Entry />;
   }
 }
 
 const mapStateToProps = templateState => {
   const templates = templateState.templateReducer.templates;
-  // console.log(templates);
-
   return { template: templates[0] };
 };
 const TemplateContainer = connect(mapStateToProps)(Template);
