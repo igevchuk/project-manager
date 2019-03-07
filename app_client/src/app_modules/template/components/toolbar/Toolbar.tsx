@@ -3,7 +3,7 @@ import * as React from 'react';
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
 import Book from '@material-ui/icons/Book';
 import Check from '@material-ui/icons/Check';
-import ClauseLibraryModal from '../clause_library/Modal';
+import ClauseLibraryModal from '../clause_library/ClauseLibraryModal';
 import FormatAlignCenter from '@material-ui/icons/FormatAlignCenter';
 import FormatAlignJustify from '@material-ui/icons/FormatAlignJustify';
 import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft';
@@ -15,7 +15,7 @@ import FormatUnderlined from '@material-ui/icons/FormatUnderlined';
 import FormatIndentDecrease from '@material-ui/icons/FormatIndentDecrease';
 import FormatIndentIncrease from '@material-ui/icons/FormatIndentIncrease';
 import Toggle from './../../../../atomic/atoms/Toggle';
-import VariableLibraryModal from '../variable_library/Modal';
+import VariableLibraryModal from '../variable_library/VariableLibraryModal';
 import TextLevelDropdown, {
   TextLevelDropdownMenu,
   TextLevelDropdownItem

@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import { Grid } from 'semantic-ui-react';
 import { contextWrapper } from '../../TemplateContext';
-import PlaybookRule from './PlaybookRule';
-import StyledSidebar, { Tab, TabPane } from './Sidebar.style';
 import * as templateState from '../../../../app/redux/state';
+import PlaybookRule from '../playbook/PlaybookRule';
+import StyledSidebar, { Tab, TabPane } from './Sidebar.style';
 
 interface ISidebarProps {
   template: {

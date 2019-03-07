@@ -1,13 +1,14 @@
 import * as React from 'react';
 
-import { Button, Icon, Segment } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 import Toggle from './../../../../atomic/atoms/Toggle';
-
-import StyledPlaybookRule, {
+import PlaybookModal from './PlaybookModal';
+import {
   PlaybookGroup,
   PlaybookHeader,
   PlaybookCard
 } from './PlaybookRule.style';
+
 
 export default class Sidebar extends React.Component {
   constructor(props) {
@@ -19,9 +20,10 @@ export default class Sidebar extends React.Component {
       <PlaybookGroup key="acceptable">
         <PlaybookHeader>
           <h3>Acceptable Language</h3>
-          <Button>
-            <Icon name="plus circle" /> ADD RULE
-          </Button>
+          <PlaybookModal
+            newRule={true}
+            ruleType="acceptable"
+          />
         </PlaybookHeader>
 
         <PlaybookCard>
@@ -42,9 +44,10 @@ export default class Sidebar extends React.Component {
       <PlaybookGroup key="conditional">
         <PlaybookHeader>
           <h3>Conditional Language</h3>
-          <Button>
-            <Icon name="plus circle" /> ADD RULE
-          </Button>
+          <PlaybookModal
+            newRule={true}
+            ruleType="conditional"
+          />
         </PlaybookHeader>
 
         <PlaybookCard>
@@ -55,9 +58,10 @@ export default class Sidebar extends React.Component {
       <PlaybookGroup key="escalations">
         <PlaybookHeader>
           <h3>Escalations</h3>
-          <Button>
-            <Icon name="plus circle" /> ADD RULE
-          </Button>
+          <PlaybookModal
+            newRule={true}
+            ruleType="escalations"
+          />
         </PlaybookHeader>
 
         <PlaybookCard>
