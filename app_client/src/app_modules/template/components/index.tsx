@@ -5,20 +5,33 @@ import chroma from 'chroma-js';
 import * as state from '../../../app/redux/state';
 import templateReducer from '../../../app/redux/reducer';
 
-import { Grid } from 'semantic-ui-react';
+// import { Grid } from 'semantic-ui-react';
 
 import Document from './document/Document';
 import Sidebar from './sidebar/Sidebar';
+import Outline from './outline/Outline';
+import Search from './outline/Search';
+
 import Header from './header/Header';
 import Toolbar from './toolbar/Toolbar';
 import { Provider } from '../TemplateContext';
 
-// import '../../../app/App.style';
-
 export const Item = styled.div`
-  display: flex
-  justify-content: center
-  padding: .5rem
+  // display: flex
+  // justify-content: center
+  // padding: .5rem
+
+  &.blocks {
+    grid-column: 1 / 3;
+    grid-row: 1;
+    z-index: 1;
+  }
+
+  &.outline {
+    grid-column: 1 / 2;
+    grid-row: 1;
+    z-index: 10;
+  }
 
   ${({ color = chroma.random() }) =>
     css`
@@ -29,10 +42,9 @@ export const Item = styled.div`
     `}
 `;
 
-export const Grids = styled.div`
+export const Grids = styled.article`
   display: grid
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 50px 50px
+  grid-template-columns: 300px auto 400px;
   grid-gap: 4px
 `;
 
@@ -56,23 +68,24 @@ const Entry: React.SFC<IProps> = props => {
       </Provider>
 
       <Grids>
-        <Item>1</Item>
-        <Item>2</Item>
-        <Item>3</Item>
-        <Item>4</Item>
-        <Item>5</Item>
-        <Item>6</Item>
+        <Item className="outline">
+          <Provider value={{ dispatch }}>
+            <Outline template={template} />
+            <Search />
+            <Document template={template} isOutline={true} />
+          </Provider>
+        </Item>
+        <Item className="blocks">
+          <Provider value={{ dispatch }}>
+            <Document template={template} isOutline={false} />
+          </Provider>
+        </Item>
+        <Item>
+          <Provider value={{ dispatch }}>
+            <Sidebar template={template} />
+          </Provider>
+        </Item>
       </Grids>
-
-      <Grid style={{ marginTop: 0 }}>
-        <Provider value={{ dispatch }}>
-          <Document template={template} />
-        </Provider>
-
-        <Provider value={{ dispatch }}>
-          <Sidebar template={template} />
-        </Provider>
-      </Grid>
     </div>
   );
 };

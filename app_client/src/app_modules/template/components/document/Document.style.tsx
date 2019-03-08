@@ -34,7 +34,7 @@ const sectionPadding = '1em';
 const mormalSecitonPadding = '1em';
 
 export const StyledDocument = styled(Grid.Column)`
-  margin: 10px 5vmax;
+  margin: 0px 5vmax;
   padding: 1em;
 `;
 

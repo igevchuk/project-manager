@@ -30,6 +30,7 @@ interface IContentProps {
     runs: templateState.run[];
   };
   dispatch: React.Dispatch<any>;
+  isOutline: boolean;
 }
 
 class TemplateContent extends React.Component<IContentProps, any> {
@@ -45,6 +46,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
       activeSegment: null,
       visible: false,
       template: props.template,
+      isOutline: this.props.isOutline,
       docData: sections
     };
   }
@@ -73,25 +75,30 @@ class TemplateContent extends React.Component<IContentProps, any> {
     const htmlSections = this.renderDoc(this.state.docData);
 
     return (
-      <Grid.Column width={12}>
-        <StyledDocument>
-          <Segment basic={true}>{htmlSections}</Segment>
-          <button
-            hidden={true}
-            onClick={() =>
-              this.props.dispatch({
-                type: 'FETCH_FORM_FULFILLED',
-                payload: {
-                  id: 114,
-                  name: 'this is name'
+      <div>
+        {this.state.isOutline && <Segment basic={true}>{htmlSections}</Segment>}
+        {!this.state.isOutline && (
+          <Grid.Column width={12}>
+            <StyledDocument>
+              <Segment basic={true}>{htmlSections}</Segment>
+              <button
+                hidden={true}
+                onClick={() =>
+                  this.props.dispatch({
+                    type: 'FETCH_FORM_FULFILLED',
+                    payload: {
+                      id: 114,
+                      name: 'this is name'
+                    }
+                  })
                 }
-              })
-            }
-          >
-            +
-          </button>
-        </StyledDocument>
-      </Grid.Column>
+              >
+                +
+              </button>
+            </StyledDocument>
+          </Grid.Column>
+        )}
+      </div>
     );
   }
 }
