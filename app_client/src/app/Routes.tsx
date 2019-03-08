@@ -8,7 +8,7 @@ const Routes: React.SFC = () => {
   return (
     <Router>
       <div style={{ marginTop: '64px' }}>
-        <Route path="/templates" component={TemplateLibrary} />
+        <Route path="/" redirectTo={Template} component={Template} />
         <Route path="/template" component={Template} />
       </div>
     </Router>
