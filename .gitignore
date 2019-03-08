@@ -8,7 +8,7 @@
 /app_client/coverage
 
 # production
-/app_client/build
+# /app_client/build
 
 # misc
 /app_client/.DS_Store
