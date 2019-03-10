@@ -4,6 +4,7 @@ import chroma from 'chroma-js';
 type IItemProps = {
   zIndex?: number;
   magicStyling?: boolean;
+  showBorder?: boolean;
 };
 
 const magicStyling = ({ color = chroma.random() }) => css`
@@ -17,6 +18,9 @@ export const StyledItem = styled.div<IItemProps>`
   // display: flex;
   // justify-content: center;
   // padding: .5rem;
+
+  background-color: white;
+  opacity: 1;
 
   &.blocks {
     grid-column: 1 / 3;

@@ -14,6 +14,11 @@ import Outline from './outline/Outline';
 import Search from './outline/Search';
 import Header from './header/Header';
 import Toolbar from './toolbar/Toolbar';
+import styled from 'styled-components';
+
+export const StyledOutline = styled(StyledItem)`
+  border: 2px solid rgba(34, 36, 38, 0.15);
+`;
 
 interface IProps {
   template: state.template;
@@ -30,7 +35,7 @@ const Entry: React.SFC<IProps> = props => {
   });
 
   const template = templateState.templates[0];
-  const magicStyling = true;
+  const magicStyling = false;
   const zIndex = subState.showOutline ? 10 : 0; // zIndex: 0 | 10
   const showOutline = () => templateDispatch(actions.enableShowOutline());
 
@@ -42,7 +47,7 @@ const Entry: React.SFC<IProps> = props => {
       </Provider>
 
       <StyledGrids>
-        <StyledItem
+        {/* <StyledOutline
           className="outline"
           magicStyling={magicStyling}
           zIndex={zIndex}
@@ -52,12 +57,14 @@ const Entry: React.SFC<IProps> = props => {
             <Search />
             <Document template={template} isOutline={true} />
           </Provider>
-        </StyledItem>
+        </StyledOutline> */}
+
         <StyledItem className="blocks" magicStyling={magicStyling}>
           <Provider value={{ appDispatch }}>
             <Document template={template} isOutline={false} />
           </Provider>
         </StyledItem>
+
         <StyledItem>
           <Provider value={{ appDispatch }}>
             <Sidebar template={template} />
