@@ -1,11 +1,11 @@
 import * as React from 'react';
-import styled, { css } from 'styled-components';
-import chroma from 'chroma-js';
 
 import * as state from '../../../app/redux/state';
-import templateReducer from '../../../app/redux/reducer';
+import appReducer from '../../../app/redux/reducer';
+import templateReducer from '../redux/reducer';
 
 // import { Grid } from 'semantic-ui-react';
+import { StyledItem, StyledGrids } from './index.style';
 
 import Document from './document/Document';
 import Sidebar from './sidebar/Sidebar';
@@ -16,76 +16,58 @@ import Header from './header/Header';
 import Toolbar from './toolbar/Toolbar';
 import { Provider } from '../TemplateContext';
 
-export const Item = styled.div`
-  // display: flex
-  // justify-content: center
-  // padding: .5rem
-
-  &.blocks {
-    grid-column: 1 / 3;
-    grid-row: 1;
-    z-index: 1;
-  }
-
-  &.outline {
-    grid-column: 1 / 2;
-    grid-row: 1;
-    z-index: 10;
-  }
-
-  ${({ color = chroma.random() }) =>
-    css`
-      background-color: ${color}
-      color: ${chroma.contrast(color, 'black') >= 4 ? 'black' : 'white'}
-      font-size: 18px
-      font-weight: bold
-    `}
-`;
-
-export const Grids = styled.article`
-  display: grid
-  grid-template-columns: 300px auto 400px;
-  grid-gap: 4px
-`;
+import * as actions from './../redux/actions';
 
 interface IProps {
   template: state.template;
 }
 
 const Entry: React.SFC<IProps> = props => {
-  const [templateState, dispatch] = React.useReducer(templateReducer, {
+  const [templateState, appDispatch] = React.useReducer(appReducer, {
     activeId: '',
     templates: [props.template]
   });
 
+  const [subState, templateDispatch] = React.useReducer(templateReducer, {
+    showOutline: false
+  });
+
   const template = templateState.templates[0];
+  const magicStyling = true;
+  const zIndex = subState.showOutline ? 10 : 0; // zIndex: 0 | 10
+  const showOutline = () => templateDispatch(actions.enableShowOutline());
 
   return (
     <div>
       {/* <Header template={template} />*/}
-      <Provider value={{ dispatch }}>
+      <Provider value={{ appDispatch }}>
         <Toolbar />
       </Provider>
+      <button onClick={showOutline}>Show Outline</button>
 
-      <Grids>
-        <Item className="outline">
-          <Provider value={{ dispatch }}>
+      <StyledGrids>
+        <StyledItem
+          className="outline"
+          magicStyling={magicStyling}
+          zIndex={zIndex}
+        >
+          <Provider value={{ appDispatch, templateDispatch }}>
             <Outline template={template} />
             <Search />
             <Document template={template} isOutline={true} />
           </Provider>
-        </Item>
-        <Item className="blocks">
-          <Provider value={{ dispatch }}>
+        </StyledItem>
+        <StyledItem className="blocks" magicStyling={magicStyling}>
+          <Provider value={{ appDispatch }}>
             <Document template={template} isOutline={false} />
           </Provider>
-        </Item>
-        <Item>
-          <Provider value={{ dispatch }}>
+        </StyledItem>
+        <StyledItem>
+          <Provider value={{ appDispatch }}>
             <Sidebar template={template} />
           </Provider>
-        </Item>
-      </Grids>
+        </StyledItem>
+      </StyledGrids>
     </div>
   );
 };

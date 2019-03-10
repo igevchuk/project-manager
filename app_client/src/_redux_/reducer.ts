@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-import templateReducer from './../app/redux/reducer';
-// import appReducer from './../app/redux/reducer';
+import appReducer from './../app/redux/reducer';
+import templateReducer from './../app_modules/template/redux/reducer';
 
-const appReducer = combineReducers({
+const rootReducer = combineReducers({
+  appReducer,
   templateReducer
 });
 
-export default appReducer;
+export default rootReducer;

@@ -20,8 +20,8 @@ class Template extends React.Component<ITemplateProps> {
 }
 
 const mapStateToProps = templateState => {
-  const templates = templateState.templateReducer.templates;
-  return { template: templates[0] };
+  const appReducer = templateState.appReducer.templates;
+  return { template: appReducer[0] };
 };
 const TemplateContainer = connect(mapStateToProps)(Template);
 
