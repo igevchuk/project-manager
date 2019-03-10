@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import * as _ from 'lodash';
 
 import * as state from '../../app/redux/state';
 import Entry from './components/index';
@@ -11,7 +12,7 @@ interface ITemplateProps {
 }
 class Template extends React.Component<ITemplateProps> {
   public render() {
-    if (!this.props.template) {
+    if (_.isEmpty(this.props.template)) {
       return 'loading ....';
     }
 
@@ -19,9 +20,11 @@ class Template extends React.Component<ITemplateProps> {
   }
 }
 
-const mapStateToProps = templateState => {
-  const appReducer = templateState.appReducer.templates;
-  return { template: appReducer[0] };
+const mapStateToProps = appState => {
+  const templates = appState.appReducer.templates;
+  const template = appState.appReducer.template;
+
+  return { template };
 };
 const TemplateContainer = connect(mapStateToProps)(Template);
 

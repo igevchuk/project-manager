@@ -27,14 +27,16 @@ interface IProps {
 const Entry: React.SFC<IProps> = props => {
   const [templateState, appDispatch] = React.useReducer(appReducer, {
     activeId: '',
-    templates: [props.template]
+    template: props.template
   });
 
   const [subState, templateDispatch] = React.useReducer(templateReducer, {
     showOutline: false
   });
 
-  const template = templateState.templates[0];
+  const template = templateState.template;
+  // console.log(template);
+
   const magicStyling = false;
   const zIndex = subState.showOutline ? 10 : 0; // zIndex: 0 | 10
   const showOutline = () => templateDispatch(actions.enableShowOutline());
@@ -47,7 +49,7 @@ const Entry: React.SFC<IProps> = props => {
       </Provider>
 
       <StyledGrids>
-        {/* <StyledOutline
+        <StyledOutline
           className="outline"
           magicStyling={magicStyling}
           zIndex={zIndex}
@@ -57,7 +59,7 @@ const Entry: React.SFC<IProps> = props => {
             <Search />
             <Document template={template} isOutline={true} />
           </Provider>
-        </StyledOutline> */}
+        </StyledOutline>
 
         <StyledItem className="blocks" magicStyling={magicStyling}>
           <Provider value={{ appDispatch }}>
