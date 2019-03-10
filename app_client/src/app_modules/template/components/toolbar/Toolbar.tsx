@@ -32,8 +32,10 @@ import {
   IconGroupIcon
 } from './Toolbar.style';
 
-import * as actions from './../../redux/actions';
-import * as templateState from '../../../../app/redux/state';
+import * as appActions from './../../../../app/redux/actions';
+import * as templateActions from './../../redux/actions';
+
+// import * as templateState from '../../../../app/redux/state';
 
 const fakeOptionForHorizontalDots = [
   { key: 1, text: 'Option 1', value: 'Option 1' },
@@ -89,6 +91,7 @@ const textLevelOptions = {
 };
 
 interface IToolbarProps {
+  appDispatch: React.Dispatch<any>;
   templateDispatch: React.Dispatch<any>;
 }
 
@@ -115,11 +118,6 @@ class Toolbar extends React.Component<IToolbarProps, IToolbarState> {
     this.setState({ showNumbering: !this.state.showNumbering });
   };
 
-  public toggleOutline = e => {
-    console.log('name');
-    this.props.templateDispatch(actions.enableShowOutline());
-  };
-
   public renderTextLevelItem = key => {
     const { textLevel } = this.state;
     const item = textLevelOptions[key];
@@ -144,6 +142,19 @@ class Toolbar extends React.Component<IToolbarProps, IToolbarState> {
     }
 
     return textLevelOptions[textLevel].text;
+  };
+
+  public toggleOutline = e => {
+    console.log('name');
+    this.props.templateDispatch(templateActions.enableShowOutline());
+  };
+
+  public increaseIndent = e => {
+    this.props.appDispatch(appActions.increaseIndent());
+  };
+
+  public decreaseIndent = e => {
+    this.props.appDispatch(appActions.decreaseIndent());
   };
 
   public render() {
@@ -180,11 +191,11 @@ class Toolbar extends React.Component<IToolbarProps, IToolbarState> {
 
           <ToolbarItem>
             <IconGroup>
-              <IconGroupIcon>
+              <IconGroupIcon onClick={this.increaseIndent}>
                 <FormatIndentIncrease />
               </IconGroupIcon>
 
-              <IconGroupIcon>
+              <IconGroupIcon onClick={this.decreaseIndent}>
                 <FormatIndentDecrease />
               </IconGroupIcon>
             </IconGroup>

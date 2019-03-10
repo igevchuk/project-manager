@@ -83,7 +83,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
             <StyledDocument>
               <Segment basic={true}>{htmlSections}</Segment>
               <button
-                hidden={true}
+                hidden={false}
                 onClick={() =>
                   this.props.appDispatch({
                     type: 'FETCH_FORM_FULFILLED',

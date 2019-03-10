@@ -12,12 +12,12 @@ import * as actions from './redux/actions';
 
 type Action = ActionType<typeof actions>;
 interface IAppProps {
-  onFetchForm: () => void;
+  onFetchTemplate: () => void;
 }
 
 class App extends React.Component<IAppProps> {
   public componentDidMount() {
-    this.props.onFetchForm();
+    this.props.onFetchTemplate();
   }
 
   public render() {
@@ -36,7 +36,7 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
   return {
-    onFetchForm: () => dispatch(actions.fetchForm())
+    onFetchTemplate: () => dispatch(actions.fetchTemplate())
   };
 };
 

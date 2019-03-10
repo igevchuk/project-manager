@@ -5,30 +5,44 @@ import { createAction } from 'redux-actions';
 // import { Form } from "./model";
 
 // Action defination
-export const FETCH_FORM = 'formbuilder/FETCH_FORM';
-export const PUBLISH_FORM = 'formbuilder/PUBLISH_FORM';
-export const FETCH_FORM_FULFILLED = 'formbuilder/FETCH_FORM_FULFILLED';
-export const FORM_ERROR_ACTION = 'formbuilder/FORM_ERROR_ACTION';
+export const FETCH_TEMPLATE = 'template/FETCH_FORM';
+export const PUBLISH_TEMPLATE = 'template/PUBLISH_FORM';
+export const FETCH_TEMPLATE_FULFILLED = 'template/FETCH_FORM_FULFILLED';
+export const TEMPLATE_ERROR_ACTION = 'template/FORM_ERROR_ACTION';
 
-const fetchFormFulfilled = templates => ({
-  type: FETCH_FORM_FULFILLED,
+export const CHANGE_INDENT = 'template/INCREASE_INDENT';
+
+const increaseIndent = () => ({
+  type: CHANGE_INDENT,
+  payload: 'increaseIndent'
+});
+
+const decreaseIndent = () => ({
+  type: CHANGE_INDENT,
+  payload: 'decreaseIndent'
+});
+
+const fetchTemplateFulfilled = templates => ({
+  type: FETCH_TEMPLATE_FULFILLED,
   payload: templates
 });
 
-// formErrorAction
-const fetchForm = createAction<void>(FETCH_FORM, () => '');
-// const fetchFormFulfilled_ = createAction<article, article>(
-//   FETCH_FORM_FULFILLED,
-//   (article: article) => article
-// );
-const formErrorAction = createAction<{}, {}>(
-  FORM_ERROR_ACTION,
+const fetchTemplate = createAction<void>(FETCH_TEMPLATE, () => '');
+const templateErrorAction = createAction<{}, {}>(
+  TEMPLATE_ERROR_ACTION,
   (Error: {}) => Error
 );
 
-const publishForm = createAction<number, number>(
-  PUBLISH_FORM,
+const publishTemplate = createAction<number, number>(
+  PUBLISH_TEMPLATE,
   (id: number) => id
 );
 
-export { fetchForm, fetchFormFulfilled, formErrorAction, publishForm };
+export {
+  fetchTemplate,
+  fetchTemplateFulfilled,
+  templateErrorAction,
+  publishTemplate,
+  increaseIndent,
+  decreaseIndent
+};

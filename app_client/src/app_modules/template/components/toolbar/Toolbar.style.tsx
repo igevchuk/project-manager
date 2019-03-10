@@ -99,7 +99,11 @@ export const Icon = styled(IconBase)`
   }
 `;
 
-export const IconGroupIcon = styled(Icon)`
+type IIconProps = {
+  indent?: number;
+};
+
+export const IconGroupIcon = styled(Icon)<IIconProps>`
   &&& {
     background: transparent;
     border-radius: 3px;

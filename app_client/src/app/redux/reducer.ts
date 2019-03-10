@@ -1,6 +1,6 @@
 import update from 'immutability-helper';
 import { handleActions, Action } from 'redux-actions';
-import { FETCH_FORM, FETCH_FORM_FULFILLED } from './actions';
+// import { FETCH_FORM, FETCH_FORM_FULFILLED } from './actions';
 import * as types from './actions';
 import { IState, template } from './state';
 
@@ -12,7 +12,7 @@ export const initialState: IState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case types.FETCH_FORM_FULFILLED: {
+    case types.FETCH_TEMPLATE_FULFILLED: {
       if (state.isLocal) {
         const templates = action.payload;
         const newState = {
@@ -37,6 +37,10 @@ export default function reducer(state = initialState, action) {
       };
     }
     case 'FETCH_FORM_FULFILLED': {
+      console.log(action.payload);
+      return state;
+    }
+    case types.CHANGE_INDENT: {
       console.log(action.payload);
       return state;
     }

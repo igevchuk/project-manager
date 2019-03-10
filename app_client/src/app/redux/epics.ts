@@ -9,7 +9,7 @@ type Action = ActionType<typeof actions>;
 
 const fetchLocalFormEpic: Epic<Action, Action, {}> = (action$, store) =>
   action$.pipe(
-    ofType(actions.FETCH_FORM),
+    ofType(actions.FETCH_TEMPLATE),
     switchMap(action => {
       const article = {
         id: 2,
@@ -19,8 +19,8 @@ const fetchLocalFormEpic: Epic<Action, Action, {}> = (action$, store) =>
 
       const templates = repo.getTemplate();
       return from(templates).pipe(
-        map(response => actions.fetchFormFulfilled(response)),
-        catchError(error => of(actions.formErrorAction(error)))
+        map(response => actions.fetchTemplateFulfilled(response)),
+        catchError(error => of(actions.templateErrorAction(error)))
       );
     })
   );
