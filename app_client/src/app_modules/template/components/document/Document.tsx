@@ -5,6 +5,7 @@ import { contextWrapper } from '../../TemplateContext';
 import Schema from '../../controllers/document/schema';
 import { HtmlSections } from './DocSegments';
 import * as templateState from '../../../../app/redux/state';
+import * as actions from './../../redux/actions';
 
 type block = {
   order: number;
@@ -29,7 +30,7 @@ interface IContentProps {
     tableCells: templateState.tableCell[];
     runs: templateState.run[];
   };
-  dispatch: React.Dispatch<any>;
+  appDispatch: React.Dispatch<any>;
   isOutline: boolean;
 }
 
@@ -84,7 +85,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
               <button
                 hidden={true}
                 onClick={() =>
-                  this.props.dispatch({
+                  this.props.appDispatch({
                     type: 'FETCH_FORM_FULFILLED',
                     payload: {
                       id: 114,

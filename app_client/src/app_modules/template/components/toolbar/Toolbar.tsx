@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { contextWrapper } from '../../TemplateContext';
 
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
 import Book from '@material-ui/icons/Book';
@@ -31,6 +32,9 @@ import {
   IconGroupIcon
 } from './Toolbar.style';
 
+import * as actions from './../../redux/actions';
+import * as templateState from '../../../../app/redux/state';
+
 const fakeOptionForHorizontalDots = [
   { key: 1, text: 'Option 1', value: 'Option 1' },
   { key: 2, text: 'Option 2', value: 'Option 2' },
@@ -50,11 +54,6 @@ const fakeOptions = [
     text: 'Signature Block'
   }
 ];
-
-interface IToolbarState {
-  showNumbering?: boolean;
-  textLevel?: string;
-}
 
 const textLevelOptions = {
   textSegment: {
@@ -89,7 +88,15 @@ const textLevelOptions = {
   }
 };
 
-class Toolbar extends React.Component<{}, IToolbarState> {
+interface IToolbarProps {
+  templateDispatch: React.Dispatch<any>;
+}
+
+interface IToolbarState {
+  showNumbering?: boolean;
+  textLevel?: string;
+}
+class Toolbar extends React.Component<IToolbarProps, IToolbarState> {
   constructor(props) {
     super(props);
     this.state = {};
@@ -106,6 +113,11 @@ class Toolbar extends React.Component<{}, IToolbarState> {
   public toggleNumbering = e => {
     e.preventDefault();
     this.setState({ showNumbering: !this.state.showNumbering });
+  };
+
+  public toggleOutline = e => {
+    console.log('name');
+    this.props.templateDispatch(actions.enableShowOutline());
   };
 
   public renderTextLevelItem = key => {
@@ -255,7 +267,7 @@ class Toolbar extends React.Component<{}, IToolbarState> {
             />
           </ToolbarItem>
 
-          <ToolbarItem>
+          <ToolbarItem onClick={this.toggleOutline}>
             <Link>
               <Icon link={true} name="list" />
               Doc Outline
@@ -288,4 +300,4 @@ class Toolbar extends React.Component<{}, IToolbarState> {
   }
 }
 
-export default Toolbar;
+export default contextWrapper(Toolbar);

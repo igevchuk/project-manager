@@ -6,6 +6,7 @@ import * as templateState from '../../../../app/redux/state';
 import PlaybookRule from '../playbook/PlaybookRule';
 import StyledSidebar, { Tab, TabPane } from './Sidebar.style';
 import Search from './Search';
+import * as actions from './../../redux/actions';
 
 import TextLevelDropdown, {
   TextLevelDropdownMenu,
@@ -31,6 +32,7 @@ interface ISidebarProps {
     paragraphs: templateState.paragraph[];
     textSegments?: templateState.textSegment[];
   };
+  templateDispatch: React.Dispatch<any>;
 }
 
 const panes = [
@@ -52,6 +54,11 @@ class Sidebar extends React.Component<ISidebarProps> {
   constructor(props) {
     super(props);
   }
+
+  public toggleOutline = e => {
+    console.log('name');
+    this.props.templateDispatch(actions.enableShowOutline());
+  };
 
   public render() {
     return (
@@ -79,9 +86,12 @@ class Sidebar extends React.Component<ISidebarProps> {
           <Link>
             <Icon link={true} name="setting" />
           </Link>
-          <Link>
-            <Icon link={true} name="close" />
-          </Link>
+
+          <ToolbarItem onClick={this.toggleOutline}>
+            <Link>
+              <Icon link={true} name="close" />
+            </Link>
+          </ToolbarItem>
         </ToolbarItem>
       </StyledSidebar>
     );

@@ -1,22 +1,19 @@
 import * as React from 'react';
 
+import { Provider } from '../TemplateContext';
+
 import * as state from '../../../app/redux/state';
+import * as actions from './../redux/actions';
+
+import { StyledItem, StyledGrids } from './index.style';
 import appReducer from '../../../app/redux/reducer';
 import templateReducer from '../redux/reducer';
-
-// import { Grid } from 'semantic-ui-react';
-import { StyledItem, StyledGrids } from './index.style';
-
 import Document from './document/Document';
 import Sidebar from './sidebar/Sidebar';
 import Outline from './outline/Outline';
 import Search from './outline/Search';
-
 import Header from './header/Header';
 import Toolbar from './toolbar/Toolbar';
-import { Provider } from '../TemplateContext';
-
-import * as actions from './../redux/actions';
 
 interface IProps {
   template: state.template;
@@ -40,10 +37,9 @@ const Entry: React.SFC<IProps> = props => {
   return (
     <div>
       {/* <Header template={template} />*/}
-      <Provider value={{ appDispatch }}>
+      <Provider value={{ templateDispatch }}>
         <Toolbar />
       </Provider>
-      <button onClick={showOutline}>Show Outline</button>
 
       <StyledGrids>
         <StyledItem
