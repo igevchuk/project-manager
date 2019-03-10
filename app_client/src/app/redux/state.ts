@@ -5,7 +5,7 @@ export type docType = { id: uuid; type?: string };
 
 export type IState = {
   isLocal?: boolean;
-  activeId: uuid;
+  activeSegId: uuid;
   template?: template;
   // templates?: template[];
 };
@@ -25,7 +25,7 @@ export type template = {
   tables?: table[];
   tableRows?: tableRow[];
   tableCells?: tableCell[];
-  textSegments?: textSegment[];
+  textSegments: textSegment[];
   runs: run[];
   variables?: variable[];
   history?: history;

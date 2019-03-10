@@ -4,7 +4,7 @@ import { SHOW_OUTLINE } from './actions';
 import * as types from './actions';
 import { IState } from './state';
 
-const initialState: IState = {
+export const initialState: IState = {
   showOutline: true
 };
 

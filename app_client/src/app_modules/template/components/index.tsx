@@ -6,8 +6,12 @@ import * as state from '../../../app/redux/state';
 import * as actions from './../redux/actions';
 
 import { StyledItem, StyledGrids } from './index.style';
-import appReducer from '../../../app/redux/reducer';
-import templateReducer from '../redux/reducer';
+import appReducer, {
+  initialState as appState
+} from '../../../app/redux/reducer';
+import templateReducer, {
+  initialState as segmentState
+} from '../redux/reducer';
 import Document from './document/Document';
 import Sidebar from './sidebar/Sidebar';
 import Outline from './outline/Outline';
@@ -26,16 +30,16 @@ interface IProps {
 
 const Entry: React.SFC<IProps> = props => {
   const [templateState, appDispatch] = React.useReducer(appReducer, {
-    activeId: '',
+    ...appState,
     template: props.template
   });
 
   const [subState, templateDispatch] = React.useReducer(templateReducer, {
-    showOutline: false
+    ...segmentState
   });
 
   const template = templateState.template;
-  // console.log(template);
+  console.log(subState);
 
   const magicStyling = false;
   const zIndex = subState.showOutline ? 10 : 0; // zIndex: 0 | 10

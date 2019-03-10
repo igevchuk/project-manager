@@ -4,11 +4,10 @@ import { FETCH_FORM, FETCH_FORM_FULFILLED } from './actions';
 import * as types from './actions';
 import { IState, template } from './state';
 
-const initialState: IState = {
+export const initialState: IState = {
   isLocal: true,
-  activeId: '722d4399-12cb-497f-8e29-5f1dc08b0230',
+  activeSegId: '722d4399-12cb-497f-8e29-5f1dc08b0230',
   template: {} as template
-  // templates: []
 };
 
 export default function reducer(state = initialState, action) {
@@ -19,20 +18,23 @@ export default function reducer(state = initialState, action) {
         const newState = {
           ...state,
           template: Array(templates)[0][0]
-          // templates: Array(templates)[0]
         };
 
-        // console.log(newState);
+        const paragraphId = getParagraphIdBySegmentId(
+          state.activeSegId,
+          newState.template
+        );
+        // console.log(paragraphId);
 
         return newState;
       }
 
       // console.log(action.payload);
-      // const templates = action.payload;
-      // const newState = {
-      //   ...state,
-      //   templates: Array(templates)[0]
-      // };
+      const templates = action.payload;
+      const newState = {
+        ...state,
+        template: Array(templates)[0]
+      };
     }
     case 'FETCH_FORM_FULFILLED': {
       console.log(action.payload);
@@ -43,13 +45,14 @@ export default function reducer(state = initialState, action) {
   }
 }
 
-export const getParagraphIdBySegmentId = (segmentId: string): number => {
-  // const paragraph = paragraphs.filter(
-  //   paragraph => paragraph.id === paragraphId
-  // )[0];
-  // return {
-  //   blockId: paragraph.ref.blockId,
-  //   pStyle: paragraph.properties.pStyle
-  // };
-  return 0;
+export const getParagraphIdBySegmentId = (
+  segmentId: string,
+  template: template
+): string => {
+  const activeSegment = template.textSegments.find(segment => {
+    return segment.id === segmentId;
+  });
+
+  const paragraphId = activeSegment!.ref.paragraphId;
+  return paragraphId;
 };
