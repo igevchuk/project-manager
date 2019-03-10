@@ -150,11 +150,11 @@ class Toolbar extends React.Component<IToolbarProps, IToolbarState> {
   };
 
   public increaseIndent = e => {
-    this.props.appDispatch(appActions.increaseIndent());
+    this.props.appDispatch(appActions.changeIndent(1));
   };
 
   public decreaseIndent = e => {
-    this.props.appDispatch(appActions.decreaseIndent());
+    this.props.appDispatch(appActions.changeIndent(-1));
   };
 
   public render() {

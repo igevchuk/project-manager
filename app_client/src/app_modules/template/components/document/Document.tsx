@@ -7,6 +7,7 @@ import { HtmlSections } from './DocSegments';
 import * as templateState from '../../../../app/redux/state';
 import * as actions from './../../redux/actions';
 
+// defining rendering block which is not the same as the block from backend
 type block = {
   order: number;
   paragraph: templateState.paragraph;
@@ -18,39 +19,58 @@ type block = {
   ];
 };
 
+type template = {
+  id: number;
+  name: string;
+  blocks: templateState.block[];
+  paragraphs: templateState.paragraph[];
+  textSegments: templateState.textSegment[];
+  tables: templateState.table[];
+  tableRows: templateState.tableRow[];
+  tableCells: templateState.tableCell[];
+  runs: templateState.run[];
+};
 interface IContentProps {
-  template: {
-    id: number;
-    name: string;
-    blocks: templateState.block[];
-    paragraphs: templateState.paragraph[];
-    textSegments: templateState.textSegment[];
-    tables: templateState.table[];
-    tableRows: templateState.tableRow[];
-    tableCells: templateState.tableCell[];
-    runs: templateState.run[];
-  };
+  template: template;
   appDispatch: React.Dispatch<any>;
   isOutline: boolean;
 }
 
-class TemplateContent extends React.Component<IContentProps, any> {
+interface IDocState {
+  renewSchema: boolean;
+  activeSegment: null;
+  visible: boolean;
+  template: template;
+  isOutline: boolean;
+  docData: block[];
+}
+
+class TemplateContent extends React.PureComponent<IContentProps, IDocState> {
   constructor(props: any) {
     super(props);
 
-    const { blocks, paragraphs, textSegments, runs } = props.template;
-    const schema = new Schema({ blocks, paragraphs, textSegments, runs });
-    schema.initTemplate();
-    const sections = schema.SortedBlocks as block[];
-
     this.state = {
+      renewSchema: false,
       activeSegment: null,
       visible: false,
-      template: props.template,
+      template: this.props.template,
       isOutline: this.props.isOutline,
-      docData: sections
+      docData: this.rederedBlocks()
     };
   }
+
+  // public [blocks, setBlocks] = React.useState(0);
+
+  public rederedBlocks = () => {
+    const { blocks, paragraphs, textSegments, runs } = this.props.template;
+    const schema = new Schema({ blocks, paragraphs, textSegments, runs });
+    schema.initTemplate();
+    return schema.SortedBlocks as block[];
+  };
+
+  public renewRederedBlocks = () => {
+    this.setState({ docData: this.rederedBlocks() });
+  };
 
   public handleHideClick = () => this.setState({ visible: false });
   public handleShowClick = () => this.setState({ visible: true });
@@ -69,6 +89,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
   };
 
   public render() {
+    // this.renewRederedBlocks();
     if (!this.state.docData) {
       return 'loading ....';
     }
@@ -83,7 +104,7 @@ class TemplateContent extends React.Component<IContentProps, any> {
             <StyledDocument>
               <Segment basic={true}>{htmlSections}</Segment>
               <button
-                hidden={false}
+                hidden={true}
                 onClick={() =>
                   this.props.appDispatch({
                     type: 'FETCH_FORM_FULFILLED',

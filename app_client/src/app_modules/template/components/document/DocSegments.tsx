@@ -3,7 +3,8 @@ import { Form, Icon } from 'semantic-ui-react';
 import * as sortableHoc from 'react-sortable-hoc';
 import CompareArrows from '@material-ui/icons/CompareArrows';
 import { v4 } from 'uuid';
-
+import * as templateState from '../../../../app/redux/state';
+import Variants from './Variants';
 import {
   TextHover,
   TextHoverFeature,
@@ -17,9 +18,6 @@ import {
   SegmentHoverFeature,
   VariantCount
 } from './Document.style';
-
-import * as templateState from '../../../../app/redux/state';
-import Variants from './Variants';
 
 enum PStyle {
   Articl = 'Title',
@@ -44,45 +42,32 @@ interface ISectionProps {
   blocks: block[];
 }
 
+const initialState = {
+  id: '',
+  ref: {},
+  sequence: -1,
+  variantGroup: '',
+  variantIsDefault: false
+};
+
 export const HtmlSections: React.SFC<ISectionProps> = props => {
-  const [activeSegment, setActiveSegment] = React.useState({
-    id: '',
-    ref: {},
-    sequence: -1,
-    variantGroup: '',
-    variantIsDefault: false
-  });
+  const [blocks, setBlocks] = React.useState(props.blocks);
+  const [activeSegment, setActiveSegment] = React.useState(initialState);
   const [segmentSources, setSegmentSources] = React.useState(
     [] as segmentSource[][]
   );
-
-  const [blocks, setBlocks] = React.useState(props.blocks);
 
   const handleClick = (value: segmentSource): void => {
     setActiveSegment(value.segment);
   };
 
   const handleEscapeOutside = (): void => {
-    setActiveSegment({
-      id: '',
-      ref: {},
-      sequence: -1,
-      variantGroup: '',
-      variantIsDefault: false
-    });
-    // setActivateVariant('');
+    setActiveSegment(initialState);
   };
 
   const SortableContainer = sortableHoc.SortableContainer(({ children }) => {
     return <div>{children}</div>;
   });
-
-  const onSortEnd = ({ oldIndex, newIndex }) => {
-    // console.log(oldIndex);
-    // this.setState(({ segments }) => ({
-    //   segments: sortableHoc.arrayMove(segments, oldIndex, newIndex)
-    // }));
-  };
 
   // return (
   //   <SortableContainer onSortEnd={this.onSortEnd} useDragHandle={true}>
@@ -91,6 +76,13 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
   //     ))}
   //   </SortableContainer>
   // );
+
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    // console.log(oldIndex);
+    // this.setState(({ segments }) => ({
+    //   segments: sortableHoc.arrayMove(segments, oldIndex, newIndex)
+    // }));
+  };
 
   const getSegment = (blockOrder: number, segmentSource: segmentSource) => {
     const isActive = segmentSource.segment.variantIsDefault;
@@ -143,7 +135,7 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
         sources.push(block.segments);
       });
 
-      console.log(blocks);
+      // console.log(blocks);
       setSegmentSources(sources);
     }
 

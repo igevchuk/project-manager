@@ -3,11 +3,22 @@ export type uuid = string;
 export type docTypes = docType[];
 export type docType = { id: uuid; type?: string };
 
+type renderBlock = {
+  order: number;
+  paragraph: paragraph;
+  segments: [
+    {
+      runs: run[];
+      segment: textSegment;
+    }
+  ];
+};
+
 export type IState = {
   isLocal?: boolean;
   activeSegId: uuid;
-  template?: template;
-  // templates?: template[];
+  template: template;
+  renderBlocks: renderBlock[];
 };
 
 export type template = {
@@ -21,7 +32,7 @@ export type template = {
   editLockedBy?: number;
 
   blocks: block[];
-  paragraphs?: paragraph[];
+  paragraphs: paragraph[];
   tables?: table[];
   tableRows?: tableRow[];
   tableCells?: tableCell[];

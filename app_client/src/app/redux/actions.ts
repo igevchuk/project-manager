@@ -12,15 +12,15 @@ export const TEMPLATE_ERROR_ACTION = 'template/FORM_ERROR_ACTION';
 
 export const CHANGE_INDENT = 'template/INCREASE_INDENT';
 
-const increaseIndent = () => ({
+const changeIndent = adjustIndent => ({
   type: CHANGE_INDENT,
-  payload: 'increaseIndent'
+  payload: adjustIndent
 });
 
-const decreaseIndent = () => ({
-  type: CHANGE_INDENT,
-  payload: 'decreaseIndent'
-});
+// const decreaseIndent = () => ({
+//   type: CHANGE_INDENT,
+//   payload: 'decreaseIndent'
+// });
 
 const fetchTemplateFulfilled = templates => ({
   type: FETCH_TEMPLATE_FULFILLED,
@@ -43,6 +43,5 @@ export {
   fetchTemplateFulfilled,
   templateErrorAction,
   publishTemplate,
-  increaseIndent,
-  decreaseIndent
+  changeIndent
 };

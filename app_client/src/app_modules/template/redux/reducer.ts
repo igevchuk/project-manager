@@ -5,7 +5,7 @@ import * as types from './actions';
 import { IState } from './state';
 
 export const initialState: IState = {
-  showOutline: true
+  showOutline: false
 };
 
 export default function reducer(state = initialState, action) {
