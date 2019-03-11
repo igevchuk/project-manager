@@ -37,7 +37,7 @@ export default function reducer(state = initialState, action) {
         );
 
         const renderBlocks = rederedBlocks(template);
-        // console.log(renderBlocks);
+        console.log(renderBlocks);
 
         const newState = {
           ...state,
@@ -48,7 +48,7 @@ export default function reducer(state = initialState, action) {
         return newState;
       }
 
-      // console.log(action.payload);
+      console.log(action.payload);
       const templates = action.payload;
       const newState = {
         ...state,
