@@ -43,22 +43,31 @@ interface ISectionProps {
 }
 
 const initialState = {
-  id: '',
-  ref: {},
-  sequence: -1,
-  variantGroup: '',
-  variantIsDefault: false
+  isActive: false,
+  isVariant: false,
+  segment: {
+    id: '',
+    ref: {},
+    sequence: -1,
+    variantGroup: '',
+    variantIsDefault: false
+  }
 };
 
 export const HtmlSections: React.SFC<ISectionProps> = props => {
-  const [blocks, setBlocks] = React.useState(props.blocks);
   const [activeSegment, setActiveSegment] = React.useState(initialState);
   const [segmentSources, setSegmentSources] = React.useState(
     [] as segmentSource[][]
   );
 
   const handleClick = (value: segmentSource): void => {
-    setActiveSegment(value.segment);
+    const isVariant = activeSegment.segment.id === value.segment.id;
+
+    setActiveSegment({
+      isActive: true,
+      isVariant,
+      segment: value.segment
+    });
   };
 
   const handleEscapeOutside = (): void => {
@@ -85,18 +94,21 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
   };
 
   const getSegment = (blockOrder: number, segmentSource: segmentSource) => {
-    const isActive = segmentSource.segment.variantIsDefault;
+    const variantIsDefault = segmentSource.segment.variantIsDefault;
     const variants = segmentSources[blockOrder];
 
-    const segment = (
+    const segment = (isActive: boolean = false) => (
       // <SortableContainer onSortEnd={onSortEnd} useDragHandle={true}>
-      <SegmentNode key={v4()}>
-        <SegmentHover key={v4()} onClick={e => handleClick(segmentSource)}>
+      <SegmentNode key={v4()} onClick={e => handleClick(segmentSource)}>
+        <SegmentHover key={v4()}>
           <SegmentHoverFeature className="text-hover-feat">
             <DragHandle />
           </SegmentHoverFeature>
           {segmentSource.runs.map(run => (
-            <TextNode key={v4()}> {run.t}</TextNode>
+            <TextNode key={v4()} showBackground={isActive}>
+              {' '}
+              {run.t}
+            </TextNode>
           ))}
         </SegmentHover>
         <VariantCount key={v4()} className="variant-count">
@@ -106,24 +118,30 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
       // </SortableContainer>
     );
 
-    if (!isActive) {
-      return null;
-    }
-
-    if (!activeSegment || segmentSource.segment.id !== activeSegment.id) {
-      return segment;
-    }
-
-    const variant = (
+    const variant = () => (
       <Variants
         key={v4()}
-        // segmentId={4}
         segmentVariants={variants}
         onEscapeOutside={handleEscapeOutside}
       />
     );
 
-    return variant;
+    if (!variantIsDefault) {
+      return null;
+    }
+
+    if (activeSegment.isVariant) {
+      return variant();
+    }
+
+    if (
+      !activeSegment ||
+      segmentSource.segment.id !== activeSegment.segment.id
+    ) {
+      return segment(false);
+    } else {
+      return segment(true);
+    }
   };
 
   const getDoc = (blocks: block[]): React.ReactNode => {
@@ -135,8 +153,6 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
       });
       setSegmentSources(sources);
     }
-
-    // console.log(blocks);
 
     const htmlSections = blocks.map(block => {
       switch (block.paragraph.properties.pStyle) {

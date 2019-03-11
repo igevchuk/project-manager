@@ -17,6 +17,7 @@ type ISectionProps = {
 };
 
 type IRunProps = {
+  showBackground?: boolean;
   properties?: {
     b?: boolean;
     i?: boolean;
@@ -26,10 +27,24 @@ type IRunProps = {
   };
 };
 
-export const TextNode = styled.span<IRunProps>``;
+export const TextNode = styled.span<IRunProps>`
+  background: ${props => (props.showBackground ? 'yellow' : '')};
+  // position: relative;
+  // &:hover {
+  //   outline: 2px solid orange;
+  //   background-color: rgb(255, 252, 220);
+  //   cursor: pointer;
+  //   .text-hover-feat {
+  //     display: block;
+  //   }
+  // }
+  // &:hover + .variant-count {
+  //   display: inline-flex;
+  // }
+`;
 
 const articlePadding = '0em';
-const titlePadding = '0em';
+const titlePadding = '1em';
 const sectionPadding = '1em';
 const mormalSecitonPadding = '1em';
 

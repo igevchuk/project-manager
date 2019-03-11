@@ -28,36 +28,26 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case types.FETCH_TEMPLATE_FULFILLED: {
       // console.log(action.payload);
-      debugger;
       if (state.isLocal) {
         const templates = action.payload;
         const template = Array(templates)[0][0];
-
-        const paragraphId = getParagraphIdBySegmentId(
-          state.activeSegId,
-          template
-        );
-
         const renderBlocks = rederedBlocks(template);
-
         const newState = {
           ...state,
           template,
           renderBlocks
         };
-
+        // console.log(newState);
         return newState;
       }
 
       const template = action.payload;
       const renderBlocks = rederedBlocks(template);
-
       const newState = {
         ...state,
         template: Array(template)[0],
         renderBlocks
       };
-
       console.log(newState);
       return newState;
     }

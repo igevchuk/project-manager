@@ -60,19 +60,6 @@ class TemplateContent extends React.PureComponent<IContentProps, IDocState> {
     };
   }
 
-  // public [blocks, setBlocks] = React.useState(0);
-
-  // public rederedBlocks = () => {
-  //   const { blocks, paragraphs, textSegments, runs } = this.props.template;
-  //   const schema = new Schema({ blocks, paragraphs, textSegments, runs });
-  //   schema.initTemplate();
-  //   return schema.SortedBlocks as block[];
-  // };
-
-  // public renewRederedBlocks = () => {
-  //   this.setState({ docData: this.rederedBlocks() });
-  // };
-
   public handleHideClick = () => this.setState({ visible: false });
   public handleShowClick = () => this.setState({ visible: true });
   public handleSidebarHide = () => this.setState({ visible: false });
