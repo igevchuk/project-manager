@@ -293,6 +293,12 @@ class Toolbar extends React.Component<IToolbarProps, IToolbarState> {
           </ToolbarItem>
 
           <ToolbarItem>
+            <Link>
+              <Icon name="search" />
+            </Link>
+          </ToolbarItem>
+
+          <ToolbarItem>
             {/* <Link>
               <Icon link={true} name="ellipsis horizontal" />
             </Link> */}

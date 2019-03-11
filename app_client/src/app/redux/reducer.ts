@@ -18,7 +18,7 @@ type block = {
 };
 
 export const initialState: IState = {
-  isLocal: true,
+  isLocal: false,
   activeSegId: '722d4399-12cb-497f-8e29-5f1dc08b0230', // 722d4399-12cb-497f-8e29-5f1dc08b0230  b709de36-50bf-4429-97d4-cd660ea0ac3a
   template: {} as template,
   renderBlocks: [] as block[]
@@ -27,7 +27,8 @@ export const initialState: IState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case types.FETCH_TEMPLATE_FULFILLED: {
-      console.log(action.payload);
+      // console.log(action.payload);
+      debugger;
       if (state.isLocal) {
         const templates = action.payload;
         const template = Array(templates)[0][0];
@@ -48,24 +49,32 @@ export default function reducer(state = initialState, action) {
         return newState;
       }
 
-      console.log(action.payload);
       const templates = action.payload;
+      const renderBlocks = rederedBlocks(templates);
+
       const newState = {
         ...state,
-        template: Array(templates)[0]
+        template: Array(templates)[0],
+        renderBlocks
       };
+
+      console.log(newState);
+      return newState;
     }
     case 'FETCH_FORM_FULFILLED': {
       console.log(action.payload);
       return state;
     }
     case types.CHANGE_INDENT: {
+      debugger;
       const indentAdjust = action.payload;
       const template = state.template;
       const paragraphId = getParagraphIdBySegmentId(
         state.activeSegId,
         template
       );
+
+      console.log(paragraphId);
 
       const runIndex = template.runs.findIndex(
         run => run.id === '8995c5bb-7dcb-45bf-8218-67e60dce3c54'
@@ -139,7 +148,7 @@ export const adjustIndent = (pStyle: string, indentAdjust: number): number => {
   let preIndent = 0;
   if (pStyle!.startsWith('Heading')) {
     const temp = pStyle.split(' ').pop();
-    preIndent = parseInt(temp as string, 4);
+    preIndent = parseInt(temp as string, 10);
   }
 
   let newIndent = preIndent;

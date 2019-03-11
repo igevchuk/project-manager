@@ -52,7 +52,7 @@ export const TitleNode = styled.section<ITitleProps>`
 
   text-align: ${props => (props.isTitle ? 'center' : null)};
   padding: ${titlePadding};
-  background: ${props => props.background};
+  // background: ${props => props.background};
 `;
 
 export const SectionNode = styled.section<ISectionProps>`
@@ -61,7 +61,7 @@ export const SectionNode = styled.section<ISectionProps>`
   font-size: 14px;
 
   padding: ${sectionPadding};
-  background: ${props => props.background};
+  // background: ${props => props.background};
   &::before {
     content: counter(section, decimal) '.';
     counter-increment: section 1;
@@ -75,7 +75,7 @@ export const SectionNode = styled.section<ISectionProps>`
 
 export const SegmentsNode = styled.section<ISectionProps>`
   padding: ${mormalSecitonPadding};
-  background: ${props => props.background};
+  // background: ${props => props.background};
   // text-indent: 20em; ✨
   // padding-left: 2em;
   margin-left: ${props => props.indLevel || 2}em;
