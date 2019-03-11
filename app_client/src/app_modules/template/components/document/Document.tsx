@@ -32,6 +32,7 @@ type template = {
 };
 interface IContentProps {
   template: template;
+  blocks: templateState.renderBlock[];
   appDispatch: React.Dispatch<any>;
   isOutline: boolean;
 }
@@ -42,7 +43,7 @@ interface IDocState {
   visible: boolean;
   template: template;
   isOutline: boolean;
-  docData: block[];
+  // docData: block[];
 }
 
 class TemplateContent extends React.PureComponent<IContentProps, IDocState> {
@@ -54,23 +55,23 @@ class TemplateContent extends React.PureComponent<IContentProps, IDocState> {
       activeSegment: null,
       visible: false,
       template: this.props.template,
-      isOutline: this.props.isOutline,
-      docData: this.rederedBlocks()
+      isOutline: this.props.isOutline
+      // docData: this.rederedBlocks()
     };
   }
 
   // public [blocks, setBlocks] = React.useState(0);
 
-  public rederedBlocks = () => {
-    const { blocks, paragraphs, textSegments, runs } = this.props.template;
-    const schema = new Schema({ blocks, paragraphs, textSegments, runs });
-    schema.initTemplate();
-    return schema.SortedBlocks as block[];
-  };
+  // public rederedBlocks = () => {
+  //   const { blocks, paragraphs, textSegments, runs } = this.props.template;
+  //   const schema = new Schema({ blocks, paragraphs, textSegments, runs });
+  //   schema.initTemplate();
+  //   return schema.SortedBlocks as block[];
+  // };
 
-  public renewRederedBlocks = () => {
-    this.setState({ docData: this.rederedBlocks() });
-  };
+  // public renewRederedBlocks = () => {
+  //   this.setState({ docData: this.rederedBlocks() });
+  // };
 
   public handleHideClick = () => this.setState({ visible: false });
   public handleShowClick = () => this.setState({ visible: true });
@@ -84,17 +85,18 @@ class TemplateContent extends React.PureComponent<IContentProps, IDocState> {
     this.setState({ activeSegment: null });
   };
 
-  public renderDoc = (docData: block[]) => {
-    return <HtmlSections blocks={docData} />;
+  public renderDoc = (blocks: block[]) => {
+    return <HtmlSections blocks={blocks} />;
   };
 
   public render() {
-    // this.renewRederedBlocks();
-    if (!this.state.docData) {
+    if (!this.props.blocks) {
       return 'loading ....';
     }
 
-    const htmlSections = this.renderDoc(this.state.docData);
+    // console.log(this.props.blocks);
+
+    const htmlSections = this.renderDoc(this.props.blocks);
 
     return (
       <div>

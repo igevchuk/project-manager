@@ -3,7 +3,7 @@ export type uuid = string;
 export type docTypes = docType[];
 export type docType = { id: uuid; type?: string };
 
-type renderBlock = {
+export type renderBlock = {
   order: number;
   paragraph: paragraph;
   segments: [
@@ -74,7 +74,7 @@ export type paragraph = {
   };
   type: string; // Paragraph
   properties: {
-    pStyle?: string; // Title
+    pStyle: string; // Title
     jc?: string; // center
     ind?: number;
   };
@@ -165,7 +165,7 @@ export type run = {
     strike?: boolean;
     vertAlign?: string; // subscript
   };
-  t?: string; // ARTICLE I
+  t: string; // ARTICLE I
   // revision?: number;
   revisionCreatedDateTime?: Date; // 2019-01-01 14:00:05
   revisionCreatedBy?: string; // 7006

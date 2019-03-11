@@ -127,17 +127,16 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
   };
 
   const getDoc = (blocks: block[]): React.ReactNode => {
+    // console.log(props.blocks);
     const sources: segmentSource[][] = [];
-    // console.log(blocks);
-
     if (segmentSources.length === 0) {
       blocks.map(block => {
         sources.push(block.segments);
       });
-
-      // console.log(blocks);
       setSegmentSources(sources);
     }
+
+    // console.log(blocks);
 
     const htmlSections = blocks.map(block => {
       switch (block.paragraph.properties.pStyle) {
@@ -205,7 +204,7 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     return htmlSections;
   };
 
-  return <ArticleNode>{getDoc(blocks)}</ArticleNode>;
+  return <ArticleNode>{getDoc(props.blocks)}</ArticleNode>;
 };
 
 /////////////////////

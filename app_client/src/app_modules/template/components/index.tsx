@@ -26,12 +26,14 @@ export const StyledOutline = styled(StyledItem)`
 
 interface IProps {
   template: state.template;
+  blocks: state.renderBlock[];
 }
 
 const Entry: React.SFC<IProps> = props => {
   const [templateState, appDispatch] = React.useReducer(appReducer, {
     ...appState,
-    template: props.template
+    template: props.template,
+    renderBlocks: props.blocks
   });
 
   const [subState, templateDispatch] = React.useReducer(templateReducer, {
@@ -39,6 +41,7 @@ const Entry: React.SFC<IProps> = props => {
   });
 
   const template = templateState.template;
+  const blocks = templateState.renderBlocks;
   console.log(subState);
 
   const magicStyling = false;
@@ -61,13 +64,13 @@ const Entry: React.SFC<IProps> = props => {
           <Provider value={{ appDispatch, templateDispatch }}>
             <Outline template={template} />
             <Search />
-            <Document template={template} isOutline={true} />
+            <Document template={template} blocks={blocks} isOutline={true} />
           </Provider>
         </StyledOutline>
 
         <StyledItem className="blocks" magicStyling={magicStyling}>
           <Provider value={{ appDispatch }}>
-            <Document template={template} isOutline={false} />
+            <Document template={template} blocks={blocks} isOutline={false} />
           </Provider>
         </StyledItem>
 

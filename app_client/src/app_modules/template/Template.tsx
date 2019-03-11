@@ -9,22 +9,25 @@ import Entry from './components/index';
 
 interface ITemplateProps {
   template: state.template;
+  blocks: state.renderBlock[];
 }
 class Template extends React.Component<ITemplateProps> {
   public render() {
     if (_.isEmpty(this.props.template)) {
       return 'loading ....';
     }
+    // console.log(this.props.blocks);
 
-    return <Entry template={this.props.template} />;
+    return <Entry template={this.props.template} blocks={this.props.blocks} />;
   }
 }
 
 const mapStateToProps = appState => {
-  const templates = appState.appReducer.templates;
+  // const templates = appState.appReducer.templates;
   const template = appState.appReducer.template;
+  const blocks = appState.appReducer.renderBlocks;
 
-  return { template };
+  return { template, blocks };
 };
 const TemplateContainer = connect(mapStateToProps)(Template);
 
