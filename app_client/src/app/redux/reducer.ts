@@ -27,7 +27,7 @@ export const initialState: IState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case types.FETCH_TEMPLATE_FULFILLED: {
-      console.log(action.payload);
+      // console.log(action.payload);
       debugger;
       if (state.isLocal) {
         const templates = action.payload;
@@ -38,12 +38,12 @@ export default function reducer(state = initialState, action) {
           template
         );
 
-        // const renderBlocks = rederedBlocks(template);
+        const renderBlocks = rederedBlocks(template);
 
         const newState = {
           ...state,
-          template // : Array(templates)[0][0]
-          // renderBlocks
+          template,
+          renderBlocks
         };
 
         return newState;
