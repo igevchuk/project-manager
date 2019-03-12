@@ -19,7 +19,7 @@ type block = {
 
 export const initialState: IState = {
   isLocal: false,
-  activeSegId: '722d4399-12cb-497f-8e29-5f1dc08b0230', // 722d4399-12cb-497f-8e29-5f1dc08b0230  b709de36-50bf-4429-97d4-cd660ea0ac3a
+  activeSegId: '722d4399-12cb-497f-8e29-5f1dc08b0230',
   template: {} as template,
   renderBlocks: [] as block[]
 };
@@ -55,8 +55,19 @@ export default function reducer(state = initialState, action) {
       console.log(action.payload);
       return state;
     }
+
+    case 'TRACK_CURRENT_SEGMENT': {
+      console.log(action.payload);
+      const newState = {
+        ...state,
+        activeSegId: action.payload.id
+      };
+      console.log(newState);
+      return newState;
+    }
+
     case types.CHANGE_INDENT: {
-      debugger;
+      // debugger;
       const indentAdjust = action.payload;
       const template = state.template;
       const paragraphId = getParagraphIdBySegmentId(
@@ -66,13 +77,13 @@ export default function reducer(state = initialState, action) {
 
       console.log(paragraphId);
 
-      const runIndex = template.runs.findIndex(
-        run => run.id === '8995c5bb-7dcb-45bf-8218-67e60dce3c54'
-      );
-      const selectRun = template.runs[runIndex];
-      const newRun = update(selectRun, {
-        t: { $set: 'Heading greement Title' }
-      });
+      // const runIndex = template.runs.findIndex(
+      //   run => run.id === '8995c5bb-7dcb-45bf-8218-67e60dce3c54'
+      // );
+      // const selectRun = template.runs[runIndex];
+      // const newRun = update(selectRun, {
+      //   t: { $set: 'Heading greement Title' }
+      // });
 
       const activeParagraphIndex = template.paragraphs.findIndex(
         paragraph => paragraph.id === paragraphId
@@ -92,10 +103,10 @@ export default function reducer(state = initialState, action) {
             [activeParagraphIndex, 1],
             [activeParagraphIndex, 0, newParagraph]
           ]
-        },
-        runs: {
-          $splice: [[runIndex, 1], [runIndex, 0, newRun]]
         }
+        // runs: {
+        //   $splice: [[runIndex, 1], [runIndex, 0, newRun]]
+        // }
       });
 
       const renderBlocks = rederedBlocks(newTemplate);

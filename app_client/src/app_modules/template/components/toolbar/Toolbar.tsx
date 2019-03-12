@@ -147,6 +147,14 @@ class Toolbar extends React.Component<IToolbarProps, IToolbarState> {
   public toggleOutline = e => {
     console.log('name');
     this.props.templateDispatch(templateActions.enableShowOutline());
+
+    this.props.appDispatch({
+      type: 'FETCH_FORM_FULFILLED',
+      payload: {
+        id: 114,
+        name: 'this is name asd'
+      }
+    });
   };
 
   public increaseIndent = e => {

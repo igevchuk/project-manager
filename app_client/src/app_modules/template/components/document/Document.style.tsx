@@ -96,7 +96,8 @@ export const SegmentsNode = styled.section<ISectionProps>`
   margin-left: ${props => props.indLevel || 2}em;
 `;
 
-export const SegmentHover = styled.span`
+export const SegmentHover = styled.span<{ showBackground?: boolean }>`
+  background: ${props => (props.showBackground ? 'yellow' : '')};
   position: relative;
   &:hover {
     outline: 2px solid orange;

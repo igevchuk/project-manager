@@ -80,7 +80,7 @@
   },
   "scripts": {
     "start": "concurrently \"node scripts/start.js\" \"npm run json\" ",
-    "json": "json-server --watch ./../app_server/mock_data/data/templates_5.json --port 3004",
+    "json": "json-server --watch ./../app_server/mock_data/data/templates_6.json --port 3004",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },

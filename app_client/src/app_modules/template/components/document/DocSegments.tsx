@@ -40,6 +40,7 @@ type block = {
 
 interface ISectionProps {
   blocks: block[];
+  appDispatch: React.Dispatch<any>;
 }
 
 const initialState = {
@@ -67,6 +68,14 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
       isActive: true,
       isVariant,
       segment: value.segment
+    });
+
+    props.appDispatch({
+      type: 'TRACK_CURRENT_SEGMENT',
+      payload: {
+        id: value.segment.id,
+        segment: value.segment
+      }
     });
   };
 
@@ -100,15 +109,12 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     const segment = (isActive: boolean = false) => (
       // <SortableContainer onSortEnd={onSortEnd} useDragHandle={true}>
       <SegmentNode key={v4()} onClick={e => handleClick(segmentSource)}>
-        <SegmentHover key={v4()}>
+        <SegmentHover key={v4()} showBackground={isActive}>
           <SegmentHoverFeature className="text-hover-feat">
             <DragHandle />
           </SegmentHoverFeature>
           {segmentSource.runs.map(run => (
-            <TextNode key={v4()} showBackground={isActive}>
-              {' '}
-              {run.t}
-            </TextNode>
+            <TextNode key={v4()}> {run.t}</TextNode>
           ))}
         </SegmentHover>
         <VariantCount key={v4()} className="variant-count">
@@ -220,7 +226,25 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     return htmlSections;
   };
 
-  return <ArticleNode>{getDoc(props.blocks)}</ArticleNode>;
+  return (
+    <ArticleNode>
+      {getDoc(props.blocks)}
+      <button
+        hidden={true}
+        onClick={() =>
+          props.appDispatch({
+            type: 'FETCH_FORM_FULFILLED',
+            payload: {
+              id: 114,
+              name: 'this is name'
+            }
+          })
+        }
+      >
+        +
+      </button>
+    </ArticleNode>
+  );
 };
 
 /////////////////////

@@ -16,6 +16,8 @@ import Document from './document/Document';
 import Sidebar from './sidebar/Sidebar';
 import Outline from './outline/Outline';
 import Search from './outline/Search';
+import Searchbox from './outline/Searchbox';
+
 import Header from './header/Header';
 import Toolbar from './toolbar/Toolbar';
 import styled from 'styled-components';
@@ -50,7 +52,7 @@ const Entry: React.SFC<IProps> = props => {
 
   return (
     <div>
-      {/* <Header template={template} />*/}
+      {/* <Header template={template} /> */}
       <Provider value={{ appDispatch, templateDispatch }}>
         <Toolbar />
       </Provider>
@@ -63,7 +65,8 @@ const Entry: React.SFC<IProps> = props => {
         >
           <Provider value={{ appDispatch, templateDispatch }}>
             <Outline template={template} />
-            <Search />
+            {/* <Search /> */}
+            <Searchbox />
             <Document template={template} blocks={blocks} isOutline={true} />
           </Provider>
         </StyledOutline>

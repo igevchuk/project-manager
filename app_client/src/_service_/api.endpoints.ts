@@ -17,7 +17,6 @@ class ApiEndpoints extends ApiBase implements ApiEndpoints {
   // api/v1/template_data/b8c49d68-03b3-46f1-a079-0f83e0151573/
   public getTemplate = (): Observable<vm.template> => {
     // const url = `${this.baseUrl}/templates/`;
-    // const url = `https://dtrax-tm2.analytics.deloitte.ca/template/api/v1/template_data/b8c49d68-03b3-46f1-a079-0f83e0151573/`;
     const url = `https://dtrax-tm2.analytics.deloitte.ca/template/api/v1/template_data/b8c49d68-03b3-46f1-a079-0f83e0151573`;
 
     const forms$ = this.sendRequest(url);

@@ -33,8 +33,9 @@ type template = {
 interface IContentProps {
   template: template;
   blocks: templateState.renderBlock[];
-  appDispatch: React.Dispatch<any>;
   isOutline: boolean;
+  appDispatch: React.Dispatch<any>;
+  templateDispatch?: React.Dispatch<any>;
 }
 
 interface IDocState {
@@ -73,7 +74,9 @@ class TemplateContent extends React.PureComponent<IContentProps, IDocState> {
   };
 
   public renderDoc = (blocks: block[]) => {
-    return <HtmlSections blocks={blocks} />;
+    return (
+      <HtmlSections blocks={blocks} appDispatch={this.props.appDispatch} />
+    );
   };
 
   public render() {
