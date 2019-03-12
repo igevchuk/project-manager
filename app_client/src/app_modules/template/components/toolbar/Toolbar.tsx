@@ -61,7 +61,8 @@ const textLevelOptions = {
   textSegment: {
     html: 'No Indent Level',
     text: 'No Indent Level',
-    value: 'textSegment'
+    value: 'noIndent'
+    // value: 'textSegment'
   },
   article1: {
     html: 'ARTICLE 1',
@@ -102,20 +103,30 @@ interface IToolbarState {
 class Toolbar extends React.Component<IToolbarProps, IToolbarState> {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { showNumbering: true };
   }
 
   public handleChange = (name: string, value: string): void => {
     console.log(name, value);
   };
 
-  public handleSelectTextLevel = name => {
+  public handleSelectParagraphLevel = name => {
     this.setState({ textLevel: name });
+
+    this.props.appDispatch({
+      type: 'CHANGE_PARAGRAPH_LEVEL',
+      payload: name
+    });
   };
 
   public toggleNumbering = e => {
     e.preventDefault();
     this.setState({ showNumbering: !this.state.showNumbering });
+  };
+
+  public linkToPreviousSegment = e => {
+    e.preventDefault();
+    // TODO:
   };
 
   public renderTextLevelItem = key => {
@@ -126,7 +137,7 @@ class Toolbar extends React.Component<IToolbarProps, IToolbarState> {
     return (
       <TextLevelDropdownItem
         key={key}
-        onClick={() => this.handleSelectTextLevel(key)}
+        onClick={() => this.handleSelectParagraphLevel(key)}
         active={isActive}
       >
         {item.html} {isActive ? <Check /> : null}
@@ -182,7 +193,7 @@ class Toolbar extends React.Component<IToolbarProps, IToolbarState> {
                   {Object.keys(textLevelOptions).map(key =>
                     this.renderTextLevelItem(key)
                   )}
-                  <TextLevelDropdownItem>
+                  <TextLevelDropdownItem onClick={this.linkToPreviousSegment}>
                     Link to Previous Segment <Check />
                   </TextLevelDropdownItem>
                   <TextLevelDropdownItem onClick={this.toggleNumbering}>

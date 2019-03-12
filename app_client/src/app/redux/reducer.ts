@@ -56,6 +56,67 @@ export default function reducer(state = initialState, action) {
       return state;
     }
 
+    case 'CHANGE_PARAGRAPH_LEVEL': {
+      const paraName = action.payload;
+      const template = state.template;
+      const paragraphId = getParagraphIdBySegmentId(
+        state.activeSegId,
+        template
+      );
+
+      const activeParagraphIndex = template.paragraphs.findIndex(
+        paragraph => paragraph.id === paragraphId
+      );
+      const activeParagraph = template.paragraphs[activeParagraphIndex];
+
+      let newPStyle = '';
+      switch (paraName) {
+        case 'article':
+          newPStyle = 'Title';
+          break;
+        case 'section':
+          newPStyle = 'Heading 1';
+          break;
+        case 'subSection':
+          newPStyle = 'Heading 2';
+          break;
+        case 'clause':
+          newPStyle = 'Heading 3';
+          break;
+        case 'subClause':
+          newPStyle = 'Heading 4';
+          break;
+        case 'noIndent':
+          newPStyle = 'noIndent';
+          break;
+        default:
+          newPStyle = 'noIndent';
+      }
+
+      const newParagraph = update(activeParagraph, {
+        properties: { pStyle: { $set: newPStyle } }
+      });
+
+      const newTemplate = update(state.template, {
+        paragraphs: {
+          $splice: [
+            [activeParagraphIndex, 1],
+            [activeParagraphIndex, 0, newParagraph]
+          ]
+        }
+      });
+
+      const renderBlocks = rederedBlocks(newTemplate);
+
+      const newState = {
+        ...state,
+        template: newTemplate,
+        renderBlocks
+      };
+
+      return newState;
+    }
+
     case 'TRACK_CURRENT_SEGMENT': {
       console.log(action.payload);
       const newState = {
