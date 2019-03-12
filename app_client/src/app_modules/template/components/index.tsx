@@ -52,7 +52,7 @@ const Entry: React.SFC<IProps> = props => {
 
   return (
     <div>
-      {/* <Header template={template} /> */}
+      <Header template={template} />
       <Provider value={{ appDispatch, templateDispatch }}>
         <Toolbar />
       </Provider>
