@@ -22,7 +22,7 @@
 /app_client/yarn-error.log*
 
 # excludes new feature
-/app_client/src/__feature__
+/app_client/src/app_modules/__feature__
 
 #
 # server side
