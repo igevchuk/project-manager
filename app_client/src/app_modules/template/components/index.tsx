@@ -21,8 +21,9 @@ import Searchbox from './outline/Searchbox';
 import Header from './header/Header';
 import Toolbar from './toolbar/Toolbar';
 import styled from 'styled-components';
+import DragDropByHandle from './../../__feature__/DragDropByHandle';
 
-export const StyledOutline = styled(StyledItem)`
+export const StyledOutline = styled(StyledItem)<{ isHidden?: boolean }>`
   border: 2px solid rgba(34, 36, 38, 0.15);
 `;
 
@@ -65,12 +66,13 @@ const Entry: React.SFC<IProps> = props => {
         >
           <Provider value={{ appDispatch, templateDispatch }}>
             <Outline template={template} />
-            {/* <Searchbox />
-            <Document template={template} blocks={blocks} isOutline={true} /> */}
+            <Searchbox />
+            <Document template={template} blocks={blocks} isOutline={true} />
           </Provider>
         </StyledOutline>
 
         <StyledItem className="blocks" magicStyling={magicStyling}>
+          {/* <DragDropByHandle />; */}
           <Provider value={{ appDispatch }}>
             <Document template={template} blocks={blocks} isOutline={false} />
           </Provider>

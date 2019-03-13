@@ -25,7 +25,7 @@ export const StyledItem = styled.div<IItemProps>`
   &.blocks {
     grid-column: 1 / 3;
     grid-row: 1;
-    z-index: 1;
+    z-index: 0;
   }
 
   &.outline {
