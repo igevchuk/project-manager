@@ -48,7 +48,7 @@ class Variant extends React.Component<IVariantProps, {}> {
 
   public render() {
     const { variant } = this.props;
-    console.log(variant);
+    // console.log(variant);
 
     return (
       <Form.Field>

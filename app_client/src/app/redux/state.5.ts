@@ -38,27 +38,28 @@ export type template = {
   tableCells?: tableCell[];
   textSegments: textSegment[];
   runs: run[];
-
   variables?: variable[];
   history?: history;
+
   // will be removed
   textVariants?: textVariant[];
 };
 
 export type textSegment = {
   id: uuid;
-  type?: string; // TextSegment
-  properties?: {};
-  sequence: number;
   ref: {
     paragraphId: uuid;
   };
+  sequence: number;
+  // type: string; // TextSegment
   variantGroup: uuid; // 1000
   variantDescription?: string;
   variantIsDefault: boolean;
   text?: string; // ARTICLE I
+  // revision?: number;
   revisionCreatedDateTime?: Date;
   revisionCreatedBy?: string;
+  properties?: {};
 };
 
 export type block = {
@@ -68,19 +69,18 @@ export type block = {
 
 export type paragraph = {
   id: uuid;
-  type: string; // Paragraph
-  properties: {
-    pStyle: string;
-    jc?: string; // center
-    ind?: number;
-  };
-  sequence?: number; // new added
   ref: {
     blockId: number;
   };
-
+  type: string; // Paragraph
+  properties: {
+    pStyle: string; // Title
+    jc?: string; // center
+    ind?: number;
+  };
+  // revision?: number;
   revisionCreatedDateTime?: Date;
-  revisionCreatedBy?: number; // new changing string; 7006
+  revisionCreatedBy?: string; // 7006
 };
 
 export type table = {
@@ -90,8 +90,8 @@ export type table = {
   };
   type?: string; // table
   props?: {
-    tblStyle?: string; // TableGrid
-    tblW?: string; // 100% pct
+    'w:tblStyle': string; // TableGrid
+    tblW: string; // 100% pct
   };
   columns: [
     {
@@ -153,6 +153,10 @@ export type textVariant = {
 
 export type run = {
   id: uuid;
+  ref: {
+    textSegmentId?: uuid;
+  };
+  sequence: number;
   type?: string; // Run
   properties: {
     b?: boolean;
@@ -161,15 +165,10 @@ export type run = {
     strike?: boolean;
     vertAlign?: string; // subscript
   };
-  sequence: number;
-  ref: {
-    textSegmentId?: uuid;
-  };
-
+  t: string; // ARTICLE I
+  // revision?: number;
   revisionCreatedDateTime?: Date; // 2019-01-01 14:00:05
   revisionCreatedBy?: string; // 7006
-  isVariable?: false; // new added
-  t: string; // ARTICLE I
 };
 
 export type variable = {

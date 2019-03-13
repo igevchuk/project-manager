@@ -44,7 +44,7 @@ const Entry: React.SFC<IProps> = props => {
 
   const template = templateState.template;
   const blocks = templateState.renderBlocks;
-  console.log(subState);
+  // console.log(subState);
 
   const magicStyling = false;
   const zIndex = subState.showOutline ? 10 : 0; // zIndex: 0 | 10
@@ -52,7 +52,7 @@ const Entry: React.SFC<IProps> = props => {
 
   return (
     <div>
-      <Header template={template} />
+      {/* <Header template={template} /> */}
       <Provider value={{ appDispatch, templateDispatch }}>
         <Toolbar />
       </Provider>
@@ -65,9 +65,8 @@ const Entry: React.SFC<IProps> = props => {
         >
           <Provider value={{ appDispatch, templateDispatch }}>
             <Outline template={template} />
-            {/* <Search /> */}
-            <Searchbox />
-            <Document template={template} blocks={blocks} isOutline={true} />
+            {/* <Searchbox />
+            <Document template={template} blocks={blocks} isOutline={true} /> */}
           </Provider>
         </StyledOutline>
 

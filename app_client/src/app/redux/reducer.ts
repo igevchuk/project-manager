@@ -18,7 +18,7 @@ type block = {
 };
 
 export const initialState: IState = {
-  isLocal: false,
+  isLocal: true,
   activeSegId: '722d4399-12cb-497f-8e29-5f1dc08b0230',
   template: {} as template,
   renderBlocks: [] as block[]
@@ -118,12 +118,12 @@ export default function reducer(state = initialState, action) {
     }
 
     case 'TRACK_CURRENT_SEGMENT': {
-      console.log(action.payload);
+      // console.log(action.payload);
       const newState = {
         ...state,
         activeSegId: action.payload.id
       };
-      console.log(newState);
+      // console.log(newState);
       return newState;
     }
 

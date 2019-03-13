@@ -24,7 +24,8 @@ enum PStyle {
   Heading1 = 'Heading 1',
   Heading2 = 'Heading 2',
   Heading3 = 'Heading 3',
-  Heading4 = 'Heading 4'
+  Heading4 = 'Heading 4',
+  NoIndent = 'No Indent'
 }
 
 type segmentSource = {
@@ -61,6 +62,17 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     [] as segmentSource[][]
   );
 
+  React.useEffect(() => {
+    const sources: segmentSource[][] = [];
+    if (segmentSources.length === 0) {
+      props.blocks.map(block => {
+        sources.push(block.segments);
+      });
+
+      setSegmentSources(sources);
+    }
+  });
+
   const handleClick = (value: segmentSource): void => {
     const isVariant = activeSegment.segment.id === value.segment.id;
 
@@ -96,7 +108,6 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
   // );
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
-    // console.log(oldIndex);
     // this.setState(({ segments }) => ({
     //   segments: sortableHoc.arrayMove(segments, oldIndex, newIndex)
     // }));
@@ -136,30 +147,21 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
       return null;
     }
 
-    if (activeSegment.isVariant) {
-      return variant();
-    }
-
     if (
       !activeSegment ||
       segmentSource.segment.id !== activeSegment.segment.id
     ) {
       return segment(false);
+    }
+
+    if (activeSegment.isVariant) {
+      return variant();
     } else {
       return segment(true);
     }
   };
 
   const getDoc = (blocks: block[]): React.ReactNode => {
-    // console.log(props.blocks);
-    const sources: segmentSource[][] = [];
-    if (segmentSources.length === 0) {
-      blocks.map(block => {
-        sources.push(block.segments);
-      });
-      setSegmentSources(sources);
-    }
-
     const htmlSections = blocks.map(block => {
       switch (block.paragraph.properties.pStyle) {
         case PStyle.Articl:
@@ -307,7 +309,7 @@ class SegmentsComponent extends React.PureComponent<
   }
 
   public handleClick = (e: any, value: any): void => {
-    console.log(value);
+    // console.log(value);
   };
 
   public onSortEnd = ({ oldIndex, newIndex }) => {
