@@ -21,7 +21,7 @@ import Searchbox from './outline/Searchbox';
 import Header from './header/Header';
 import Toolbar from './toolbar/Toolbar';
 import styled from 'styled-components';
-// import Dnd from '../../__feature__/dnd/4/index';
+import Dnd from '../../__feature__/dnd/5/index';
 
 export const StyledOutline = styled(StyledItem)<{ isHidden?: boolean }>`
   border: 2px solid rgba(34, 36, 38, 0.15);
@@ -57,9 +57,9 @@ const Entry: React.SFC<IProps> = props => {
         <Toolbar />
       </Provider>
 
-      {/* <Dnd /> */}
+      <Dnd />
 
-      <StyledGrids>
+      {/* <StyledGrids>
         <StyledOutline
           className="outline"
           magicStyling={magicStyling}
@@ -83,7 +83,7 @@ const Entry: React.SFC<IProps> = props => {
             <Sidebar template={template} />
           </Provider>
         </StyledItem>
-      </StyledGrids>
+      </StyledGrids> */}
     </div>
   );
 };
