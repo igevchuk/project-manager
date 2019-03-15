@@ -18,8 +18,8 @@ type block = {
 };
 
 export const initialState: IState = {
-  isLocal: false,
-  activeSegId: '722d4399-12cb-497f-8e29-5f1dc08b0230',
+  isLocal: process.env.NODE_ENV === 'production' ? false : true,
+  activeSegId: '',
   template: {} as template,
   renderBlocks: [] as block[]
 };
@@ -27,7 +27,7 @@ export const initialState: IState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case types.FETCH_TEMPLATE_FULFILLED: {
-      // console.log(action.payload);
+      console.log(action.payload);
       if (state.isLocal) {
         const templates = action.payload;
         const template = Array.from(templates)[0];
