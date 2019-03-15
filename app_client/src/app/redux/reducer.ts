@@ -18,7 +18,7 @@ type block = {
 };
 
 export const initialState: IState = {
-  isLocal: true,
+  isLocal: false,
   activeSegId: '722d4399-12cb-497f-8e29-5f1dc08b0230',
   template: {} as template,
   renderBlocks: [] as block[]
@@ -30,14 +30,13 @@ export default function reducer(state = initialState, action) {
       // console.log(action.payload);
       if (state.isLocal) {
         const templates = action.payload;
-        const template = Array(templates)[0][0];
+        const template = Array.from(templates)[0];
         const renderBlocks = rederedBlocks(template);
         const newState = {
           ...state,
           template,
           renderBlocks
         };
-        // console.log(newState);
         return newState;
       }
 
@@ -48,7 +47,7 @@ export default function reducer(state = initialState, action) {
         template: Array(template)[0],
         renderBlocks
       };
-      console.log(newState);
+      // console.log(newState);
       return newState;
     }
     case 'FETCH_FORM_FULFILLED': {

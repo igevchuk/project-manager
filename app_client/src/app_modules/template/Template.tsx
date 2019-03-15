@@ -4,7 +4,7 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import * as _ from 'lodash';
 
-import DragDropByHandle from './../__feature__/DragDropByHandle';
+import '@atlaskit/css-reset';
 
 import * as state from '../../app/redux/state';
 import Entry from './components/index';
@@ -20,7 +20,6 @@ class Template extends React.Component<ITemplateProps> {
     }
 
     return <Entry template={this.props.template} blocks={this.props.blocks} />;
-    // return <DragDropByHandle />;
   }
 }
 

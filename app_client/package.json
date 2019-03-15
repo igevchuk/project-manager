@@ -4,6 +4,7 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
+    "@atlaskit/css-reset": "^3.0.6",
     "@material-ui/core": "^3.9.0",
     "@material-ui/icons": "^3.0.2",
     "@types/draft-js": "^0.10.27",

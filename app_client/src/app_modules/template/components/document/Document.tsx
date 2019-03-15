@@ -5,8 +5,6 @@ import { contextWrapper } from '../../TemplateContext';
 import Schema from '../../controllers/document/schema';
 import { HtmlSections } from './DocSegments';
 
-import DragDropByHandle from '../../../__feature__/DragDropByHandle';
-
 import * as templateState from '../../../../app/redux/state';
 import * as actions from './../../redux/actions';
 
@@ -112,7 +110,6 @@ class TemplateContent extends React.PureComponent<IContentProps, IDocState> {
               >
                 +
               </button>
-              {/* <DragDropByHandle /> */}
             </StyledDocument>
           </Grid.Column>
         )}
