@@ -57,9 +57,7 @@ const Entry: React.SFC<IProps> = props => {
         <Toolbar />
       </Provider>
 
-      <Dnd />
-
-      {/* <StyledGrids>
+      <StyledGrids>
         <StyledOutline
           className="outline"
           magicStyling={magicStyling}
@@ -83,7 +81,9 @@ const Entry: React.SFC<IProps> = props => {
             <Sidebar template={template} />
           </Provider>
         </StyledItem>
-      </StyledGrids> */}
+      </StyledGrids>
+
+      <Dnd />
     </div>
   );
 };
