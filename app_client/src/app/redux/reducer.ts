@@ -27,7 +27,7 @@ export const initialState: IState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case types.FETCH_TEMPLATE_FULFILLED: {
-      console.log(action.payload);
+      // console.log(action.payload);
       if (state.isLocal) {
         const templates = action.payload;
         const template = Array.from(templates)[0];
@@ -217,7 +217,7 @@ export const adjustIndent = (pStyle: string, indentAdjust: number): number => {
     newIndent = preIndent + indentAdjust;
   }
 
-  console.log(preIndent);
-  console.log(newIndent);
+  // console.log(preIndent);
+  // console.log(newIndent);
   return newIndent;
 };

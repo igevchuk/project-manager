@@ -3,7 +3,7 @@ import { Droppable } from 'react-beautiful-dnd';
 
 import styled from 'styled-components';
 
-import Task from './Task';
+import Task1 from './Task.1';
 import { taskType } from './state';
 
 const Container = styled.div`
@@ -42,25 +42,8 @@ class Dnd extends React.Component<IDndProps> {
   }
 
   public render() {
+    // console.log(this.props);
     return (
-      // <Container>
-      //   <Titile>{this.props.column.title}</Titile>
-      //   <Droppable droppableId={this.props.column.id}>
-      //     {(provided, snapshot) => (
-      //       <TaskList
-      //         ref={provided.innerRef}
-      //         {...provided.droppableProps}
-      //         isDraggingOver={snapshot.isDraggingOver}
-      //       >
-      //         {this.props.tasks.map((task, index) => (
-      //           <Task key={task.id} task={task} index={index} />
-      //         ))}
-      //         {provided.placeholder}
-      //       </TaskList>
-      //     )}
-      //   </Droppable>
-      // </Container>
-
       <Droppable droppableId={this.props.column.id}>
         {(provided, snapshot) => (
           <TaskList
@@ -69,7 +52,7 @@ class Dnd extends React.Component<IDndProps> {
             isDraggingOver={snapshot.isDraggingOver}
           >
             {this.props.tasks.map((task, index) => (
-              <Task key={task.id} task={task} index={index} />
+              <Task1 key={(task as any).segment.id} task={task} index={index} />
             ))}
             {provided.placeholder}
           </TaskList>

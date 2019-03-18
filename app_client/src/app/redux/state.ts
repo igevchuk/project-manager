@@ -56,7 +56,7 @@ export type textSegment = {
   variantGroup: uuid; // 1000
   variantDescription?: string;
   variantIsDefault: boolean;
-  text?: string; // ARTICLE I
+  text: string; // ARTICLE I
   revisionCreatedDateTime?: Date;
   revisionCreatedBy?: string;
 };

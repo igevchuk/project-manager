@@ -48,22 +48,21 @@ class Dnd extends React.Component<IDndProps> {
   };
 
   public render() {
+    // console.log(this.props);
+
     return (
-      <Draggable draggableId={this.props.task.id} index={this.props.index}>
+      <Draggable
+        draggableId={(this.props.task as any).segment.id}
+        index={this.props.index}
+      >
         {(provided, snapshot) => (
           <Container
-            // key={v4()}
             {...provided.draggableProps}
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
           >
-            {/* <Handle {...provided.dragHandleProps}>
-              <Icon name="move" link={true} />
-            </Handle>
-            {this.props.task.content} */}
-
             <ContentEditable
-              html={'name of variant'}
+              html={(this.props.task as any).segment.variantDescription}
               disabled={false}
               onChange={this.handleEditTitle}
             />
@@ -72,7 +71,7 @@ class Dnd extends React.Component<IDndProps> {
               <Editable
                 onChange={this.handleEditText}
                 disabled={false}
-                html={this.props.task.content}
+                html={(this.props.task as any).runs[0].t}
               />
               <Handle {...provided.dragHandleProps}>
                 <Icon name="move" link={true} />
