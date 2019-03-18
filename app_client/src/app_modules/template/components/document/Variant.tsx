@@ -65,6 +65,7 @@ class Variant extends React.Component<IVariantProps, {}> {
             disabled={false}
             html={this.getTitle(variant.segment.text)}
           />
+
           <DragHandle />
         </div>
       </Form.Field>

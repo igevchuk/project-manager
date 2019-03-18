@@ -83,7 +83,7 @@ const Entry: React.SFC<IProps> = props => {
         </StyledItem>
       </StyledGrids>
 
-      <Dnd />
+      {/* <Dnd /> */}
     </div>
   );
 };

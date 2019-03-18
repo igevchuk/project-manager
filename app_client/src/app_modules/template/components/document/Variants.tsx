@@ -28,7 +28,7 @@ const SortableItem = sortableHoc.SortableElement(
   ({ value }: { value: segmentSource }) => {
     return (
       <VariantForm>
-        {renderVariantForm(value)}
+        {/* {renderVariantForm(value)} */}
         <button onClick={handleAdd}>
           <Icon name="plus circle" />
           Add Variant
@@ -48,7 +48,7 @@ const DragHandle = sortableHoc.SortableHandle(() => (
   </span>
 ));
 
-const renderVariantForm = variant => {
+const renderVariantFormAAA = variant => {
   return (
     <React.Fragment key={v4()}>
       {variant.sequence === 1 && (
@@ -98,6 +98,33 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
     }));
   };
 
+  public handleAdd = () => {
+    // const newVariant = {
+    //   title: 'New Variant',
+    //   text: '',
+    //   seq: this.state.variants.length + 1
+    // };
+    // this.setState({
+    //   variants: [...this.state.variants, newVariant]
+    // });
+  };
+
+  public renderVariantForm = (variant, isDefault) => {
+    console.log(variant);
+    return (
+      <React.Fragment key={v4()}>
+        {isDefault && (
+          <Divider>
+            <span>
+              Fallback/Default Language <Icon name="info circle" />
+            </span>
+          </Divider>
+        )}
+        <Variant key={v4()} variant={variant} onUpdate={() => null} />
+      </React.Fragment>
+    );
+  };
+
   public render() {
     const { onEscapeOutside, ...props } = this.props;
     const { segmentVariants } = this.state;
@@ -110,20 +137,55 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
       return !segmentVariant.segment.variantIsDefault;
     });
 
-    // const renderVariantForm = variant => {
-    //   return (
-    //     <React.Fragment>
-    //       {variant.sequence === 1 && (
-    //         <Divider>
-    //           <span>
-    //             Fallback/Default Language <Icon name="info circle" />
-    //           </span>
-    //         </Divider>
-    //       )}
-    //       {/* <Variant variant={variant} onUpdate={this.props.onUpdate} /> */}
-    //     </React.Fragment>
-    //   );
-    // };
+    return (
+      <EscapeOutside onEscapeOutside={onEscapeOutside} key={v4()}>
+        <StyledVariants>
+          <span className="enumerate">1.1</span>
+
+          <div>
+            {standardVariant[0] && (
+              <VariantForm>
+                {this.renderVariantForm(standardVariant[0], true)}
+              </VariantForm>
+            )}
+
+            {restVariants.length > 0 && (
+              <VariantForm>
+                <Divider>
+                  <span>
+                    Variants <Icon name="info circle" />
+                  </span>
+                </Divider>
+                {restVariants.map(variant =>
+                  this.renderVariantForm(variant, false)
+                )}
+                <button onClick={this.handleAdd}>
+                  <Icon name="plus circle" />
+                  Add Variant
+                </button>
+              </VariantForm>
+            )}
+          </div>
+
+          <VariantCount className="variant-count">
+            3 <CompareArrows />
+          </VariantCount>
+        </StyledVariants>
+      </EscapeOutside>
+    );
+  }
+
+  public renderASD() {
+    const { onEscapeOutside, ...props } = this.props;
+    const { segmentVariants } = this.state;
+
+    const standardVariant = segmentVariants.filter(segmentVariant => {
+      return segmentVariant.segment.variantIsDefault;
+    });
+
+    const restVariants = segmentVariants.filter(segmentVariant => {
+      return !segmentVariant.segment.variantIsDefault;
+    });
 
     const variants = (
       <div>
