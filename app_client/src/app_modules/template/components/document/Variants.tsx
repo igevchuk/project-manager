@@ -252,11 +252,9 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
                 );
               });
 
-              // console.log(tasks);
-
               const asd = (
-                <VariantForm>
-                  <React.Fragment key={v4()}>
+                <VariantForm key={v4()}>
+                  <React.Fragment>
                     <Divider>
                       {(column as any).id && (column as any).id === 'column_1'
                         ? standardTitle
@@ -272,85 +270,6 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
               );
 
               return asd;
-              return;
-            })}
-
-            <div>
-              {standardVariant[0] && (
-                <VariantForm>
-                  {this.renderVariantForm(standardVariant[0], true)}
-                </VariantForm>
-              )}
-
-              {restVariants.length > 0 && (
-                <VariantForm>
-                  <Divider>
-                    <span>
-                      Variants <Icon name="info circle" />
-                    </span>
-                  </Divider>
-                  {restVariants.map(variant =>
-                    this.renderVariantForm(variant, false)
-                  )}
-                  <button onClick={this.handleAdd}>
-                    <Icon name="plus circle" />
-                    Add Variant
-                  </button>
-                </VariantForm>
-              )}
-            </div>
-
-            <VariantCount className="variant-count">
-              3 <CompareArrows />
-            </VariantCount>
-
-            {/* {this.state.taskData.columnOrder.map(columnId => {
-              const column = this.state.taskData.columns[columnId];
-              const tasks = column.taskIds.map(
-                taskId => this.state.taskData.tasks[taskId]
-              );
-              return <Column key={column.id} column={column} tasks={tasks} />;
-            })} */}
-          </StyledVariants>
-        </DragDropContext>
-
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <StyledVariants>
-            <span className="enumerate">1.1</span>
-
-            {this.state.taskData.columnOrder.map(columnId => {
-              const column = this.state.taskData.columns[columnId];
-
-              const standardTitle = (
-                <span>
-                  Fallback/Default Language <Icon name="info circle" />
-                </span>
-              );
-
-              const variantTitle = (
-                <span>
-                  Variants <Icon name="info circle" />
-                </span>
-              );
-
-              const tasks = column.taskIds.map(
-                taskId => this.state.taskData.tasks[taskId]
-              );
-              const asd = (
-                <VariantForm key={v4()}>
-                  <React.Fragment key={v4()}>
-                    <Divider>
-                      {column.id && column.id === 'column_1'
-                        ? standardTitle
-                        : variantTitle}
-                      <Column key={column.id} column={column} tasks={tasks} />
-                    </Divider>
-                  </React.Fragment>
-                </VariantForm>
-              );
-
-              return asd;
-              // return <Column key={column.id} column={column} tasks={tasks} />;
             })}
 
             <div>

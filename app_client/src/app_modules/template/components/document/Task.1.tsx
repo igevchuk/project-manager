@@ -48,8 +48,6 @@ class Dnd extends React.Component<IDndProps> {
   };
 
   public render() {
-    // console.log(this.props);
-
     return (
       <Draggable
         draggableId={(this.props.task as any).segment.id}
