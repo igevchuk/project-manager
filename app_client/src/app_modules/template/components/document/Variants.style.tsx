@@ -7,6 +7,8 @@ export const StyledVariants = styled.div`
   background: #f5f5f5;
   border-left: 2px solid orange;
   display: flex;
+  flex-direction: column;
+
   margin: 1em -2em;
   padding: 1em 1em 0 1em;
   & .enumerate {
