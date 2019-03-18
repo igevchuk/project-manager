@@ -144,13 +144,17 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
       return;
     }
 
-    // console.log(draggableId);
-
-    const startColomn = this.state.taskData.columns[source.droppableId];
-    const finishColomn = this.state.taskData.columns[destination.droppableId];
+    const startColomnIndex = this.state.taskDataNew.columns.findIndex(
+      column => column.id === source.droppableId
+    );
+    const startColomn = this.state.taskDataNew.columns[startColomnIndex];
+    const finishColomnIndex = this.state.taskDataNew.columns.findIndex(
+      column => column.id === destination.droppableId
+    );
+    const finishColomn = this.state.taskDataNew.columns[finishColomnIndex];
 
     if (startColomn === finishColomn) {
-      const newTaskIds = Array.from(startColomn.taskIds);
+      const newTaskIds = Array.from((startColomn as any).taskIds);
 
       newTaskIds.splice(source.index, 1);
       newTaskIds.splice(destination.index, 0, draggableId);
@@ -160,17 +164,18 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
         taskIds: newTaskIds
       };
 
-      const newData = update(this.state.taskData, {
+      const newData = update(this.state.taskDataNew, {
         columns: {
-          [newColumn.id]: {
-            $set: newColumn
-          }
+          $splice: [
+            [startColomnIndex, 1],
+            [startColomnIndex, 0, newColumn as any]
+          ]
         }
       });
 
       const newState = {
         ...this.state,
-        taskData: newData
+        taskDataNew: newData
       };
 
       this.setState(newState);
@@ -178,34 +183,42 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
     }
 
     // Moving from one list to another
+    console.log(finishColomn);
     const startTaskIds = Array.from(startColomn.taskIds);
     startTaskIds.splice(source.index, 1);
-    const newStart = {
+    startTaskIds.splice(0, 0, finishColomn.taskIds[0]);
+
+    const newStartColomn = {
       ...startColomn,
       taskIds: startTaskIds
     };
 
     const finishTaskIds = Array.from(finishColomn.taskIds);
+    finishTaskIds.splice(0, 1);
     finishTaskIds.splice(destination.index, 0, draggableId);
-    const newFinish = {
+    const newFinishColomn = {
       ...finishColomn,
       taskIds: finishTaskIds
     };
 
-    const newData = update(this.state.taskData, {
+    const newData = update(this.state.taskDataNew, {
       columns: {
-        [newStart.id]: {
-          $set: newStart
-        },
-        [newFinish.id]: {
-          $set: newFinish
-        }
+        $splice: [[startColomnIndex, 1], [startColomnIndex, 0, newStartColomn]]
+      }
+    });
+
+    const newDataa = update(newData, {
+      columns: {
+        $splice: [
+          [finishColomnIndex, 1],
+          [finishColomnIndex, 0, newFinishColomn]
+        ]
       }
     });
 
     const newState = {
       ...this.state,
-      taskData: newData
+      taskDataNew: newDataa
     };
 
     this.setState(newState);
