@@ -57,6 +57,13 @@ type taskType = {
   columnOrder: string[];
 };
 
+// export interface ITaskTypeA {
+//   tasks: segmentSource[];
+//   columns: column[];
+//   blocks: block[];
+//   columnOrder: string[];
+// }
+
 // const Container = styled.div`
 //   display: flex;
 //   flex-direction: column;
