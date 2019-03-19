@@ -221,7 +221,7 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
   const TaskList = styled.span<{ ref: any; isDraggingOver: boolean }>``;
 
   const getDoc = (blocks: block[]): React.ReactNode => {
-    console.log(blocks);
+    // console.log(blocks);
     const htmlSections = blocks.map(block => {
       switch (block.paragraph.properties.pStyle) {
         case PStyle.Articl:
