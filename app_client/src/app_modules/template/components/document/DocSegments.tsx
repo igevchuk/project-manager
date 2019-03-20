@@ -5,6 +5,7 @@ import CompareArrows from '@material-ui/icons/CompareArrows';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import DocSegment from './DocSegment';
+import update from 'immutability-helper';
 
 import { v4 } from 'uuid';
 import * as templateState from '../../../../app/redux/state';
@@ -110,6 +111,7 @@ const initialState = {
 
 const HtmlSections: React.SFC<ISectionProps> = props => {
   const [activeSegment, setActiveSegment] = React.useState(initialState);
+  const [docBlocks, setDocBlocks] = React.useState(props.blocks);
   const [segmentSources, setSegmentSources] = React.useState(
     [] as segmentSource[][]
   );
@@ -146,18 +148,6 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
   const handleEscapeOutside = (): void => {
     setActiveSegment(initialState);
   };
-
-  // const SortableContainer = sortableHoc.SortableContainer(({ children }) => {
-  //   return <div>{children}</div>;
-  // });
-
-  // const Handle = styled.div`
-  //   width: 20px;
-  //   height: 20px;
-  //   // background-color: orange;
-  //   // border-radius: 4px;
-  //   margin-right: 8px;
-  // `;
 
   const getSegment = (
     blockOrder: number,
@@ -229,7 +219,9 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
   };
 
   const getDoc = (blocks: block[]): React.ReactNode => {
-    console.log(blocks);
+    // console.log(blocks);
+    console.log(docBlocks);
+
     const htmlSections = blocks.map(block => {
       switch (block.paragraph.properties.pStyle) {
         case PStyle.Article:
@@ -250,6 +242,7 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
                           key={segmentNode.segment.id}
                           segmentNode={segmentNode}
                           index={index}
+                          segmentSources={segmentSources}
                         />
                       ))}
                       {provided.placeholder}
@@ -339,83 +332,78 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
   };
 
   const onDragEnd = result => {
-    // const { destination, source, draggableId } = result;
-    // console.log(result);
-    // debugger;
-    // if (!destination) {
-    //   return;
-    // }
-    // if (
-    //   destination.droppableId === source.droppableId &&
-    //   destination.index === source.index
-    // ) {
-    //   return;
-    // }
-    // const startColomnIndex = this.state.taskDataNew.columns.findIndex(
-    //   column => column.id === source.droppableId
-    // );
-    // const startColomn = this.state.taskDataNew.columns[startColomnIndex];
-    // const finishColomnIndex = this.state.taskDataNew.columns.findIndex(
-    //   column => column.id === destination.droppableId
-    // );
-    // const finishColomn = this.state.taskDataNew.columns[finishColomnIndex];
-    // if (startColomn === finishColomn) {
-    //   const newTaskIds = Array.from((startColomn as any).taskIds);
-    //   newTaskIds.splice(source.index, 1);
-    //   newTaskIds.splice(destination.index, 0, draggableId);
-    //   const newColumn = {
-    //     ...startColomn,
-    //     taskIds: newTaskIds
-    //   };
-    //   const newData = update(this.state.taskDataNew, {
-    //     columns: {
-    //       $splice: [
-    //         [startColomnIndex, 1],
-    //         [startColomnIndex, 0, newColumn as any]
-    //       ]
-    //     }
-    //   });
-    //   const newState = {
-    //     ...this.state,
-    //     taskDataNew: newData
-    //   };
-    //   this.setState(newState);
-    //   return;
-    // }
-    // // Moving from one list to another
-    // console.log(finishColomn);
-    // const startTaskIds = Array.from(startColomn.taskIds);
-    // startTaskIds.splice(source.index, 1);
-    // startTaskIds.splice(0, 0, finishColomn.taskIds[0]);
-    // const newStartColomn = {
-    //   ...startColomn,
-    //   taskIds: startTaskIds
-    // };
-    // const finishTaskIds = Array.from(finishColomn.taskIds);
-    // finishTaskIds.splice(0, 1);
-    // finishTaskIds.splice(destination.index, 0, draggableId);
-    // const newFinishColomn = {
-    //   ...finishColomn,
-    //   taskIds: finishTaskIds
-    // };
-    // const newData = update(this.state.taskDataNew, {
-    //   columns: {
-    //     $splice: [[startColomnIndex, 1], [startColomnIndex, 0, newStartColomn]]
-    //   }
-    // });
-    // const newDataa = update(newData, {
-    //   columns: {
-    //     $splice: [
-    //       [finishColomnIndex, 1],
-    //       [finishColomnIndex, 0, newFinishColomn]
-    //     ]
-    //   }
-    // });
-    // const newState = {
-    //   ...this.state,
-    //   taskDataNew: newDataa
-    // };
-    // this.setState(newState);
+    const { destination, source, draggableId } = result;
+
+    if (!destination) {
+      return;
+    }
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    const startColomnIndex = docBlocks.findIndex(
+      block => block.id === source.droppableId
+    );
+    const startColomn = docBlocks[startColomnIndex];
+    const finishColomnIndex = docBlocks.findIndex(
+      block => block.id === destination.droppableId
+    );
+    const finishColomn = docBlocks[finishColomnIndex];
+
+    if (startColomn === finishColomn) {
+      const colSegments = startColomn.segments;
+      const draggableSegment = colSegments.filter(
+        startSegment => startSegment.segment.id === draggableId
+      )[0];
+
+      colSegments.splice(source.index, 1);
+      colSegments.splice(destination.index, 0, draggableSegment);
+
+      const newColumn = {
+        ...startColomn,
+        segments: colSegments
+      };
+
+      const newData = update(docBlocks, {
+        $splice: [[startColomnIndex, 1], [startColomnIndex, 0, newColumn]]
+      });
+
+      setDocBlocks(newData);
+      return;
+    }
+
+    // Moving from one list to another
+    const startSegments = startColomn.segments;
+
+    const draggableSegment = startSegments.filter(
+      startSegment => startSegment.segment.id === draggableId
+    )[0];
+
+    startSegments.splice(source.index, 1);
+    const newStartColomn = {
+      ...startColomn,
+      segments: startSegments
+    };
+
+    const finishSegments = finishColomn.segments;
+    finishSegments.splice(destination.index, 0, draggableSegment);
+    const newFinishColomn = {
+      ...finishColomn,
+      segments: finishSegments
+    };
+
+    const startNewData = update(docBlocks, {
+      $splice: [[startColomnIndex, 1], [startColomnIndex, 0, newStartColomn]]
+    });
+
+    const finalData = update(startNewData, {
+      $splice: [[finishColomnIndex, 1], [finishColomnIndex, 0, newFinishColomn]]
+    });
+
+    setDocBlocks(finalData);
   };
 
   return (
