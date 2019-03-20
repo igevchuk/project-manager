@@ -54,7 +54,9 @@ const BlockContainer = styled.div`
   border-radius: 2px;
   width: 640px;
 `;
-const TaskList = styled.span<{ ref: any; isDraggingOver: boolean }>``;
+const TaskListB = styled.span<{ ref: any; isDraggingOver: boolean }>``;
+
+const TaskList = styled.div``;
 
 const SegmentContainer = styled.div<{ ref: any; isDragging: boolean }>`
   border: 1px solid lightgrey;
@@ -74,6 +76,26 @@ const Handle = styled.div`
   border-radius: 4px;
   margin-right: 8px;
 `;
+
+const getItemStyle = (isDragging, draggableStyle) => ({
+  // some basic styles to make the items look a bit nicer
+  userSelect: 'none',
+  padding: 2 * 2,
+  margin: `0 ${4}px 0 0`,
+
+  // change background colour if dragging
+  background: isDragging ? 'lightgreen' : 'grey',
+
+  // styles we need to apply on draggables
+  ...draggableStyle
+});
+
+const getListStyle = isDraggingOver => ({
+  background: isDraggingOver ? 'lightblue' : 'lightgrey',
+  display: 'flex',
+  padding: 4,
+  overflow: 'auto'
+});
 
 const DragHandle = sortableHoc.SortableHandle(() => (
   <span>
@@ -233,8 +255,8 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
                   {(provided, snapshot) => (
                     <TaskList
                       ref={provided.innerRef}
+                      style={getListStyle(snapshot.isDraggingOver)}
                       {...provided.droppableProps}
-                      isDraggingOver={snapshot.isDraggingOver}
                     >
                       {block.segments.map((segmentNode, index) => (
                         // getSegment(block.order, segmentNode, index)
@@ -266,8 +288,8 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
                   {(provided, snapshot) => (
                     <TaskList
                       ref={provided.innerRef}
+                      style={getListStyle(snapshot.isDraggingOver)}
                       {...provided.droppableProps}
-                      isDraggingOver={snapshot.isDraggingOver}
                     >
                       {block.segments.map((segmentNode, index) =>
                         getSegment(block.order, segmentNode, index)

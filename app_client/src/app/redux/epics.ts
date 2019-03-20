@@ -16,7 +16,7 @@ const fetchLocalFormEpic: Epic<Action, Action, {}> = (action$, store) =>
         name: 'stringaaa',
         ref: { templateId: 111 }
       };
-
+      // const asd = (action as { type: string; payload: {} }).payload;
       const templates = repo.getTemplate();
       return from(templates).pipe(
         map(response => actions.fetchTemplateFulfilled(response)),

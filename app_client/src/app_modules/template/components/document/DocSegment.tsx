@@ -51,11 +51,22 @@ const Container = styled.span<{ ref: any; isDragging: boolean }>`
   flex-direction: row;
 `;
 
+const SegmentContainer = styled.div<{ ref: any; isDragging: boolean }>`
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+  padding: 8px;
+  margin-bottom: 8px;
+  background-color: white;
+  background-color: ${props => (props.isDragging ? 'lightgreen' : 'white')};
+
+  display: flex;
+`;
+
 const Handle = styled.div`
   width: 20px;
   height: 20px;
-  // background-color: orange;
-  // border-radius: 4px;
+  background-color: orange;
+  border-radius: 4px;
   margin-right: 8px;
 `;
 
@@ -63,6 +74,19 @@ type segmentSource = {
   runs: templateState.run[];
   segment: templateState.textSegment;
 };
+
+const getItemStyle = (isDragging, draggableStyle) => ({
+  // some basic styles to make the items look a bit nicer
+  userSelect: 'none',
+  padding: 2 * 2,
+  margin: `0 ${4}px 0 0`,
+
+  // change background colour if dragging
+  background: isDragging ? 'lightgreen' : 'grey',
+
+  // styles we need to apply on draggables
+  ...draggableStyle
+});
 
 interface IDndProps {
   blockOrder: number;
@@ -178,10 +202,14 @@ class Task2 extends React.Component<IDndProps> {
         index={this.props.index}
       >
         {(provided, snapshot) => (
-          <Container
-            {...provided.draggableProps}
+          <SegmentContainer
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
+            {...provided.draggableProps}
+            style={getItemStyle(
+              snapshot.isDragging,
+              provided.draggableProps.style
+            )}
           >
             {/* <ContentEditable
               html={this.props.segmentNode.segment.variantDescription}
@@ -194,11 +222,12 @@ class Task2 extends React.Component<IDndProps> {
               disabled={false}
               html={this.props.segmentNode.runs[0].t}
             /> */}
-            {'aaaa'}
+
             <Handle {...provided.dragHandleProps}>
               <Icon name="move" link={true} />
             </Handle>
-          </Container>
+            <TextNode key={v4()}> {this.props.segmentNode.runs[0].t}</TextNode>
+          </SegmentContainer>
         )}
       </Draggable>
     );
