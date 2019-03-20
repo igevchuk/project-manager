@@ -31,7 +31,15 @@ const DragHandle = sortableHoc.SortableHandle(() => (
   </span>
 ));
 
-const Container = styled.div<{ ref: any; isDragging: boolean }>`
+export const DragHandleA = () => (
+  <span>
+    <Icon name="move" size="small" />
+    <span> this is testing</span>
+    <span> more testing</span>
+  </span>
+);
+
+const Container = styled.span<{ ref: any; isDragging: boolean }>`
   // border: 1px solid lightgrey;
   border-radius: 2px;
   padding: 8px;
@@ -40,6 +48,7 @@ const Container = styled.div<{ ref: any; isDragging: boolean }>`
   background-color: ${props => (props.isDragging ? 'lightgreen' : 'white')};
 
   display: flex;
+  flex-direction: row;
 `;
 
 const Handle = styled.div`
@@ -174,22 +183,21 @@ class Task2 extends React.Component<IDndProps> {
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
           >
-            <ContentEditable
+            {/* <ContentEditable
               html={this.props.segmentNode.segment.variantDescription}
               disabled={false}
               onChange={this.handleEditTitle}
-            />
+            /> */}
 
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <Editable
-                onChange={this.handleEditText}
-                disabled={false}
-                html={this.props.segmentNode.runs[0].t}
-              />
-              <Handle {...provided.dragHandleProps}>
-                <Icon name="move" link={true} />
-              </Handle>
-            </div>
+            {/* <Editable
+              onChange={this.handleEditText}
+              disabled={false}
+              html={this.props.segmentNode.runs[0].t}
+            /> */}
+            {'aaaa'}
+            <Handle {...provided.dragHandleProps}>
+              <Icon name="move" link={true} />
+            </Handle>
           </Container>
         )}
       </Draggable>

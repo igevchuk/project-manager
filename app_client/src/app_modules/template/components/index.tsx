@@ -22,6 +22,9 @@ import Header from './header/Header';
 import Toolbar from './toolbar/Toolbar';
 import styled from 'styled-components';
 import Dnd, { ReactSFC } from '../../__feature__/dnd/9/index';
+import HorizontalList from '../../__feature__/dnd/10/horizontalList';
+
+//
 
 export const StyledOutline = styled(StyledItem)<{ isHidden?: boolean }>`
   border: 2px solid rgba(34, 36, 38, 0.15);
@@ -83,12 +86,10 @@ const Entry: React.SFC<IProps> = props => {
         </StyledItem>
 
         <StyledItem>
-          <Dnd />
-        </StyledItem>
-        <StyledItem>
-          <ReactSFC />
+          <HorizontalList />
         </StyledItem>
       </StyledGrids>
+      <Dnd />
     </div>
   );
 };

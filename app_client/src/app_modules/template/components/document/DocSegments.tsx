@@ -4,7 +4,7 @@ import * as sortableHoc from 'react-sortable-hoc';
 import CompareArrows from '@material-ui/icons/CompareArrows';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
-import DocSegment from './DocSegment';
+import DocSegment, { DragHandleA } from './DocSegment';
 import update from 'immutability-helper';
 
 import { v4 } from 'uuid';
@@ -41,17 +41,18 @@ enum PStyle {
 
 const Container = styled.div`
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
+  // flex-flow: column nowrap;
 `;
 
 const BlockContainer = styled.div`
-  margin: 8px;
-  border: 1px solid lightgrey;
-  border-radius: 2px;
-  width: 240px;
-
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+
+  margin: 8px;
+  border: 4px solid lightgrey;
+  border-radius: 2px;
+  width: 640px;
 `;
 const TaskList = styled.span<{ ref: any; isDraggingOver: boolean }>``;
 
@@ -228,7 +229,7 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
           const titleNode = (
             <TitleNode key={v4()} isTitle={true} background="cornflowerblue">
               <BlockContainer>
-                <Droppable droppableId={block.id}>
+                <Droppable droppableId={block.id} direction="horizontal">
                   {(provided, snapshot) => (
                     <TaskList
                       ref={provided.innerRef}
