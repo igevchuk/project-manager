@@ -42,7 +42,8 @@ class Dnd extends React.Component<IDndProps> {
   }
 
   public render() {
-    // console.log(this.props);
+    console.log('this.props.tasks');
+    console.log(this.props);
     return (
       <Droppable droppableId={this.props.column.id}>
         {(provided, snapshot) => (

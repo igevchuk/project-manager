@@ -3,13 +3,14 @@ import { Segment, Grid } from 'semantic-ui-react';
 import { StyledDocument } from './Document.style';
 import { contextWrapper } from '../../TemplateContext';
 import Schema from '../../controllers/document/schema';
-import { HtmlSections } from './DocSegments';
+import HtmlSections from './DocSegments';
 
 import * as templateState from '../../../../app/redux/state';
 import * as actions from './../../redux/actions';
 
 // defining rendering block which is not the same as the block from backend
 type block = {
+  id: string;
   order: number;
   paragraph: templateState.paragraph;
   segments: [

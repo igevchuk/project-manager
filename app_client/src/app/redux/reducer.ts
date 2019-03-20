@@ -7,6 +7,7 @@ import * as templateState from './state';
 import Schema from '../../app_modules/template/controllers/document/schema';
 
 type block = {
+  id: string;
   order: number;
   paragraph: templateState.paragraph;
   segments: [
