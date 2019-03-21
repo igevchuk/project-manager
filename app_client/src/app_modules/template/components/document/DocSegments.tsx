@@ -33,6 +33,17 @@ enum PStyle {
   NoIndent = 'No Indent'
 }
 
+const SegmentContainer = styled.div<{ ref: any; isDragging: boolean }>`
+  // border: 1px solid lightgrey;
+  border-radius: 2px;
+  padding: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  // background-color: white;
+  // background-color: ${props => (props.isDragging ? 'lightgreen' : 'white')};
+  display: flex;
+`;
+
 const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
@@ -53,16 +64,16 @@ const TaskListB = styled.span<{ ref: any; isDraggingOver: boolean }>``;
 
 const TaskList = styled.div``;
 
-const SegmentContainer = styled.div<{ ref: any; isDragging: boolean }>`
-  border: 1px solid lightgrey;
-  border-radius: 2px;
-  padding: 8px;
-  margin-bottom: 8px;
-  background-color: white;
-  background-color: ${props => (props.isDragging ? 'lightgreen' : 'white')};
+// const SegmentContainer = styled.div<{ ref: any; isDragging: boolean }>`
+//   border: 1px solid lightgrey;
+//   border-radius: 2px;
+//   padding: 8px;
+//   margin-bottom: 8px;
+//   background-color: white;
+//   background-color: ${props => (props.isDragging ? 'lightgreen' : 'white')};
 
-  display: flex;
-`;
+//   display: flex;
+// `;
 
 const Handle = styled.div`
   width: 20px;
@@ -72,7 +83,7 @@ const Handle = styled.div`
   margin-right: 8px;
 `;
 
-const getItemStyle = (isDragging, draggableStyle) => ({
+const getItemStyleB = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: 'none',
   padding: 2 * 2,
@@ -80,6 +91,19 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 
   // change background colour if dragging
   background: isDragging ? 'lightgreen' : 'grey',
+
+  // styles we need to apply on draggables
+  ...draggableStyle
+});
+
+const getItemStyle = (isDragging, draggableStyle) => ({
+  // some basic styles to make the items look a bit nicer
+  userSelect: 'none',
+  padding: 2 * 2,
+  margin: `0 ${4}px 0 0`,
+
+  // change background colour if dragging
+  // background: isDragging ? 'lightgreen' : 'grey',
 
   // styles we need to apply on draggables
   ...draggableStyle
@@ -131,6 +155,8 @@ const initialState = {
 const HtmlSections: React.SFC<ISectionProps> = props => {
   const [activeSegment, setActiveSegment] = React.useState(initialState);
   const [docBlocks, setDocBlocks] = React.useState(props.blocks);
+  // const [hasActiveSegment, setHasActiveSegment] = React.useState(false);
+
   const [segmentSources, setSegmentSources] = React.useState(
     [] as segmentSource[][]
   );
@@ -147,10 +173,11 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
   });
 
   const handleClick = (value: segmentSource): void => {
+    debugger;
     const isVariant = activeSegment.segment.id === value.segment.id;
 
     setActiveSegment({
-      canDrag: true,
+      canDrag: !isVariant,
       isActive: true,
       isVariant,
       segment: value.segment
@@ -237,7 +264,46 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
                     segmentNode={segmentNode}
                     index={index}
                     segmentSources={segmentSources}
+                    hasActiveSegment={activeSegment.isActive}
+                    handleClick={handleClick}
                   />
+                  // <Draggable draggableId={segmentNode.segment.id} index={index}>
+                  //   {(provided, snapshot) => (
+                  //     <SegmentContainer
+                  //       key={v4()}
+                  //       ref={provided.innerRef}
+                  //       isDragging={snapshot.isDragging}
+                  //       {...provided.draggableProps}
+                  //       style={getItemStyle(
+                  //         snapshot.isDragging,
+                  //         provided.draggableProps.style
+                  //       )}
+                  //     >
+                  //       <SegmentNode
+                  //         key={v4()}
+                  //         onClick={e => handleClick(segmentNode)}
+                  //       >
+                  //         <SegmentHover
+                  //           key={v4()}
+                  //           showBackground={activeSegment.isActive}
+                  //         >
+                  //           <SegmentHoverFeature className="text-hover-feat">
+                  //             <Handle {...provided.dragHandleProps}>
+                  //               <Icon name="move" link={true} />
+                  //             </Handle>
+                  //           </SegmentHoverFeature>
+                  //           {segmentNode.runs.map(run => (
+                  //             <TextNode key={v4()}> {run.t}</TextNode>
+                  //           ))}
+                  //         </SegmentHover>
+                  //         <VariantCount key={v4()} className="variant-count">
+                  //           {/* {variants && variants.length - 1} <CompareArrows /> */}
+                  //           {4} <CompareArrows />
+                  //         </VariantCount>
+                  //       </SegmentNode>
+                  //     </SegmentContainer>
+                  //   )}
+                  // </Draggable>
                 ))}
                 {provided.placeholder}
               </TaskList>
@@ -384,9 +450,16 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
 
   return (
     <ArticleNode>
-      <DragDropContext onDragEnd={onDragEnd}>
+      {/* <DragDropContext onDragEnd={onDragEnd}>
         <Container>{getDoc(props.blocks)}</Container>
-      </DragDropContext>
+      </DragDropContext> */}
+      {activeSegment.canDrag && (
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Container>{getDoc(props.blocks)}</Container>
+        </DragDropContext>
+      )}
+
+      {!activeSegment.canDrag && getDoc(props.blocks)}
 
       <button
         hidden={true}

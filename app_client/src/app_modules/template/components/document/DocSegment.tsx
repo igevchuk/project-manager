@@ -88,11 +88,25 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   ...draggableStyle
 });
 
+type activeSegment = {
+  canDrag: false;
+  isActive: false;
+  isVariant: false;
+  segment: {
+    id: '';
+    ref: {};
+    sequence: -1;
+    variantGroup: '';
+    variantIsDefault: false;
+  };
+};
 interface IDocSegmentProps {
   blockOrder: number;
   index: number;
   segmentNode: segmentSource;
   segmentSources: segmentSource[][];
+  hasActiveSegment: boolean;
+  handleClick: (value: segmentSource) => void;
 }
 
 interface IDocSegmentState {
@@ -197,7 +211,7 @@ class DocSegment extends React.Component<IDocSegmentProps, IDocSegmentState> {
   };
 
   public render() {
-    console.log(this.props);
+    console.log(this.props.hasActiveSegment);
     return (
       <Draggable
         draggableId={this.props.segmentNode.segment.id}
@@ -215,9 +229,12 @@ class DocSegment extends React.Component<IDocSegmentProps, IDocSegmentState> {
           >
             <SegmentNode
               key={v4()}
-              // onClick={e => handleClick(this.state.segmentNode)}
+              onClick={e => this.props.handleClick(this.state.segmentNode)}
             >
-              <SegmentHover key={v4()} showBackground={false}>
+              <SegmentHover
+                key={v4()}
+                showBackground={this.props.hasActiveSegment}
+              >
                 <SegmentHoverFeature className="text-hover-feat">
                   <Handle {...provided.dragHandleProps}>
                     <Icon name="move" link={true} />
