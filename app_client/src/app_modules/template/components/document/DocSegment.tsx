@@ -52,22 +52,22 @@ const Container = styled.span<{ ref: any; isDragging: boolean }>`
 `;
 
 const SegmentContainer = styled.div<{ ref: any; isDragging: boolean }>`
-  border: 1px solid lightgrey;
+  // border: 1px solid lightgrey;
   border-radius: 2px;
   padding: 8px;
+  margin-top: 8px;
   margin-bottom: 8px;
-  background-color: white;
-  background-color: ${props => (props.isDragging ? 'lightgreen' : 'white')};
-
+  // background-color: white;
+  // background-color: ${props => (props.isDragging ? 'lightgreen' : 'white')};
   display: flex;
 `;
 
-const Handle = styled.div`
-  width: 20px;
-  height: 20px;
-  background-color: orange;
-  border-radius: 4px;
-  margin-right: 8px;
+const Handle = styled.span`
+  // width: 20px;
+  // height: 20px;
+  // background-color: orange;
+  // border-radius: 4px;
+  // margin-right: 8px;
 `;
 
 type segmentSource = {
@@ -82,29 +82,41 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   margin: `0 ${4}px 0 0`,
 
   // change background colour if dragging
-  background: isDragging ? 'lightgreen' : 'grey',
+  // background: isDragging ? 'lightgreen' : 'grey',
 
   // styles we need to apply on draggables
   ...draggableStyle
 });
 
-interface IDndProps {
+interface IDocSegmentProps {
   blockOrder: number;
   index: number;
   segmentNode: segmentSource;
   segmentSources: segmentSource[][];
 }
-class Task2 extends React.Component<IDndProps> {
+
+interface IDocSegmentState {
+  blockOrder: number;
+  index: number;
+  segmentNode: segmentSource;
+  segmentSources: segmentSource[][];
+}
+
+class DocSegment extends React.Component<IDocSegmentProps, IDocSegmentState> {
   constructor(props) {
     super(props);
+
+    this.state = {
+      blockOrder: this.props.blockOrder,
+      index: this.props.index,
+      segmentNode: this.props.segmentNode,
+      segmentSources: this.props.segmentSources
+    };
   }
-  public getSegment = (
-    blockOrder: number,
-    segmentSource: segmentSource,
-    index: number
-  ) => {
-    const variantIsDefault = segmentSource.segment.variantIsDefault;
-    const variants = this.props.segmentSources[blockOrder];
+
+  public getSegment = () => {
+    const variantIsDefault = this.state.segmentNode.segment.variantIsDefault;
+    const variants = this.props.segmentSources[this.state.blockOrder];
 
     // console.log(index);
 
@@ -125,49 +137,36 @@ class Task2 extends React.Component<IDndProps> {
     };
 
     const segment = (isActive: boolean = false) => (
-      // <Draggable
-      //   key={v4()}
-      //   draggableId={segmentSource.segment.id}
-      //   index={index}
-      // >
-      //   {(provided, snapshot) => (
-      //     <SegmentContainer
-      //       {...provided.draggableProps}
-      //       ref={provided.innerRef}
-      //       isDragging={snapshot.isDragging}
-      //     >
-      //       <Handle {...provided.dragHandleProps} />
-      //       {'asdf'}
-      //     </SegmentContainer>
-      //   )}
-      // </Draggable>
-
-      <SegmentNode key={v4()} onClick={e => handleClick(segmentSource)}>
+      <SegmentNode
+        key={v4()}
+        onClick={e => handleClick(this.state.segmentNode)}
+      >
         <SegmentHover key={v4()} showBackground={isActive}>
           <SegmentHoverFeature className="text-hover-feat">
             <DragHandle />
           </SegmentHoverFeature>
-          {segmentSource.runs.map(run => (
+          {this.state.segmentNode.runs.map(run => (
             <TextNode key={v4()}> {run.t}</TextNode>
           ))}
         </SegmentHover>
         <VariantCount key={v4()} className="variant-count">
-          {/* {variants && variants.length - 1} <CompareArrows /> */}
+          {variants && variants.length - 1} <CompareArrows />
         </VariantCount>
       </SegmentNode>
     );
 
-    // const variant = () => (
-    //   <Variants
-    //     key={v4()}
-    //     segmentVariants={variants}
-    //     onEscapeOutside={handleEscapeOutside}
-    //   />
-    // );
+    const variant = () => (
+      // <Variants
+      //   key={v4()}
+      //   segmentVariants={variants}
+      //   onEscapeOutside={handleEscapeOutside}
+      // />
+      <div>variant</div>
+    );
 
-    // if (!variantIsDefault) {
-    //   return null;
-    // }
+    if (!variantIsDefault) {
+      return null;
+    }
 
     // if (
     //   !activeSegment ||
@@ -175,6 +174,8 @@ class Task2 extends React.Component<IDndProps> {
     // ) {
     //   return segment(false);
     // }
+
+    return segment(true);
 
     // if (activeSegment.isVariant) {
     //   return variant();
@@ -196,6 +197,7 @@ class Task2 extends React.Component<IDndProps> {
   };
 
   public render() {
+    console.log(this.props);
     return (
       <Draggable
         draggableId={this.props.segmentNode.segment.id}
@@ -211,22 +213,25 @@ class Task2 extends React.Component<IDndProps> {
               provided.draggableProps.style
             )}
           >
-            {/* <ContentEditable
-              html={this.props.segmentNode.segment.variantDescription}
-              disabled={false}
-              onChange={this.handleEditTitle}
-            /> */}
-
-            {/* <Editable
-              onChange={this.handleEditText}
-              disabled={false}
-              html={this.props.segmentNode.runs[0].t}
-            /> */}
-
-            <Handle {...provided.dragHandleProps}>
-              <Icon name="move" link={true} />
-            </Handle>
-            <TextNode key={v4()}> {this.props.segmentNode.runs[0].t}</TextNode>
+            <SegmentNode
+              key={v4()}
+              // onClick={e => handleClick(this.state.segmentNode)}
+            >
+              <SegmentHover key={v4()} showBackground={false}>
+                <SegmentHoverFeature className="text-hover-feat">
+                  <Handle {...provided.dragHandleProps}>
+                    <Icon name="move" link={true} />
+                  </Handle>
+                </SegmentHoverFeature>
+                {this.state.segmentNode.runs.map(run => (
+                  <TextNode key={v4()}> {run.t}</TextNode>
+                ))}
+              </SegmentHover>
+              <VariantCount key={v4()} className="variant-count">
+                {/* {variants && variants.length - 1} <CompareArrows /> */}
+                {4} <CompareArrows />
+              </VariantCount>
+            </SegmentNode>
           </SegmentContainer>
         )}
       </Draggable>
@@ -234,4 +239,4 @@ class Task2 extends React.Component<IDndProps> {
   }
 }
 
-export default Task2;
+export default DocSegment;

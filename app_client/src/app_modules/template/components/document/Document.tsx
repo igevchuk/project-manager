@@ -86,8 +86,6 @@ class TemplateContent extends React.PureComponent<IContentProps, IDocState> {
       return 'loading ....';
     }
 
-    // console.log(this.props.blocks);
-
     const htmlSections = this.renderDoc(this.props.blocks);
 
     return (

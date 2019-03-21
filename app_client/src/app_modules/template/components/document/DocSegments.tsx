@@ -33,16 +33,10 @@ enum PStyle {
   NoIndent = 'No Indent'
 }
 
-// export interface ITaskTypeA {
-//   tasks: segmentSource[];
-//   columns: column[];
-//   columnOrder: string[];
-// }
-
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  // flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  // flex-direction: column;
 `;
 
 const BlockContainer = styled.div`
@@ -50,9 +44,10 @@ const BlockContainer = styled.div`
   flex-direction: row;
 
   margin: 8px;
-  border: 4px solid lightgrey;
+  border: 1px solid lightgrey;
   border-radius: 2px;
-  width: 640px;
+  height: 40px;
+  width: 800px;
 `;
 const TaskListB = styled.span<{ ref: any; isDraggingOver: boolean }>``;
 
@@ -91,7 +86,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 });
 
 const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? 'lightblue' : 'lightgrey',
+  background: isDraggingOver ? 'lightblue' : 'white',
   display: 'flex',
   padding: 4,
   overflow: 'auto'
@@ -121,6 +116,7 @@ interface ISectionProps {
 }
 
 const initialState = {
+  canDrag: true,
   isActive: false,
   isVariant: false,
   segment: {
@@ -154,6 +150,7 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
     const isVariant = activeSegment.segment.id === value.segment.id;
 
     setActiveSegment({
+      canDrag: true,
       isActive: true,
       isVariant,
       segment: value.segment
@@ -180,26 +177,7 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
     const variantIsDefault = segmentSource.segment.variantIsDefault;
     const variants = segmentSources[blockOrder];
 
-    // console.log(index);
-
     const segment = (isActive: boolean = false) => (
-      // <Draggable
-      //   key={v4()}
-      //   draggableId={segmentSource.segment.id}
-      //   index={index}
-      // >
-      //   {(provided, snapshot) => (
-      //     <SegmentContainer
-      //       {...provided.draggableProps}
-      //       ref={provided.innerRef}
-      //       isDragging={snapshot.isDragging}
-      //     >
-      //       <Handle {...provided.dragHandleProps} />
-      //       {'asdf'}
-      //     </SegmentContainer>
-      //   )}
-      // </Draggable>
-
       <SegmentNode key={v4()} onClick={e => handleClick(segmentSource)}>
         <SegmentHover key={v4()} showBackground={isActive}>
           <SegmentHoverFeature className="text-hover-feat">
@@ -241,78 +219,60 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
     }
   };
 
-  const getDoc = (blocks: block[]): React.ReactNode => {
-    // console.log(blocks);
-    console.log(docBlocks);
+  const getSegments = (block: block) => {
+    if (activeSegment.canDrag) {
+      return (
+        <BlockContainer>
+          <Droppable droppableId={block.id} direction="horizontal">
+            {(provided, snapshot) => (
+              <TaskList
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+                {...provided.droppableProps}
+              >
+                {block.segments.map((segmentNode, index) => (
+                  <DocSegment
+                    blockOrder={block.order}
+                    key={segmentNode.segment.id}
+                    segmentNode={segmentNode}
+                    index={index}
+                    segmentSources={segmentSources}
+                  />
+                ))}
+                {provided.placeholder}
+              </TaskList>
+            )}
+          </Droppable>
+        </BlockContainer>
+      );
+    } else {
+      return block.segments.map((segmentNode, index) =>
+        getSegment(block.order, segmentNode, index)
+      );
+    }
+  };
 
+  const getDoc = (blocks: block[]): React.ReactNode => {
     const htmlSections = blocks.map(block => {
       switch (block.paragraph.properties.pStyle) {
         case PStyle.Article:
           const titleNode = (
             <TitleNode key={v4()} isTitle={true} background="cornflowerblue">
-              <BlockContainer>
-                <Droppable droppableId={block.id} direction="horizontal">
-                  {(provided, snapshot) => (
-                    <TaskList
-                      ref={provided.innerRef}
-                      style={getListStyle(snapshot.isDraggingOver)}
-                      {...provided.droppableProps}
-                    >
-                      {block.segments.map((segmentNode, index) => (
-                        // getSegment(block.order, segmentNode, index)
-                        <DocSegment
-                          blockOrder={block.order}
-                          key={segmentNode.segment.id}
-                          segmentNode={segmentNode}
-                          index={index}
-                          segmentSources={segmentSources}
-                        />
-                      ))}
-                      {provided.placeholder}
-                    </TaskList>
-                  )}
-                </Droppable>
-              </BlockContainer>
-
-              {/* {block.segments.map((segmentNode, index) =>
-                getSegment(block.order, segmentNode, index)
-              )} */}
+              {getSegments(block)}
             </TitleNode>
           );
           return titleNode;
-        case 'PStyle.Heading1':
+        case PStyle.Heading1:
           const sectionNode = (
             <SectionNode key={v4()} background="palevioletred">
-              <BlockContainer>
-                <Droppable droppableId={block.id}>
-                  {(provided, snapshot) => (
-                    <TaskList
-                      ref={provided.innerRef}
-                      style={getListStyle(snapshot.isDraggingOver)}
-                      {...provided.droppableProps}
-                    >
-                      {block.segments.map((segmentNode, index) =>
-                        getSegment(block.order, segmentNode, index)
-                      )}
-
-                      {provided.placeholder}
-                    </TaskList>
-                  )}
-                </Droppable>
-              </BlockContainer>
-
-              {/* {block.segments.map((segmentNode, index) =>
-                getSegment(block.order, segmentNode, index)
-              )} */}
+              {getSegments(block)}
             </SectionNode>
           );
           return sectionNode;
-        case 'PStyle.Heading2':
+        case PStyle.Heading2:
           const subSectionNode = (
             <SegmentsNode key={v4()} background="red" indLevel={2}>
-              {block.segments.map((segmentNode, index) =>
-                getSegment(block.order, segmentNode, index)
-              )}
+              {getSegments(block)}
             </SegmentsNode>
           );
           return subSectionNode;
@@ -323,31 +283,24 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
               background={'rgb(159,168,218)'}
               indLevel={4}
             >
-              {block.segments.map((segmentNode, index) =>
-                getSegment(block.order, segmentNode, index)
-              )}
+              {getSegments(block)}
             </SegmentsNode>
           );
           return clauseNode;
         case 'PStyle.Heading4':
           const subClauseNode = (
             <SegmentsNode key={v4()} background="orange" indLevel={6}>
-              {block.segments.map((segmentNode, index) =>
-                getSegment(block.order, segmentNode, index)
-              )}
+              {getSegments(block)}
             </SegmentsNode>
           );
           return subClauseNode;
         default:
-          // const normalNode = (
-          //   <SegmentsNode key={v4()} background="orange">
-          //     {block.segments.map((segmentNode, index) =>
-          //       getSegment(block.order, segmentNode, index)
-          //     )}
-          //   </SegmentsNode>
-          // );
-          // return normalNode;
-          return;
+          const normalNode = (
+            <SegmentsNode key={v4()} background="orange">
+              {getSegments(block)}
+            </SegmentsNode>
+          );
+          return normalNode;
           break;
       }
     });

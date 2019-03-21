@@ -27,21 +27,7 @@ type IRunProps = {
   };
 };
 
-export const TextNode = styled.span<IRunProps>`
-  background: ${props => (props.showBackground ? 'yellow' : '')};
-  // position: relative;
-  // &:hover {
-  //   outline: 2px solid orange;
-  //   background-color: rgb(255, 252, 220);
-  //   cursor: pointer;
-  //   .text-hover-feat {
-  //     display: block;
-  //   }
-  // }
-  // &:hover + .variant-count {
-  //   display: inline-flex;
-  // }
-`;
+export const TextNode = styled.span<IRunProps>``;
 
 const articlePadding = '0em';
 const titlePadding = '1em';
@@ -53,11 +39,11 @@ export const StyledDocument = styled(Grid.Column)`
   padding: 1em;
 `;
 
-export const ArticleNode = styled.article<IArticleProps>`
+// article
+export const ArticleNode = styled.div<IArticleProps>`
   // padding: ${articlePadding};
-  background: ${props => props.background};
-
-  counter-reset: section 0;
+  // background: ${props => props.background};
+  // counter-reset: section 0;
 `;
 
 export const TitleNode = styled.section<ITitleProps>`
