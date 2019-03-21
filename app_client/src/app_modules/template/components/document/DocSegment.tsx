@@ -1,57 +1,22 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
-import { HandlerRole } from 'dnd-core';
 import { Form, Icon } from 'semantic-ui-react';
 import { Editable } from './Variants.style';
 import { v4 } from 'uuid';
 import ContentEditable from 'react-contenteditable';
 import * as templateState from '../../../../app/redux/state';
-import * as sortableHoc from 'react-sortable-hoc';
 import CompareArrows from '@material-ui/icons/CompareArrows';
-import Variants from './Variants';
 
 import {
-  TextHover,
-  TextHoverFeature,
   TextNode,
-  ArticleNode,
-  TitleNode,
-  SectionNode,
-  SegmentsNode,
   SegmentNode,
   SegmentHover,
   SegmentHoverFeature,
   VariantCount
 } from './Document.style';
 
-const DragHandle = sortableHoc.SortableHandle(() => (
-  <span>
-    <Icon name="move" size="small" />
-  </span>
-));
-
-export const DragHandleA = () => (
-  <span>
-    <Icon name="move" size="small" />
-    <span> this is testing</span>
-    <span> more testing</span>
-  </span>
-);
-
-const Container = styled.span<{ ref: any; isDragging: boolean }>`
-  // border: 1px solid lightgrey;
-  border-radius: 2px;
-  padding: 8px;
-  margin-bottom: 8px;
-  background-color: white;
-  background-color: ${props => (props.isDragging ? 'lightgreen' : 'white')};
-
-  display: flex;
-  flex-direction: row;
-`;
-
-const SegmentContainer = styled.div<{ ref: any; isDragging: boolean }>`
+const SegmentContainer = styled.span<{ ref: any; isDragging: boolean }>`
   // border: 1px solid lightgrey;
   border-radius: 2px;
   padding: 8px;
@@ -59,7 +24,7 @@ const SegmentContainer = styled.div<{ ref: any; isDragging: boolean }>`
   margin-bottom: 8px;
   // background-color: white;
   // background-color: ${props => (props.isDragging ? 'lightgreen' : 'white')};
-  display: flex;
+  // display: flex;
 `;
 
 const Handle = styled.span`

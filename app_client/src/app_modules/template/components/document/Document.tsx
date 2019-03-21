@@ -87,9 +87,6 @@ class TemplateContent extends React.PureComponent<IContentProps, IDocState> {
       return 'loading ....';
     }
 
-    console.log('this.props');
-    console.log(this.props);
-
     const htmlSections = this.renderDoc(this.props.blocks);
 
     return (
@@ -100,7 +97,7 @@ class TemplateContent extends React.PureComponent<IContentProps, IDocState> {
             <StyledDocument>
               <Segment basic={true}>{htmlSections}</Segment>
               <button
-                hidden={false}
+                hidden={true}
                 onClick={() =>
                   this.props.appDispatch({
                     type: 'FETCH_FORM_FULFILLED',
