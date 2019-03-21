@@ -7,7 +7,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import update from 'immutability-helper';
 import styled from 'styled-components';
 import '@atlaskit/css-reset';
-import taskData from './../../../__feature__/dnd/initial.data';
+// import taskData from './../../../__feature__/dnd/initial.data';
 import Column from './Column';
 import Column2 from './Column.2';
 
