@@ -55,8 +55,8 @@ const BlockContainer = styled.div`
   flex-direction: row;
 
   margin: 8px;
-  border: 1px solid lightgrey;
-  border-radius: 2px;
+  // border: 1px solid lightgrey;
+  // border-radius: 2px;
   height: 40px;
   width: 800px;
 `;
@@ -113,7 +113,7 @@ const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? 'lightblue' : 'white',
   display: 'flex',
   padding: 4,
-  overflow: 'auto'
+  overflow: 'visible'
 });
 
 const DragHandle = sortableHoc.SortableHandle(() => (
