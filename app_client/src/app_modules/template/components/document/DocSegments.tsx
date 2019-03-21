@@ -173,7 +173,7 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
   });
 
   const handleClick = (value: segmentSource): void => {
-    debugger;
+    // alert('debugger');
     const isVariant = activeSegment.segment.id === value.segment.id;
 
     setActiveSegment({
@@ -198,19 +198,23 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
 
   const getSegment = (
     blockOrder: number,
-    segmentSource: segmentSource,
+    segmentNode: segmentSource,
     index: number
   ) => {
-    const variantIsDefault = segmentSource.segment.variantIsDefault;
+    const variantIsDefault = segmentNode.segment.variantIsDefault;
     const variants = segmentSources[blockOrder];
 
     const segment = (isActive: boolean = false) => (
-      <SegmentNode key={v4()} onClick={e => handleClick(segmentSource)}>
+      <SegmentNode
+        key={v4()}
+        onClick={e => handleClick(segmentNode)}
+        variantIsDefault={variantIsDefault}
+      >
         <SegmentHover key={v4()} showBackground={isActive}>
           <SegmentHoverFeature className="text-hover-feat">
             <DragHandle />
           </SegmentHoverFeature>
-          {segmentSource.runs.map(run => (
+          {segmentNode.runs.map(run => (
             <TextNode key={v4()}> {run.t}</TextNode>
           ))}
         </SegmentHover>
@@ -232,10 +236,7 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
       return null;
     }
 
-    if (
-      !activeSegment ||
-      segmentSource.segment.id !== activeSegment.segment.id
-    ) {
+    if (!activeSegment || segmentNode.segment.id !== activeSegment.segment.id) {
       return segment(false);
     }
 
@@ -264,7 +265,7 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
                     segmentNode={segmentNode}
                     index={index}
                     segmentSources={segmentSources}
-                    hasActiveSegment={activeSegment.isActive}
+                    activeSegment={activeSegment}
                     handleClick={handleClick}
                   />
                   // <Draggable draggableId={segmentNode.segment.id} index={index}>

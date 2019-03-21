@@ -20,7 +20,7 @@ type block = {
 
 export const initialState: IState = {
   // isLocal: process.env.NODE_ENV === 'production' ? false : true,
-  isLocal: false,
+  isLocal: true,
   activeSegId: '',
   template: {} as template,
   renderBlocks: [] as block[]
@@ -49,12 +49,16 @@ export default function reducer(state = initialState, action) {
         template: Array(template)[0],
         renderBlocks
       };
-      // console.log(newState);
+      console.log(newState);
       return newState;
     }
     case 'FETCH_FORM_FULFILLED': {
-      console.log(action.payload);
-      return state;
+      const newState = {
+        ...state,
+        activeSegId: action.payload.id
+      };
+      console.log('newState');
+      return newState;
     }
 
     case 'CHANGE_PARAGRAPH_LEVEL': {
@@ -119,12 +123,10 @@ export default function reducer(state = initialState, action) {
     }
 
     case 'TRACK_CURRENT_SEGMENT': {
-      // console.log(action.payload);
       const newState = {
         ...state,
         activeSegId: action.payload.id
       };
-      // console.log(newState);
       return newState;
     }
 

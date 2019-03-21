@@ -1,8 +1,10 @@
 import { from, of } from 'rxjs';
-import { map, switchMap, catchError } from 'rxjs/operators'; // filter
+import { map, switchMap, mergeMap, catchError } from 'rxjs/operators'; // filter
 import { Epic, ofType } from 'redux-observable'; // ofType
 import { ActionType } from 'typesafe-actions'; // isActionOf
+// import * as actions from './actions';
 import * as actions from './actions';
+
 import repo from './../../../_service_/repository';
 
 type Action = ActionType<typeof actions>;
@@ -26,3 +28,16 @@ type Action = ActionType<typeof actions>;
 //   );
 
 // export default fetchLocalFormEpic;
+
+export const fetchLocalTemplateEpic = action$ =>
+  action$.pipe(
+    ofType(actions.FETCH_LOCAL_TEMPLATE),
+    mergeMap(action => {
+      console.log('ssssssss');
+      debugger;
+      return repo
+        .getTemplate()
+        .pipe(map(response => actions.templateErrorAction(response)));
+    })
+  );
+export default fetchLocalTemplateEpic;

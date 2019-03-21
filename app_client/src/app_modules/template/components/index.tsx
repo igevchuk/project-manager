@@ -65,12 +65,17 @@ const Entry: React.SFC<IProps> = props => {
           <Provider value={{ appDispatch, templateDispatch }}>
             <Outline template={template} />
             <Searchbox />
-            <Document template={template} blocks={blocks} isOutline={true} />
+            <Document
+              template={template}
+              blocks={blocks}
+              isOutline={true}
+              activeSeg={appState.activeSegId}
+            />
           </Provider>
         </StyledOutline>
 
         <StyledItem className="blocks" magicStyling={magicStyling}>
-          <Provider value={{ appDispatch }}>
+          <Provider value={{ appDispatch, templateDispatch }}>
             <Document template={template} blocks={blocks} isOutline={false} />
           </Provider>
         </StyledItem>

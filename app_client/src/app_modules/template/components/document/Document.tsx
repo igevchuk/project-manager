@@ -38,6 +38,7 @@ interface IContentProps {
   isOutline: boolean;
   appDispatch: React.Dispatch<any>;
   templateDispatch?: React.Dispatch<any>;
+  activeSeg: string;
 }
 
 interface IDocState {
@@ -86,6 +87,9 @@ class TemplateContent extends React.PureComponent<IContentProps, IDocState> {
       return 'loading ....';
     }
 
+    console.log('this.props');
+    console.log(this.props);
+
     const htmlSections = this.renderDoc(this.props.blocks);
 
     return (
@@ -96,13 +100,13 @@ class TemplateContent extends React.PureComponent<IContentProps, IDocState> {
             <StyledDocument>
               <Segment basic={true}>{htmlSections}</Segment>
               <button
-                hidden={true}
+                hidden={false}
                 onClick={() =>
                   this.props.appDispatch({
                     type: 'FETCH_FORM_FULFILLED',
                     payload: {
                       id: 114,
-                      name: 'this is name'
+                      name: 'this is name asd'
                     }
                   })
                 }

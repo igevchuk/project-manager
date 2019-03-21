@@ -138,7 +138,13 @@ export const TextNode02 = styled.div<{ color?: string; border?: number }>`
   border: ${props => props.border || '4px'} solid 'black';
 `;
 
-export const SegmentNode = styled.span<{}>``;
+export const SegmentNode = styled.span<{
+  variantIsDefault?: boolean;
+  key?: string;
+  onClick?: (e: any) => void;
+}>`
+  display: ${props => (props.variantIsDefault ? 'inline' : 'none')};
+`;
 
 export const TitleNode2 = styled.section<{
   color?: string;
