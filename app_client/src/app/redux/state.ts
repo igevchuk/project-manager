@@ -4,6 +4,7 @@ export type docTypes = docType[];
 export type docType = { id: uuid; type?: string };
 
 export type renderBlock = {
+  id: string;
   order: number;
   paragraph: paragraph;
   segments: [
@@ -54,9 +55,9 @@ export type textSegment = {
     paragraphId: uuid;
   };
   variantGroup: uuid; // 1000
-  variantDescription?: string;
+  variantDescription: string;
   variantIsDefault: boolean;
-  text?: string; // ARTICLE I
+  text: string; // ARTICLE I
   revisionCreatedDateTime?: Date;
   revisionCreatedBy?: string;
 };

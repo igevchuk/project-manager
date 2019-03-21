@@ -18,9 +18,9 @@ class ApiEndpoints extends ApiBase implements ApiEndpoints {
     // const url = `${this.baseUrl}/templates/`;
     const url = `https://dtrax-tm2.analytics.deloitte.ca/template/api/v1/template_data/b8c49d68-03b3-46f1-a079-0f83e0151573`;
 
-    const remoteUrlSegment =
-      '/template/api/v1/template_data/b8c49d68-03b3-46f1-a079-0f83e0151573';
-    const localUrlSegment = '/templates';
+    // const remoteUrlSegment =
+    //   '/template/api/v1/template_data/b8c49d68-03b3-46f1-a079-0f83e0151573';
+    // const localUrlSegment = '/templates';
 
     // const url =
     //   process.env.NODE_ENV === 'production'

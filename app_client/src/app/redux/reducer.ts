@@ -7,6 +7,7 @@ import * as templateState from './state';
 import Schema from '../../app_modules/template/controllers/document/schema';
 
 type block = {
+  id: string;
   order: number;
   paragraph: templateState.paragraph;
   segments: [
@@ -19,6 +20,7 @@ type block = {
 
 const isLocal = process.env.NODE_ENV === 'production' ? false : true;
 export const initialState: IState = {
+  // isLocal: process.env.NODE_ENV === 'production' ? false : true,
   isLocal: false,
   activeSegId: '',
   template: {} as template,
@@ -28,7 +30,7 @@ export const initialState: IState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case types.FETCH_TEMPLATE_FULFILLED: {
-      console.log(action.payload);
+      // console.log(action.payload);
       if (state.isLocal) {
         const templates = action.payload;
         const template = Array.from(templates)[0];
@@ -218,7 +220,7 @@ export const adjustIndent = (pStyle: string, indentAdjust: number): number => {
     newIndent = preIndent + indentAdjust;
   }
 
-  console.log(preIndent);
-  console.log(newIndent);
+  // console.log(preIndent);
+  // console.log(newIndent);
   return newIndent;
 };

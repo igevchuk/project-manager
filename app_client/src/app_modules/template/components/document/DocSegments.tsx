@@ -2,6 +2,11 @@ import * as React from 'react';
 import { Form, Icon } from 'semantic-ui-react';
 import * as sortableHoc from 'react-sortable-hoc';
 import CompareArrows from '@material-ui/icons/CompareArrows';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import styled from 'styled-components';
+import DocSegment, { DragHandleA } from './DocSegment';
+import update from 'immutability-helper';
+
 import { v4 } from 'uuid';
 import * as templateState from '../../../../app/redux/state';
 import Variants from './Variants';
@@ -20,7 +25,7 @@ import {
 } from './Document.style';
 
 enum PStyle {
-  Articl = 'Title',
+  Article = 'Title',
   Heading1 = 'Heading 1',
   Heading2 = 'Heading 2',
   Heading3 = 'Heading 3',
@@ -28,12 +33,102 @@ enum PStyle {
   NoIndent = 'No Indent'
 }
 
+const SegmentContainer = styled.div<{ ref: any; isDragging: boolean }>`
+  // border: 1px solid lightgrey;
+  border-radius: 2px;
+  padding: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  // background-color: white;
+  // background-color: ${props => (props.isDragging ? 'lightgreen' : 'white')};
+  display: flex;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  // flex-direction: column;
+`;
+
+const BlockContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  margin: 8px;
+  // border: 1px solid lightgrey;
+  // border-radius: 2px;
+  height: 40px;
+  width: 800px;
+`;
+const TaskListB = styled.span<{ ref: any; isDraggingOver: boolean }>``;
+
+const TaskList = styled.div``;
+
+// const SegmentContainer = styled.div<{ ref: any; isDragging: boolean }>`
+//   border: 1px solid lightgrey;
+//   border-radius: 2px;
+//   padding: 8px;
+//   margin-bottom: 8px;
+//   background-color: white;
+//   background-color: ${props => (props.isDragging ? 'lightgreen' : 'white')};
+
+//   display: flex;
+// `;
+
+const Handle = styled.div`
+  width: 20px;
+  height: 20px;
+  background-color: orange;
+  border-radius: 4px;
+  margin-right: 8px;
+`;
+
+const getItemStyleB = (isDragging, draggableStyle) => ({
+  // some basic styles to make the items look a bit nicer
+  userSelect: 'none',
+  padding: 2 * 2,
+  margin: `0 ${4}px 0 0`,
+
+  // change background colour if dragging
+  background: isDragging ? 'lightgreen' : 'grey',
+
+  // styles we need to apply on draggables
+  ...draggableStyle
+});
+
+const getItemStyle = (isDragging, draggableStyle) => ({
+  // some basic styles to make the items look a bit nicer
+  userSelect: 'none',
+  padding: 2 * 2,
+  margin: `0 ${4}px 0 0`,
+
+  // change background colour if dragging
+  // background: isDragging ? 'lightgreen' : 'grey',
+
+  // styles we need to apply on draggables
+  ...draggableStyle
+});
+
+const getListStyle = isDraggingOver => ({
+  background: isDraggingOver ? 'lightblue' : 'white',
+  display: 'flex',
+  padding: 4,
+  overflow: 'visible'
+});
+
+const DragHandle = sortableHoc.SortableHandle(() => (
+  <span>
+    <Icon name="move" size="small" />
+  </span>
+));
+
 type segmentSource = {
   runs: templateState.run[];
   segment: templateState.textSegment;
 };
 
 type block = {
+  id: string;
   order: number;
   paragraph: templateState.paragraph;
   segments: segmentSource[];
@@ -45,6 +140,7 @@ interface ISectionProps {
 }
 
 const initialState = {
+  canDrag: true,
   isActive: false,
   isVariant: false,
   segment: {
@@ -56,8 +152,11 @@ const initialState = {
   }
 };
 
-export const HtmlSections: React.SFC<ISectionProps> = props => {
+const HtmlSections: React.SFC<ISectionProps> = props => {
   const [activeSegment, setActiveSegment] = React.useState(initialState);
+  const [docBlocks, setDocBlocks] = React.useState(props.blocks);
+  // const [hasActiveSegment, setHasActiveSegment] = React.useState(false);
+
   const [segmentSources, setSegmentSources] = React.useState(
     [] as segmentSource[][]
   );
@@ -74,9 +173,11 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
   });
 
   const handleClick = (value: segmentSource): void => {
+    debugger;
     const isVariant = activeSegment.segment.id === value.segment.id;
 
     setActiveSegment({
+      canDrag: !isVariant,
       isActive: true,
       isVariant,
       segment: value.segment
@@ -95,30 +196,15 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     setActiveSegment(initialState);
   };
 
-  const SortableContainer = sortableHoc.SortableContainer(({ children }) => {
-    return <div>{children}</div>;
-  });
-
-  // return (
-  //   <SortableContainer onSortEnd={this.onSortEnd} useDragHandle={true}>
-  //     {segments.map((segment, index) => (
-  //       <SortableItem key={`item-${index}`} index={index} value={segment} />
-  //     ))}
-  //   </SortableContainer>
-  // );
-
-  const onSortEnd = ({ oldIndex, newIndex }) => {
-    // this.setState(({ segments }) => ({
-    //   segments: sortableHoc.arrayMove(segments, oldIndex, newIndex)
-    // }));
-  };
-
-  const getSegment = (blockOrder: number, segmentSource: segmentSource) => {
+  const getSegment = (
+    blockOrder: number,
+    segmentSource: segmentSource,
+    index: number
+  ) => {
     const variantIsDefault = segmentSource.segment.variantIsDefault;
     const variants = segmentSources[blockOrder];
 
     const segment = (isActive: boolean = false) => (
-      // <SortableContainer onSortEnd={onSortEnd} useDragHandle={true}>
       <SegmentNode key={v4()} onClick={e => handleClick(segmentSource)}>
         <SegmentHover key={v4()} showBackground={isActive}>
           <SegmentHoverFeature className="text-hover-feat">
@@ -132,7 +218,6 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
           {variants && variants.length - 1} <CompareArrows />
         </VariantCount>
       </SegmentNode>
-      // </SortableContainer>
     );
 
     const variant = () => (
@@ -161,33 +246,99 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     }
   };
 
+  const getSegments = (block: block) => {
+    if (activeSegment.canDrag) {
+      return (
+        <BlockContainer>
+          <Droppable droppableId={block.id} direction="horizontal">
+            {(provided, snapshot) => (
+              <TaskList
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+                {...provided.droppableProps}
+              >
+                {block.segments.map((segmentNode, index) => (
+                  <DocSegment
+                    blockOrder={block.order}
+                    key={segmentNode.segment.id}
+                    segmentNode={segmentNode}
+                    index={index}
+                    segmentSources={segmentSources}
+                    hasActiveSegment={activeSegment.isActive}
+                    handleClick={handleClick}
+                  />
+                  // <Draggable draggableId={segmentNode.segment.id} index={index}>
+                  //   {(provided, snapshot) => (
+                  //     <SegmentContainer
+                  //       key={v4()}
+                  //       ref={provided.innerRef}
+                  //       isDragging={snapshot.isDragging}
+                  //       {...provided.draggableProps}
+                  //       style={getItemStyle(
+                  //         snapshot.isDragging,
+                  //         provided.draggableProps.style
+                  //       )}
+                  //     >
+                  //       <SegmentNode
+                  //         key={v4()}
+                  //         onClick={e => handleClick(segmentNode)}
+                  //       >
+                  //         <SegmentHover
+                  //           key={v4()}
+                  //           showBackground={activeSegment.isActive}
+                  //         >
+                  //           <SegmentHoverFeature className="text-hover-feat">
+                  //             <Handle {...provided.dragHandleProps}>
+                  //               <Icon name="move" link={true} />
+                  //             </Handle>
+                  //           </SegmentHoverFeature>
+                  //           {segmentNode.runs.map(run => (
+                  //             <TextNode key={v4()}> {run.t}</TextNode>
+                  //           ))}
+                  //         </SegmentHover>
+                  //         <VariantCount key={v4()} className="variant-count">
+                  //           {/* {variants && variants.length - 1} <CompareArrows /> */}
+                  //           {4} <CompareArrows />
+                  //         </VariantCount>
+                  //       </SegmentNode>
+                  //     </SegmentContainer>
+                  //   )}
+                  // </Draggable>
+                ))}
+                {provided.placeholder}
+              </TaskList>
+            )}
+          </Droppable>
+        </BlockContainer>
+      );
+    } else {
+      return block.segments.map((segmentNode, index) =>
+        getSegment(block.order, segmentNode, index)
+      );
+    }
+  };
+
   const getDoc = (blocks: block[]): React.ReactNode => {
     const htmlSections = blocks.map(block => {
       switch (block.paragraph.properties.pStyle) {
-        case PStyle.Articl:
+        case PStyle.Article:
           const titleNode = (
             <TitleNode key={v4()} isTitle={true} background="cornflowerblue">
-              {block.segments.map(segmentNode =>
-                getSegment(block.order, segmentNode)
-              )}
+              {getSegments(block)}
             </TitleNode>
           );
           return titleNode;
         case PStyle.Heading1:
           const sectionNode = (
             <SectionNode key={v4()} background="palevioletred">
-              {block.segments.map(segmentNode =>
-                getSegment(block.order, segmentNode)
-              )}
+              {getSegments(block)}
             </SectionNode>
           );
           return sectionNode;
         case PStyle.Heading2:
           const subSectionNode = (
             <SegmentsNode key={v4()} background="red" indLevel={2}>
-              {block.segments.map(segmentNode =>
-                getSegment(block.order, segmentNode)
-              )}
+              {getSegments(block)}
             </SegmentsNode>
           );
           return subSectionNode;
@@ -198,27 +349,21 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
               background={'rgb(159,168,218)'}
               indLevel={4}
             >
-              {block.segments.map(segmentNode =>
-                getSegment(block.order, segmentNode)
-              )}
+              {getSegments(block)}
             </SegmentsNode>
           );
           return clauseNode;
-        case PStyle.Heading4:
+        case 'PStyle.Heading4':
           const subClauseNode = (
             <SegmentsNode key={v4()} background="orange" indLevel={6}>
-              {block.segments.map(segmentNode =>
-                getSegment(block.order, segmentNode)
-              )}
+              {getSegments(block)}
             </SegmentsNode>
           );
           return subClauseNode;
         default:
           const normalNode = (
             <SegmentsNode key={v4()} background="orange">
-              {block.segments.map(segmentNode =>
-                getSegment(block.order, segmentNode)
-              )}
+              {getSegments(block)}
             </SegmentsNode>
           );
           return normalNode;
@@ -228,9 +373,94 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     return htmlSections;
   };
 
+  const onDragEnd = result => {
+    const { destination, source, draggableId } = result;
+
+    if (!destination) {
+      return;
+    }
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    const startColomnIndex = docBlocks.findIndex(
+      block => block.id === source.droppableId
+    );
+    const startColomn = docBlocks[startColomnIndex];
+    const finishColomnIndex = docBlocks.findIndex(
+      block => block.id === destination.droppableId
+    );
+    const finishColomn = docBlocks[finishColomnIndex];
+
+    if (startColomn === finishColomn) {
+      const colSegments = startColomn.segments;
+      const draggableSegment = colSegments.filter(
+        startSegment => startSegment.segment.id === draggableId
+      )[0];
+
+      colSegments.splice(source.index, 1);
+      colSegments.splice(destination.index, 0, draggableSegment);
+
+      const newColumn = {
+        ...startColomn,
+        segments: colSegments
+      };
+
+      const newData = update(docBlocks, {
+        $splice: [[startColomnIndex, 1], [startColomnIndex, 0, newColumn]]
+      });
+
+      setDocBlocks(newData);
+      return;
+    }
+
+    // Moving from one list to another
+    const startSegments = startColomn.segments;
+
+    const draggableSegment = startSegments.filter(
+      startSegment => startSegment.segment.id === draggableId
+    )[0];
+
+    startSegments.splice(source.index, 1);
+    const newStartColomn = {
+      ...startColomn,
+      segments: startSegments
+    };
+
+    const finishSegments = finishColomn.segments;
+    finishSegments.splice(destination.index, 0, draggableSegment);
+    const newFinishColomn = {
+      ...finishColomn,
+      segments: finishSegments
+    };
+
+    const startNewData = update(docBlocks, {
+      $splice: [[startColomnIndex, 1], [startColomnIndex, 0, newStartColomn]]
+    });
+
+    const finalData = update(startNewData, {
+      $splice: [[finishColomnIndex, 1], [finishColomnIndex, 0, newFinishColomn]]
+    });
+
+    setDocBlocks(finalData);
+  };
+
   return (
     <ArticleNode>
-      {getDoc(props.blocks)}
+      {/* <DragDropContext onDragEnd={onDragEnd}>
+        <Container>{getDoc(props.blocks)}</Container>
+      </DragDropContext> */}
+      {activeSegment.canDrag && (
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Container>{getDoc(props.blocks)}</Container>
+        </DragDropContext>
+      )}
+
+      {!activeSegment.canDrag && getDoc(props.blocks)}
+
       <button
         hidden={true}
         onClick={() =>
@@ -249,97 +479,4 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
   );
 };
 
-/////////////////////
-
-const DragHandle = sortableHoc.SortableHandle(() => (
-  <span>
-    <Icon name="move" size="small" />
-  </span>
-));
-
-const SortableContainer = sortableHoc.SortableContainer(({ children }) => {
-  return <div>{children}</div>;
-});
-
-type docPiece = {
-  id: string;
-  blockId: number;
-  segment: {
-    id: string;
-    blockId?: number;
-    paragraphId?: string;
-    text: string;
-    run?: {};
-    pStyle?: string;
-  };
-  variant: {
-    id: string;
-    ref?: {
-      paragraphId?: string;
-    };
-    sequence?: number;
-    type?: string;
-    variantGroup?: string;
-    variantDescription?: string;
-    variantIsDefault?: boolean;
-    text?: string;
-    revisionCreatedDateTime?: Date;
-    revisionCreatedBy?: string;
-    properties?: {};
-  };
-};
-
-interface ISegmentProps {
-  blocks: block[];
-}
-
-interface ISegmentState {
-  segments: docPiece[];
-}
-
-class SegmentsComponent extends React.PureComponent<
-  ISegmentProps,
-  ISegmentState
-> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      segments: []
-    };
-  }
-
-  public handleClick = (e: any, value: any): void => {
-    // console.log(value);
-  };
-
-  public onSortEnd = ({ oldIndex, newIndex }) => {
-    console.log(oldIndex);
-    this.setState(({ segments }) => ({
-      segments: sortableHoc.arrayMove(segments, oldIndex, newIndex)
-    }));
-  };
-
-  public groupBy = (items, key) =>
-    items.reduce(
-      (result, item) => ({
-        ...result,
-        [item[key]]: [...(result[item[key]] || []), item]
-      }),
-      {}
-    );
-
-  public render() {
-    // const doc = this.getDoc(this.props.blocks);
-    return <div>{'doc'}</div>;
-
-    // return (
-    //   <SortableContainer onSortEnd={this.onSortEnd} useDragHandle={true}>
-    //     {segments.map((segment, index) => (
-    //       <SortableItem key={`item-${index}`} index={index} value={segment} />
-    //     ))}
-    //   </SortableContainer>
-    // );
-  }
-}
-
-export default SegmentsComponent;
+export default HtmlSections;
