@@ -2,7 +2,7 @@ import * as React from 'react';
 import { from } from 'rxjs';
 import { groupBy, mergeMap, toArray } from 'rxjs/operators';
 
-import * as variantState from './state';
+import * as variantState from './variantState';
 import * as templateState from '../../../../app/redux/state';
 
 type segmentSource = {

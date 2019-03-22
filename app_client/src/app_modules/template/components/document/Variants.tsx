@@ -8,7 +8,7 @@ import update from 'immutability-helper';
 import '@atlaskit/css-reset';
 
 import VariantGroup from './VariantGroup';
-import Variant from './Variant';
+import Variant from './VariantInitial';
 import { StyledVariants, VariantForm, Divider } from './Variants.style';
 import { VariantCount } from './Document.style';
 import { VariantSchema, ITaskType } from './variantSchema';
