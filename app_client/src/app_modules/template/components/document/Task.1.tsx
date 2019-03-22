@@ -9,12 +9,10 @@ import ContentEditable from 'react-contenteditable';
 
 const Container = styled.div<{ ref: any; isDragging: boolean }>`
   // border: 1px solid lightgrey;
-  border-radius: 2px;
-  padding: 8px;
-  margin-bottom: 8px;
-  background-color: white;
-  background-color: ${props => (props.isDragging ? 'lightgreen' : 'white')};
-
+  // border-radius: 2px;
+  padding: 0px;
+  margin-bottom: 4px;
+  background-color: ${props => (props.isDragging ? 'lightgreen' : '#f5f5f5')};
   display: flex;
 `;
 
@@ -59,22 +57,24 @@ class Dnd extends React.Component<IDndProps> {
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
           >
-            <ContentEditable
-              html={(this.props.task as any).segment.variantDescription}
-              disabled={false}
-              onChange={this.handleEditTitle}
-            />
-
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <Editable
-                onChange={this.handleEditText}
+            <Form.Field>
+              <ContentEditable
+                html={(this.props.task as any).segment.variantDescription}
                 disabled={false}
-                html={(this.props.task as any).runs[0].t}
+                onChange={this.handleEditTitle}
               />
-              <Handle {...provided.dragHandleProps}>
-                <Icon name="move" link={true} />
-              </Handle>
-            </div>
+
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <Editable
+                  onChange={this.handleEditText}
+                  disabled={false}
+                  html={(this.props.task as any).runs[0].t}
+                />
+                <Handle {...provided.dragHandleProps}>
+                  <Icon name="move" link={true} />
+                </Handle>
+              </div>
+            </Form.Field>
           </Container>
         )}
       </Draggable>

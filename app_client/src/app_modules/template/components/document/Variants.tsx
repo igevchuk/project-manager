@@ -7,7 +7,6 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import update from 'immutability-helper';
 import styled from 'styled-components';
 import '@atlaskit/css-reset';
-// import taskData from './../../../__feature__/dnd/initial.data';
 import Column from './Column';
 import Column2 from './Column.2';
 
@@ -286,13 +285,24 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
                       />
                     </Divider>
                   </React.Fragment>
+
+                  {(column as any).id && (column as any).id === 'column_2' && (
+                    <button onClick={this.handleAdd}>
+                      <Icon name="plus circle" />
+                      Add Variant
+                    </button>
+                  )}
                 </VariantForm>
               );
 
               return asd;
             })}
 
-            <div>
+            <VariantCount className="variant-count">
+              3 <CompareArrows />
+            </VariantCount>
+
+            <div hidden={true}>
               {standardVariant[0] && (
                 <VariantForm>
                   {this.renderVariantForm(standardVariant[0], true)}
@@ -316,18 +326,6 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
                 </VariantForm>
               )}
             </div>
-
-            <VariantCount className="variant-count">
-              3 <CompareArrows />
-            </VariantCount>
-
-            {/* {this.state.taskData.columnOrder.map(columnId => {
-              const column = this.state.taskData.columns[columnId];
-              const tasks = column.taskIds.map(
-                taskId => this.state.taskData.tasks[taskId]
-              );
-              return <Column key={column.id} column={column} tasks={tasks} />;
-            })} */}
           </StyledVariants>
         </DragDropContext>
       </EscapeOutside>

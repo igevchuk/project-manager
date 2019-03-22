@@ -38,6 +38,7 @@ interface IContentProps {
   isOutline: boolean;
   appDispatch: React.Dispatch<any>;
   templateDispatch?: React.Dispatch<any>;
+  activeSeg: string;
 }
 
 interface IDocState {
@@ -102,7 +103,7 @@ class TemplateContent extends React.PureComponent<IContentProps, IDocState> {
                     type: 'FETCH_FORM_FULFILLED',
                     payload: {
                       id: 114,
-                      name: 'this is name'
+                      name: 'this is name asd'
                     }
                   })
                 }
