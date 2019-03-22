@@ -5,11 +5,10 @@ import CompareArrows from '@material-ui/icons/CompareArrows';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import update from 'immutability-helper';
-
 import { v4 } from 'uuid';
+
 import * as templateState from '../../../../app/redux/state';
 import DocSegment from './DocSegment';
-
 import Variants from './Variants';
 import {
   TextNode,
@@ -31,8 +30,6 @@ enum PStyle {
   Heading4 = 'Heading 4',
   NoIndent = 'No Indent'
 }
-
-// Droppable
 
 const Container = styled.div`
   display: flex;
@@ -197,6 +194,7 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
 
   const getSegments = (block: block) => {
     if (activeSegment.canDrag) {
+      // textSegment drag and drop goes here
       return (
         <BlockContainer>
           <Droppable droppableId={block.id} direction="horizontal">
@@ -224,7 +222,8 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
         </BlockContainer>
       );
     } else {
-      return block.segments.map((segmentNode, index) =>
+      // variants drag and drop goes here
+      return block.segments.map((segmentNode: segmentSource, index) =>
         getSegment(block.order, segmentNode, index)
       );
     }

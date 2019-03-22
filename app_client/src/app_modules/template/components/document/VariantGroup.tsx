@@ -1,10 +1,9 @@
 import * as React from 'react';
+import styled from 'styled-components';
 import { Droppable } from 'react-beautiful-dnd';
 
-import styled from 'styled-components';
-
-import Task1 from './Task.1';
-import { taskType } from './state';
+import VariantDnd from './VariantDnd';
+import * as templateState from '../../../../app/redux/state';
 
 const TaskList = styled.div<{ ref: any; isDraggingOver: boolean }>`
   padding: 4px;
@@ -15,23 +14,27 @@ const TaskList = styled.div<{ ref: any; isDraggingOver: boolean }>`
   // min-height: 100px;
 `;
 
+type segmentSource = {
+  runs: templateState.run[];
+  segment: templateState.textSegment;
+};
+
 type tsk = { id: string; content: string };
-interface IDndProps {
+interface IVariantGroupProps {
   column: {
     id: string;
     title: string;
     taskIds: string[];
   };
   tasks: tsk[];
+  segmentVariants: segmentSource[];
 }
-class Dnd extends React.Component<IDndProps> {
+class VariantGroup extends React.Component<IVariantGroupProps> {
   constructor(props) {
     super(props);
   }
 
   public render() {
-    console.log('this.props.tasks');
-    console.log(this.props);
     return (
       <Droppable droppableId={this.props.column.id}>
         {(provided, snapshot) => (
@@ -40,8 +43,13 @@ class Dnd extends React.Component<IDndProps> {
             {...provided.droppableProps}
             isDraggingOver={snapshot.isDraggingOver}
           >
-            {this.props.tasks.map((task, index) => (
-              <Task1 key={(task as any).segment.id} task={task} index={index} />
+            {this.props.segmentVariants.map((segmentVariant, index) => (
+              <VariantDnd
+                variant={segmentVariant}
+                key={index}
+                task={{ id: segmentVariant.segment.id, content: '' }}
+                index={index}
+              />
             ))}
             {provided.placeholder}
           </TaskList>
@@ -51,4 +59,4 @@ class Dnd extends React.Component<IDndProps> {
   }
 }
 
-export default Dnd;
+export default VariantGroup;

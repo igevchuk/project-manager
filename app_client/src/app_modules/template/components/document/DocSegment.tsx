@@ -2,9 +2,9 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
 import { Form, Icon } from 'semantic-ui-react';
-import { Editable } from './Variants.style';
+// import { Editable } from './Variants.style';
 import { v4 } from 'uuid';
-import ContentEditable from 'react-contenteditable';
+// import ContentEditable from 'react-contenteditable';
 import * as templateState from '../../../../app/redux/state';
 import CompareArrows from '@material-ui/icons/CompareArrows';
 
@@ -17,6 +17,7 @@ import {
 } from './Document.style';
 
 const SegmentContainer = styled.span<{ ref: any; isDragging: boolean }>`
+  // keep it for testing
   // border: 1px solid lightgrey;
   border-radius: 2px;
   padding: 8px;
@@ -27,6 +28,7 @@ const SegmentContainer = styled.span<{ ref: any; isDragging: boolean }>`
   // display: flex;
 `;
 
+// keep it
 const Handle = styled.span`
   // width: 20px;
   // height: 20px;
@@ -35,13 +37,8 @@ const Handle = styled.span`
   // margin-right: 8px;
 `;
 
-type segmentSource = {
-  runs: templateState.run[];
-  segment: templateState.textSegment;
-};
-
 const getItemStyle = (isDragging, draggableStyle) => ({
-  // some basic styles to make the items look a bit nicer
+  // make the items look a bit nicer
   userSelect: 'none',
   padding: 2 * 2,
   margin: `0 ${4}px 0 0`,
@@ -52,6 +49,11 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   // styles we need to apply on draggables
   ...draggableStyle
 });
+
+type segmentSource = {
+  runs: templateState.run[];
+  segment: templateState.textSegment;
+};
 
 type activeSegment = {
   canDrag: boolean;
@@ -129,17 +131,17 @@ class DocSegment extends React.Component<IDocSegmentProps, IDocSegmentState> {
     return segment(true);
   };
 
-  public handleEditText = ({ target }) => {
-    // const { variant, onUpdate } = this.props;
-    // const updatedVariant = { ...variant, title: target.innerHTML };
-    // onUpdate(updatedVariant);
-  };
+  // public handleEditText = ({ target }) => {
+  //   // const { variant, onUpdate } = this.props;
+  //   // const updatedVariant = { ...variant, title: target.innerHTML };
+  //   // onUpdate(updatedVariant);
+  // };
 
-  public handleEditTitle = ({ target }) => {
-    // const { variant, onUpdate } = this.props;
-    // const updatedVariant = { ...variant, title: target.textContent };
-    // onUpdate(updatedVariant);
-  };
+  // public handleEditTitle = ({ target }) => {
+  //   // const { variant, onUpdate } = this.props;
+  //   // const updatedVariant = { ...variant, title: target.textContent };
+  //   // onUpdate(updatedVariant);
+  // };
 
   public render() {
     // console.log(this.props);

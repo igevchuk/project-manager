@@ -5,16 +5,13 @@ import CompareArrows from '@material-ui/icons/CompareArrows';
 import { v4 } from 'uuid';
 import { DragDropContext } from 'react-beautiful-dnd';
 import update from 'immutability-helper';
-import styled from 'styled-components';
 import '@atlaskit/css-reset';
-import Column from './Column';
-import Column2 from './Column.2';
 
+import VariantGroup from './VariantGroup';
 import Variant from './Variant';
 import { StyledVariants, VariantForm, Divider } from './Variants.style';
 import { VariantCount } from './Document.style';
 import { VariantSchema, ITaskType } from './variantSchema';
-
 import * as templateState from '../../../../app/redux/state';
 
 const initialData = {
@@ -56,18 +53,6 @@ type taskType = {
   columnOrder: string[];
 };
 
-// export interface ITaskTypeA {
-//   tasks: segmentSource[];
-//   columns: column[];
-//   blocks: block[];
-//   columnOrder: string[];
-// }
-
-// const Container = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `;
-
 type segmentSource = {
   runs: templateState.run[];
   segment: templateState.textSegment;
@@ -98,19 +83,8 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
     };
   }
 
-  public onSortEnd = ({ oldIndex, newIndex }) => {
-    console.log('oldIndex');
-
-    // this.setState(({ segmentVariants }) => ({
-    //   segmentVariants: sortableHoc.arrayMove(
-    //     segmentVariants,
-    //     oldIndex,
-    //     newIndex
-    //   )
-    // }));
-  };
-
   public handleAdd = () => {
+    alert('handleAdd');
     // const newVariant = {
     //   title: 'New Variant',
     //   text: '',
@@ -121,8 +95,7 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
     // });
   };
 
-  public renderVariantForm = (variant, isDefault) => {
-    // console.log(variant);
+  public renderVariantForm = (variant: segmentSource, isDefault: boolean) => {
     return (
       <React.Fragment key={v4()}>
         {isDefault && (
@@ -246,7 +219,7 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
       <EscapeOutside onEscapeOutside={onEscapeOutside} key={v4()}>
         <DragDropContext onDragEnd={this.onDragEnd}>
           <StyledVariants>
-            <span className="enumerate">1.0</span>
+            <span className="enumerate">1.0.1</span>
 
             {this.state.taskDataNew.columnOrder.map(columnId => {
               const column = this.state.taskDataNew.columns.find(
@@ -271,17 +244,22 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
                 );
               });
 
-              const asd = (
+              const segmentVariants =
+                columnId === 'column_1' ? standardVariant : restVariants;
+
+              const variants = (
                 <VariantForm key={v4()}>
                   <React.Fragment>
                     <Divider>
                       {(column as any).id && (column as any).id === 'column_1'
                         ? standardTitle
                         : variantTitle}
-                      <Column2
+
+                      <VariantGroup
                         key={v4()}
                         column={column as any}
                         tasks={tasks}
+                        segmentVariants={segmentVariants}
                       />
                     </Divider>
                   </React.Fragment>
@@ -295,37 +273,12 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
                 </VariantForm>
               );
 
-              return asd;
+              return variants;
             })}
 
             <VariantCount className="variant-count">
-              3 <CompareArrows />
+              {restVariants && restVariants.length} <CompareArrows />
             </VariantCount>
-
-            <div hidden={true}>
-              {standardVariant[0] && (
-                <VariantForm>
-                  {this.renderVariantForm(standardVariant[0], true)}
-                </VariantForm>
-              )}
-
-              {restVariants.length > 0 && (
-                <VariantForm>
-                  <Divider>
-                    <span>
-                      Variants <Icon name="info circle" />
-                    </span>
-                  </Divider>
-                  {restVariants.map(variant =>
-                    this.renderVariantForm(variant, false)
-                  )}
-                  <button onClick={this.handleAdd}>
-                    <Icon name="plus circle" />
-                    Add Variant
-                  </button>
-                </VariantForm>
-              )}
-            </div>
           </StyledVariants>
         </DragDropContext>
       </EscapeOutside>

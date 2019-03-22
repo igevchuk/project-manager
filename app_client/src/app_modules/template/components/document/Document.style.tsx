@@ -193,9 +193,6 @@ export const SubClauseNode = styled.span<{ color?: string; border?: number }>`
   border: ${props => props.border || '4px'} solid 'black';
 `;
 
-//
-//
-//
 // export const StyledDocument = styled(Grid.Column)`
 //   margin: 50px 5vmax;
 //   padding: 1em;

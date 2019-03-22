@@ -1,11 +1,11 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import { Form, Icon } from 'semantic-ui-react';
 import { Editable } from './Variants.style';
-import { textVariant } from '../../../../app/redux/state';
 import * as sortableHoc from 'react-sortable-hoc';
-import * as templateState from '../../../../app/redux/state';
 import ContentEditable from 'react-contenteditable';
+
+import { textVariant } from '../../../../app/redux/state';
+import * as templateState from '../../../../app/redux/state';
 
 const DragHandle = sortableHoc.SortableHandle(() => (
   <span>
@@ -23,7 +23,7 @@ interface IVariantProps {
   onUpdate: (textVariant: textVariant) => void;
 }
 
-class Variant extends React.Component<IVariantProps, {}> {
+class Variant extends React.PureComponent<IVariantProps, {}> {
   constructor(props: any) {
     super(props);
   }

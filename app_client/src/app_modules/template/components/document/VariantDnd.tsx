@@ -1,16 +1,17 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
-import { HandlerRole } from 'dnd-core';
 import { Form, Icon } from 'semantic-ui-react';
-import { Editable } from './Variants.style';
-import { v4 } from 'uuid';
 import ContentEditable from 'react-contenteditable';
+
+import { Editable } from './Variants.style';
+import { textVariant } from '../../../../app/redux/state';
+import * as templateState from '../../../../app/redux/state';
 
 const Container = styled.div<{ ref: any; isDragging: boolean }>`
   // border: 1px solid lightgrey;
   // border-radius: 2px;
-  padding: 0px;
+  padding: -0.4px;
   margin-bottom: 4px;
   background-color: ${props => (props.isDragging ? 'lightgreen' : '#f5f5f5')};
   display: flex;
@@ -24,31 +25,44 @@ const Handle = styled.div`
   margin-right: 8px;
 `;
 
-interface IDndProps {
+type segmentSource = {
+  runs: templateState.run[];
+  segment: templateState.textSegment;
+};
+
+interface IVariantProps {
+  variant: segmentSource;
+  onUpdate: (textVariant: textVariant) => void;
+}
+
+interface IVariantDndProps {
   task: { id: string; content: string };
+  variant: segmentSource;
   index: number;
 }
-class Dnd extends React.Component<IDndProps> {
+class VariantDnd extends React.PureComponent<IVariantDndProps> {
   constructor(props) {
     super(props);
   }
 
-  public handleEditText = ({ target }) => {
+  public handleEditTitle = ({ target }) => {
+    alert('ssss');
     // const { variant, onUpdate } = this.props;
-    // const updatedVariant = { ...variant, title: target.innerHTML };
+    // const updatedVariant = { ...variant, title: target.textContent };
     // onUpdate(updatedVariant);
   };
 
-  public handleEditTitle = ({ target }) => {
+  public handleEditText = ({ target }) => {
+    alert('dddd');
     // const { variant, onUpdate } = this.props;
-    // const updatedVariant = { ...variant, title: target.textContent };
+    // const updatedVariant = { ...variant, title: target.innerHTML };
     // onUpdate(updatedVariant);
   };
 
   public render() {
     return (
       <Draggable
-        draggableId={(this.props.task as any).segment.id}
+        draggableId={this.props.variant.segment.id}
         index={this.props.index}
       >
         {(provided, snapshot) => (
@@ -59,16 +73,15 @@ class Dnd extends React.Component<IDndProps> {
           >
             <Form.Field>
               <ContentEditable
-                html={(this.props.task as any).segment.variantDescription}
+                html={this.props.variant.segment.variantDescription}
                 disabled={false}
                 onChange={this.handleEditTitle}
               />
-
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Editable
                   onChange={this.handleEditText}
                   disabled={false}
-                  html={(this.props.task as any).runs[0].t}
+                  html={this.props.variant.runs[0].t}
                 />
                 <Handle {...provided.dragHandleProps}>
                   <Icon name="move" link={true} />
@@ -82,4 +95,4 @@ class Dnd extends React.Component<IDndProps> {
   }
 }
 
-export default Dnd;
+export default VariantDnd;
