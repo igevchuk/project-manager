@@ -48,11 +48,10 @@ class Variant extends React.Component<IVariantProps, {}> {
 
   public render() {
     const { variant } = this.props;
-    // console.log(variant);
 
     return (
       <Form.Field>
-        <label>{variant.segment.id}.</label>
+        {/* <label>{variant.segment.id}.</label> */}
         <ContentEditable
           html={this.getTitle(variant.segment.text)}
           disabled={false}

@@ -1,14 +1,15 @@
 import * as React from 'react';
-import { Form, Icon } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 import * as sortableHoc from 'react-sortable-hoc';
 import CompareArrows from '@material-ui/icons/CompareArrows';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
-import DocSegment from './DocSegment';
 import update from 'immutability-helper';
 
 import { v4 } from 'uuid';
 import * as templateState from '../../../../app/redux/state';
+import DocSegment from './DocSegment';
+
 import Variants from './Variants';
 import {
   TextNode,
@@ -40,11 +41,12 @@ const Container = styled.div`
 
 const BlockContainer = styled.div`
   display: flex;
-  // flex-direction: row;
+  flex-flow: row wrap;
 
   margin: -4px;
-  border: 1px solid lightgrey;
-  border-radius: 2px;
+  padding: 4px;
+  // border: 1px solid lightgrey;
+  // border-radius: 2px;
 `;
 
 const TaskList = styled.div``;
@@ -56,19 +58,6 @@ const Handle = styled.div`
   border-radius: 4px;
   margin-right: 8px;
 `;
-
-const getItemStyle = (isDragging, draggableStyle) => ({
-  // some basic styles to make the items look a bit nicer
-  userSelect: 'none',
-  padding: 2 * 2,
-  margin: `0 ${4}px 0 0`,
-
-  // change background colour if dragging
-  // background: isDragging ? 'lightgreen' : 'grey',
-
-  // styles we need to apply on draggables
-  ...draggableStyle
-});
 
 const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? 'lightblue' : 'white',
@@ -219,10 +208,10 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
               >
                 {block.segments.map((segmentNode, index) => (
                   <DocSegment
-                    blockOrder={block.order}
                     key={segmentNode.segment.id}
-                    segmentNode={segmentNode}
                     index={index}
+                    segmentNode={segmentNode}
+                    blockOrder={block.order}
                     segmentSources={segmentSources}
                     activeSegment={activeSegment}
                     handleClick={handleClick}
@@ -276,7 +265,7 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
             </SegmentsNode>
           );
           return clauseNode;
-        case 'PStyle.Heading4':
+        case PStyle.Heading4:
           const subClauseNode = (
             <SegmentsNode key={v4()} background="orange" indLevel={6}>
               {getSegments(block)}

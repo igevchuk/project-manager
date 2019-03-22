@@ -6,25 +6,13 @@ import styled from 'styled-components';
 import Task1 from './Task.1';
 import { taskType } from './state';
 
-const Container = styled.div`
-  margin: 8px;
-  border: 1px solid lightgrey;
-  border-radius: 2px;
-  width: 240px;
-
-  display: flex;
-  flex-direction: column;
-`;
-const Titile = styled.h3`
-  padding: 8px;
-`;
 const TaskList = styled.div<{ ref: any; isDraggingOver: boolean }>`
-  padding: 8px;
+  padding: 4px;
   transition: background-color 0.2s ease;
-  background-color: ${props => (props.isDraggingOver ? 'skyblue' : 'white')};
+  background-color: ${props => (props.isDraggingOver ? 'skyblue' : '#f5f5f5')};
 
   flex-grow: 1;
-  min-height: 100px;
+  // min-height: 100px;
 `;
 
 type tsk = { id: string; content: string };

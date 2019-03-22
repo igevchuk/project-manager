@@ -110,7 +110,7 @@ class DocSegment extends React.Component<IDocSegmentProps, IDocSegmentState> {
             </Handle>
           </SegmentHoverFeature>
           {this.state.segmentNode.runs.map(run => (
-            <TextNode key={v4()}> {run.t}</TextNode>
+            <TextNode key={v4()}>{run.t.trim()}</TextNode>
           ))}
         </SegmentHover>
         <VariantCount key={v4()} className="variant-count">

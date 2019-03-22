@@ -3,16 +3,21 @@ import { Form } from 'semantic-ui-react';
 import ContentEditable from 'react-contenteditable';
 
 export const StyledVariants = styled.div`
-  align-items: top;
-  background: #f5f5f5;
-  border-left: 2px solid orange;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+
+  & > * {
+    flex: 1 100%;
+  }
+
+  background: #f5f5f5;
+  border-left: 2px solid orange;
 
   margin: 1em -2em;
   padding: 1em 1em 0 1em;
   & .enumerate {
-    margin-right: 1em;
+    // margin-left: 1em;
   }
   & > .variant-count {
     display: inline-flex;
@@ -20,8 +25,9 @@ export const StyledVariants = styled.div`
 `;
 
 export const VariantForm = styled(Form)`
+  width: 720px;
+
   border: 1px solid rgba(34, 36, 38, 0.15);
-  flex: 1;
   padding: 1em 1em 1em 2em;
   margin-bottom: 1em;
   &&& label {
@@ -59,7 +65,8 @@ export const Divider = styled.div`
 `;
 
 export const Editable = styled(ContentEditable)`
-  width: 100%;
+  // width: 100%;
+  width: 620px;
   flex: auto;
   outline: 0;
   text-align: left;
