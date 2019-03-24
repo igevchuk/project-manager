@@ -7,7 +7,6 @@ import { contextWrapper } from '../../TemplateContext';
 
 import { Editable } from './Variants.style';
 import * as templateState from '../../../../app/redux/state';
-// import * as state from '../../../app/redux/state';
 
 const Container = styled.div<{ ref: any; isDragging: boolean }>`
   // border: 1px solid lightgrey;
@@ -25,36 +24,6 @@ const Handle = styled.div`
   // border-radius: 4px;
   margin-right: 8px;
 `;
-
-// defining rendering block which is not the same as the block from backend
-type block = {
-  id: string;
-  order: number;
-  paragraph: templateState.paragraph;
-  segments: [
-    {
-      runs: templateState.run[];
-      segment: templateState.textSegment;
-    }
-  ];
-};
-
-type template = {
-  id: number;
-  name: string;
-  blocks: templateState.block[];
-  paragraphs: templateState.paragraph[];
-  textSegments: templateState.textSegment[];
-  tables: templateState.table[];
-  tableRows: templateState.tableRow[];
-  tableCells: templateState.tableCell[];
-  runs: templateState.run[];
-};
-
-// interface IProps {
-//   template: templateState.template;
-//   blocks: templateState.renderBlock[];
-// }
 
 type segmentSource = {
   runs: templateState.run[];

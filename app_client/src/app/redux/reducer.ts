@@ -160,7 +160,7 @@ export default function reducer(state = initialState, action) {
     }
 
     case 'TRACK_CURRENT_SEGMENT': {
-      // console.log(state);
+      console.log(state);
       const newState = {
         ...state,
         activeSegId: action.payload.id
