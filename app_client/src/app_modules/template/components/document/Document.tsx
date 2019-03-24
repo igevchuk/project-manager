@@ -3,7 +3,7 @@ import { Segment, Grid } from 'semantic-ui-react';
 import { StyledDocument } from './Document.style';
 import { contextWrapper } from '../../TemplateContext';
 import Schema from '../../controllers/document/schema';
-import HtmlSections from './DocSegments';
+import DocSegments from './DocSegments';
 
 import * as templateState from '../../../../app/redux/state';
 import * as actions from './../../redux/actions';
@@ -77,9 +77,7 @@ class TemplateContent extends React.PureComponent<IContentProps, IDocState> {
   };
 
   public renderDoc = (blocks: block[]) => {
-    return (
-      <HtmlSections blocks={blocks} appDispatch={this.props.appDispatch} />
-    );
+    return <DocSegments blocks={blocks} appDispatch={this.props.appDispatch} />;
   };
 
   public render() {
@@ -97,12 +95,12 @@ class TemplateContent extends React.PureComponent<IContentProps, IDocState> {
             <StyledDocument>
               <Segment basic={true}>{htmlSections}</Segment>
               <button
-                hidden={true}
+                hidden={false}
                 onClick={() =>
                   this.props.appDispatch({
                     type: 'FETCH_FORM_FULFILLED',
                     payload: {
-                      id: 114,
+                      id: '722d4399-12cb-497f-8e29-5f1dc08b0230',
                       name: 'this is name asd'
                     }
                   })

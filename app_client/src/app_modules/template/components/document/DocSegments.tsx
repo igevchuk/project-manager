@@ -99,7 +99,7 @@ const initialState = {
   }
 };
 
-const HtmlSections: React.SFC<ISectionProps> = props => {
+const DocSegments: React.SFC<ISectionProps> = props => {
   const [activeSegment, setActiveSegment] = React.useState(initialState);
   const [docBlocks, setDocBlocks] = React.useState(props.blocks);
 
@@ -193,6 +193,8 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
   };
 
   const getSegments = (block: block) => {
+    // console.log('rending');
+
     if (activeSegment.canDrag) {
       // textSegment drag and drop goes here
       return (
@@ -387,4 +389,4 @@ const HtmlSections: React.SFC<ISectionProps> = props => {
   );
 };
 
-export default HtmlSections;
+export default DocSegments;

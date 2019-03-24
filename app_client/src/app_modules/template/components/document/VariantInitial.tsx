@@ -3,8 +3,6 @@ import { Form, Icon } from 'semantic-ui-react';
 import { Editable } from './Variants.style';
 import * as sortableHoc from 'react-sortable-hoc';
 import ContentEditable from 'react-contenteditable';
-
-import { textVariant } from '../../../../app/redux/state';
 import * as templateState from '../../../../app/redux/state';
 
 const DragHandle = sortableHoc.SortableHandle(() => (
@@ -20,7 +18,7 @@ type segmentSource = {
 
 interface IVariantProps {
   variant: segmentSource;
-  onUpdate: (textVariant: textVariant) => void;
+  onUpdate: () => void;
 }
 
 class Variant extends React.PureComponent<IVariantProps, {}> {

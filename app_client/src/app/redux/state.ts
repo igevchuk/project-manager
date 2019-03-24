@@ -43,7 +43,7 @@ export type template = {
   variables?: variable[];
   history?: history;
   // will be removed
-  textVariants?: textVariant[];
+  // textVariants?: textVariant[];
 };
 
 export type textSegment = {
@@ -142,15 +142,15 @@ export type tableCell = {
 };
 export type tableParagraph = {};
 
-export type textVariant = {
-  id?: uuid;
-  title?: string;
-  text?: string;
-  sequence?: number;
-  ref?: {
-    segmentId?: uuid;
-  };
-};
+// export type textVariant = {
+//   id?: uuid;
+//   title?: string;
+//   text?: string;
+//   sequence?: number;
+//   ref?: {
+//     segmentId?: uuid;
+//   };
+// };
 
 export type run = {
   id: uuid;

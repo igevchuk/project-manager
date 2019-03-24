@@ -58,7 +58,43 @@ export default function reducer(state = initialState, action) {
         ...state,
         activeSegId: action.payload.id
       };
-      console.log('newState');
+      console.log(state);
+      return state;
+    }
+
+    case 'EDIT_VARIANT_TITLE': {
+      const payload = action.payload as {
+        segmentId: '';
+        variantDescription: '';
+      };
+      const segmentId = payload.segmentId;
+      const desc = payload.variantDescription;
+
+      // const aa = getState();
+
+      // const segmentIndex = state.template.textSegments.findIndex(
+      //   segment => segment.id === segmentId
+      // );
+      // const segment = state.template.textSegments[segmentIndex];
+
+      console.log(state);
+      return state;
+
+      const newState = {
+        ...state,
+        activeSegId: action.payload.id
+      };
+      console.log(action.payload);
+      return newState;
+
+      const templates = action.payload;
+      const template = Array.from(templates)[0];
+      const renderBlocks = rederedBlocks(template);
+      const newStateB = {
+        ...state,
+        template,
+        renderBlocks
+      };
       return newState;
     }
 
@@ -124,6 +160,7 @@ export default function reducer(state = initialState, action) {
     }
 
     case 'TRACK_CURRENT_SEGMENT': {
+      // console.log(state);
       const newState = {
         ...state,
         activeSegId: action.payload.id

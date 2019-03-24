@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
 import { Form, Icon } from 'semantic-ui-react';
 import ContentEditable from 'react-contenteditable';
+import { contextWrapper } from '../../TemplateContext';
 
 import { Editable } from './Variants.style';
-import { textVariant } from '../../../../app/redux/state';
 import * as templateState from '../../../../app/redux/state';
+// import * as state from '../../../app/redux/state';
 
 const Container = styled.div<{ ref: any; isDragging: boolean }>`
   // border: 1px solid lightgrey;
@@ -25,74 +26,171 @@ const Handle = styled.div`
   margin-right: 8px;
 `;
 
+// defining rendering block which is not the same as the block from backend
+type block = {
+  id: string;
+  order: number;
+  paragraph: templateState.paragraph;
+  segments: [
+    {
+      runs: templateState.run[];
+      segment: templateState.textSegment;
+    }
+  ];
+};
+
+type template = {
+  id: number;
+  name: string;
+  blocks: templateState.block[];
+  paragraphs: templateState.paragraph[];
+  textSegments: templateState.textSegment[];
+  tables: templateState.table[];
+  tableRows: templateState.tableRow[];
+  tableCells: templateState.tableCell[];
+  runs: templateState.run[];
+};
+
+// interface IProps {
+//   template: templateState.template;
+//   blocks: templateState.renderBlock[];
+// }
+
 type segmentSource = {
   runs: templateState.run[];
   segment: templateState.textSegment;
 };
 
-interface IVariantProps {
-  variant: segmentSource;
-  onUpdate: (textVariant: textVariant) => void;
-}
-
 interface IVariantDndProps {
   task: { id: string; content: string };
-  variant: segmentSource;
   index: number;
+  variant: segmentSource;
+  appDispatch: React.Dispatch<any>;
+  template: templateState.template;
+  blocks: templateState.renderBlock[];
 }
-class VariantDnd extends React.PureComponent<IVariantDndProps> {
-  constructor(props) {
-    super(props);
-  }
 
-  public handleEditTitle = ({ target }) => {
-    alert('ssss');
-    // const { variant, onUpdate } = this.props;
-    // const updatedVariant = { ...variant, title: target.textContent };
-    // onUpdate(updatedVariant);
+const VariantDnd: React.SFC<IVariantDndProps> = props => {
+  const handleEditTitle = ({ target }) => {
+    props.appDispatch({
+      type: 'FETCH_FORM_FULFILLED',
+      payload: {
+        id: '722d4399-12cb-497f-8e29-5f1dc08b0230',
+        name: 'this is name asd'
+      }
+    });
+
+    console.log(props.template);
+    // props.appDispatch({
+    //   type: 'EDIT_VARIANT_TITLE',
+    //   payload: {
+    //     segmentId: props.variant.segment.id,
+    //     variantDescription: target.value
+    //   }
+    // });
   };
 
-  public handleEditText = ({ target }) => {
+  const handleEditText = ({ target }) => {
     alert('dddd');
     // const { variant, onUpdate } = this.props;
     // const updatedVariant = { ...variant, title: target.innerHTML };
     // onUpdate(updatedVariant);
   };
 
-  public render() {
-    return (
-      <Draggable
-        draggableId={this.props.variant.segment.id}
-        index={this.props.index}
-      >
-        {(provided, snapshot) => (
-          <Container
-            {...provided.draggableProps}
-            ref={provided.innerRef}
-            isDragging={snapshot.isDragging}
-          >
-            <Form.Field>
-              <ContentEditable
-                html={this.props.variant.segment.variantDescription}
+  return (
+    <Draggable draggableId={props.variant.segment.id} index={props.index}>
+      {(provided, snapshot) => (
+        <Container
+          {...provided.draggableProps}
+          ref={provided.innerRef}
+          isDragging={snapshot.isDragging}
+        >
+          <Form.Field>
+            <ContentEditable
+              html={props.variant.segment.variantDescription}
+              disabled={false}
+              onChange={handleEditTitle}
+            />
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <Editable
+                onChange={handleEditText}
                 disabled={false}
-                onChange={this.handleEditTitle}
+                html={props.variant.runs[0].t}
               />
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Editable
-                  onChange={this.handleEditText}
-                  disabled={false}
-                  html={this.props.variant.runs[0].t}
-                />
-                <Handle {...provided.dragHandleProps}>
-                  <Icon name="move" link={true} />
-                </Handle>
-              </div>
-            </Form.Field>
-          </Container>
-        )}
-      </Draggable>
-    );
-  }
-}
+              <Handle {...provided.dragHandleProps}>
+                <Icon name="move" link={true} />
+              </Handle>
+            </div>
+          </Form.Field>
+        </Container>
+      )}
+    </Draggable>
+  );
+};
 
-export default VariantDnd;
+export default contextWrapper(VariantDnd);
+
+// class TemplateContent extends React.PureComponent<IVariantDndProps> {
+//   constructor(props: any) {
+//     super(props);
+//   }
+//   public handleEditTitle = ({ target }) => {
+//     this.props.appDispatch({
+//       type: 'FETCH_FORM_FULFILLED',
+//       payload: {
+//         id: '722d4399-12cb-497f-8e29-5f1dc08b0230',
+//         name: 'this is name asd'
+//       }
+//     });
+
+//     // props.appDispatch({
+//     //   type: 'EDIT_VARIANT_TITLE',
+//     //   payload: {
+//     //     segmentId: props.variant.segment.id,
+//     //     variantDescription: target.value
+//     //   }
+//     // });
+//   };
+
+//   public handleEditText = ({ target }) => {
+//     alert('dddd');
+//     // const { variant, onUpdate } = this.props;
+//     // const updatedVariant = { ...variant, title: target.innerHTML };
+//     // onUpdate(updatedVariant);
+//   };
+
+//   public render() {
+//     return (
+//       <Draggable
+//         draggableId={this.props.variant.segment.id}
+//         index={this.props.index}
+//       >
+//         {(provided, snapshot) => (
+//           <Container
+//             {...provided.draggableProps}
+//             ref={provided.innerRef}
+//             isDragging={snapshot.isDragging}
+//           >
+//             <Form.Field>
+//               <ContentEditable
+//                 html={this.props.variant.segment.variantDescription}
+//                 disabled={false}
+//                 onChange={this.handleEditTitle}
+//               />
+//               <div style={{ display: 'flex', alignItems: 'center' }}>
+//                 <Editable
+//                   onChange={this.handleEditText}
+//                   disabled={false}
+//                   html={this.props.variant.runs[0].t}
+//                 />
+//                 <Handle {...provided.dragHandleProps}>
+//                   <Icon name="move" link={true} />
+//                 </Handle>
+//               </div>
+//             </Form.Field>
+//           </Container>
+//         )}
+//       </Draggable>
+//     );
+//   }
+// }

@@ -60,6 +60,7 @@ type segmentSource = {
 interface IVariantsProps {
   segmentVariants: segmentSource[];
   onEscapeOutside?: () => void;
+  // onUpdateB: () => {};
 }
 
 interface IVariantsState {
