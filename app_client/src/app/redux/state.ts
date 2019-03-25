@@ -3,6 +3,11 @@ export type uuid = string;
 export type docTypes = docType[];
 export type docType = { id: uuid; type?: string };
 
+export type segmentSource = {
+  runs: run[];
+  segment: textSegment;
+};
+
 export type renderBlock = {
   id: string;
   order: number;
@@ -20,6 +25,7 @@ export type IState = {
   activeSegId: uuid;
   template: template;
   renderBlocks: renderBlock[];
+  variants: segmentSource[][];
 };
 
 export type template = {

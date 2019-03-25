@@ -2,7 +2,7 @@ import * as React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import TemplateLibrary from './../app_modules/template-library';
-import Template from '../app_modules/template/Template';
+import Template from '../app_modules/template/TemplateProvider';
 
 const Routes: React.SFC = () => {
   return (

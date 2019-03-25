@@ -6,6 +6,11 @@ import * as templateState from './state';
 
 import Schema from '../../app_modules/template/controllers/document/schema';
 
+type segmentSource = {
+  runs: templateState.run[];
+  segment: templateState.textSegment;
+};
+
 type block = {
   id: string;
   order: number;
@@ -24,33 +29,47 @@ export const initialState: IState = {
   isLocal: true,
   activeSegId: '',
   template: {} as template,
-  renderBlocks: [] as block[]
+  renderBlocks: [] as block[],
+  variants: [] as segmentSource[][]
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case types.FETCH_TEMPLATE_FULFILLED: {
-      // console.log(action.payload);
       if (state.isLocal) {
         const templates = action.payload;
         const template = Array.from(templates)[0];
         const renderBlocks = rederedBlocks(template);
+
+        const variants: segmentSource[][] = [];
+        renderBlocks.map(block => {
+          variants.push(block.segments);
+        });
+
         const newState = {
           ...state,
           template,
-          renderBlocks
+          renderBlocks,
+          variants
         };
+        // console.log(newState);
         return newState;
       }
 
       const template = action.payload;
       const renderBlocks = rederedBlocks(template);
+
+      const variants: segmentSource[][] = [];
+      renderBlocks.map(block => {
+        variants.push(block.segments);
+      });
+
       const newState = {
         ...state,
         template: Array(template)[0],
-        renderBlocks
+        renderBlocks,
+        variants
       };
-      console.log(newState);
       return newState;
     }
     case 'FETCH_FORM_FULFILLED': {
@@ -67,34 +86,34 @@ export default function reducer(state = initialState, action) {
         segmentId: '';
         variantDescription: '';
       };
-      const segmentId = payload.segmentId;
-      const desc = payload.variantDescription;
 
-      // const aa = getState();
+      const segmentIndex = state.template.textSegments.findIndex(
+        segment => segment.id === payload.segmentId
+      );
+      const segment = state.template.textSegments[segmentIndex];
 
-      // const segmentIndex = state.template.textSegments.findIndex(
-      //   segment => segment.id === segmentId
-      // );
-      // const segment = state.template.textSegments[segmentIndex];
+      const newSegment = {
+        ...segment,
+        variantDescription: payload.variantDescription
+      };
 
-      console.log(state);
-      return state;
+      const newTemplate = update(state.template, {
+        textSegments: {
+          $splice: [[segmentIndex, 1], [segmentIndex, 0, newSegment]]
+        }
+      });
 
+      console.log(newTemplate);
+
+      const renderBlocks = rederedBlocks(newTemplate);
       const newState = {
         ...state,
-        activeSegId: action.payload.id
-      };
-      console.log(action.payload);
-      return newState;
-
-      const templates = action.payload;
-      const template = Array.from(templates)[0];
-      const renderBlocks = rederedBlocks(template);
-      const newStateB = {
-        ...state,
-        template,
+        template: newTemplate,
         renderBlocks
       };
+
+      console.log(newState);
+
       return newState;
     }
 
@@ -160,7 +179,7 @@ export default function reducer(state = initialState, action) {
     }
 
     case 'TRACK_CURRENT_SEGMENT': {
-      console.log(state);
+      // console.log(state);
       const newState = {
         ...state,
         activeSegId: action.payload.id

@@ -83,6 +83,7 @@ type block = {
 
 interface ISectionProps {
   blocks: block[];
+  variants: segmentSource[][];
   appDispatch: React.Dispatch<any>;
 }
 
@@ -102,12 +103,15 @@ const initialState = {
 const DocSegments: React.SFC<ISectionProps> = props => {
   const [activeSegment, setActiveSegment] = React.useState(initialState);
   const [docBlocks, setDocBlocks] = React.useState(props.blocks);
+  const [variants, setVariants] = React.useState(props.variants);
 
   const [segmentSources, setSegmentSources] = React.useState(
     [] as segmentSource[][]
   );
 
   React.useEffect(() => {
+    // console.log(props.variants);
+
     const sources: segmentSource[][] = [];
     if (segmentSources.length === 0) {
       props.blocks.map(block => {
@@ -117,6 +121,15 @@ const DocSegments: React.SFC<ISectionProps> = props => {
       setSegmentSources(sources);
     }
   });
+
+  const renewSegmentSources = () => {
+    const sources: segmentSource[][] = [];
+    props.blocks.map(block => {
+      sources.push(block.segments);
+    });
+
+    setSegmentSources(sources);
+  };
 
   const handleClick = (value: segmentSource): void => {
     const isVariant = activeSegment.segment.id === value.segment.id;
@@ -148,6 +161,10 @@ const DocSegments: React.SFC<ISectionProps> = props => {
   ) => {
     const variantIsDefault = segmentNode.segment.variantIsDefault;
     const variants = segmentSources[blockOrder];
+
+    // const variantsa = variants[blockOrder];
+
+    // console.log(variantsa);
 
     const segment = (isActive: boolean = false) => (
       <SegmentNode
@@ -186,6 +203,7 @@ const DocSegments: React.SFC<ISectionProps> = props => {
     }
 
     if (activeSegment.isVariant) {
+      // renewSegmentSources();
       return variant();
     } else {
       return segment(true);

@@ -2,11 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Droppable } from 'react-beautiful-dnd';
 
-// import { Provider } from './../../TemplateContext';
-import appReducer, {
-  initialState as appState
-} from '../../../../app/redux/reducer';
-
 import VariantDnd from './VariantDnd';
 import * as templateState from '../../../../app/redux/state';
 
@@ -36,10 +31,6 @@ interface IVariantGroupProps {
 }
 
 const VariantGroup: React.SFC<IVariantGroupProps> = props => {
-  const [templateState, dispatch] = React.useReducer(appReducer, {
-    ...appState
-  });
-
   return (
     <Droppable droppableId={props.column.id}>
       {(provided, snapshot) => (

@@ -5,12 +5,17 @@ import { contextWrapper } from '../../TemplateContext';
 import DocSegments from './DocSegments';
 import * as templateState from '../../../../app/redux/state';
 
+type segmentSource = {
+  runs: templateState.run[];
+  segment: templateState.textSegment;
+};
 interface IContentProps {
   blocks: templateState.renderBlock[];
   isOutline: boolean;
   appDispatch: React.Dispatch<any>;
   templateDispatch?: React.Dispatch<any>;
   activeSeg: string;
+  variants: segmentSource[][];
 }
 
 class TemplateContent extends React.PureComponent<IContentProps> {
@@ -19,13 +24,20 @@ class TemplateContent extends React.PureComponent<IContentProps> {
   }
 
   public renderDoc = (blocks: templateState.renderBlock[]) => {
-    return <DocSegments blocks={blocks} appDispatch={this.props.appDispatch} />;
+    // console.log(this.props.variants);
+    return (
+      <DocSegments
+        blocks={blocks}
+        appDispatch={this.props.appDispatch}
+        variants={this.props.variants}
+      />
+    );
   };
 
   public render() {
-    if (!this.props.blocks) {
-      return 'loading ....';
-    }
+    // if (!this.props.blocks) {
+    //   return 'loading ....';
+    // }
 
     const htmlSections = this.renderDoc(this.props.blocks);
 
@@ -37,7 +49,7 @@ class TemplateContent extends React.PureComponent<IContentProps> {
             <StyledDocument>
               <Segment basic={true}>{htmlSections}</Segment>
               <button
-                hidden={false}
+                hidden={true}
                 onClick={() =>
                   this.props.appDispatch({
                     type: 'FETCH_FORM_FULFILLED',

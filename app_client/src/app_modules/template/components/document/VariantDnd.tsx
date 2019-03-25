@@ -40,23 +40,24 @@ interface IVariantDndProps {
 }
 
 const VariantDnd: React.SFC<IVariantDndProps> = props => {
+  // console.log(props.variant.segment);
   const handleEditTitle = ({ target }) => {
-    props.appDispatch({
-      type: 'FETCH_FORM_FULFILLED',
-      payload: {
-        id: '722d4399-12cb-497f-8e29-5f1dc08b0230',
-        name: 'this is name asd'
-      }
-    });
-
-    console.log(props.template);
     // props.appDispatch({
-    //   type: 'EDIT_VARIANT_TITLE',
+    //   type: 'FETCH_FORM_FULFILLED',
     //   payload: {
-    //     segmentId: props.variant.segment.id,
-    //     variantDescription: target.value
+    //     id: '722d4399-12cb-497f-8e29-5f1dc08b0230',
+    //     name: 'this is name asd'
     //   }
     // });
+
+    // console.log(props.blocks);
+    props.appDispatch({
+      type: 'EDIT_VARIANT_TITLE',
+      payload: {
+        segmentId: props.variant.segment.id,
+        variantDescription: target.value
+      }
+    });
   };
 
   const handleEditText = ({ target }) => {
