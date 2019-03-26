@@ -93,5 +93,14 @@ class ApiEndpoints extends ApiBase implements ApiEndpoints {
 
     return this.sendRequest(`${this.baseUrl}/templates/`, 'POST', body);
   };
+
+  // To be confirmed - PUT request when connected with BE 
+  public postAnnotation = (data): Observable<any> => {
+    const url = `${this.baseUrl}/templates/b8c49d68-03b3-46f1-a079-0f83e0151573`;
+    const body = data
+    // const url = `https://dtrax-tm2.analytics.deloitte.ca/template/api/v1/template_data/b8c49d68-03b3-46f1-a079-0f83e0151573`;
+
+    return this.sendRequest(url, 'PUT', body);
+  };
 }
 export default new ApiEndpoints();

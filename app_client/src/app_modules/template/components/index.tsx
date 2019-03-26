@@ -21,7 +21,8 @@ import Searchbox from './outline/Searchbox';
 import Header from './header/Header';
 import Toolbar from './toolbar/Toolbar';
 import styled from 'styled-components';
-import DragDropByHandle from './../../__feature__/DragDropByHandle';
+// import DragDropByHandle from './../../__feature__/DragDropByHandle';
+import AnnotationsSnackbar from "./sidebar/annotations/AnnotationsSnackbar";
 
 export const StyledOutline = styled(StyledItem)<{ isHidden?: boolean }>`
   border: 2px solid rgba(34, 36, 38, 0.15);
@@ -29,6 +30,7 @@ export const StyledOutline = styled(StyledItem)<{ isHidden?: boolean }>`
 
 interface IProps {
   template: state.template;
+  tagColors: state.tagColor[];
   blocks: state.renderBlock[];
 }
 
@@ -36,7 +38,8 @@ const Entry: React.SFC<IProps> = props => {
   const [templateState, appDispatch] = React.useReducer(appReducer, {
     ...appState,
     template: props.template,
-    renderBlocks: props.blocks
+    renderBlocks: props.blocks,
+    tagColors: props.tagColors
   });
 
   const [subState, templateDispatch] = React.useReducer(templateReducer, {
@@ -45,7 +48,7 @@ const Entry: React.SFC<IProps> = props => {
 
   const template = templateState.template;
   const blocks = templateState.renderBlocks;
-  // console.log(subState);
+  const tagColors = templateState.tagColors;
 
   const magicStyling = false;
   const zIndex = subState.showOutline ? 10 : 0; // zIndex: 0 | 10
@@ -79,10 +82,13 @@ const Entry: React.SFC<IProps> = props => {
         </StyledItem>
 
         <StyledItem>
-          <Provider value={{ appDispatch }}>
-            <Sidebar template={template} />
+          <Provider value={{ appDispatch, templateDispatch }}>
+            <Sidebar template={template} tagColors={tagColors} activeSegId={templateState.activeSegId}/>
           </Provider>
         </StyledItem>
+        <Provider value={{ appDispatch, templateDispatch }}>
+          <AnnotationsSnackbar subState={subState}/>
+        </Provider>
       </StyledGrids>
     </div>
   );

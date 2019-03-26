@@ -1,7 +1,8 @@
 import update from 'immutability-helper';
 import { handleActions, Action } from 'redux-actions';
 import * as types from './actions';
-import { IState, template } from './state';
+import * as templateActions from '../../app_modules/template/redux/actions';
+import { IState, template, tagColor } from './state';
 import * as templateState from './state';
 
 import Schema from '../../app_modules/template/controllers/document/schema';
@@ -21,6 +22,7 @@ export const initialState: IState = {
   isLocal: true,
   activeSegId: '722d4399-12cb-497f-8e29-5f1dc08b0230',
   template: {} as template,
+  tagColors: [] as tagColor[],
   renderBlocks: [] as block[]
 };
 
@@ -32,21 +34,25 @@ export default function reducer(state = initialState, action) {
         const templates = action.payload;
         const template = Array(templates)[0][0];
         const renderBlocks = rederedBlocks(template);
+        const tagColors = template.tagColors
+
         const newState = {
           ...state,
           template,
-          renderBlocks
+          renderBlocks,
+          tagColors
         };
-        // console.log(newState);
         return newState;
       }
 
       const template = action.payload;
       const renderBlocks = rederedBlocks(template);
+      const tagColors = template.tagColors
       const newState = {
         ...state,
         template: Array(template)[0],
-        renderBlocks
+        renderBlocks,
+        tagColors
       };
       console.log(newState);
       return newState;
@@ -182,6 +188,54 @@ export default function reducer(state = initialState, action) {
 
       return newState;
     }
+    case templateActions.ADD_ANNOTATION_SUCCESS: {
+      const template = state.template;
+      const newAnnotations = [...template.annotations, ...action.payload]
+      const newTemplate = { ...template, annotations: newAnnotations }
+      const newState = {
+        ...state,
+        template: newTemplate
+      }
+      return newState;
+    }
+
+    case templateActions.CREATE_ANNOTATION_SUCCESS: {
+      const template = state.template;
+      const newAnnotations = [...template.annotations, ...action.payload.annotations]
+      const newTags = [...template.tags, ...action.payload.tags]
+      const newTemplate = { ...template, annotations: newAnnotations, tags: newTags }
+      const newState = {
+        ...state,
+        template: newTemplate
+      }
+      return newState;
+    }
+
+    case templateActions.DELETE_ANNOTATION: {
+      const template = state.template;
+      const currentAnnotations = [...template.annotations];
+      const newAnnotations = currentAnnotations.filter(item => item.id !== action.payload);
+      const newTemplate = { ...template, annotations: newAnnotations };
+      const newState = {
+        ...state,
+        template: newTemplate
+      };
+      return newState;
+    }
+
+    case templateActions.UNDO_ANNOTATION: {
+      const template = state.template;
+      const newAnnotations = [...template.annotations];
+      const undoCount = action.payload;
+      for (let i=0; i < undoCount; i++) { newAnnotations.pop() }
+      const newTemplate = { ...template, annotations: newAnnotations };
+      const newState = {
+        ...state,
+        template: newTemplate
+      };
+      return newState;
+    }
+
     default:
       return state;
   }

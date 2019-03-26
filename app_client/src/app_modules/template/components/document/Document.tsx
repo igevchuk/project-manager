@@ -5,7 +5,7 @@ import { contextWrapper } from '../../TemplateContext';
 import Schema from '../../controllers/document/schema';
 import { HtmlSections } from './DocSegments';
 
-import DragDropByHandle from '../../../__feature__/DragDropByHandle';
+// import DragDropByHandle from '../../../__feature__/DragDropByHandle';
 
 import * as templateState from '../../../../app/redux/state';
 import * as actions from './../../redux/actions';
