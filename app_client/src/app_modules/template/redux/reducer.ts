@@ -35,7 +35,7 @@ export default function reducer(state = initialState, action) {
       const newStateSuccess = {
         ...state,
         annotationStatus: 'success',
-        recentAnnotations: action.payload.annotations.length
+        recentAnnotations: 1
       }
       return newStateSuccess;
     }

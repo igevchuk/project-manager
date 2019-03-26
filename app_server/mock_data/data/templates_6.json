@@ -358,7 +358,26 @@
           "isVariable": false,
           "t": "This is a variant text segment."
         }
-      ]
+      ],
+      "tagColors": [
+        {
+          "id": "0",
+          "name": "Blue Gray",
+          "value": "#006064|#E0F7FA"
+        },
+        {
+          "id": "1",
+          "name": "Orange",
+          "value": "#311B92|#EDE7F6"
+        },
+        {
+          "id": "2",
+          "name": "Purple",
+          "value": "#F57F17|#FFFDE7"
+        }
+      ],
+      "annotations": [],
+      "tags": []
     }
   ]
 }
