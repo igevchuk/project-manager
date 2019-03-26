@@ -279,6 +279,10 @@ export const ColorSelect = styled(Dropdown.Menu)`
   height: 255px;
   overflow-y: auto;
 
+  &&&& {
+    top: 36px!important;
+  }
+
   .color-list {
     padding: 10px 16px;
     cursor: pointer;
