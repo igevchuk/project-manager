@@ -6,6 +6,7 @@ import { v4 } from 'uuid';
 import { DragDropContext } from 'react-beautiful-dnd';
 import update from 'immutability-helper';
 import '@atlaskit/css-reset';
+import { contextWrapper } from '../../TemplateContext';
 
 import VariantGroup from './VariantGroup';
 import Variant from './VariantInitial';
@@ -59,6 +60,7 @@ type segmentSource = {
 };
 interface IVariantsProps {
   segmentVariants: segmentSource[];
+  variants: segmentSource[];
   onEscapeOutside?: () => void;
   // onUpdateB: () => {};
 }
@@ -75,7 +77,7 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
 
     const variants = new VariantSchema(this.props.segmentVariants);
     variants.initVariants();
-    console.log(variants);
+    // console.log(variants);
 
     this.state = {
       segmentVariants: props.segmentVariants,
@@ -207,6 +209,7 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
   public render() {
     const { onEscapeOutside, ...props } = this.props;
     const { segmentVariants } = this.state;
+    console.log(this.props.variants);
 
     const standardVariant = segmentVariants.filter(segmentVariant => {
       return segmentVariant.segment.variantIsDefault;
@@ -287,4 +290,4 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
   }
 }
 
-export default Variants;
+export default contextWrapper(Variants);

@@ -17,6 +17,7 @@ export class TemplateConsumer extends React.Component<ITemplateProps> {
       return 'loading ....';
     }
 
+    console.log(this.props);
     return <Entry />;
   }
 }

@@ -52,7 +52,6 @@ export default function reducer(state = initialState, action) {
           renderBlocks,
           variants
         };
-        // console.log(newState);
         return newState;
       }
 
@@ -72,20 +71,21 @@ export default function reducer(state = initialState, action) {
       };
       return newState;
     }
-    case 'FETCH_FORM_FULFILLED': {
+    case 'template/FETCH_FORM_FULFILLED': {
       const newState = {
         ...state,
         activeSegId: action.payload.id
       };
       console.log(state);
-      return state;
+      return newState;
     }
 
-    case 'EDIT_VARIANT_TITLE': {
+    case 'template/EDIT_VARIANT_TITLE': {
       const payload = action.payload as {
         segmentId: '';
         variantDescription: '';
       };
+      // console.log(state.variants);
 
       const segmentIndex = state.template.textSegments.findIndex(
         segment => segment.id === payload.segmentId
@@ -103,13 +103,52 @@ export default function reducer(state = initialState, action) {
         }
       });
 
-      console.log(newTemplate);
+      const variants = state.variants.map((variant, index) => {
+        const segmentSource = variant.find(
+          dataSource => dataSource.segment.id === payload.segmentId
+        );
+        return { index, segmentSource };
+      });
 
-      const renderBlocks = rederedBlocks(newTemplate);
+      const variantIndex = variants.findIndex(
+        variant => variant.segmentSource !== undefined
+      );
+      const variant = state.variants[variantIndex];
+
+      const segmentSourceIndex = variant.findIndex(
+        segmentSource => segmentSource.segment.id === payload.segmentId
+      );
+      const segmentSource = variant[segmentSourceIndex];
+
+      const newSegmentSource = update(segmentSource, {
+        segment: {
+          variantDescription: { $set: payload.variantDescription }
+        }
+      });
+
+      const newVariant = update(variant, {
+        $splice: [
+          [segmentSourceIndex, 1],
+          [segmentSourceIndex, 0, newSegmentSource]
+        ]
+      });
+
+      const newVariants = update(state.variants, {
+        $splice: [[variantIndex, 1], [variantIndex, 0, newVariant]]
+      });
+
+      // console.log(variant);
+      // console.log(segmentSource);
+      // console.log(newSegmentSource);
+      // console.log(newVariant);
+      // console.log(newVariants);
+
+      const newRenderBlocks = rederedBlocks(newTemplate);
       const newState = {
         ...state,
         template: newTemplate,
-        renderBlocks
+        renderBlocks: newRenderBlocks,
+        variants: newVariants
       };
 
       console.log(newState);

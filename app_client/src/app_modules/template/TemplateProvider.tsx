@@ -14,4 +14,6 @@ const TemplateProvider: React.SFC = () => {
   );
 };
 
-export default DragDropContext(HTML5Backend)(TemplateProvider);
+// export default DragDropContext(HTML5Backend)(TemplateProvider);
+
+export default TemplateProvider;

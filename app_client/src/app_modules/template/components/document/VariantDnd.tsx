@@ -40,7 +40,7 @@ interface IVariantDndProps {
 }
 
 const VariantDnd: React.SFC<IVariantDndProps> = props => {
-  // console.log(props.variant.segment);
+  console.log(props.variant);
   const handleEditTitle = ({ target }) => {
     // props.appDispatch({
     //   type: 'FETCH_FORM_FULFILLED',
@@ -52,7 +52,7 @@ const VariantDnd: React.SFC<IVariantDndProps> = props => {
 
     // console.log(props.blocks);
     props.appDispatch({
-      type: 'EDIT_VARIANT_TITLE',
+      type: 'template/EDIT_VARIANT_TITLE',
       payload: {
         segmentId: props.variant.segment.id,
         variantDescription: target.value

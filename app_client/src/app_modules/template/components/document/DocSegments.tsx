@@ -105,31 +105,29 @@ const DocSegments: React.SFC<ISectionProps> = props => {
   const [docBlocks, setDocBlocks] = React.useState(props.blocks);
   const [variants, setVariants] = React.useState(props.variants);
 
-  const [segmentSources, setSegmentSources] = React.useState(
-    [] as segmentSource[][]
-  );
+  // const [segmentSources, setSegmentSources] = React.useState(
+  //   [] as segmentSource[][]
+  // );
 
   React.useEffect(() => {
     // console.log(props.variants);
-
-    const sources: segmentSource[][] = [];
-    if (segmentSources.length === 0) {
-      props.blocks.map(block => {
-        sources.push(block.segments);
-      });
-
-      setSegmentSources(sources);
-    }
+    // const sources: segmentSource[][] = [];
+    // if (segmentSources.length === 0) {
+    //   props.blocks.map(block => {
+    //     sources.push(block.segments);
+    //   });
+    //   setSegmentSources(sources);
+    // }
   });
 
-  const renewSegmentSources = () => {
-    const sources: segmentSource[][] = [];
-    props.blocks.map(block => {
-      sources.push(block.segments);
-    });
+  // const renewSegmentSources = () => {
+  //   const sources: segmentSource[][] = [];
+  //   props.blocks.map(block => {
+  //     sources.push(block.segments);
+  //   });
 
-    setSegmentSources(sources);
-  };
+  //   setSegmentSources(sources);
+  // };
 
   const handleClick = (value: segmentSource): void => {
     const isVariant = activeSegment.segment.id === value.segment.id;
@@ -160,11 +158,8 @@ const DocSegments: React.SFC<ISectionProps> = props => {
     index: number
   ) => {
     const variantIsDefault = segmentNode.segment.variantIsDefault;
-    const variants = segmentSources[blockOrder];
-
-    // const variantsa = variants[blockOrder];
-
-    // console.log(variantsa);
+    const currentVariants = variants[blockOrder];
+    // console.log(currentVariants);
 
     const segment = (isActive: boolean = false) => (
       <SegmentNode
@@ -181,7 +176,7 @@ const DocSegments: React.SFC<ISectionProps> = props => {
           ))}
         </SegmentHover>
         <VariantCount key={v4()} className="variant-count">
-          {variants && variants.length - 1} <CompareArrows />
+          {currentVariants && currentVariants.length - 1} <CompareArrows />
         </VariantCount>
       </SegmentNode>
     );
@@ -189,7 +184,7 @@ const DocSegments: React.SFC<ISectionProps> = props => {
     const variant = () => (
       <Variants
         key={v4()}
-        segmentVariants={variants}
+        segmentVariants={currentVariants}
         onEscapeOutside={handleEscapeOutside}
       />
     );
@@ -203,7 +198,7 @@ const DocSegments: React.SFC<ISectionProps> = props => {
     }
 
     if (activeSegment.isVariant) {
-      // renewSegmentSources();
+      console.log(currentVariants);
       return variant();
     } else {
       return segment(true);
@@ -211,7 +206,7 @@ const DocSegments: React.SFC<ISectionProps> = props => {
   };
 
   const getSegments = (block: block) => {
-    // console.log('rending');
+    // console.log('rending getSegments');
 
     if (activeSegment.canDrag) {
       // textSegment drag and drop goes here
@@ -230,7 +225,7 @@ const DocSegments: React.SFC<ISectionProps> = props => {
                     index={index}
                     segmentNode={segmentNode}
                     blockOrder={block.order}
-                    segmentSources={segmentSources}
+                    segmentSources={variants}
                     activeSegment={activeSegment}
                     handleClick={handleClick}
                   />

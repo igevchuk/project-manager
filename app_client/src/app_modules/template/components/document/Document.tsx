@@ -16,6 +16,7 @@ interface IContentProps {
   templateDispatch?: React.Dispatch<any>;
   activeSeg: string;
   variants: segmentSource[][];
+  template: templateState.template;
 }
 
 class TemplateContent extends React.PureComponent<IContentProps> {
@@ -35,9 +36,8 @@ class TemplateContent extends React.PureComponent<IContentProps> {
   };
 
   public render() {
-    // if (!this.props.blocks) {
-    //   return 'loading ....';
-    // }
+    // console.log('this.props.variants');
+    // console.log(this.props.variants);
 
     const htmlSections = this.renderDoc(this.props.blocks);
 
@@ -49,10 +49,10 @@ class TemplateContent extends React.PureComponent<IContentProps> {
             <StyledDocument>
               <Segment basic={true}>{htmlSections}</Segment>
               <button
-                hidden={true}
+                hidden={false}
                 onClick={() =>
                   this.props.appDispatch({
-                    type: 'FETCH_FORM_FULFILLED',
+                    type: 'template/FETCH_FORM_FULFILLED',
                     payload: {
                       id: '722d4399-12cb-497f-8e29-5f1dc08b0230',
                       name: 'this is name asd'

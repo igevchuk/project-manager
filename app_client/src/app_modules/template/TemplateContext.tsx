@@ -31,16 +31,16 @@ const TemplateProvider: React.SFC<ITemplateProps> = props => {
     variants: props.variants
   });
 
-  const [subState, templateDispatch] = React.useReducer(templateReducer, {
-    ...segmentState
-  });
+  // const [subState, templateDispatch] = React.useReducer(templateReducer, {
+  //   ...segmentState
+  // });
 
-  const provider = (() => {
-    const variant = () => (
+  const provider = () => {
+    const variant = (
       <TemplateContext.Provider
         value={{
+          // templateDispatch,
           appDispatch,
-          templateDispatch,
           template: props.template,
           blocks: props.blocks,
           variants: props.variants
@@ -50,10 +50,10 @@ const TemplateProvider: React.SFC<ITemplateProps> = props => {
       </TemplateContext.Provider>
     );
 
-    return variant();
-  })();
+    return variant;
+  };
 
-  return provider;
+  return provider();
 };
 
 const mapStateToProps = appState => {

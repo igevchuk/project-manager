@@ -7,7 +7,7 @@ import Search from './outline/Search';
 import Searchbox from './outline/Searchbox';
 import Header from './header/Header';
 import Toolbar from './toolbar/Toolbar';
-import { contextWrapper } from './../TemplateContext';
+import TemplateProvider from './../TemplateContext';
 
 import * as state from '../../../app/redux/state';
 import * as actions from './../redux/actions';
@@ -42,7 +42,7 @@ const Entry: React.SFC<IProps> = props => {
 
   const entry = () => {
     const entryContent = () => (
-      <div>
+      <TemplateProvider>
         <Header template={props.template} />
         <Toolbar />
 
@@ -65,7 +65,7 @@ const Entry: React.SFC<IProps> = props => {
             <Sidebar template={props.template} />
           </StyledItem>
         </StyledGrids>
-      </div>
+      </TemplateProvider>
     );
 
     return entryContent();
@@ -74,4 +74,4 @@ const Entry: React.SFC<IProps> = props => {
   return entry();
 };
 
-export default contextWrapper(Entry);
+export default Entry;
