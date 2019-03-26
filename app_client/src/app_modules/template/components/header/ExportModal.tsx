@@ -30,6 +30,8 @@ const formatOptions = [
   },
 ]
 
+const modalWidth = { width: '852px' }
+
 interface IProps {
   open: boolean;
   templateName: string;
@@ -116,6 +118,7 @@ const ExportModal: React.FunctionComponent<IProps> = (props) => {
     <Modal
       open={open}
       onClose={handleClose}
+      style={modalWidth}
     >
       <ModalBody>
         <div className='left-col'>
