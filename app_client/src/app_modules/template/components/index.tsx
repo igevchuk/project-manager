@@ -7,7 +7,7 @@ import Search from './outline/Search';
 import Searchbox from './outline/Searchbox';
 import Header from './header/Header';
 import Toolbar from './toolbar/Toolbar';
-import TemplateProvider from './../TemplateContext';
+import { Provider, contextWrapper } from './../TemplateContext';
 
 import * as state from '../../../app/redux/state';
 import * as actions from './../redux/actions';
@@ -26,12 +26,20 @@ type segmentSource = {
 };
 
 interface IProps {
-  template?: state.template;
-  blocks?: state.renderBlock[];
-  variants?: segmentSource[][];
+  template: state.template;
+  renderBlocks: state.renderBlock[];
+  variants: segmentSource[][];
 }
 
 const Entry: React.SFC<IProps> = props => {
+  console.log(props);
+  const [templateState, appDispatch] = React.useReducer(appReducer, {
+    ...appState,
+    template: props.template,
+    renderBlocks: props.renderBlocks,
+    variants: props.variants
+  });
+
   const [subState, templateDispatch] = React.useReducer(templateReducer, {
     ...segmentState
   });
@@ -41,13 +49,13 @@ const Entry: React.SFC<IProps> = props => {
   const showOutline = () => templateDispatch(actions.enableShowOutline());
 
   const entry = () => {
-    const entryContent = () => (
-      <TemplateProvider>
+    const entryContent = (
+      <Provider value={{ templateState, appDispatch }}>
         <Header template={props.template} />
         <Toolbar />
 
         <StyledGrids>
-          <StyledOutline
+          {/* <StyledOutline
             className="outline"
             magicStyling={magicStyling}
             zIndex={zIndex}
@@ -55,23 +63,23 @@ const Entry: React.SFC<IProps> = props => {
             <Outline template={props.template} />
             <Searchbox />
             <Document isOutline={true} activeSeg={appState.activeSegId} />
-          </StyledOutline>
+          </StyledOutline> */}
 
           <StyledItem className="blocks" magicStyling={magicStyling}>
             <Document isOutline={false} />
           </StyledItem>
 
-          <StyledItem>
+          {/* <StyledItem>
             <Sidebar template={props.template} />
-          </StyledItem>
+          </StyledItem> */}
         </StyledGrids>
-      </TemplateProvider>
+      </Provider>
     );
 
-    return entryContent();
+    return entryContent;
   };
 
-  return entry();
+  return <div>{entry()}</div>;
 };
 
-export default Entry;
+export default contextWrapper(Entry);

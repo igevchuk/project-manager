@@ -21,7 +21,7 @@ export type renderBlock = {
 };
 
 export type IState = {
-  isLocal?: boolean;
+  isLocal: boolean;
   activeSegId: uuid;
   template: template;
   renderBlocks: renderBlock[];

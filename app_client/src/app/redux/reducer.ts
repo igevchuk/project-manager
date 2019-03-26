@@ -29,7 +29,7 @@ export const initialState: IState = {
   isLocal: true,
   activeSegId: '',
   template: {} as template,
-  renderBlocks: [] as block[],
+  renderBlocks: [] as templateState.renderBlock[],
   variants: [] as segmentSource[][]
 };
 

@@ -8,12 +8,13 @@ import '@atlaskit/css-reset';
 
 import * as state from '../../app/redux/state';
 import Entry from './components/index';
-import TemplateProvider from './TemplateProvider';
+// import TemplateProvider from './TemplateProvider';
+import { Provider } from './TemplateContext';
 
 const TemplateContext = React.createContext({});
 interface ITemplateProps {
   template: state.template;
-  blocks: state.renderBlock[];
+  renderBlocks: state.renderBlock[];
   variants: state.segmentSource[][];
 }
 class Template extends React.Component<ITemplateProps> {
@@ -23,11 +24,19 @@ class Template extends React.Component<ITemplateProps> {
     }
 
     return (
-      <Entry
-        template={this.props.template}
-        blocks={this.props.blocks}
-        variants={this.props.variants}
-      />
+      <Provider
+        value={{
+          template: this.props.template,
+          renderBlocks: this.props.renderBlocks,
+          variants: this.props.variants
+        }}
+      >
+        <Entry
+        // template={this.props.template}
+        // blocks={this.props.blocks}
+        // variants={this.props.variants}
+        />
+      </Provider>
     );
     // return <TemplateProvider />;
   }
@@ -35,10 +44,10 @@ class Template extends React.Component<ITemplateProps> {
 
 const mapStateToProps = appState => {
   const template = appState.appReducer.template;
-  const blocks = appState.appReducer.renderBlocks;
+  const renderBlocks = appState.appReducer.renderBlocks;
   const variants = appState.appReducer.variants;
 
-  return { template, blocks, variants };
+  return { template, renderBlocks, variants };
 };
 const TemplateContainer = connect(mapStateToProps)(Template);
 

@@ -17,6 +17,7 @@ interface IContentProps {
   activeSeg: string;
   variants: segmentSource[][];
   template: templateState.template;
+  templateState: any;
 }
 
 class TemplateContent extends React.PureComponent<IContentProps> {
@@ -36,9 +37,10 @@ class TemplateContent extends React.PureComponent<IContentProps> {
   };
 
   public render() {
-    // console.log('this.props.variants');
-    // console.log(this.props.variants);
+    console.log('this.props.variants');
+    console.log(this.props.templateState);
 
+    return <div>dddd</div>;
     const htmlSections = this.renderDoc(this.props.blocks);
 
     return (
