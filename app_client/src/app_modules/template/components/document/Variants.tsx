@@ -76,13 +76,13 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
   constructor(props: IVariantsProps) {
     super(props);
 
-    const variants = new VariantSchema(this.props.segmentVariants);
-    variants.initVariants();
-    // console.log(variants);
+    const taskDataNew = new VariantSchema(this.props.segmentVariants);
+    taskDataNew.initVariants();
+    console.log(taskDataNew);
 
     this.state = {
       segmentVariants: props.segmentVariants,
-      taskDataNew: variants,
+      taskDataNew,
       taskData: initialData
     };
   }
@@ -116,7 +116,6 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
     if (!destination) {
       return;
     }
-
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
@@ -134,8 +133,15 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
     const finishColomn = this.state.taskDataNew.columns[finishColomnIndex];
 
     if (startColomn === finishColomn) {
-      const newTaskIds = Array.from((startColomn as any).taskIds);
+      const newTaskIds = Array.from(
+        (startColomn as {
+          id: string;
+          title: string;
+          taskIds: string[];
+        }).taskIds
+      );
 
+      debugger;
       newTaskIds.splice(source.index, 1);
       newTaskIds.splice(destination.index, 0, draggableId);
 
@@ -143,15 +149,42 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
         ...startColomn,
         taskIds: newTaskIds
       };
+      console.log(newColumn);
 
-      const newData = update(this.state.taskDataNew, {
-        columns: {
-          $splice: [
-            [startColomnIndex, 1],
-            [startColomnIndex, 0, newColumn as any]
-          ]
-        }
-      });
+      // const newData = update(this.state.taskDataNew, {
+      //   columns: {
+      //     $splice: [[startColomnIndex, 1], [startColomnIndex, 0, newColumn]]
+      //   }
+      // });
+
+      const newTaskDataNew = Array.from(this.state.taskDataNew.columns);
+
+      newTaskDataNew.splice(startColomnIndex, 1);
+      newTaskDataNew.splice(startColomnIndex, 0, newColumn);
+
+      const newData = {
+        ...this.state.taskDataNew,
+        columns: newTaskDataNew
+      };
+
+      console.log(newData);
+
+      // const newData = update(taskDataNew, {
+      //   columns: {
+      //     $splice: [
+      //       [startColomnIndex, 1],
+      //       [
+      //         startColomnIndex,
+      //         0,
+      //         newColumn as {
+      //           id: string;
+      //           title: string;
+      //           taskIds: string[];
+      //         }
+      //       ]
+      //     ]
+      //   }
+      // });
 
       const newState = {
         ...this.state,
@@ -163,7 +196,7 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
     }
 
     // Moving from one list to another
-    console.log(finishColomn);
+    console.log('finishColomn');
     const startTaskIds = Array.from(startColomn.taskIds);
     startTaskIds.splice(source.index, 1);
     startTaskIds.splice(0, 0, finishColomn.taskIds[0]);
@@ -207,7 +240,7 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
   public render() {
     const { onEscapeOutside, ...props } = this.props;
     const { segmentVariants } = this.state;
-    console.log(this.props.segmentVariants);
+    // console.log(this.props.segmentVariants);
 
     const standardVariant = segmentVariants.filter(segmentVariant => {
       return segmentVariant.segment.variantIsDefault;

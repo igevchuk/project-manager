@@ -101,36 +101,8 @@ const initialState = {
 };
 
 const DocSegments: React.SFC<ISectionProps> = props => {
-  // console.log('currentVariants');
-  // console.log(props.variants);
-
   const [activeSegment, setActiveSegment] = React.useState(initialState);
   const [docBlocks, setDocBlocks] = React.useState(props.blocks);
-  // const [variants, setVariants] = React.useState(props.variants);
-
-  // const [segmentSources, setSegmentSources] = React.useState(
-  //   [] as segmentSource[][]
-  // );
-
-  React.useEffect(() => {
-    // console.log(props.variants);
-    // const sources: segmentSource[][] = [];
-    // if (segmentSources.length === 0) {
-    //   props.blocks.map(block => {
-    //     sources.push(block.segments);
-    //   });
-    //   setSegmentSources(sources);
-    // }
-  });
-
-  // const renewSegmentSources = () => {
-  //   const sources: segmentSource[][] = [];
-  //   props.blocks.map(block => {
-  //     sources.push(block.segments);
-  //   });
-
-  //   setSegmentSources(sources);
-  // };
 
   const handleClick = (value: segmentSource): void => {
     const isVariant = activeSegment.segment.id === value.segment.id;

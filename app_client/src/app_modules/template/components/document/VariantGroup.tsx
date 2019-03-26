@@ -33,8 +33,8 @@ interface IVariantGroupProps {
 }
 
 const VariantGroup: React.SFC<IVariantGroupProps> = props => {
-  console.log('props.variants');
-  console.log(props.segmentVariants);
+  // console.log('props.variants');
+  // console.log(props.segmentVariants);
 
   return (
     <Droppable droppableId={props.column.id}>

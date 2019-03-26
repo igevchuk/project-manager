@@ -27,7 +27,7 @@ type block = {
 const isLocal = process.env.NODE_ENV === 'production' ? false : true;
 export const initialState: IState = {
   // isLocal: process.env.NODE_ENV === 'production' ? false : true,
-  isLocal: true,
+  isLocal: false,
   activeSegId: '',
   template: {} as template,
   renderBlocks: [] as templateState.renderBlock[],

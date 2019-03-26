@@ -74,6 +74,7 @@ const VariantDnd: React.SFC<IVariantDndProps> = props => {
           <Form.Field>
             <ContentEditable
               html={props.variant.segment.variantDescription}
+              // html={props.variant.segment.id}
               disabled={false}
               onChange={handleEditTitle}
             />
