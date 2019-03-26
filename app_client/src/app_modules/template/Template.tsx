@@ -8,7 +8,6 @@ import '@atlaskit/css-reset';
 
 import * as state from '../../app/redux/state';
 import Entry from './components/index';
-// import TemplateProvider from './TemplateProvider';
 import { Provider } from './TemplateContext';
 
 const TemplateContext = React.createContext({});
@@ -38,7 +37,6 @@ class Template extends React.Component<ITemplateProps> {
         />
       </Provider>
     );
-    // return <TemplateProvider />;
   }
 }
 

@@ -101,9 +101,12 @@ const initialState = {
 };
 
 const DocSegments: React.SFC<ISectionProps> = props => {
+  console.log('currentVariants');
+  console.log(props.variants);
+
   const [activeSegment, setActiveSegment] = React.useState(initialState);
   const [docBlocks, setDocBlocks] = React.useState(props.blocks);
-  const [variants, setVariants] = React.useState(props.variants);
+  // const [variants, setVariants] = React.useState(props.variants);
 
   // const [segmentSources, setSegmentSources] = React.useState(
   //   [] as segmentSource[][]
@@ -158,7 +161,7 @@ const DocSegments: React.SFC<ISectionProps> = props => {
     index: number
   ) => {
     const variantIsDefault = segmentNode.segment.variantIsDefault;
-    const currentVariants = variants[blockOrder];
+    const currentVariants = props.variants[blockOrder];
     // console.log(currentVariants);
 
     const segment = (isActive: boolean = false) => (
@@ -225,7 +228,7 @@ const DocSegments: React.SFC<ISectionProps> = props => {
                     index={index}
                     segmentNode={segmentNode}
                     blockOrder={block.order}
-                    segmentSources={variants}
+                    segmentSources={props.variants}
                     activeSegment={activeSegment}
                     handleClick={handleClick}
                   />

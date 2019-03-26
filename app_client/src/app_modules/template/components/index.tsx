@@ -32,7 +32,7 @@ interface IProps {
 }
 
 const Entry: React.SFC<IProps> = props => {
-  console.log(props);
+  // console.log(props);
   const [templateState, appDispatch] = React.useReducer(appReducer, {
     ...appState,
     template: props.template,
@@ -49,6 +49,8 @@ const Entry: React.SFC<IProps> = props => {
   const showOutline = () => templateDispatch(actions.enableShowOutline());
 
   const entry = () => {
+    console.log(templateState);
+
     const entryContent = (
       <Provider value={{ templateState, appDispatch }}>
         <Header template={props.template} />

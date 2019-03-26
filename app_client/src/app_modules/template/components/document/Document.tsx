@@ -9,6 +9,12 @@ type segmentSource = {
   runs: templateState.run[];
   segment: templateState.textSegment;
 };
+
+type appState = {
+  template: templateState.template;
+  renderBlocks: templateState.renderBlock[];
+  variants: segmentSource[][];
+};
 interface IContentProps {
   blocks: templateState.renderBlock[];
   isOutline: boolean;
@@ -17,7 +23,7 @@ interface IContentProps {
   activeSeg: string;
   variants: segmentSource[][];
   template: templateState.template;
-  templateState: any;
+  templateState: appState;
 }
 
 class TemplateContent extends React.PureComponent<IContentProps> {
@@ -25,13 +31,14 @@ class TemplateContent extends React.PureComponent<IContentProps> {
     super(props);
   }
 
-  public renderDoc = (blocks: templateState.renderBlock[]) => {
-    // console.log(this.props.variants);
+  public renderDoc = (blocks?: templateState.renderBlock[]) => {
+    console.log(this.props.templateState.variants);
+
     return (
       <DocSegments
-        blocks={blocks}
+        blocks={this.props.templateState.renderBlocks}
+        variants={this.props.templateState.variants}
         appDispatch={this.props.appDispatch}
-        variants={this.props.variants}
       />
     );
   };
@@ -40,8 +47,7 @@ class TemplateContent extends React.PureComponent<IContentProps> {
     console.log('this.props.variants');
     console.log(this.props.templateState);
 
-    return <div>dddd</div>;
-    const htmlSections = this.renderDoc(this.props.blocks);
+    const htmlSections = this.renderDoc();
 
     return (
       <div>
