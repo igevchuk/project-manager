@@ -3,6 +3,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Icon } from 'semantic-ui-react';
 import Button from '@material-ui/core/Button';
 import EditingModeButton from './EditingModeButton';
+import AnnotationDropDown from "./AnnotationDropDown";
 import StyledHeader, {
   HeaderColumn,
   HeaderActions,
@@ -71,6 +72,7 @@ class Header extends React.Component<IHeaderProps, {}> {
                 </small>
               </h2>
             </a>
+            <AnnotationDropDown template={template}/>
           </HeaderColumn>
 
           <HeaderColumn>
