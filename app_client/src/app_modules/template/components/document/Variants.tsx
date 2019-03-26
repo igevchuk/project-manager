@@ -61,6 +61,7 @@ type segmentSource = {
 interface IVariantsProps {
   segmentVariants: segmentSource[];
   variants: segmentSource[];
+  appDispatch: React.Dispatch<any>;
   onEscapeOutside?: () => void;
   // onUpdateB: () => {};
 }
@@ -87,15 +88,12 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
   }
 
   public handleAdd = () => {
-    alert('handleAdd');
-    // const newVariant = {
-    //   title: 'New Variant',
-    //   text: '',
-    //   seq: this.state.variants.length + 1
-    // };
-    // this.setState({
-    //   variants: [...this.state.variants, newVariant]
-    // });
+    this.props.appDispatch({
+      type: 'emplate/ADD_TEXTSEGMENT_VARIANT',
+      payload: {
+        segmentId: this.props.segmentVariants[0].segment.id
+      }
+    });
   };
 
   public renderVariantForm = (variant: segmentSource, isDefault: boolean) => {
@@ -209,7 +207,7 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
   public render() {
     const { onEscapeOutside, ...props } = this.props;
     const { segmentVariants } = this.state;
-    console.log(this.props.variants);
+    console.log(this.props.segmentVariants);
 
     const standardVariant = segmentVariants.filter(segmentVariant => {
       return segmentVariant.segment.variantIsDefault;

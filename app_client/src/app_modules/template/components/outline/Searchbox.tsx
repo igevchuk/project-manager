@@ -1,20 +1,8 @@
 import * as React from 'react';
-import { Dropdown } from 'semantic-ui-react';
-
-// import { languageOptions } from '../common'
-const languageOptions = [{ key: 'Arabic', text: 'Arabic', value: 'Arabic' }];
+import { Input, Dropdown } from 'semantic-ui-react';
 
 const DropdownExampleSearchDropdown = () => (
-  <Dropdown
-    button={true}
-    className="icon"
-    fluid={true}
-    labeled={true}
-    icon="search"
-    options={languageOptions}
-    search={true}
-    text="Search ..."
-  />
+  <Input icon="search" iconPosition="left" placeholder="Search..." />
 );
 
 export default DropdownExampleSearchDropdown;

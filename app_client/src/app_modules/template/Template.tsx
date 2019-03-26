@@ -30,11 +30,7 @@ class Template extends React.Component<ITemplateProps> {
           variants: this.props.variants
         }}
       >
-        <Entry
-        // template={this.props.template}
-        // blocks={this.props.blocks}
-        // variants={this.props.variants}
-        />
+        <Entry />
       </Provider>
     );
   }

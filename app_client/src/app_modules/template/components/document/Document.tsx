@@ -32,7 +32,7 @@ class TemplateContent extends React.PureComponent<IContentProps> {
   }
 
   public renderDoc = (blocks?: templateState.renderBlock[]) => {
-    console.log(this.props.templateState.variants);
+    // console.log(this.props.templateState.variants);
 
     return (
       <DocSegments
@@ -44,8 +44,8 @@ class TemplateContent extends React.PureComponent<IContentProps> {
   };
 
   public render() {
-    console.log('this.props.variants');
-    console.log(this.props.templateState);
+    // console.log('this.props.variants');
+    // console.log(this.props.templateState);
 
     const htmlSections = this.renderDoc();
 
@@ -57,7 +57,7 @@ class TemplateContent extends React.PureComponent<IContentProps> {
             <StyledDocument>
               <Segment basic={true}>{htmlSections}</Segment>
               <button
-                hidden={false}
+                hidden={true}
                 onClick={() =>
                   this.props.appDispatch({
                     type: 'template/FETCH_FORM_FULFILLED',

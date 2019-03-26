@@ -101,8 +101,8 @@ const initialState = {
 };
 
 const DocSegments: React.SFC<ISectionProps> = props => {
-  console.log('currentVariants');
-  console.log(props.variants);
+  // console.log('currentVariants');
+  // console.log(props.variants);
 
   const [activeSegment, setActiveSegment] = React.useState(initialState);
   const [docBlocks, setDocBlocks] = React.useState(props.blocks);

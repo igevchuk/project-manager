@@ -49,15 +49,13 @@ const Entry: React.SFC<IProps> = props => {
   const showOutline = () => templateDispatch(actions.enableShowOutline());
 
   const entry = () => {
-    console.log(templateState);
-
     const entryContent = (
       <Provider value={{ templateState, appDispatch }}>
         <Header template={props.template} />
         <Toolbar />
 
         <StyledGrids>
-          {/* <StyledOutline
+          <StyledOutline
             className="outline"
             magicStyling={magicStyling}
             zIndex={zIndex}
@@ -65,7 +63,7 @@ const Entry: React.SFC<IProps> = props => {
             <Outline template={props.template} />
             <Searchbox />
             <Document isOutline={true} activeSeg={appState.activeSegId} />
-          </StyledOutline> */}
+          </StyledOutline>
 
           <StyledItem className="blocks" magicStyling={magicStyling}>
             <Document isOutline={false} />
