@@ -18,21 +18,14 @@ import appReducer, {
 import templateReducer, {
   initialState as segmentState
 } from '../redux/reducer';
-import * as templateState from '../../../app/redux/state';
-
-type segmentSource = {
-  runs: templateState.run[];
-  segment: templateState.textSegment;
-};
 
 interface IProps {
   template: state.template;
   renderBlocks: state.renderBlock[];
-  variants: segmentSource[][];
+  variants: state.segmentSource[][];
 }
 
 const Entry: React.SFC<IProps> = props => {
-  // console.log(props);
   const [templateState, appDispatch] = React.useReducer(appReducer, {
     ...appState,
     template: props.template,
@@ -51,7 +44,7 @@ const Entry: React.SFC<IProps> = props => {
   const entry = () => {
     const entryContent = (
       <Provider value={{ templateState, appDispatch }}>
-        <Header template={props.template} />
+        <Header template={templateState.template} />
         <Toolbar />
 
         <StyledGrids>
@@ -60,7 +53,7 @@ const Entry: React.SFC<IProps> = props => {
             magicStyling={magicStyling}
             zIndex={zIndex}
           >
-            <Outline template={props.template} />
+            <Outline template={templateState.template} />
             <Searchbox />
             <Document isOutline={true} activeSeg={appState.activeSegId} />
           </StyledOutline>
@@ -69,16 +62,15 @@ const Entry: React.SFC<IProps> = props => {
             <Document isOutline={false} />
           </StyledItem>
 
-          {/* <StyledItem>
-            <Sidebar template={props.template} />
-          </StyledItem> */}
+          <StyledItem>
+            <Sidebar template={templateState.template} />
+          </StyledItem>
         </StyledGrids>
       </Provider>
     );
 
     return entryContent;
   };
-
   return <div>{entry()}</div>;
 };
 

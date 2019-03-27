@@ -21,7 +21,7 @@ interface IVariantProps {
   onUpdate: () => void;
 }
 
-class Variant extends React.PureComponent<IVariantProps, {}> {
+class VariantInitial extends React.PureComponent<IVariantProps, {}> {
   constructor(props: any) {
     super(props);
   }
@@ -70,4 +70,4 @@ class Variant extends React.PureComponent<IVariantProps, {}> {
   }
 }
 
-export default Variant;
+export default VariantInitial;

@@ -28,15 +28,22 @@ type ITemplate = {
   history?: templateState.history;
 };
 
+type segmentSource = {
+  runs: templateState.run[];
+  segment: templateState.textSegment;
+};
+
 type block = {
   order: number;
   paragraph: templateState.paragraph;
-  segments: [
-    {
-      runs: templateState.run[];
-      segment: templateState.textSegment;
-    }
-  ];
+  segments: segmentSource[];
+  variants?: segmentSource[][];
+  // segments: [
+  //   {
+  //     runs: templateState.run[];
+  //     segment: templateState.textSegment;
+  //   }
+  // ];
 };
 
 type paragraph = templateState.paragraph;
@@ -215,31 +222,8 @@ class Schema {
         id: para.id,
         order: block.sequence,
         paragraph: para,
-        // segments: [
-        //   {
-        //     activeId: '',
-        //     segmentGroup: [
-        //       {
-        //         run: [],
-        //         segment: {} // sequence = 0 and variantIsDefault = true
-        //       },
-        //       {
-        //         run: [],
-        //         segment: {} // sequence 0 and variantIsDefault = false
-        //       }
-        //     ]
-        //   },
-        //   {
-        //     // activeId: '',
-        //     segmentGroup: [
-        //       {
-        //         run: [],
-        //         segment: {} // sequence 1 and variantIsDefault = true
-        //       }
-        //     ]
-        //   }
-        // ]
-        segments: sgments
+        segments: sgments,
+        variants: Array.from([sgments])
       };
       this.sortedBlocks.push(sortedBlock);
     }

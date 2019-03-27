@@ -69,21 +69,9 @@ const DragHandle = sortableHoc.SortableHandle(() => (
   </span>
 ));
 
-type segmentSource = {
-  runs: templateState.run[];
-  segment: templateState.textSegment;
-};
-
-type block = {
-  id: string;
-  order: number;
-  paragraph: templateState.paragraph;
-  segments: segmentSource[];
-};
-
 interface ISectionProps {
-  blocks: block[];
-  variants: segmentSource[][];
+  blocks: templateState.renderBlock[];
+  // variants: templateState.segmentSource[][];
   appDispatch: React.Dispatch<any>;
 }
 
@@ -104,7 +92,10 @@ const DocSegments: React.SFC<ISectionProps> = props => {
   const [activeSegment, setActiveSegment] = React.useState(initialState);
   const [docBlocks, setDocBlocks] = React.useState(props.blocks);
 
-  const handleClick = (value: segmentSource): void => {
+  console.log(props.blocks);
+  const variants = [];
+
+  const handleClick = (value: templateState.segmentSource): void => {
     const isVariant = activeSegment.segment.id === value.segment.id;
 
     setActiveSegment({
@@ -129,11 +120,13 @@ const DocSegments: React.SFC<ISectionProps> = props => {
 
   const getSegment = (
     blockOrder: number,
-    segmentNode: segmentSource,
+    segmentNode: templateState.segmentSource,
     index: number
   ) => {
     const variantIsDefault = segmentNode.segment.variantIsDefault;
-    const currentVariants = props.variants[blockOrder];
+    // const currentVariants = props.variants[blockOrder];
+    const currentVariants = props.blocks[blockOrder].variants;
+
     // console.log(currentVariants);
 
     const segment = (isActive: boolean = false) => (
@@ -180,7 +173,7 @@ const DocSegments: React.SFC<ISectionProps> = props => {
     }
   };
 
-  const getSegments = (block: block) => {
+  const getSegments = (block: templateState.renderBlock) => {
     // console.log('rending getSegments');
 
     if (activeSegment.canDrag) {
@@ -200,7 +193,7 @@ const DocSegments: React.SFC<ISectionProps> = props => {
                     index={index}
                     segmentNode={segmentNode}
                     blockOrder={block.order}
-                    segmentSources={props.variants}
+                    segmentSources={variants}
                     activeSegment={activeSegment}
                     handleClick={handleClick}
                   />
@@ -213,13 +206,14 @@ const DocSegments: React.SFC<ISectionProps> = props => {
       );
     } else {
       // variants drag and drop goes here
-      return block.segments.map((segmentNode: segmentSource, index) =>
-        getSegment(block.order, segmentNode, index)
+      return block.segments.map(
+        (segmentNode: templateState.segmentSource, index) =>
+          getSegment(block.order, segmentNode, index)
       );
     }
   };
 
-  const getDoc = (blocks: block[]): React.ReactNode => {
+  const getDoc = (blocks: templateState.renderBlock[]): React.ReactNode => {
     const htmlSections = blocks.map(block => {
       switch (block.paragraph.properties.pStyle) {
         case PStyle.Article:

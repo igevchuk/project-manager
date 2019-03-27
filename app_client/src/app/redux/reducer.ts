@@ -1,57 +1,51 @@
 import update from 'immutability-helper';
 import { handleActions, Action } from 'redux-actions';
 import * as types from './actions';
-import { IState, template } from './state';
-import * as templateState from './state';
+import * as appState from './state';
 import { v4 } from 'uuid';
 
 import Schema from '../../app_modules/template/controllers/document/schema';
 
-type segmentSource = {
-  runs: templateState.run[];
-  segment: templateState.textSegment;
-};
+// type segmentSource = {
+//   runs: appState.run[];
+//   segment: appState.textSegment;
+// };
 
 type block = {
   id: string;
   order: number;
-  paragraph: templateState.paragraph;
-  segments: [
-    {
-      runs: templateState.run[];
-      segment: templateState.textSegment;
-    }
-  ];
+  paragraph: appState.paragraph;
+  segments: appState.segmentSource[];
+  variants: appState.segmentSource[][];
 };
 
-const isLocal = process.env.NODE_ENV === 'production' ? false : true;
-export const initialState: IState = {
-  // isLocal: process.env.NODE_ENV === 'production' ? false : true,
-  isLocal: false,
+const isLocal = true; // process.env.NODE_ENV === 'production' ? false : true;
+
+export const initialState: appState.IState = {
   activeSegId: '',
-  template: {} as template,
-  renderBlocks: [] as templateState.renderBlock[],
-  variants: [] as segmentSource[][]
+  template: {} as appState.template,
+  renderBlocks: [] as appState.renderBlock[],
+  variants: [] as appState.segmentSource[][]
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case types.FETCH_TEMPLATE_FULFILLED: {
-      if (state.isLocal) {
+      if (isLocal) {
         const templates = action.payload;
         const template = Array.from(templates)[0];
         const renderBlocks = rederedBlocks(template);
 
-        const variants: segmentSource[][] = [];
-        renderBlocks.map(block => {
-          variants.push(block.segments);
-        });
+        // const variants: segmentSource[][] = [];
+        // renderBlocks.map(block => {
+        //   variants.push(block.segments);
+        // });
 
         const newState = {
           ...state,
           template,
-          renderBlocks,
-          variants
+          renderBlocks
+          // variants
         };
         return newState;
       }
@@ -59,16 +53,16 @@ export default function reducer(state = initialState, action) {
       const template = action.payload;
       const renderBlocks = rederedBlocks(template);
 
-      const variants: segmentSource[][] = [];
-      renderBlocks.map(block => {
-        variants.push(block.segments);
-      });
+      // const variants: segmentSource[][] = [];
+      // renderBlocks.map(block => {
+      //   variants.push(block.segments);
+      // });
 
       const newState = {
         ...state,
         template: Array(template)[0],
-        renderBlocks,
-        variants
+        renderBlocks
+        // variants
       };
       return newState;
     }
@@ -143,16 +137,16 @@ export default function reducer(state = initialState, action) {
 
       const renderBlocks = rederedBlocks(newTemplateWihRun);
 
-      const variants: segmentSource[][] = [];
-      renderBlocks.map(block => {
-        variants.push(block.segments);
-      });
+      // const variants: segmentSource[][] = [];
+      // renderBlocks.map(block => {
+      //   variants.push(block.segments);
+      // });
 
       const newState = {
         ...state,
         template: newTemplateWihRun,
-        renderBlocks,
-        variants
+        renderBlocks
+        // variants
       };
 
       console.log(newState);
@@ -369,7 +363,7 @@ export default function reducer(state = initialState, action) {
 
 export const getParagraphIdBySegmentId = (
   segmentId: string,
-  template: template
+  template: appState.template
 ): string => {
   const activeSegment = template!.textSegments.find(segment => {
     return segment.id === segmentId;

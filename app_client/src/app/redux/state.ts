@@ -12,16 +12,17 @@ export type renderBlock = {
   id: string;
   order: number;
   paragraph: paragraph;
-  segments: [
-    {
-      runs: run[];
-      segment: textSegment;
-    }
-  ];
+  segments: segmentSource[];
+  variants: segmentSource[][];
+};
+
+export type appState = {
+  template: template;
+  renderBlocks: renderBlock[];
+  variants: segmentSource[][];
 };
 
 export type IState = {
-  isLocal: boolean;
   activeSegId: uuid;
   template: template;
   renderBlocks: renderBlock[];

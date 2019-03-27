@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Droppable } from 'react-beautiful-dnd';
-import { contextWrapper } from '../../TemplateContext';
 
+import { contextWrapper } from '../../TemplateContext';
 import VariantDnd from './VariantDnd';
 import * as templateState from '../../../../app/redux/state';
 
@@ -20,22 +20,18 @@ type segmentSource = {
   segment: templateState.textSegment;
 };
 
-type tsk = { id: string; content: string };
+type column = {
+  id: string;
+  title: string;
+  taskIds: string[];
+};
+
 interface IVariantGroupProps {
-  column: {
-    id: string;
-    title: string;
-    taskIds: string[];
-  };
-  tasks: tsk[];
+  column: column;
   segmentVariants: segmentSource[];
-  variants: segmentSource[];
 }
 
 const VariantGroup: React.SFC<IVariantGroupProps> = props => {
-  // console.log('props.variants');
-  // console.log(props.segmentVariants);
-
   return (
     <Droppable droppableId={props.column.id}>
       {(provided, snapshot) => (
@@ -45,12 +41,7 @@ const VariantGroup: React.SFC<IVariantGroupProps> = props => {
           isDraggingOver={snapshot.isDraggingOver}
         >
           {props.segmentVariants.map((segmentVariant, index) => (
-            <VariantDnd
-              key={index}
-              variant={segmentVariant}
-              task={{ id: segmentVariant.segment.id, content: '' }}
-              index={index}
-            />
+            <VariantDnd key={index} index={index} variant={segmentVariant} />
           ))}
           {provided.placeholder}
         </TaskList>
