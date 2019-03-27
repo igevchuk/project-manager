@@ -7,7 +7,7 @@ import Template from '../app_modules/template/TemplateProvider';
 const Routes: React.SFC = () => {
   return (
     <Router basename="/template">
-      <div style={{ marginTop: '64px' }}>
+      <div style={{ paddingTop: '64px' }}>
         <Route path="/" component={Template} />
         {/* <Route path="/" redirectTo={Template} component={Template} />
         <Route path="/templates" component={TemplateLibrary} />
