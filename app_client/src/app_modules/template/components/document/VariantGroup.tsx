@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Droppable } from 'react-beautiful-dnd';
+import { contextWrapper } from '../../TemplateContext';
 
 import VariantDnd from './VariantDnd';
 import * as templateState from '../../../../app/redux/state';
@@ -28,9 +29,13 @@ interface IVariantGroupProps {
   };
   tasks: tsk[];
   segmentVariants: segmentSource[];
+  variants: segmentSource[];
 }
 
 const VariantGroup: React.SFC<IVariantGroupProps> = props => {
+  // console.log('props.variants');
+  // console.log(props.segmentVariants);
+
   return (
     <Droppable droppableId={props.column.id}>
       {(provided, snapshot) => (
@@ -45,7 +50,6 @@ const VariantGroup: React.SFC<IVariantGroupProps> = props => {
               variant={segmentVariant}
               task={{ id: segmentVariant.segment.id, content: '' }}
               index={index}
-              // templateState={templateState}
             />
           ))}
           {provided.placeholder}
@@ -55,4 +59,4 @@ const VariantGroup: React.SFC<IVariantGroupProps> = props => {
   );
 };
 
-export default VariantGroup;
+export default contextWrapper(VariantGroup);

@@ -4,6 +4,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import { Form, Icon } from 'semantic-ui-react';
 import ContentEditable from 'react-contenteditable';
 import { contextWrapper } from '../../TemplateContext';
+import { Input } from 'semantic-ui-react';
 
 import { Editable } from './Variants.style';
 import * as templateState from '../../../../app/redux/state';
@@ -40,28 +41,23 @@ interface IVariantDndProps {
 }
 
 const VariantDnd: React.SFC<IVariantDndProps> = props => {
-  // console.log(props.variant.segment);
-  const handleEditTitle = ({ target }) => {
-    // props.appDispatch({
-    //   type: 'FETCH_FORM_FULFILLED',
-    //   payload: {
-    //     id: '722d4399-12cb-497f-8e29-5f1dc08b0230',
-    //     name: 'this is name asd'
-    //   }
-    // });
+  const editTitle = React.useRef<HTMLInputElement>(null);
 
-    // console.log(props.blocks);
+  const handleEditTitle = ({ target }) => {
     props.appDispatch({
-      type: 'EDIT_VARIANT_TITLE',
+      type: 'template/EDIT_VARIANT_TITLE',
       payload: {
         segmentId: props.variant.segment.id,
         variantDescription: target.value
       }
     });
+
+    if (editTitle && editTitle.current) {
+      editTitle.current.focus();
+    }
   };
 
   const handleEditText = ({ target }) => {
-    alert('dddd');
     // const { variant, onUpdate } = this.props;
     // const updatedVariant = { ...variant, title: target.innerHTML };
     // onUpdate(updatedVariant);
@@ -78,9 +74,11 @@ const VariantDnd: React.SFC<IVariantDndProps> = props => {
           <Form.Field>
             <ContentEditable
               html={props.variant.segment.variantDescription}
+              // html={props.variant.segment.id}
               disabled={false}
               onChange={handleEditTitle}
             />
+
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <Editable
                 onChange={handleEditText}
@@ -99,68 +97,3 @@ const VariantDnd: React.SFC<IVariantDndProps> = props => {
 };
 
 export default contextWrapper(VariantDnd);
-
-// class TemplateContent extends React.PureComponent<IVariantDndProps> {
-//   constructor(props: any) {
-//     super(props);
-//   }
-//   public handleEditTitle = ({ target }) => {
-//     this.props.appDispatch({
-//       type: 'FETCH_FORM_FULFILLED',
-//       payload: {
-//         id: '722d4399-12cb-497f-8e29-5f1dc08b0230',
-//         name: 'this is name asd'
-//       }
-//     });
-
-//     // props.appDispatch({
-//     //   type: 'EDIT_VARIANT_TITLE',
-//     //   payload: {
-//     //     segmentId: props.variant.segment.id,
-//     //     variantDescription: target.value
-//     //   }
-//     // });
-//   };
-
-//   public handleEditText = ({ target }) => {
-//     alert('dddd');
-//     // const { variant, onUpdate } = this.props;
-//     // const updatedVariant = { ...variant, title: target.innerHTML };
-//     // onUpdate(updatedVariant);
-//   };
-
-//   public render() {
-//     return (
-//       <Draggable
-//         draggableId={this.props.variant.segment.id}
-//         index={this.props.index}
-//       >
-//         {(provided, snapshot) => (
-//           <Container
-//             {...provided.draggableProps}
-//             ref={provided.innerRef}
-//             isDragging={snapshot.isDragging}
-//           >
-//             <Form.Field>
-//               <ContentEditable
-//                 html={this.props.variant.segment.variantDescription}
-//                 disabled={false}
-//                 onChange={this.handleEditTitle}
-//               />
-//               <div style={{ display: 'flex', alignItems: 'center' }}>
-//                 <Editable
-//                   onChange={this.handleEditText}
-//                   disabled={false}
-//                   html={this.props.variant.runs[0].t}
-//                 />
-//                 <Handle {...provided.dragHandleProps}>
-//                   <Icon name="move" link={true} />
-//                 </Handle>
-//               </div>
-//             </Form.Field>
-//           </Container>
-//         )}
-//       </Draggable>
-//     );
-//   }
-// }

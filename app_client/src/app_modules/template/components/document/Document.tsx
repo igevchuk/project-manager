@@ -9,6 +9,12 @@ type segmentSource = {
   runs: templateState.run[];
   segment: templateState.textSegment;
 };
+
+type appState = {
+  template: templateState.template;
+  renderBlocks: templateState.renderBlock[];
+  variants: segmentSource[][];
+};
 interface IContentProps {
   blocks: templateState.renderBlock[];
   isOutline: boolean;
@@ -16,6 +22,8 @@ interface IContentProps {
   templateDispatch?: React.Dispatch<any>;
   activeSeg: string;
   variants: segmentSource[][];
+  template: templateState.template;
+  templateState: appState;
 }
 
 class TemplateContent extends React.PureComponent<IContentProps> {
@@ -23,23 +31,23 @@ class TemplateContent extends React.PureComponent<IContentProps> {
     super(props);
   }
 
-  public renderDoc = (blocks: templateState.renderBlock[]) => {
-    // console.log(this.props.variants);
+  public renderDoc = (blocks?: templateState.renderBlock[]) => {
+    // console.log(this.props.templateState.variants);
+
     return (
       <DocSegments
-        blocks={blocks}
+        blocks={this.props.templateState.renderBlocks}
+        variants={this.props.templateState.variants}
         appDispatch={this.props.appDispatch}
-        variants={this.props.variants}
       />
     );
   };
 
   public render() {
-    // if (!this.props.blocks) {
-    //   return 'loading ....';
-    // }
+    // console.log('this.props.variants');
+    // console.log(this.props.templateState);
 
-    const htmlSections = this.renderDoc(this.props.blocks);
+    const htmlSections = this.renderDoc();
 
     return (
       <div>
@@ -52,7 +60,7 @@ class TemplateContent extends React.PureComponent<IContentProps> {
                 hidden={true}
                 onClick={() =>
                   this.props.appDispatch({
-                    type: 'FETCH_FORM_FULFILLED',
+                    type: 'template/FETCH_FORM_FULFILLED',
                     payload: {
                       id: '722d4399-12cb-497f-8e29-5f1dc08b0230',
                       name: 'this is name asd'

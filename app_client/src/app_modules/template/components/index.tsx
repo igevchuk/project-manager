@@ -7,7 +7,7 @@ import Search from './outline/Search';
 import Searchbox from './outline/Searchbox';
 import Header from './header/Header';
 import Toolbar from './toolbar/Toolbar';
-import { contextWrapper } from './../TemplateContext';
+import { Provider, contextWrapper } from './../TemplateContext';
 
 import * as state from '../../../app/redux/state';
 import * as actions from './../redux/actions';
@@ -26,12 +26,20 @@ type segmentSource = {
 };
 
 interface IProps {
-  template?: state.template;
-  blocks?: state.renderBlock[];
-  variants?: segmentSource[][];
+  template: state.template;
+  renderBlocks: state.renderBlock[];
+  variants: segmentSource[][];
 }
 
 const Entry: React.SFC<IProps> = props => {
+  // console.log(props);
+  const [templateState, appDispatch] = React.useReducer(appReducer, {
+    ...appState,
+    template: props.template,
+    renderBlocks: props.renderBlocks,
+    variants: props.variants
+  });
+
   const [subState, templateDispatch] = React.useReducer(templateReducer, {
     ...segmentState
   });
@@ -41,8 +49,8 @@ const Entry: React.SFC<IProps> = props => {
   const showOutline = () => templateDispatch(actions.enableShowOutline());
 
   const entry = () => {
-    const entryContent = () => (
-      <div>
+    const entryContent = (
+      <Provider value={{ templateState, appDispatch }}>
         <Header template={props.template} />
         <Toolbar />
 
@@ -61,17 +69,17 @@ const Entry: React.SFC<IProps> = props => {
             <Document isOutline={false} />
           </StyledItem>
 
-          <StyledItem>
+          {/* <StyledItem>
             <Sidebar template={props.template} />
-          </StyledItem>
+          </StyledItem> */}
         </StyledGrids>
-      </div>
+      </Provider>
     );
 
-    return entryContent();
+    return entryContent;
   };
 
-  return entry();
+  return <div>{entry()}</div>;
 };
 
 export default contextWrapper(Entry);

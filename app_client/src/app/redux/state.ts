@@ -21,7 +21,7 @@ export type renderBlock = {
 };
 
 export type IState = {
-  isLocal?: boolean;
+  isLocal: boolean;
   activeSegId: uuid;
   template: template;
   renderBlocks: renderBlock[];
@@ -148,20 +148,10 @@ export type tableCell = {
 };
 export type tableParagraph = {};
 
-// export type textVariant = {
-//   id?: uuid;
-//   title?: string;
-//   text?: string;
-//   sequence?: number;
-//   ref?: {
-//     segmentId?: uuid;
-//   };
-// };
-
 export type run = {
   id: uuid;
   type?: string; // Run
-  properties: {
+  properties?: {
     b?: boolean;
     i?: boolean;
     u?: boolean;
@@ -170,7 +160,7 @@ export type run = {
   };
   sequence: number;
   ref: {
-    textSegmentId?: uuid;
+    textSegmentId: uuid;
   };
 
   revisionCreatedDateTime?: Date; // 2019-01-01 14:00:05
