@@ -17,7 +17,7 @@ import Schema from '../../app_modules/template/controllers/document/schema';
 //   variants: appState.segmentSource[][];
 // };
 
-const isLocal = true; // process.env.NODE_ENV === 'production' ? false : true;
+const isLocal = false; // process.env.NODE_ENV === 'production' ? false : true;
 
 export const initialState: appState.IState = {
   activeSegId: '',
