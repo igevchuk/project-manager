@@ -14,10 +14,12 @@ export const Tab = styled(TabBase)`
   & .ui.secondary.pointing.menu .item {
     justify-content: center;
     text-align: center;
-    width: 50%;
+    // width: 32%;
     &.active {
       border-color: rgb(0, 40, 136);
     }
+    padding-right: 6%;
+    padding-left: 7%;
   }
 `;
 
@@ -25,5 +27,7 @@ export const TabPane = styled(TabBase.Pane)`
   &.ui.segment.tab {
     border: none;
     box-shadow: none;
+    width: ${props => props.tabWidth};
   }
 `;
+

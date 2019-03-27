@@ -19,14 +19,13 @@ export type renderBlock = {
 export type appState = {
   template: template;
   renderBlocks: renderBlock[];
-  // variants: segmentSource[][];
 };
 
 export type IState = {
   activeSegId: uuid;
+  tagColors: tagColor[];
   template: template;
   renderBlocks: renderBlock[];
-  // variants: segmentSource[][];
 };
 
 export type template = {
@@ -49,6 +48,9 @@ export type template = {
 
   variables?: variable[];
   history?: history;
+  tags: tag[];
+  tagColors: tagColor[];
+  annotations: annotation[];
 };
 
 export type textSegment = {
@@ -192,4 +194,24 @@ export type history = {
   runs: run[];
   // variables?: variable[];
   // history?: history;
+};
+
+export type tag = {
+  id: string;
+  name: string;
+  colour_id: string;
+};
+
+export type annotation = {
+  id: string;
+  creator: string;
+  created: string;
+  tag_id: string;
+  text_segment_uuid: string;
+};
+
+export type tagColor = {
+  id: string;
+  name: string;
+  value: string;
 };

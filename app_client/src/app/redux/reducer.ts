@@ -2,25 +2,28 @@ import update from 'immutability-helper';
 import { handleActions, Action } from 'redux-actions';
 import * as types from './actions';
 import * as appState from './state';
+import * as templateActions from '../../app_modules/template/redux/actions';
+import { IState, template, tagColor } from './state';
+// import * as templateState from './state';
 import { v4 } from 'uuid';
 
 import Schema from '../../app_modules/template/controllers/document/schema';
 
-type block = {
-  id: string;
-  order: number;
-  paragraph: appState.paragraph;
-  segments: appState.segmentSource[];
-  variants: appState.segmentSource[][];
-};
+// type block = {
+//   id: string;
+//   order: number;
+//   paragraph: appState.paragraph;
+//   segments: appState.segmentSource[];
+//   variants: appState.segmentSource[][];
+// };
 
 const isLocal = true; // process.env.NODE_ENV === 'production' ? false : true;
 
 export const initialState: appState.IState = {
   activeSegId: '',
   template: {} as appState.template,
-  renderBlocks: [] as appState.renderBlock[]
-  // variants: [] as appState.segmentSource[][]
+  renderBlocks: [] as appState.renderBlock[],
+  tagColors: [] as appState.tagColor[]
 };
 
 export default function reducer(state = initialState, action) {
@@ -30,22 +33,26 @@ export default function reducer(state = initialState, action) {
         const templates = action.payload;
         const template = Array.from(templates)[0];
         const renderBlocks = rederedBlocks(template);
+        const tagColors = action.payload[0].tagColors;
 
         const newState = {
           ...state,
           template,
-          renderBlocks
+          renderBlocks,
+          tagColors
         };
         return newState;
       }
 
       const template = action.payload;
       const renderBlocks = rederedBlocks(template);
+      const tagColors = template.tagColors;
 
       const newState = {
         ...state,
         template: Array(template)[0],
-        renderBlocks
+        renderBlocks,
+        tagColors
       };
       return newState;
     }
@@ -331,6 +338,65 @@ export default function reducer(state = initialState, action) {
 
       return newState;
     }
+    case templateActions.ADD_ANNOTATION_SUCCESS: {
+      const template = state.template;
+      const newAnnotations = [...template.annotations, ...action.payload];
+      const newTemplate = { ...template, annotations: newAnnotations };
+      const newState = {
+        ...state,
+        template: newTemplate
+      };
+      return newState;
+    }
+
+    case templateActions.CREATE_ANNOTATION_SUCCESS: {
+      const template = state.template;
+      const newAnnotations = [
+        ...template.annotations,
+        ...action.payload.annotations
+      ];
+      const newTags = [...template.tags, ...action.payload.tags];
+      const newTemplate = {
+        ...template,
+        annotations: newAnnotations,
+        tags: newTags
+      };
+      const newState = {
+        ...state,
+        template: newTemplate
+      };
+      return newState;
+    }
+
+    case templateActions.DELETE_ANNOTATION: {
+      const template = state.template;
+      const currentAnnotations = [...template.annotations];
+      const newAnnotations = currentAnnotations.filter(
+        item => item.id !== action.payload
+      );
+      const newTemplate = { ...template, annotations: newAnnotations };
+      const newState = {
+        ...state,
+        template: newTemplate
+      };
+      return newState;
+    }
+
+    case templateActions.UNDO_ANNOTATION: {
+      const template = state.template;
+      const newAnnotations = [...template.annotations];
+      const undoCount = action.payload;
+      for (let i = 0; i < undoCount; i++) {
+        newAnnotations.pop();
+      }
+      const newTemplate = { ...template, annotations: newAnnotations };
+      const newState = {
+        ...state,
+        template: newTemplate
+      };
+      return newState;
+    }
+
     default:
       return state;
   }
@@ -352,7 +418,7 @@ export const rederedBlocks = template => {
   const { blocks, paragraphs, textSegments, runs } = template;
   const schema = new Schema({ blocks, paragraphs, textSegments, runs });
   schema.initTemplate();
-  return schema.SortedBlocks as block[];
+  return schema.SortedBlocks as appState.renderBlock[];
 };
 
 export const adjustIndent = (pStyle: string, indentAdjust: number): number => {

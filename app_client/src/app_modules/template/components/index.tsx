@@ -7,6 +7,7 @@ import Search from './outline/Search';
 import Searchbox from './outline/Searchbox';
 import Header from './header/Header';
 import Toolbar from './toolbar/Toolbar';
+import AnnotationsSnackbar from './sidebar/annotations/AnnotationsSnackbar';
 import { Provider, contextWrapper } from './../TemplateContext';
 
 import * as state from '../../../app/redux/state';
@@ -21,6 +22,7 @@ import templateReducer, {
 
 interface IProps {
   template: state.template;
+  tagColors: state.tagColor[];
   renderBlocks: state.renderBlock[];
   // variants: state.segmentSource[][];
 }
@@ -29,8 +31,8 @@ const Entry: React.SFC<IProps> = props => {
   const [templateState, appDispatch] = React.useReducer(appReducer, {
     ...appState,
     template: props.template,
-    renderBlocks: props.renderBlocks
-    // variants: props.variants
+    renderBlocks: props.renderBlocks,
+    tagColors: props.tagColors
   });
 
   const [subState, templateDispatch] = React.useReducer(templateReducer, {
@@ -43,7 +45,7 @@ const Entry: React.SFC<IProps> = props => {
 
   const entry = () => {
     const entryContent = (
-      <Provider value={{ templateState, appDispatch }}>
+      <Provider value={{ templateState, appDispatch, templateDispatch }}>
         <Header template={templateState.template} />
         <Toolbar />
 
@@ -61,10 +63,10 @@ const Entry: React.SFC<IProps> = props => {
           <StyledItem className="blocks" magicStyling={magicStyling}>
             <Document isOutline={false} />
           </StyledItem>
-
           <StyledItem>
             <Sidebar template={templateState.template} />
           </StyledItem>
+          <AnnotationsSnackbar subState={subState} />
         </StyledGrids>
       </Provider>
     );

@@ -3,6 +3,8 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Icon } from 'semantic-ui-react';
 import Button from '@material-ui/core/Button';
 import EditingModeButton from './EditingModeButton';
+import AnnotationDropDown from './AnnotationDropDown';
+import ExportModal from './ExportModal';
 import StyledHeader, {
   HeaderColumn,
   HeaderActions,
@@ -16,9 +18,9 @@ interface IHeaderProps {
   template?: state.template;
 }
 
-const fakeOptions = [
-  { key: 1, text: 'Option 1', value: 'Option 1' },
-  { key: 2, text: 'Option 2', value: 'Option 2' },
+const templateOptions = [
+  { key: 1, text: 'Document History', value: 'History' },
+  { key: 2, text: 'Export Template', value: 'Export' },
   { key: 3, text: 'Option 3', value: 'Option 3' }
 ];
 
@@ -32,9 +34,17 @@ const theme = createMuiTheme({
   }
 });
 
-class Header extends React.Component<IHeaderProps, {}> {
+interface IState {
+  exportModal: boolean
+}
+
+class Header extends React.Component<IHeaderProps, IState> {
   constructor(props) {
     super(props);
+
+    this.state = {
+      exportModal: false
+    }
   }
 
   public getLastUpdated = (lastUpdated, type) => {
@@ -49,7 +59,22 @@ class Header extends React.Component<IHeaderProps, {}> {
     return `Never ${type}`;
   };
 
+  public handleOptionSelect = (data) => {
+    switch (data.value) {
+      case 'Export':
+        return this.setState({ exportModal: true });
+
+      default:
+        break;
+    }
+  }
+
+  public handleCloseExport = () => {
+    return this.setState({ exportModal: false });
+  }
+
   public render() {
+    const { exportModal } = this.state;
     const { template } = this.props;
 
     if (!template) {
@@ -59,6 +84,11 @@ class Header extends React.Component<IHeaderProps, {}> {
     return (
       <MuiThemeProvider theme={theme}>
         <StyledHeader>
+          <ExportModal 
+            open={exportModal} 
+            templateName={template.name || ''}
+            handleClose={this.handleCloseExport}
+          />
           <HeaderColumn>
             <a href="#">
               <Icon link={true} name="chevron left" />
@@ -71,6 +101,7 @@ class Header extends React.Component<IHeaderProps, {}> {
                 </small>
               </h2>
             </a>
+            <AnnotationDropDown template={template}/>
           </HeaderColumn>
 
           <HeaderColumn>
@@ -92,10 +123,12 @@ class Header extends React.Component<IHeaderProps, {}> {
                 <Dropdown
                   direction="left"
                   floating={true}
-                  icon="ellipsis vertical"
-                  options={fakeOptions}
+                  icon={null}
+                  trigger={<Icon name="ellipsis vertical" />}
+                  options={templateOptions}
                   pointing={false}
                   selection={false}
+                  onChange={(e, data) => this.handleOptionSelect(data)}
                 />
               </HeaderAction>
             </HeaderActions>

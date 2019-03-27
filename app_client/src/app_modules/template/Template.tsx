@@ -13,6 +13,7 @@ import { Provider } from './TemplateContext';
 const TemplateContext = React.createContext({});
 interface ITemplateProps {
   template: state.template;
+  tagColors: state.tagColor[];
   renderBlocks: state.renderBlock[];
   // variants: state.segmentSource[][];
 }
@@ -26,8 +27,8 @@ class Template extends React.Component<ITemplateProps> {
       <Provider
         value={{
           template: this.props.template,
-          renderBlocks: this.props.renderBlocks
-          // variants: this.props.variants
+          renderBlocks: this.props.renderBlocks,
+          tagColors: this.props.tagColors
         }}
       >
         <Entry />
@@ -38,10 +39,10 @@ class Template extends React.Component<ITemplateProps> {
 
 const mapStateToProps = appState => {
   const template = appState.appReducer.template;
+  const tagColors = appState.appReducer.tagColors;
   const renderBlocks = appState.appReducer.renderBlocks;
-  // const variants = appState.appReducer.variants;
 
-  return { template, renderBlocks };
+  return { template, renderBlocks, tagColors };
 };
 const TemplateContainer = connect(mapStateToProps)(Template);
 
