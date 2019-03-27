@@ -238,6 +238,21 @@
           "variantDescription": "Alternatve",
           "variantIsDefault": false,
           "variantGroup": "e02d5516-d4f1-4a90-8f67-f96ba665a186"
+        },
+        {
+          "id": "fe719383-961c-40c4-ac99-f8101558c01e",
+          "type": "TextSegment",
+          "properties": {},
+          "sequence": 0,
+          "ref": {
+            "paragraphId": "acb64f7d-134c-4425-85ea-bc33f35a9143"
+          },
+          "revisionCreatedDateTime": "2019-02-26T18:19:43.608000Z",
+          "revisionCreatedBy": 2,
+          "text": "This is a variant text segment more.",
+          "variantDescription": "Alternatve",
+          "variantIsDefault": false,
+          "variantGroup": "e02d5516-d4f1-4a90-8f67-f96ba665a186"
         }
       ],
       "runs": [
@@ -317,7 +332,7 @@
           "revisionCreatedDateTime": "2019-02-26T18:24:57.679000Z",
           "revisionCreatedBy": 2,
           "isVariable": false,
-          "t": "The services to be provided under this contract are described herein."
+          "t": "The services to be provided under this contract are described herein.  "
         },
         {
           "id": "e20083ff-a608-44f9-a42d-01ebe3c53c59",
@@ -356,6 +371,19 @@
           "revisionCreatedDateTime": "2019-02-26T18:24:57.679000Z",
           "revisionCreatedBy": 2,
           "isVariable": false,
+          "t": "A variant text segment."
+        },
+        {
+          "id": "1d6d6a16-121c-4c16-8221-4cdc53136b5f",
+          "type": "Run",
+          "properties": {},
+          "sequence": 0,
+          "ref": {
+            "textSegmentId": "fe719383-961c-40c4-ac99-f8101558c01e"
+          },
+          "revisionCreatedDateTime": "2019-02-26T18:24:57.679000Z",
+          "revisionCreatedBy": 2,
+          "isVariable": false,
           "t": "This is a variant text segment."
         }
       ],
@@ -367,12 +395,12 @@
         },
         {
           "id": "1",
-          "name": "Orange",
+          "name": "Purple",
           "value": "#311B92|#EDE7F6"
         },
         {
           "id": "2",
-          "name": "Purple",
+          "name": "Orange",
           "value": "#F57F17|#FFFDE7"
         }
       ],

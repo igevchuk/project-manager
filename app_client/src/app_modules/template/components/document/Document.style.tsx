@@ -28,19 +28,7 @@ type IRunProps = {
 };
 
 export const TextNode = styled.span<IRunProps>`
-  background: ${props => (props.showBackground ? 'yellow' : '')};
-  // position: relative;
-  // &:hover {
-  //   outline: 2px solid orange;
-  //   background-color: rgb(255, 252, 220);
-  //   cursor: pointer;
-  //   .text-hover-feat {
-  //     display: block;
-  //   }
-  // }
-  // &:hover + .variant-count {
-  //   display: inline-flex;
-  // }
+  text-align: left;
 `;
 
 const articlePadding = '0em';
@@ -53,19 +41,22 @@ export const StyledDocument = styled(Grid.Column)`
   padding: 1em;
 `;
 
-export const ArticleNode = styled.article<IArticleProps>`
+// article
+export const ArticleNode = styled.div<IArticleProps>`
   // padding: ${articlePadding};
-  background: ${props => props.background};
-
-  counter-reset: section 0;
+  // background: ${props => props.background};
+  // counter-reset: section 0;
 `;
 
 export const TitleNode = styled.section<ITitleProps>`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  
   font-weight: bold;
   font-style: normal;
   font-size: 14px;
 
-  text-align: ${props => (props.isTitle ? 'center' : null)};
   padding: ${titlePadding};
   // background: ${props => props.background};
 `;
@@ -75,20 +66,21 @@ export const SectionNode = styled.section<ISectionProps>`
   font-style: normal;
   font-size: 14px;
 
+  display: flex;
+  flex-flow: row wrap;
+
   padding: ${sectionPadding};
-  // background: ${props => props.background};
   &::before {
+    padding-top: 4px;
     content: counter(section, decimal) '.';
     counter-increment: section 1;
   }
+
+  // background: ${props => props.background};
 `;
 
-// export const SectionNode = styled.div<{ color: string; border?: number }>`
-//   color: ${props => (props.color ? props.color : 'blue')};
-//   border: ${props => props.border || '4px'} solid 'black';
-// `;
-
 export const SegmentsNode = styled.section<ISectionProps>`
+  white-space: normal;
   padding: ${mormalSecitonPadding};
   // background: ${props => props.background};
   // text-indent: 20em; ✨
@@ -152,7 +144,13 @@ export const TextNode02 = styled.div<{ color?: string; border?: number }>`
   border: ${props => props.border || '4px'} solid 'black';
 `;
 
-export const SegmentNode = styled.span<{}>``;
+export const SegmentNode = styled.span<{
+  variantIsDefault?: boolean;
+  key?: string;
+  onClick?: (e: any) => void;
+}>`
+  display: ${props => (props.variantIsDefault ? 'inline' : 'none')};
+`;
 
 export const TitleNode2 = styled.section<{
   color?: string;
@@ -195,9 +193,6 @@ export const SubClauseNode = styled.span<{ color?: string; border?: number }>`
   border: ${props => props.border || '4px'} solid 'black';
 `;
 
-//
-//
-//
 // export const StyledDocument = styled(Grid.Column)`
 //   margin: 50px 5vmax;
 //   padding: 1em;

@@ -1,13 +1,16 @@
 import * as React from 'react';
-import { Form, Icon } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 import * as sortableHoc from 'react-sortable-hoc';
 import CompareArrows from '@material-ui/icons/CompareArrows';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import styled from 'styled-components';
+import update from 'immutability-helper';
 import { v4 } from 'uuid';
+
 import * as templateState from '../../../../app/redux/state';
+import DocSegment from './DocSegment';
 import Variants from './Variants';
 import {
-  TextHover,
-  TextHoverFeature,
   TextNode,
   ArticleNode,
   TitleNode,
@@ -20,7 +23,7 @@ import {
 } from './Document.style';
 
 enum PStyle {
-  Articl = 'Title',
+  Article = 'Title',
   Heading1 = 'Heading 1',
   Heading2 = 'Heading 2',
   Heading3 = 'Heading 3',
@@ -28,12 +31,51 @@ enum PStyle {
   NoIndent = 'No Indent'
 }
 
+const Container = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+`;
+
+const BlockContainer = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+
+  margin: -4px;
+  padding: 4px;
+  // border: 1px solid lightgrey;
+  // border-radius: 2px;
+`;
+
+const TaskList = styled.div``;
+
+const Handle = styled.div`
+  width: 20px;
+  height: 20px;
+  background-color: orange;
+  border-radius: 4px;
+  margin-right: 8px;
+`;
+
+const getListStyle = isDraggingOver => ({
+  background: isDraggingOver ? 'lightblue' : 'white',
+  display: 'inline',
+  padding: 4,
+  overflow: 'visible'
+});
+
+const DragHandle = sortableHoc.SortableHandle(() => (
+  <span>
+    <Icon name="move" size="small" />
+  </span>
+));
+
 type segmentSource = {
   runs: templateState.run[];
   segment: templateState.textSegment;
 };
 
 type block = {
+  id: string;
   order: number;
   paragraph: templateState.paragraph;
   segments: segmentSource[];
@@ -41,10 +83,12 @@ type block = {
 
 interface ISectionProps {
   blocks: block[];
+  variants: segmentSource[][];
   appDispatch: React.Dispatch<any>;
 }
 
 const initialState = {
+  canDrag: true,
   isActive: false,
   isVariant: false,
   segment: {
@@ -56,27 +100,15 @@ const initialState = {
   }
 };
 
-export const HtmlSections: React.SFC<ISectionProps> = props => {
+const DocSegments: React.SFC<ISectionProps> = props => {
   const [activeSegment, setActiveSegment] = React.useState(initialState);
-  const [segmentSources, setSegmentSources] = React.useState(
-    [] as segmentSource[][]
-  );
-
-  React.useEffect(() => {
-    const sources: segmentSource[][] = [];
-    if (segmentSources.length === 0) {
-      props.blocks.map(block => {
-        sources.push(block.segments);
-      });
-
-      setSegmentSources(sources);
-    }
-  });
+  const [docBlocks, setDocBlocks] = React.useState(props.blocks);
 
   const handleClick = (value: segmentSource): void => {
     const isVariant = activeSegment.segment.id === value.segment.id;
 
     setActiveSegment({
+      canDrag: !isVariant,
       isActive: true,
       isVariant,
       segment: value.segment
@@ -95,50 +127,39 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     setActiveSegment(initialState);
   };
 
-  const SortableContainer = sortableHoc.SortableContainer(({ children }) => {
-    return <div>{children}</div>;
-  });
-
-  // return (
-  //   <SortableContainer onSortEnd={this.onSortEnd} useDragHandle={true}>
-  //     {segments.map((segment, index) => (
-  //       <SortableItem key={`item-${index}`} index={index} value={segment} />
-  //     ))}
-  //   </SortableContainer>
-  // );
-
-  const onSortEnd = ({ oldIndex, newIndex }) => {
-    // this.setState(({ segments }) => ({
-    //   segments: sortableHoc.arrayMove(segments, oldIndex, newIndex)
-    // }));
-  };
-
-  const getSegment = (blockOrder: number, segmentSource: segmentSource) => {
-    const variantIsDefault = segmentSource.segment.variantIsDefault;
-    const variants = segmentSources[blockOrder];
+  const getSegment = (
+    blockOrder: number,
+    segmentNode: segmentSource,
+    index: number
+  ) => {
+    const variantIsDefault = segmentNode.segment.variantIsDefault;
+    const currentVariants = props.variants[blockOrder];
+    // console.log(currentVariants);
 
     const segment = (isActive: boolean = false) => (
-      // <SortableContainer onSortEnd={onSortEnd} useDragHandle={true}>
-      <SegmentNode key={v4()} onClick={e => handleClick(segmentSource)}>
+      <SegmentNode
+        key={v4()}
+        onClick={e => handleClick(segmentNode)}
+        variantIsDefault={variantIsDefault}
+      >
         <SegmentHover key={v4()} showBackground={isActive}>
           <SegmentHoverFeature className="text-hover-feat">
             <DragHandle />
           </SegmentHoverFeature>
-          {segmentSource.runs.map(run => (
+          {segmentNode.runs.map(run => (
             <TextNode key={v4()}> {run.t}</TextNode>
           ))}
         </SegmentHover>
         <VariantCount key={v4()} className="variant-count">
-          {variants && variants.length - 1} <CompareArrows />
+          {currentVariants && currentVariants.length - 1} <CompareArrows />
         </VariantCount>
       </SegmentNode>
-      // </SortableContainer>
     );
 
     const variant = () => (
       <Variants
         key={v4()}
-        segmentVariants={variants}
+        segmentVariants={currentVariants}
         onEscapeOutside={handleEscapeOutside}
       />
     );
@@ -147,47 +168,78 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
       return null;
     }
 
-    if (
-      !activeSegment ||
-      segmentSource.segment.id !== activeSegment.segment.id
-    ) {
+    if (!activeSegment || segmentNode.segment.id !== activeSegment.segment.id) {
       return segment(false);
     }
 
     if (activeSegment.isVariant) {
+      console.log(currentVariants);
       return variant();
     } else {
       return segment(true);
     }
   };
 
+  const getSegments = (block: block) => {
+    // console.log('rending getSegments');
+
+    if (activeSegment.canDrag) {
+      // textSegment drag and drop goes here
+      return (
+        <BlockContainer>
+          <Droppable droppableId={block.id} direction="horizontal">
+            {(provided, snapshot) => (
+              <TaskList
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+                {...provided.droppableProps}
+              >
+                {block.segments.map((segmentNode, index) => (
+                  <DocSegment
+                    key={segmentNode.segment.id}
+                    index={index}
+                    segmentNode={segmentNode}
+                    blockOrder={block.order}
+                    segmentSources={props.variants}
+                    activeSegment={activeSegment}
+                    handleClick={handleClick}
+                  />
+                ))}
+                {provided.placeholder}
+              </TaskList>
+            )}
+          </Droppable>
+        </BlockContainer>
+      );
+    } else {
+      // variants drag and drop goes here
+      return block.segments.map((segmentNode: segmentSource, index) =>
+        getSegment(block.order, segmentNode, index)
+      );
+    }
+  };
+
   const getDoc = (blocks: block[]): React.ReactNode => {
     const htmlSections = blocks.map(block => {
       switch (block.paragraph.properties.pStyle) {
-        case PStyle.Articl:
+        case PStyle.Article:
           const titleNode = (
             <TitleNode key={v4()} isTitle={true} background="cornflowerblue">
-              {block.segments.map(segmentNode =>
-                getSegment(block.order, segmentNode)
-              )}
+              {getSegments(block)}
             </TitleNode>
           );
           return titleNode;
         case PStyle.Heading1:
           const sectionNode = (
             <SectionNode key={v4()} background="palevioletred">
-              {block.segments.map(segmentNode =>
-                getSegment(block.order, segmentNode)
-              )}
+              {getSegments(block)}
             </SectionNode>
           );
           return sectionNode;
         case PStyle.Heading2:
           const subSectionNode = (
             <SegmentsNode key={v4()} background="red" indLevel={2}>
-              {block.segments.map(segmentNode =>
-                getSegment(block.order, segmentNode)
-              )}
+              {getSegments(block)}
             </SegmentsNode>
           );
           return subSectionNode;
@@ -198,27 +250,21 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
               background={'rgb(159,168,218)'}
               indLevel={4}
             >
-              {block.segments.map(segmentNode =>
-                getSegment(block.order, segmentNode)
-              )}
+              {getSegments(block)}
             </SegmentsNode>
           );
           return clauseNode;
         case PStyle.Heading4:
           const subClauseNode = (
             <SegmentsNode key={v4()} background="orange" indLevel={6}>
-              {block.segments.map(segmentNode =>
-                getSegment(block.order, segmentNode)
-              )}
+              {getSegments(block)}
             </SegmentsNode>
           );
           return subClauseNode;
         default:
           const normalNode = (
             <SegmentsNode key={v4()} background="orange">
-              {block.segments.map(segmentNode =>
-                getSegment(block.order, segmentNode)
-              )}
+              {getSegments(block)}
             </SegmentsNode>
           );
           return normalNode;
@@ -228,9 +274,91 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
     return htmlSections;
   };
 
+  const onDragEnd = result => {
+    const { destination, source, draggableId } = result;
+
+    if (!destination) {
+      return;
+    }
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    const startColomnIndex = docBlocks.findIndex(
+      block => block.id === source.droppableId
+    );
+    const startColomn = docBlocks[startColomnIndex];
+    const finishColomnIndex = docBlocks.findIndex(
+      block => block.id === destination.droppableId
+    );
+    const finishColomn = docBlocks[finishColomnIndex];
+
+    if (startColomn === finishColomn) {
+      const colSegments = startColomn.segments;
+      const draggableSegment = colSegments.filter(
+        startSegment => startSegment.segment.id === draggableId
+      )[0];
+
+      colSegments.splice(source.index, 1);
+      colSegments.splice(destination.index, 0, draggableSegment);
+
+      const newColumn = {
+        ...startColomn,
+        segments: colSegments
+      };
+
+      const newData = update(docBlocks, {
+        $splice: [[startColomnIndex, 1], [startColomnIndex, 0, newColumn]]
+      });
+
+      setDocBlocks(newData);
+      return;
+    }
+
+    // Moving from one list to another
+    const startSegments = startColomn.segments;
+
+    const draggableSegment = startSegments.filter(
+      startSegment => startSegment.segment.id === draggableId
+    )[0];
+
+    startSegments.splice(source.index, 1);
+    const newStartColomn = {
+      ...startColomn,
+      segments: startSegments
+    };
+
+    const finishSegments = finishColomn.segments;
+    finishSegments.splice(destination.index, 0, draggableSegment);
+    const newFinishColomn = {
+      ...finishColomn,
+      segments: finishSegments
+    };
+
+    const startNewData = update(docBlocks, {
+      $splice: [[startColomnIndex, 1], [startColomnIndex, 0, newStartColomn]]
+    });
+
+    const finalData = update(startNewData, {
+      $splice: [[finishColomnIndex, 1], [finishColomnIndex, 0, newFinishColomn]]
+    });
+
+    setDocBlocks(finalData);
+  };
+
   return (
     <ArticleNode>
-      {getDoc(props.blocks)}
+      {activeSegment.canDrag && (
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Container>{getDoc(props.blocks)}</Container>
+        </DragDropContext>
+      )}
+
+      {!activeSegment.canDrag && getDoc(props.blocks)}
+
       <button
         hidden={true}
         onClick={() =>
@@ -249,97 +377,4 @@ export const HtmlSections: React.SFC<ISectionProps> = props => {
   );
 };
 
-/////////////////////
-
-const DragHandle = sortableHoc.SortableHandle(() => (
-  <span>
-    <Icon name="move" size="small" />
-  </span>
-));
-
-const SortableContainer = sortableHoc.SortableContainer(({ children }) => {
-  return <div>{children}</div>;
-});
-
-type docPiece = {
-  id: string;
-  blockId: number;
-  segment: {
-    id: string;
-    blockId?: number;
-    paragraphId?: string;
-    text: string;
-    run?: {};
-    pStyle?: string;
-  };
-  variant: {
-    id: string;
-    ref?: {
-      paragraphId?: string;
-    };
-    sequence?: number;
-    type?: string;
-    variantGroup?: string;
-    variantDescription?: string;
-    variantIsDefault?: boolean;
-    text?: string;
-    revisionCreatedDateTime?: Date;
-    revisionCreatedBy?: string;
-    properties?: {};
-  };
-};
-
-interface ISegmentProps {
-  blocks: block[];
-}
-
-interface ISegmentState {
-  segments: docPiece[];
-}
-
-class SegmentsComponent extends React.PureComponent<
-  ISegmentProps,
-  ISegmentState
-> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      segments: []
-    };
-  }
-
-  public handleClick = (e: any, value: any): void => {
-    // console.log(value);
-  };
-
-  public onSortEnd = ({ oldIndex, newIndex }) => {
-    console.log(oldIndex);
-    this.setState(({ segments }) => ({
-      segments: sortableHoc.arrayMove(segments, oldIndex, newIndex)
-    }));
-  };
-
-  public groupBy = (items, key) =>
-    items.reduce(
-      (result, item) => ({
-        ...result,
-        [item[key]]: [...(result[item[key]] || []), item]
-      }),
-      {}
-    );
-
-  public render() {
-    // const doc = this.getDoc(this.props.blocks);
-    return <div>{'doc'}</div>;
-
-    // return (
-    //   <SortableContainer onSortEnd={this.onSortEnd} useDragHandle={true}>
-    //     {segments.map((segment, index) => (
-    //       <SortableItem key={`item-${index}`} index={index} value={segment} />
-    //     ))}
-    //   </SortableContainer>
-    // );
-  }
-}
-
-export default SegmentsComponent;
+export default DocSegments;

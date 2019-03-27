@@ -15,7 +15,7 @@ import * as state from '../../../../app/redux/state';
 import utils from './../../../../app/utils';
 
 interface IHeaderProps {
-  template: state.template;
+  template?: state.template;
 }
 
 const templateOptions = [
@@ -26,11 +26,11 @@ const templateOptions = [
 
 const theme = createMuiTheme({
   typography: {
-    useNextVariants: true,
+    useNextVariants: true
   },
   palette: {
-    primary: {main: '#43A047'},
-    secondary: {main: '#002888'}
+    primary: { main: '#43A047' },
+    secondary: { main: '#002888' }
   }
 });
 
@@ -110,12 +110,12 @@ class Header extends React.Component<IHeaderProps, IState> {
                 <EditingModeButton />
               </HeaderAction>
               <HeaderAction>
-                <Button color='secondary' variant="contained">
+                <Button color="secondary" variant="contained">
                   SAVE DRAFT
                 </Button>
               </HeaderAction>
               <HeaderAction>
-                <Button color='primary' variant="contained">
+                <Button color="primary" variant="contained">
                   PUBLISH
                 </Button>
               </HeaderAction>
@@ -139,4 +139,4 @@ class Header extends React.Component<IHeaderProps, IState> {
   }
 }
 
-export default Header
+export default Header;

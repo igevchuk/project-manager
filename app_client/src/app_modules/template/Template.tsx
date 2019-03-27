@@ -4,15 +4,18 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import * as _ from 'lodash';
 
-// import DragDropByHandle from './../__feature__/DragDropByHandle';
+import '@atlaskit/css-reset';
 
 import * as state from '../../app/redux/state';
 import Entry from './components/index';
+import { Provider } from './TemplateContext';
 
+const TemplateContext = React.createContext({});
 interface ITemplateProps {
   template: state.template;
-  blocks: state.renderBlock[];
   tagColors: state.tagColor[];
+  renderBlocks: state.renderBlock[];
+  variants: state.segmentSource[][];
 }
 class Template extends React.Component<ITemplateProps> {
   public render() {
@@ -20,18 +23,28 @@ class Template extends React.Component<ITemplateProps> {
       return 'loading ....';
     }
 
-    return <Entry {...this.props} />
-    // return <DragDropByHandle />;
+    return (
+      <Provider
+        value={{
+          template: this.props.template,
+          renderBlocks: this.props.renderBlocks,
+          variants: this.props.variants,
+          tagColors: this.props.tagColors
+        }}
+      >
+        <Entry />
+      </Provider>
+    );
   }
 }
 
 const mapStateToProps = appState => {
-  // const templates = appState.appReducer.templates;
   const template = appState.appReducer.template;
-  const blocks = appState.appReducer.renderBlocks;
   const tagColors = appState.appReducer.tagColors;
+  const renderBlocks = appState.appReducer.renderBlocks;
+  const variants = appState.appReducer.variants;
 
-  return { template, blocks, tagColors };
+  return { template, renderBlocks, variants, tagColors };
 };
 const TemplateContainer = connect(mapStateToProps)(Template);
 

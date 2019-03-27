@@ -212,6 +212,7 @@ class Schema {
       });
 
       const sortedBlock = {
+        id: para.id,
         order: block.sequence,
         paragraph: para,
         // segments: [

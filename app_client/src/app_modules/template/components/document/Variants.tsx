@@ -1,15 +1,58 @@
 import * as React from 'react';
 import EscapeOutside from 'react-escape-outside';
 import { Icon } from 'semantic-ui-react';
-import * as sortableHoc from 'react-sortable-hoc';
 import CompareArrows from '@material-ui/icons/CompareArrows';
 import { v4 } from 'uuid';
+import { DragDropContext } from 'react-beautiful-dnd';
+import update from 'immutability-helper';
+import '@atlaskit/css-reset';
+import { contextWrapper } from '../../TemplateContext';
 
-import Variant from './Variant';
+import VariantGroup from './VariantGroup';
+import Variant from './VariantInitial';
 import { StyledVariants, VariantForm, Divider } from './Variants.style';
 import { VariantCount } from './Document.style';
-import { textVariant } from '../../../../app/redux/state';
+import { VariantSchema, ITaskType } from './variantSchema';
 import * as templateState from '../../../../app/redux/state';
+
+const initialData = {
+  tasks: {
+    task_1: { id: 'task_1', content: 'Take out the garbage' },
+    task_2: { id: 'task_2', content: 'Watch my favorite show' },
+    task_3: { id: 'task_3', content: 'Charge my phone' },
+    task_4: { id: 'task_4', content: 'Cook dinner' }
+  },
+  columns: {
+    column_1: {
+      id: 'column_1',
+      title: 'Fallback/Default Language',
+      taskIds: ['task_1']
+    },
+    column_2: {
+      id: 'column_2',
+      title: 'Variants',
+      taskIds: ['task_2', 'task_3', 'task_4']
+    }
+  },
+  columnOrder: ['column_1', 'column_2']
+};
+
+type taskType = {
+  tasks: {
+    task_1: { id: string; content: string };
+    task_2: { id: string; content: string };
+    task_3: { id: string; content: string };
+    task_4: { id: string; content: string };
+  };
+  columns: {
+    column_1: {
+      id: string;
+      title: string;
+      taskIds: string[];
+    };
+  };
+  columnOrder: string[];
+};
 
 type segmentSource = {
   runs: templateState.run[];
@@ -17,344 +60,265 @@ type segmentSource = {
 };
 interface IVariantsProps {
   segmentVariants: segmentSource[];
+  variants: segmentSource[];
+  appDispatch: React.Dispatch<any>;
   onEscapeOutside?: () => void;
+  // onUpdateB: () => {};
 }
 
 interface IVariantsState {
   segmentVariants: segmentSource[];
+  taskDataNew: ITaskType;
+  taskData: taskType;
 }
-
-const SortableItem = sortableHoc.SortableElement(
-  ({ value }: { value: segmentSource }) => {
-    return (
-      <VariantForm>
-        {renderVariantForm(value)}
-        <button onClick={handleAdd}>
-          <Icon name="plus circle" />
-          Add Variant
-        </button>
-      </VariantForm>
-    );
-  }
-);
-
-const SortableContainer = sortableHoc.SortableContainer(({ children }) => {
-  return <div>{children}</div>;
-});
-
-const DragHandle = sortableHoc.SortableHandle(() => (
-  <span>
-    <Icon name="move" size="small" />
-  </span>
-));
 
 class Variants extends React.Component<IVariantsProps, IVariantsState> {
   constructor(props: IVariantsProps) {
     super(props);
 
+    const taskDataNew = new VariantSchema(this.props.segmentVariants);
+    taskDataNew.initVariants();
+    console.log(taskDataNew);
+
     this.state = {
-      // textVariants: props.textVariants,
-      segmentVariants: props.segmentVariants
+      segmentVariants: props.segmentVariants,
+      taskDataNew,
+      taskData: initialData
     };
   }
 
   public handleAdd = () => {
-    const newVariant = {
-      title: 'New Variant',
-      text: ''
-      //  sequence: this.state.textVariants.length + 1
-    };
-
-    // this.setState({
-    //   textVariants: [...this.state.textVariants, newVariant]
-    // });
+    this.props.appDispatch({
+      type: 'emplate/ADD_TEXTSEGMENT_VARIANT',
+      payload: {
+        segmentId: this.props.segmentVariants[0].segment.id
+      }
+    });
   };
 
-  // public SortableItem = () =>
-  //   sortableHoc.SortableElement(({ value }: { value: segmentSource }) => {
-  //     return (
-  //       <VariantForm>
-  //         {renderVariantForm(value)}
-  //         <button onClick={handleAdd}>
-  //           <Icon name="plus circle" />
-  //           Add Variant
-  //         </button>
-  //       </VariantForm>
-  //     );
-  //   });
-
-  public onSortEnda = ({ oldIndex, newIndex }) => {
-    console.log(oldIndex);
-
-    this.setState(({ segmentVariants }) => ({
-      segmentVariants: sortableHoc.arrayMove(
-        segmentVariants,
-        oldIndex,
-        newIndex
-      )
-    }));
-  };
-
-  // public variants = () => (
-  //   <div>
-  //     {this.state.segmentVariants.map((variant, index) => {
-  //       // const variantIsDefault = variant.segment.variantIsDefault;
-  //       // if (false) {
-  //       //   return (
-  //       //     <VariantForm key={v4()}>
-  //       //       <SortableItem key={v4()} index={index} value={variant} />
-  //       //     </VariantForm>
-  //       //   );
-  //       // }
-
-  //       return <SortableItem key={v4()} index={index} value={variant} />;
-
-  //       // return (
-  //       //   <VariantForm key={v4()}>
-  //       //     <Divider>
-  //       //       <span>
-  //       //         Variants <Icon name="info circle" />
-  //       //       </span>
-  //       //     </Divider>
-
-  //       //     <SortableItem key={v4()} index={index} value={variant} />
-
-  //       //     <button onClick={handleAdd}>
-  //       //       <Icon name="plus circle" />
-  //       //       Add Variant
-  //       //     </button>
-  //       //   </VariantForm>
-  //       // );
-  //     })}
-  //   </div>
-  // );
-
-  public renderVariantForm = variant => {
+  public renderVariantForm = (variant: segmentSource, isDefault: boolean) => {
     return (
-      <React.Fragment>
-        {variant.sequence === 1 && (
+      <React.Fragment key={v4()}>
+        {isDefault && (
           <Divider>
             <span>
               Fallback/Default Language <Icon name="info circle" />
             </span>
           </Divider>
         )}
-        {/* <Variant variant={variant} onUpdate={this.props.onUpdate} /> */}
+        <Variant key={v4()} variant={variant} onUpdate={() => null} />
       </React.Fragment>
     );
+  };
+
+  public onDragEnd = result => {
+    const { destination, source, draggableId } = result;
+    if (!destination) {
+      return;
+    }
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    const startColomnIndex = this.state.taskDataNew.columns.findIndex(
+      column => column.id === source.droppableId
+    );
+    const startColomn = this.state.taskDataNew.columns[startColomnIndex];
+    const finishColomnIndex = this.state.taskDataNew.columns.findIndex(
+      column => column.id === destination.droppableId
+    );
+    const finishColomn = this.state.taskDataNew.columns[finishColomnIndex];
+
+    if (startColomn === finishColomn) {
+      const newTaskIds = Array.from(
+        (startColomn as {
+          id: string;
+          title: string;
+          taskIds: string[];
+        }).taskIds
+      );
+
+      debugger;
+      newTaskIds.splice(source.index, 1);
+      newTaskIds.splice(destination.index, 0, draggableId);
+
+      const newColumn = {
+        ...startColomn,
+        taskIds: newTaskIds
+      };
+      console.log(newColumn);
+
+      // const newData = update(this.state.taskDataNew, {
+      //   columns: {
+      //     $splice: [[startColomnIndex, 1], [startColomnIndex, 0, newColumn]]
+      //   }
+      // });
+
+      const newTaskDataNew = Array.from(this.state.taskDataNew.columns);
+
+      newTaskDataNew.splice(startColomnIndex, 1);
+      newTaskDataNew.splice(startColomnIndex, 0, newColumn);
+
+      const newData = {
+        ...this.state.taskDataNew,
+        columns: newTaskDataNew
+      };
+
+      console.log(newData);
+
+      // const newData = update(taskDataNew, {
+      //   columns: {
+      //     $splice: [
+      //       [startColomnIndex, 1],
+      //       [
+      //         startColomnIndex,
+      //         0,
+      //         newColumn as {
+      //           id: string;
+      //           title: string;
+      //           taskIds: string[];
+      //         }
+      //       ]
+      //     ]
+      //   }
+      // });
+
+      const newState = {
+        ...this.state,
+        taskDataNew: newData
+      };
+
+      this.setState(newState);
+      return;
+    }
+
+    // Moving from one list to another
+    console.log('finishColomn');
+    const startTaskIds = Array.from(startColomn.taskIds);
+    startTaskIds.splice(source.index, 1);
+    startTaskIds.splice(0, 0, finishColomn.taskIds[0]);
+
+    const newStartColomn = {
+      ...startColomn,
+      taskIds: startTaskIds
+    };
+
+    const finishTaskIds = Array.from(finishColomn.taskIds);
+    finishTaskIds.splice(0, 1);
+    finishTaskIds.splice(destination.index, 0, draggableId);
+    const newFinishColomn = {
+      ...finishColomn,
+      taskIds: finishTaskIds
+    };
+
+    const newData = update(this.state.taskDataNew, {
+      columns: {
+        $splice: [[startColomnIndex, 1], [startColomnIndex, 0, newStartColomn]]
+      }
+    });
+
+    const newDataa = update(newData, {
+      columns: {
+        $splice: [
+          [finishColomnIndex, 1],
+          [finishColomnIndex, 0, newFinishColomn]
+        ]
+      }
+    });
+
+    const newState = {
+      ...this.state,
+      taskDataNew: newDataa
+    };
+
+    this.setState(newState);
   };
 
   public render() {
     const { onEscapeOutside, ...props } = this.props;
     const { segmentVariants } = this.state;
-    const restVariants = segmentVariants.slice(1, segmentVariants.length);
+    // console.log(this.props.segmentVariants);
 
-    // const variantsasd = (
-    //   <div>
-    //     {textVariants.map((variant, index) => (
-    //       <SortableItem key={`item-${index}`} index={index} value={variant} />
-    //     ))}
-    //   </div>
-    // );
+    const standardVariant = segmentVariants.filter(segmentVariant => {
+      return segmentVariant.segment.variantIsDefault;
+    });
 
-    const variants = (
-      <div>
-        {segmentVariants.map((variant, index) => {
-          const variantIsDefault = variant.segment.variantIsDefault;
-          if (false) {
-            return (
-              <VariantForm key={v4()}>
-                <SortableItem key={v4()} index={index} value={variant} />
-              </VariantForm>
-            );
-          }
-
-          return <SortableItem key={v4()} index={index} value={variant} />;
-
-          // return (
-          //   <VariantForm key={v4()}>
-          //     <Divider>
-          //       <span>
-          //         Variants <Icon name="info circle" />
-          //       </span>
-          //     </Divider>
-
-          //     <SortableItem key={v4()} index={index} value={variant} />
-
-          //     <button onClick={handleAdd}>
-          //       <Icon name="plus circle" />
-          //       Add Variant
-          //     </button>
-          //   </VariantForm>
-          // );
-        })}
-      </div>
-    );
+    const restVariants = segmentVariants.filter(segmentVariant => {
+      return !segmentVariant.segment.variantIsDefault;
+    });
 
     return (
       <EscapeOutside onEscapeOutside={onEscapeOutside} key={v4()}>
-        <SortableContainer onSortEnd={this.onSortEnda} useDragHandle={true}>
+        <DragDropContext onDragEnd={this.onDragEnd}>
           <StyledVariants>
-            <span className="enumerate">1.1</span>
-            {variants}
+            <span className="enumerate">1.0.1</span>
+
+            {this.state.taskDataNew.columnOrder.map(columnId => {
+              const column = this.state.taskDataNew.columns.find(
+                column => column.id === columnId
+              );
+
+              const standardTitle = (
+                <span>
+                  Fallback/Default Language <Icon name="info circle" />
+                </span>
+              );
+
+              const variantTitle = (
+                <span>
+                  Variants <Icon name="info circle" />
+                </span>
+              );
+
+              const tasks = (column as any).taskIds.map(taskId => {
+                return this.state.taskDataNew.tasks.find(
+                  task => (task as any).segment.id === taskId
+                );
+              });
+
+              const segmentVariants =
+                columnId === 'column_1' ? standardVariant : restVariants;
+
+              const variants = (
+                <VariantForm key={v4()}>
+                  <React.Fragment>
+                    <Divider>
+                      {(column as any).id && (column as any).id === 'column_1'
+                        ? standardTitle
+                        : variantTitle}
+
+                      <VariantGroup
+                        key={v4()}
+                        column={column as any}
+                        tasks={tasks}
+                        segmentVariants={segmentVariants}
+                      />
+                    </Divider>
+                  </React.Fragment>
+
+                  {(column as any).id && (column as any).id === 'column_2' && (
+                    <button onClick={this.handleAdd}>
+                      <Icon name="plus circle" />
+                      Add Variant
+                    </button>
+                  )}
+                </VariantForm>
+              );
+
+              return variants;
+            })}
+
             <VariantCount className="variant-count">
-              {segmentVariants.length} <CompareArrows />
+              {restVariants && restVariants.length} <CompareArrows />
             </VariantCount>
           </StyledVariants>
-        </SortableContainer>
+        </DragDropContext>
       </EscapeOutside>
     );
   }
 }
 
-// ////////////////////////////
-// export const Variantsb: React.SFC<IVariantsProps> = props => {
-//   const [segmentVariants, setActiveSegment] = React.useState({
-//     ...props
-//   });
-
-//   console.log(segmentVariants);
-
-//   const onSortEnd = ({ oldIndex, newIndex }) => {
-//     // console.log(oldIndex);
-//     // this.setState(({ textVariants }) => ({
-//     //   textVariants: sortableHoc.arrayMove(textVariants, oldIndex, newIndex)
-//     // }));
-//   };
-
-//   const variants = (
-//     <div>
-//       {segmentVariants.segmentVariants.map((variant, index) => {
-//         const variantIsDefault = variant.segment.variantIsDefault;
-//         if (false) {
-//           return (
-//             <VariantForm key={v4()}>
-//               <SortableItem key={v4()} index={index} value={variant} />
-//             </VariantForm>
-//           );
-//         }
-
-//         return <SortableItem key={v4()} index={index} value={variant} />;
-
-//         // return (
-//         //   <VariantForm key={v4()}>
-//         //     <Divider>
-//         //       <span>
-//         //         Variants <Icon name="info circle" />
-//         //       </span>
-//         //     </Divider>
-
-//         //     <SortableItem key={v4()} index={index} value={variant} />
-
-//         //     <button onClick={handleAdd}>
-//         //       <Icon name="plus circle" />
-//         //       Add Variant
-//         //     </button>
-//         //   </VariantForm>
-//         // );
-//       })}
-//     </div>
-//   );
-
-//   const variantsbak = (
-//     <div>
-//       {segmentVariants.segmentVariants[0] && (
-//         <VariantForm>
-//           {renderVariantForm(segmentVariants.segmentVariants[0])}
-//         </VariantForm>
-//       )}
-
-//       {segmentVariants.segmentVariants.length > 0 && (
-//         <VariantForm>
-//           <Divider>
-//             <span>
-//               Variants <Icon name="info circle" />
-//             </span>
-//           </Divider>
-
-//           {segmentVariants.segmentVariants.map(variant =>
-//             renderVariantForm(variant)
-//           )}
-
-//           <button onClick={handleAdd}>
-//             <Icon name="plus circle" />
-//             Add Variant
-//           </button>
-//         </VariantForm>
-//       )}
-//     </div>
-//   );
-
-//   // return <div>ssss</div>;
-//   return (
-//     <EscapeOutside key={v4()} onEscapeOutside={segmentVariants.onEscapeOutside}>
-//       <SortableContainer onSortEnd={onSortEnd} useDragHandle={true}>
-//         <StyledVariants>
-//           <span className="enumerate">1.1</span>
-//           {variants}
-//           {/* <VariantCount className="variant-count">
-//             segmentVariants && segmentVariants.segmentVariants.length
-//             {'4'} <CompareArrows />
-//           </VariantCount> */}
-//         </StyledVariants>
-//       </SortableContainer>
-//     </EscapeOutside>
-//   );
-// };
-
-const handleAdd = () => {
-  // const newVariant = {
-  //   title: 'New Variant',
-  //   text: '',
-  //   sequence: this.state.textVariants.length + 1
-  // };
-  // this.setState({
-  //   textVariants: [...this.state.textVariants, newVariant]
-  // });
-};
-
-// const SortableItemaa = sortableHoc.SortableElement(
-//   ({ value }: { value: segmentSource }) => {
-//     // return renderVariantForm(value);
-
-//     return (
-//       <VariantForm>
-//         {renderVariantForm(value)}
-//         <button onClick={handleAdd}>
-//           <Icon name="plus circle" />
-//           Add Variant
-//         </button>
-//       </VariantForm>
-//     );
-//   }
-// );
-
-const renderVariantForm = variant => {
-  return (
-    <React.Fragment key={v4()}>
-      {variant.sequence === 1 && (
-        <Divider>
-          <span>
-            Fallback/Default Language <Icon name="info circle" />
-          </span>
-        </Divider>
-      )}
-      <div>
-        <Variant key={v4()} variant={variant} onUpdate={() => null} />
-      </div>
-    </React.Fragment>
-  );
-};
-
-const SortableContaineraa = sortableHoc.SortableContainer(({ children }) => {
-  return <div>{children}</div>;
-});
-
-// type segmentSource = {
-//   runs: templateState.run[];
-//   segment: templateState.textSegment;
-// };
-
-// ////////////////////////////////////
-
-export default Variants;
+export default contextWrapper(Variants);

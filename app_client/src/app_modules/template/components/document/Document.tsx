@@ -2,99 +2,57 @@ import * as React from 'react';
 import { Segment, Grid } from 'semantic-ui-react';
 import { StyledDocument } from './Document.style';
 import { contextWrapper } from '../../TemplateContext';
-import Schema from '../../controllers/document/schema';
-import { HtmlSections } from './DocSegments';
-
-// import DragDropByHandle from '../../../__feature__/DragDropByHandle';
-
+import DocSegments from './DocSegments';
 import * as templateState from '../../../../app/redux/state';
-import * as actions from './../../redux/actions';
 
-// defining rendering block which is not the same as the block from backend
-type block = {
-  order: number;
-  paragraph: templateState.paragraph;
-  segments: [
-    {
-      runs: templateState.run[];
-      segment: templateState.textSegment;
-    }
-  ];
+type segmentSource = {
+  runs: templateState.run[];
+  segment: templateState.textSegment;
 };
 
-type template = {
-  id: number;
-  name: string;
-  blocks: templateState.block[];
-  paragraphs: templateState.paragraph[];
-  textSegments: templateState.textSegment[];
-  tables: templateState.table[];
-  tableRows: templateState.tableRow[];
-  tableCells: templateState.tableCell[];
-  runs: templateState.run[];
+type appState = {
+  template: templateState.template;
+  renderBlocks: templateState.renderBlock[];
+  variants: segmentSource[][];
 };
 interface IContentProps {
-  template: template;
   blocks: templateState.renderBlock[];
   isOutline: boolean;
   appDispatch: React.Dispatch<any>;
   templateDispatch?: React.Dispatch<any>;
+  activeSeg: string;
+  variants: segmentSource[][];
+  template: templateState.template;
+  templateState: appState;
 }
 
-interface IDocState {
-  renewSchema: boolean;
-  activeSegment: null;
-  visible: boolean;
-  template: template;
-  isOutline: boolean;
-  // docData: block[];
-}
-
-class TemplateContent extends React.PureComponent<IContentProps, IDocState> {
+class TemplateContent extends React.PureComponent<IContentProps> {
   constructor(props: any) {
     super(props);
-
-    this.state = {
-      renewSchema: false,
-      activeSegment: null,
-      visible: false,
-      template: this.props.template,
-      isOutline: this.props.isOutline
-      // docData: this.rederedBlocks()
-    };
   }
 
-  public handleHideClick = () => this.setState({ visible: false });
-  public handleShowClick = () => this.setState({ visible: true });
-  public handleSidebarHide = () => this.setState({ visible: false });
+  public renderDoc = (blocks?: templateState.renderBlock[]) => {
+    // console.log(this.props.templateState.variants);
 
-  public handleClick = (e: any, segment: any): void => {
-    this.setState({ activeSegment: segment });
-  };
-
-  public handleEscapeOutside = (): void => {
-    this.setState({ activeSegment: null });
-  };
-
-  public renderDoc = (blocks: block[]) => {
     return (
-      <HtmlSections blocks={blocks} appDispatch={this.props.appDispatch} />
+      <DocSegments
+        blocks={this.props.templateState.renderBlocks}
+        variants={this.props.templateState.variants}
+        appDispatch={this.props.appDispatch}
+      />
     );
   };
 
   public render() {
-    if (!this.props.blocks) {
-      return 'loading ....';
-    }
+    // console.log('this.props.variants');
+    // console.log(this.props.templateState);
 
-    // console.log(this.props.blocks);
-
-    const htmlSections = this.renderDoc(this.props.blocks);
+    const htmlSections = this.renderDoc();
 
     return (
       <div>
-        {this.state.isOutline && <Segment basic={true}>{htmlSections}</Segment>}
-        {!this.state.isOutline && (
+        {this.props.isOutline && <Segment basic={true}>{htmlSections}</Segment>}
+        {!this.props.isOutline && (
           <Grid.Column width={12}>
             <StyledDocument>
               <Segment basic={true}>{htmlSections}</Segment>
@@ -102,17 +60,16 @@ class TemplateContent extends React.PureComponent<IContentProps, IDocState> {
                 hidden={true}
                 onClick={() =>
                   this.props.appDispatch({
-                    type: 'FETCH_FORM_FULFILLED',
+                    type: 'template/FETCH_FORM_FULFILLED',
                     payload: {
-                      id: 114,
-                      name: 'this is name'
+                      id: '722d4399-12cb-497f-8e29-5f1dc08b0230',
+                      name: 'this is name asd'
                     }
                   })
                 }
               >
                 +
               </button>
-              {/* <DragDropByHandle /> */}
             </StyledDocument>
           </Grid.Column>
         )}

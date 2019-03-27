@@ -7,14 +7,14 @@ import { IState } from './state';
 export const initialState: IState = {
   showOutline: false,
   annotationStatus: 'idle',
-  recentAnnotations: 0
+  recentAnnotations: 0,
+  showVariant: false
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case types.SHOW_OUTLINE: {
       const showOutline = !state.showOutline;
-
       const newState = {
         ...state,
         showOutline
@@ -64,7 +64,18 @@ export default function reducer(state = initialState, action) {
       }
       return newState;
     }
+    case types.SHOW_VARIANT: {
+      const payload = action.payload as {
+        showVariant: boolean;
+      };
 
+      const newState = {
+        ...state,
+        showVariant: payload.showVariant
+      };
+
+      return newState;
+    }
     default:
       return state;
   }

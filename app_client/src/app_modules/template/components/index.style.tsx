@@ -42,3 +42,7 @@ export const StyledGrids = styled.article`
   grid-template-columns: 300px auto 400px;
   grid-gap: 4px;
 `;
+
+export const StyledOutline = styled(StyledItem)<{ isHidden?: boolean }>`
+  border: 2px solid rgba(34, 36, 38, 0.15);
+`;

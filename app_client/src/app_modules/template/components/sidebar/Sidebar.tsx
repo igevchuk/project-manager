@@ -17,6 +17,7 @@ interface ISidebarProps {
     textSegments?: templateState.textSegment[];
     annotations: templateState.annotation[];
     tags: templateState.tag[];
+    tagColors: templateState.tagColor[];
   };
   tagColors: templateState.tagColor[];
   activeSegId: string;
@@ -43,10 +44,12 @@ class Sidebar extends React.Component<ISidebarProps, any> {
   }
 
   public render() {
-    const { template: { annotations, tags }, tagColors, activeSegId } = this.props;
+    const { template: { annotations, tags, tagColors }, activeSegId } = this.props;
     const annotationCount = annotations.length
+    const annotationTitle = annotationCount > 0 ? "ANNOTATIONS (" + annotationCount + ")" : "ANNOTATIONS"
+    console.log(this.props);
     const annotationsTab = {
-      menuItem: "ANNOTATIONS (" + annotationCount + ")",
+      menuItem: annotationTitle,
       render: () => (
         <TabPane attached={false}>
           <SidebarAnnotations

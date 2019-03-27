@@ -3,7 +3,13 @@ export type uuid = string;
 export type docTypes = docType[];
 export type docType = { id: uuid; type?: string };
 
+export type segmentSource = {
+  runs: run[];
+  segment: textSegment;
+};
+
 export type renderBlock = {
+  id: string;
   order: number;
   paragraph: paragraph;
   segments: [
@@ -15,11 +21,12 @@ export type renderBlock = {
 };
 
 export type IState = {
-  isLocal?: boolean;
+  isLocal: boolean;
   activeSegId: uuid;
   tagColors: tagColor[];
   template: template;
   renderBlocks: renderBlock[];
+  variants: segmentSource[][];
 };
 
 export type template = {
@@ -44,9 +51,9 @@ export type template = {
   history?: history;
   tags: tag[];
   tagColors: tagColor[];
-  // will be removed
-  textVariants?: textVariant[];
   annotations: annotation[];
+  // will be removed
+  // textVariants?: textVariant[];
 };
 
 export type textSegment = {
@@ -58,9 +65,9 @@ export type textSegment = {
     paragraphId: uuid;
   };
   variantGroup: uuid; // 1000
-  variantDescription?: string;
+  variantDescription: string;
   variantIsDefault: boolean;
-  text?: string; // ARTICLE I
+  text: string; // ARTICLE I
   revisionCreatedDateTime?: Date;
   revisionCreatedBy?: string;
 };
@@ -145,20 +152,10 @@ export type tableCell = {
 };
 export type tableParagraph = {};
 
-export type textVariant = {
-  id?: uuid;
-  title?: string;
-  text?: string;
-  sequence?: number;
-  ref?: {
-    segmentId?: uuid;
-  };
-};
-
 export type run = {
   id: uuid;
   type?: string; // Run
-  properties: {
+  properties?: {
     b?: boolean;
     i?: boolean;
     u?: boolean;
@@ -167,7 +164,7 @@ export type run = {
   };
   sequence: number;
   ref: {
-    textSegmentId?: uuid;
+    textSegmentId: uuid;
   };
 
   revisionCreatedDateTime?: Date; // 2019-01-01 14:00:05
