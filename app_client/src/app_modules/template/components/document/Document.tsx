@@ -28,6 +28,7 @@ class TemplateContent extends React.PureComponent<IContentProps> {
 
   public render() {
     const htmlSections = this.renderDoc();
+    // console.log(this.props.templateState);
 
     return (
       <div>

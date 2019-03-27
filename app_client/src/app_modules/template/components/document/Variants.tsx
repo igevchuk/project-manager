@@ -48,7 +48,7 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
 
     const variantTask = new VariantSchema(this.props.segmentVariants);
     variantTask.initVariants();
-    console.log(variantTask);
+    // console.log(variantTask);
 
     this.state = {
       variantTask: variantTask as taskType
@@ -192,9 +192,9 @@ class Variants extends React.Component<IVariantsProps, IVariantsState> {
     const { segmentVariants, onEscapeOutside, ...props } = this.props;
     const { columnOrder, columns, tasks } = this.state.variantTask;
 
-    console.log(columnOrder);
-    console.log(columns);
-    console.log(tasks);
+    // console.log(segmentVariants);
+    // console.log(columns);
+    // console.log(tasks);
 
     const standardVariant = segmentVariants.filter(segmentVariant => {
       return segmentVariant.segment.variantIsDefault;

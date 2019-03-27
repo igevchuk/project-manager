@@ -33,6 +33,7 @@ export class VariantSchema implements ITaskType {
 
   public constructor(variants: segmentSource[]) {
     this.variants = variants;
+    // console.log(this.variants);
   }
 
   public initVariants(): void {

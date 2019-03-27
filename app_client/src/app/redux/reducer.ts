@@ -6,11 +6,6 @@ import { v4 } from 'uuid';
 
 import Schema from '../../app_modules/template/controllers/document/schema';
 
-// type segmentSource = {
-//   runs: appState.run[];
-//   segment: appState.textSegment;
-// };
-
 type block = {
   id: string;
   order: number;
@@ -24,8 +19,8 @@ const isLocal = true; // process.env.NODE_ENV === 'production' ? false : true;
 export const initialState: appState.IState = {
   activeSegId: '',
   template: {} as appState.template,
-  renderBlocks: [] as appState.renderBlock[],
-  variants: [] as appState.segmentSource[][]
+  renderBlocks: [] as appState.renderBlock[]
+  // variants: [] as appState.segmentSource[][]
 };
 
 export default function reducer(state = initialState, action) {
@@ -36,16 +31,10 @@ export default function reducer(state = initialState, action) {
         const template = Array.from(templates)[0];
         const renderBlocks = rederedBlocks(template);
 
-        // const variants: segmentSource[][] = [];
-        // renderBlocks.map(block => {
-        //   variants.push(block.segments);
-        // });
-
         const newState = {
           ...state,
           template,
           renderBlocks
-          // variants
         };
         return newState;
       }
@@ -53,16 +42,10 @@ export default function reducer(state = initialState, action) {
       const template = action.payload;
       const renderBlocks = rederedBlocks(template);
 
-      // const variants: segmentSource[][] = [];
-      // renderBlocks.map(block => {
-      //   variants.push(block.segments);
-      // });
-
       const newState = {
         ...state,
         template: Array(template)[0],
         renderBlocks
-        // variants
       };
       return newState;
     }
@@ -137,16 +120,10 @@ export default function reducer(state = initialState, action) {
 
       const renderBlocks = rederedBlocks(newTemplateWihRun);
 
-      // const variants: segmentSource[][] = [];
-      // renderBlocks.map(block => {
-      //   variants.push(block.segments);
-      // });
-
       const newState = {
         ...state,
         template: newTemplateWihRun,
         renderBlocks
-        // variants
       };
 
       console.log(newState);
@@ -159,8 +136,6 @@ export default function reducer(state = initialState, action) {
         segmentId: string;
         variantDescription: string;
       };
-      // console.log('state.variants');
-      // return state;
 
       const segmentIndex = state.template.textSegments.findIndex(
         segment => segment.id === payload.segmentId
@@ -178,39 +153,39 @@ export default function reducer(state = initialState, action) {
         }
       });
 
-      const variants = state.variants.map((variant, index) => {
-        const segmentSource = variant.find(
-          dataSource => dataSource.segment.id === payload.segmentId
-        );
-        return { index, segmentSource };
-      });
+      // const variants = state.variants.map((variant, index) => {
+      //   const segmentSource = variant.find(
+      //     dataSource => dataSource.segment.id === payload.segmentId
+      //   );
+      //   return { index, segmentSource };
+      // });
 
-      const variantIndex = variants.findIndex(
-        variant => variant.segmentSource !== undefined
-      );
-      const variant = state.variants[variantIndex];
+      // const variantIndex = variants.findIndex(
+      //   variant => variant.segmentSource !== undefined
+      // );
+      // const variant = state.variants[variantIndex];
 
-      const segmentSourceIndex = variant.findIndex(
-        segmentSource => segmentSource.segment.id === payload.segmentId
-      );
-      const segmentSource = variant[segmentSourceIndex];
+      // const segmentSourceIndex = variant.findIndex(
+      //   segmentSource => segmentSource.segment.id === payload.segmentId
+      // );
+      // const segmentSource = variant[segmentSourceIndex];
 
-      const newSegmentSource = update(segmentSource, {
-        segment: {
-          variantDescription: { $set: payload.variantDescription }
-        }
-      });
+      // const newSegmentSource = update(segmentSource, {
+      //   segment: {
+      //     variantDescription: { $set: payload.variantDescription }
+      //   }
+      // });
 
-      const newVariant = update(variant, {
-        $splice: [
-          [segmentSourceIndex, 1],
-          [segmentSourceIndex, 0, newSegmentSource]
-        ]
-      });
+      // const newVariant = update(variant, {
+      //   $splice: [
+      //     [segmentSourceIndex, 1],
+      //     [segmentSourceIndex, 0, newSegmentSource]
+      //   ]
+      // });
 
-      const newVariants = update(state.variants, {
-        $splice: [[variantIndex, 1], [variantIndex, 0, newVariant]]
-      });
+      // const newVariants = update(state.variants, {
+      //   $splice: [[variantIndex, 1], [variantIndex, 0, newVariant]]
+      // });
 
       // console.log(variant);
       // console.log(segmentSource);
@@ -222,8 +197,8 @@ export default function reducer(state = initialState, action) {
       const newState = {
         ...state,
         template: newTemplate,
-        renderBlocks: newRenderBlocks,
-        variants: newVariants
+        renderBlocks: newRenderBlocks
+        // variants: newVariants
       };
 
       console.log(newState);

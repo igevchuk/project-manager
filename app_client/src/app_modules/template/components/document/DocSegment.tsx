@@ -2,8 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
 import { Form, Icon } from 'semantic-ui-react';
-// import { Editable } from './Variants.style';
 import { v4 } from 'uuid';
+// import { Editable } from './Variants.style';
 // import ContentEditable from 'react-contenteditable';
 import * as templateState from '../../../../app/redux/state';
 import CompareArrows from '@material-ui/icons/CompareArrows';
@@ -45,7 +45,6 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 
   // change background colour if dragging
   // background: isDragging ? 'lightgreen' : 'grey',
-
   // styles we need to apply on draggables
   ...draggableStyle
 });
@@ -130,18 +129,6 @@ class DocSegment extends React.Component<IDocSegmentProps, IDocSegmentState> {
 
     return segment(true);
   };
-
-  // public handleEditText = ({ target }) => {
-  //   // const { variant, onUpdate } = this.props;
-  //   // const updatedVariant = { ...variant, title: target.innerHTML };
-  //   // onUpdate(updatedVariant);
-  // };
-
-  // public handleEditTitle = ({ target }) => {
-  //   // const { variant, onUpdate } = this.props;
-  //   // const updatedVariant = { ...variant, title: target.textContent };
-  //   // onUpdate(updatedVariant);
-  // };
 
   public render() {
     // console.log(this.props);

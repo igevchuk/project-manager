@@ -71,7 +71,6 @@ const DragHandle = sortableHoc.SortableHandle(() => (
 
 interface ISectionProps {
   blocks: templateState.renderBlock[];
-  // variants: templateState.segmentSource[][];
   appDispatch: React.Dispatch<any>;
 }
 
@@ -92,8 +91,7 @@ const DocSegments: React.SFC<ISectionProps> = props => {
   const [activeSegment, setActiveSegment] = React.useState(initialState);
   const [docBlocks, setDocBlocks] = React.useState(props.blocks);
 
-  console.log(props.blocks);
-  const variants = [];
+  // console.log(props.blocks);
 
   const handleClick = (value: templateState.segmentSource): void => {
     const isVariant = activeSegment.segment.id === value.segment.id;
@@ -124,8 +122,7 @@ const DocSegments: React.SFC<ISectionProps> = props => {
     index: number
   ) => {
     const variantIsDefault = segmentNode.segment.variantIsDefault;
-    // const currentVariants = props.variants[blockOrder];
-    const currentVariants = props.blocks[blockOrder].variants;
+    const currentVariants = props.blocks[blockOrder].variants[0];
 
     // console.log(currentVariants);
 
@@ -166,7 +163,7 @@ const DocSegments: React.SFC<ISectionProps> = props => {
     }
 
     if (activeSegment.isVariant) {
-      console.log(currentVariants);
+      // console.log(currentVariants);
       return variant();
     } else {
       return segment(true);
@@ -193,7 +190,8 @@ const DocSegments: React.SFC<ISectionProps> = props => {
                     index={index}
                     segmentNode={segmentNode}
                     blockOrder={block.order}
-                    segmentSources={variants}
+                    // TODO:
+                    segmentSources={props.blocks[block.order].variants}
                     activeSegment={activeSegment}
                     handleClick={handleClick}
                   />

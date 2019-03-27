@@ -19,14 +19,14 @@ export type renderBlock = {
 export type appState = {
   template: template;
   renderBlocks: renderBlock[];
-  variants: segmentSource[][];
+  // variants: segmentSource[][];
 };
 
 export type IState = {
   activeSegId: uuid;
   template: template;
   renderBlocks: renderBlock[];
-  variants: segmentSource[][];
+  // variants: segmentSource[][];
 };
 
 export type template = {
@@ -49,8 +49,6 @@ export type template = {
 
   variables?: variable[];
   history?: history;
-  // will be removed
-  // textVariants?: textVariant[];
 };
 
 export type textSegment = {

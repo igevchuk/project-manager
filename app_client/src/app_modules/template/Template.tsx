@@ -14,7 +14,7 @@ const TemplateContext = React.createContext({});
 interface ITemplateProps {
   template: state.template;
   renderBlocks: state.renderBlock[];
-  variants: state.segmentSource[][];
+  // variants: state.segmentSource[][];
 }
 class Template extends React.Component<ITemplateProps> {
   public render() {
@@ -26,8 +26,8 @@ class Template extends React.Component<ITemplateProps> {
       <Provider
         value={{
           template: this.props.template,
-          renderBlocks: this.props.renderBlocks,
-          variants: this.props.variants
+          renderBlocks: this.props.renderBlocks
+          // variants: this.props.variants
         }}
       >
         <Entry />
@@ -39,9 +39,9 @@ class Template extends React.Component<ITemplateProps> {
 const mapStateToProps = appState => {
   const template = appState.appReducer.template;
   const renderBlocks = appState.appReducer.renderBlocks;
-  const variants = appState.appReducer.variants;
+  // const variants = appState.appReducer.variants;
 
-  return { template, renderBlocks, variants };
+  return { template, renderBlocks };
 };
 const TemplateContainer = connect(mapStateToProps)(Template);
 

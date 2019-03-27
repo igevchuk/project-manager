@@ -22,15 +22,15 @@ import templateReducer, {
 interface IProps {
   template: state.template;
   renderBlocks: state.renderBlock[];
-  variants: state.segmentSource[][];
+  // variants: state.segmentSource[][];
 }
 
 const Entry: React.SFC<IProps> = props => {
   const [templateState, appDispatch] = React.useReducer(appReducer, {
     ...appState,
     template: props.template,
-    renderBlocks: props.renderBlocks,
-    variants: props.variants
+    renderBlocks: props.renderBlocks
+    // variants: props.variants
   });
 
   const [subState, templateDispatch] = React.useReducer(templateReducer, {
