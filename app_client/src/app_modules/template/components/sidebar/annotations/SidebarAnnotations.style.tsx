@@ -72,7 +72,7 @@ export const AnnotationTag = styled(Label)`
     background-color: ${props => !!props.subcolor ? props.subcolor : '#FFFDE7'};
     border: 1px solid ${props => !!props.basecolor ? props.basecolor : '#F57F17'};
     color: ${props => !!props.basecolor ? props.basecolor : '#F57F17'};
-    height: 16px;
+    height: 17px;
     line-height: 1px;
     font-weight: 500;
   }

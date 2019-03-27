@@ -114,4 +114,9 @@ export const InformationLabel = styled.div`
   i.icon {
     margin: 0 8px 0 5px;
   }
+
+  p {
+    margin: 0;
+    margin-top: -1px;
+  }
 `;
