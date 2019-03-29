@@ -29,9 +29,10 @@
     "jest",
     "src/setupTests.ts",
     "src/app/_styled_components",
-    "src/atomic",
     "src/app/layouts",
     "src/app_modules/template-builder",
-    "src/__feature__"
+    "src/__feature__",
+    "src/app_modules/template",
+    "src/app_modules/template-library"
   ]
 }

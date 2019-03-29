@@ -60,12 +60,14 @@
     "redux-actions": "^2.6.4",
     "redux-observable": "^1.0.0",
     "redux-thunk": "^2.3.0",
+    "require-context": "^1.1.0",
     "resolve": "1.6.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.84.0",
     "source-map-loader": "^0.2.1",
     "style-loader": "0.19.0",
     "styled-components": "^4.1.3",
+    "styled-theme": "^0.3.3",
     "sw-precache-webpack-plugin": "0.11.4",
     "ts-jest": "22.0.1",
     "ts-loader": "^2.3.7",
@@ -87,7 +89,11 @@
     "start": "concurrently \"node scripts/start.js\" \"npm run json\" ",
     "json": "json-server --watch ./../app_server/mock_data/data/templates_6.json --port 3004",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "postinstall": "link-module-alias"
+  },
+  "_moduleAliases": {
+    "@atomic": "src/atomic"
   },
   "devDependencies": {
     "@types/jest": "^23.3.12",
@@ -101,6 +107,7 @@
     "@types/styled-components": "^4.1.6",
     "@types/uuid": "^3.4.4",
     "concurrently": "^4.1.0",
+    "link-module-alias": "^1.1.6",
     "typescript": "^3.2.2"
   },
   "prettier": {

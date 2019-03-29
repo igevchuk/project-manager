@@ -13,15 +13,9 @@ import configureStore from './_redux_/store';
 
 import App from './app/App';
 
-// import repo from './_service_/repository';
-// repo.getLocalForm().subscribe(res => {
-//   console.log(JSON.stringify(res, null, 2));
-//   repo.postCreateForm();
-// });
-
 const store = configureStore();
 
-const AppComponet: React.SFC = () => {
+const AppComponent: React.SFC = () => {
   return (
     <ErrorBoundary>
       <Provider store={store}>
@@ -34,4 +28,4 @@ const AppComponet: React.SFC = () => {
 };
 
 const rootElement = document.getElementById('root') as HTMLElement;
-ReactDOM.render(<AppComponet />, rootElement);
+ReactDOM.render(<AppComponent />, rootElement);
