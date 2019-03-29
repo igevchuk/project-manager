@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import PageTemplate from '@atomic/templates/PageTemplate'
+import PageTemplate from '@atomic/templates/PageTemplate/PageTemplate'
 import Heading from '@atomic/atoms/Heading'
 
 const NotFoundPage:React.SFC = () => {

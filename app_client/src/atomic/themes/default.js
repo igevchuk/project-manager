@@ -33,4 +33,10 @@ theme.sizes = {
   maxWidth: '1100px',
 }
 
+theme.texts = {
+  paragraph: '14px',
+  subheading: '18px',
+  heading: '24px'
+}
+
 export default theme
