@@ -2,6 +2,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { Container, Grid } from 'semantic-ui-react';
+import { Provider, contextWrapper } from './../../../app_modules/project-manager/ProjectManagerContext'
 
 const Wrapper = styled(Container)`
   padding-top: 3.75rem;
@@ -41,4 +42,4 @@ const PageTemplate: React.SFC<IPageTemplateProps> = ({
   )
 }
 
-export default PageTemplate
+export default contextWrapper(PageTemplate)

@@ -14,11 +14,28 @@ import TableRow from '@atomic/atoms/TableRow/TableRow'
 import TableCell from '@atomic/atoms/TableCell/TableCell'
 import Switcher from '@atomic/molecules/Switcher/Switcher';
 
-const HomePage: React.SFC<{}> = () => {
+import { Provider, contextWrapper } from './../../../app_modules/project-manager/ProjectManagerContext'
+import contractReducer, { initialState } from './../../../app_modules/project-manager/redux/reducer'
+import { IState, contract } from './../../../app_modules/project-manager/redux/state'
+import * as actions from './../../../app_modules/project-manager/redux/actions'
+
+interface IHomePageProps {
+  contracts: contract[],
+  error: string,
+  isLoading: boolean
+}
+
+const HomePage: React.SFC<IHomePageProps> = (props) => {
+  const [contractState, contractDispatch] = React.useReducer(contractReducer, {
+    ...initialState,
+    contracts: props.contracts,
+    error: props.error,
+    isLoading: props.isLoading
+  });
+
   return (
-    <PageTemplate
-      sidebar={true}
-    >
+    <Provider value={{ ...contractState }}>
+      <PageTemplate sidebar={true}>
       <Heading level={1} palette='primary'>
         Assing Requests
         <Subheading palette='primary'>
@@ -75,7 +92,8 @@ const HomePage: React.SFC<{}> = () => {
       {/* </Grid.Column> */}
       
     </PageTemplate>
+    </Provider>
   )
 }
 
-export default HomePage
+export default contextWrapper(HomePage)
