@@ -7,16 +7,21 @@ const styles = css`
   padding: 0.75em;
 `
 
-const Th = styled(Table.HeaderCell)`${styles}`
-// const Td = styled(Table.TableCell)`${styles}`
+const Th = styled(Table.HeaderCell)`
+  font-weight: bold;
+  text-transform: uppercase;
+  ${styles}
+`
 
-interface ITableProps {
+const Td = styled(Table.Cell)`${styles}`
+
+interface ITableCellProps {
   heading?: boolean,
   children: any,
 }
 
-const TableCell: React.SFC<ITableProps> = ({ heading, children, ...props }) => {
-  return React.createElement(heading ? Th : Th, props, children)
+const TableCell: React.SFC<ITableCellProps> = ({ heading, children, ...props }) => {
+  return React.createElement(heading ? Th : Td, props, children)
 }
 
 export default TableCell

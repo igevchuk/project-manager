@@ -6,9 +6,14 @@ import * as theme from 'styled-theme'
 // import { Caption } from 'components'
 
 const StyledTable = styled(TableBase)`
-  font-family: ${theme.font('primary')};
-  border: 1px solid ${theme.palette('grayscale', 1, true)};
-  color: ${theme.palette('grayscale', 0)};
+  && {
+    font-family: ${theme.font('primary')};
+    /* border: 1px solid ${theme.palette('grayscale', 5, true)};
+     */
+    border: 1px solid #e0e0e0;
+    border-radius: 0;
+    color: ${theme.palette('grayscale', 0)};
+  }
 `
 interface ITableProps {
   caption?: string,

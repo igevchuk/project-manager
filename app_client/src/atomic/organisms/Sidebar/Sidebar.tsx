@@ -1,20 +1,12 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design#templates
 import * as React from 'react'
 import styled from 'styled-components'
-import { Grid } from 'semantic-ui-react'
 
-const StyledSidebar = styled(Grid.Column)``
+const StyledSidebar = styled.div``
 
-interface ISidebarProps {
-  width?: number
-  children: React.ReactNode,
-}
-
-const Sidebar: React.SFC<ISidebarProps> = ({
-  children, width, ...props
-}) => {
+const Sidebar: React.SFC<{}> = ({...props}) => {
   return (
-    <StyledSidebar width={width}>{ children }</StyledSidebar>
+    <StyledSidebar {...props}>Sidebar</StyledSidebar>
   )
 }
 

@@ -12,10 +12,12 @@ import ButtonGroup from '@atomic/molecules/ButtonGroup/ButtonGroup';
 import Table from '@atomic/molecules/Table/Table'
 import TableRow from '@atomic/atoms/TableRow/TableRow'
 import TableCell from '@atomic/atoms/TableCell/TableCell'
+import Switcher from '@atomic/molecules/Switcher/Switcher';
 
 const HomePage: React.SFC<{}> = () => {
   return (
     <PageTemplate
+      sidebar={true}
     >
       <Heading level={1} palette='primary'>
         Assing Requests
@@ -24,15 +26,15 @@ const HomePage: React.SFC<{}> = () => {
         </Subheading>
       </Heading>
 
-      <Grid.Column width={12}>
+      {/* <Grid.Column width={12}> */}
         <Block palette='primary'>
-          <ButtonGroup>
+          <Switcher>
             <Button>All</Button>
 
             <Button>Unassigned</Button>
 
             <Button>Assigned</Button>
-          </ButtonGroup>
+          </Switcher>
 
           <Block palette='primary'>
             <Search placeholder='Search' />
@@ -46,18 +48,32 @@ const HomePage: React.SFC<{}> = () => {
             <Button basic={true}>Counterparty</Button>
           </Block>
 
-          <Block palette='primary'>
+          <Block palette='grayscale'>
             <Table>
-              <TableRow>
-                <TableCell heading={true}>1</TableCell>
-                <TableCell heading={true}>2</TableCell>
-                <TableCell heading={true}>3</TableCell>
+              <TableRow palette='grayscale'>
+                <TableCell heading={true}>Req. ID</TableCell>
+                <TableCell heading={true}>Conuterparty</TableCell>
+                <TableCell heading={true}>Prod. Type</TableCell>
+                <TableCell heading={true}>Date Submitted</TableCell>
+                <TableCell heading={true}>Status</TableCell>
+                <TableCell heading={true}>Assigned To</TableCell>
+                <TableCell heading={true}>&nbsp;</TableCell>
+              </TableRow>
+
+              <TableRow palette='grayscale' selected={true}>
+                <TableCell>Req. ID</TableCell>
+                <TableCell>Conuterparty</TableCell>
+                <TableCell>Prod. Type</TableCell>
+                <TableCell>Date Submitted</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell>Assigned To</TableCell>
+                <TableCell>&nbsp;</TableCell>
               </TableRow>
             </Table>
           </Block>
         </Block>
-      </Grid.Column>
-      <Sidebar width={4}>Sidebar</Sidebar>
+      {/* </Grid.Column> */}
+      
     </PageTemplate>
   )
 }

@@ -1,7 +1,6 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design#templates
 import * as React from 'react'
 import styled from 'styled-components'
-import { size } from 'styled-theme'
 import { Container, Grid } from 'semantic-ui-react';
 
 const Wrapper = styled(Container)`
@@ -12,31 +11,32 @@ const Wrapper = styled(Container)`
   }
 `
 
-const Header = styled.header`
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 999;
-`
+const Header = styled.header``
 
-const Content = styled(Grid)`
-`
+const Content = styled(Grid.Column)``
 
-const Footer = styled.footer`
-  margin-top: auto;
-`
+const Sidebar = styled(Grid.Column)``
 
 interface IPageTemplateProps {
-  // header: PropTypes.node.isRequired,
   children: any,
+  header?: boolean,
+  sidebar?: boolean
 }
 
 const PageTemplate: React.SFC<IPageTemplateProps> = ({
-  children, ...props
+  children, header, sidebar, ...props
 }) => {
   return (
     <Wrapper {...props}>
-      <Content>{children}</Content>
+      { header && <Header>{ header }</Header> }
+      <Grid>
+        <Content width={12}>{children}</Content>
+        { sidebar && (
+          <Grid.Column width={4}>
+            <Sidebar />
+          </Grid.Column>
+        ) }
+      </Grid>
     </Wrapper>
   )
 }

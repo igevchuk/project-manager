@@ -19,6 +19,9 @@ theme.palette = {
     '#eeeeee',
     '#ffffff',
   ],
+  background: [
+    '#e8eAf6'
+  ]
 }
 
 theme.reversePalette = reversePalette(theme.palette)
