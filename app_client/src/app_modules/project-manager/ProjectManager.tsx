@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Provider } from './ProjectManagerContext'
 import ProjectManagerPage from '@atomic/pages/HomePage/HomePage';
 import { contract } from './redux/state'
-import { fetchContracts } from './redux/actions'
+import { fetchContracts, searchContracts } from './redux/actions'
 
 interface IProjectManagerProps {
   contractState: {
@@ -15,25 +15,52 @@ interface IProjectManagerProps {
 }
 
 class ProjectManager extends React.Component<IProjectManagerProps> {
-  public componentDidMount() {
-    this.props.dispatch(fetchContracts())
-  }
-  
-  public handleSearch() {
-    return null
+  public state = {
+    labels: [],
+    search: '',
+    ordering: '',
+    filter: '',
+    selectedContracts: []
   }
 
-  public handleFilter() {
-    return null
+  public componentDidMount() {
+    this.getData()
+  }
+
+  public getData = () => {
+    const options = this.getQueryOptions()
+
+    this.props.dispatch(fetchContracts(options))
+  }
+
+  public getQueryOptions = () => {
+    const { search, ordering, filter } = this.state
+
+    return { search, filter, ordering };
+  }
+  
+  public handleSearch = (value, key) => {
+    this.setState({
+      [key]: value
+    }, () => {
+      const options = this.getQueryOptions()
+      this.props.dispatch(searchContracts(options))
+    })
   }
 
   public render() {
     const { contractState } = this.props
     const { contracts, error, isLoading } = contractState;
+    const handleSearch = this.handleSearch
 
     return (
       <Provider
-        value={{ contracts, error, isLoading }}
+        value={{ 
+          contracts, 
+          error, 
+          isLoading,
+          handleSearch
+      }}
       >
         <ProjectManagerPage />
       </Provider>

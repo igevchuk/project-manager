@@ -7,7 +7,8 @@ const StyledIconInput = styled(Input)``
 
 interface IIconInputProps {
   icon: string | React.ReactNode,
-  fluid: boolean
+  fluid: boolean,
+  onChange: (e) => void
 }
 
 const IconInput: React.SFC<IIconInputProps> = ({ icon, ...props }) => (

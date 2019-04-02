@@ -3,12 +3,16 @@ import * as React from 'react'
 import { Grid } from 'semantic-ui-react'
 import PageTemplate from '@atomic/templates/PageTemplate/PageTemplate'
 import Sidebar from '@atomic/organisms/Sidebar/Sidebar'
-import Heading from '@atomic/atoms/Heading'
+import Heading from '@atomic/atoms/Heading/Heading'
 import Subheading from '@atomic/atoms/Subheading'
 import Search from '@atomic/organisms/Search/Search'
 import Block from '@atomic/atoms/Block/Block';
 import Button from '@atomic/atoms/Button/Button';
-import ButtonGroup from '@atomic/molecules/ButtonGroup/ButtonGroup';
+import ButtonGroup from '@atomic/molecules/ButtonGroup/ButtonGroup'
+import Checkbox from '@atomic/atoms/Checkbox/Checkbox'
+import Icon from '@atomic/atoms/Icon/Icon'
+import Label from '@atomic/atoms/Label/Label'
+import LabelGroup from '@atomic/molecules/LabelGroup/LabelGroup'
 import Table from '@atomic/molecules/Table/Table'
 import TableRow from '@atomic/atoms/TableRow/TableRow'
 import TableCell from '@atomic/atoms/TableCell/TableCell'
@@ -33,8 +37,12 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
     isLoading: props.isLoading
   });
 
+  const { contracts, error, isLoading } = props
+
+  console.log(111, props)
+
   return (
-    <Provider value={{ ...contractState }}>
+    <Provider value={{ ...props }}>
       <PageTemplate sidebar={true}>
       <Heading level={1} palette='primary'>
         Assing Requests
@@ -58,34 +66,45 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
           </Block>
 
           <Block palette='primary'>
-            <Button basic={true}>Assigned to</Button>
+            <LabelGroup>
+              <Label>Assigned to</Label>
 
-            <Button basic={true}>Doc. Type</Button>
+              <Label>Doc. Type</Label>
 
-            <Button basic={true}>Counterparty</Button>
+              <Label>Counterparty</Label>
+            </LabelGroup>
           </Block>
 
           <Block palette='grayscale'>
             <Table>
               <TableRow palette='grayscale'>
+                <TableCell heading={true}>&nbsp;</TableCell>
                 <TableCell heading={true}>Req. ID</TableCell>
                 <TableCell heading={true}>Conuterparty</TableCell>
                 <TableCell heading={true}>Prod. Type</TableCell>
                 <TableCell heading={true}>Date Submitted</TableCell>
                 <TableCell heading={true}>Status</TableCell>
                 <TableCell heading={true}>Assigned To</TableCell>
-                <TableCell heading={true}>&nbsp;</TableCell>
+                <TableCell heading={true}>
+                  <Icon link={true} name='ellipsis vertical' />
+                </TableCell>
               </TableRow>
-
-              <TableRow palette='grayscale' selected={true}>
-                <TableCell>Req. ID</TableCell>
-                <TableCell>Conuterparty</TableCell>
-                <TableCell>Prod. Type</TableCell>
-                <TableCell>Date Submitted</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Assigned To</TableCell>
-                <TableCell>&nbsp;</TableCell>
-              </TableRow>
+              {
+                contracts.map(contract => (
+                  <TableRow palette='grayscale' selected={true}>
+                    <TableCell>
+                      <Checkbox />
+                    </TableCell>
+                    <TableCell>{ contract.id }</TableCell>
+                    <TableCell>{ contract.counterparty_name }</TableCell>
+                    <TableCell>{ contract.product_type }</TableCell>
+                    <TableCell>{ contract.created }</TableCell>
+                    <TableCell>{ contract.document_request_id }</TableCell>
+                    <TableCell>{ contract.assigned_negotiator }</TableCell>
+                    <TableCell>&nbsp;</TableCell>
+                  </TableRow>
+                ))
+              }
             </Table>
           </Block>
         </Block>

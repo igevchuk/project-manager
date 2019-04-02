@@ -5,5 +5,10 @@ export type IState = {
 }
 
 export type contract = {
-  id?: number
+  id: number,
+  assigned_negotiator: string,
+  counterparty_name: string,
+  created: string,
+  document_request_id: number,
+  product_type: string
 }

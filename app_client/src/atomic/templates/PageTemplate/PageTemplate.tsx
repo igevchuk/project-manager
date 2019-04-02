@@ -3,6 +3,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { Container, Grid } from 'semantic-ui-react';
 import { Provider, contextWrapper } from './../../../app_modules/project-manager/ProjectManagerContext'
+import Sidebar from '@atomic/organisms/Sidebar/Sidebar'
 
 const Wrapper = styled(Container)`
   padding-top: 3.75rem;
@@ -16,7 +17,7 @@ const Header = styled.header``
 
 const Content = styled(Grid.Column)``
 
-const Sidebar = styled(Grid.Column)``
+// const Sidebar = styled(Grid.Column)``
 
 interface IPageTemplateProps {
   children: any,

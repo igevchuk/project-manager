@@ -115,7 +115,7 @@ class ApiEndpoints extends ApiBase implements ApiEndpoints {
 
   public getContracts = (options = {}) => {
     // const url = 'api/v1/pm/contracts/?search=1&ordering=counterparty_name'
-    const url = 'api/v1/pm/contracts/'
+    const url = 'http://localhost/api/v1/pm/contracts/'
     const contracts$ = this.sendRequest(url);
     return contracts$;
   }
