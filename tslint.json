@@ -8,7 +8,8 @@
     "no-console": false,
     "jsx-no-lambda": false,
     "no-shadowed-variable": false,
-    "max-classes-per-file": true
+    "max-classes-per-file": true,
+    "no-bitwise": false
   },
   "jsRules": {
     "object-literal-sort-keys": false //Disable for javascript

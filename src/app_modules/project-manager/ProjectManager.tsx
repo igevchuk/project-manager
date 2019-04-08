@@ -1,65 +1,139 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
+import * as _ from 'lodash'
 import { Provider } from './ProjectManagerContext'
 import ProjectManagerPage from '@atomic/pages/HomePage/HomePage';
-import { contract } from './redux/state'
-import { fetchContracts, searchContracts } from './redux/actions'
+import { contract, user } from './redux/state'
+import * as actions from './redux/actions'
+import { dispatch } from 'rxjs/internal/observable/range';
 
 interface IProjectManagerProps {
   contractState: {
     contracts: contract[],
+    counterparties: string[],
     error: string,
-    isLoading: boolean
+    isLoading: boolean,
+    templates: any[],
+    users: user[],
+    workload: any
   },
-  dispatch: React.Dispatch<any>
+  dispatch: React.Dispatch<any>,
+  fetchContracts: (options: {}) => void,
+  fetchWorkload: (options: {}) => void,
+  searchContracts: (options: {}) => void,
 }
 
-class ProjectManager extends React.Component<IProjectManagerProps> {
+interface IProjectManagerState {
+  assigned_negotiator: any[],
+  assigned_negotiator__isnull: string,
+  product_type: string[],
+  counterparty_name: string[],
+  ordering: string,
+  search: string,
+}
+
+class ProjectManager extends React.Component<IProjectManagerProps, IProjectManagerState> {
   public state = {
-    labels: [],
-    search: '',
+    assigned_negotiator: [],
+    assigned_negotiator__isnull: '',
+    product_type: [],
+    counterparty_name: [],
     ordering: '',
-    filter: '',
-    selectedContracts: []
+    search: '',
   }
 
   public componentDidMount() {
+    const { dispatch } = this.props 
     this.getData()
+    this.getUsers()
+    this.getWorkload()
+    dispatch(actions.fetchCounterparties())
+    // dispatch(actions.fetchTemplates())
   }
 
   public getData = () => {
     const options = this.getQueryOptions()
 
-    this.props.dispatch(fetchContracts(options))
+    this.props.dispatch(actions.fetchContracts(options))
+  }
+
+  public getWorkload = () => {
+    this.props.dispatch({ type: actions.FETCH_WORKLOAD })
+  }
+
+  public getUsers = () => {
+    this.props.dispatch({ type: actions.FETCH_USER_GROUPS })
   }
 
   public getQueryOptions = () => {
-    const { search, ordering, filter } = this.state
+    const { 
+      search, 
+      ordering, 
+      assigned_negotiator,
+      assigned_negotiator__isnull,
+      product_type,
+      counterparty_name
+    } = this.state
+    const options = { search, ordering, assigned_negotiator, assigned_negotiator__isnull, product_type, counterparty_name }
+    const keys = Object.keys(options)
+    const queryOptions = {}
 
-    return { search, filter, ordering };
+    keys.forEach(key => {
+      if(!_.isEmpty(options[key])) {
+        queryOptions[key] = Array.isArray(options[key]) ? options[key].join('||') : options[key]
+      }
+    })
+
+    return queryOptions
   }
-  
-  public handleSearch = (value, key) => {
+
+
+  public handleUpdateContracts = data => {
+    this.props.dispatch(actions.postContracts(data))
+  }
+
+  public handleFilter = (key: string, value: number | string | any[]) => {
+    const { dispatch } = this.props
+    const state = {[key]: Array.isArray(value) ? [...value] : value }
+
+    this.setState(state as any, () => {
+      this.getData()
+    })
+  }
+
+  public handleSearch = (value) => {
+    const { dispatch } = this.props
+
     this.setState({
-      [key]: value
+      search: value
     }, () => {
-      const options = this.getQueryOptions()
-      this.props.dispatch(searchContracts(options))
+      this.getData()
     })
   }
 
   public render() {
     const { contractState } = this.props
-    const { contracts, error, isLoading } = contractState;
+    const { contracts, error, isLoading, counterparties, templates, users, workload } = contractState
+    const { assigned_negotiator__isnull, assigned_negotiator, counterparty_name, product_type, ordering, search } = this.state
+    const filters = { assigned_negotiator__isnull, assigned_negotiator, counterparty_name, product_type, ordering, search }
+    const handleFilter = this.handleFilter
     const handleSearch = this.handleSearch
+    const handleUpdate = this.handleUpdateContracts
 
     return (
       <Provider
         value={{ 
           contracts, 
+          counterparties,
           error, 
           isLoading,
-          handleSearch
+          filters,
+          templates,
+          users,
+          workload,
+          handleFilter,
+          handleSearch,
+          handleUpdate,
       }}
       >
         <ProjectManagerPage />
@@ -70,6 +144,6 @@ class ProjectManager extends React.Component<IProjectManagerProps> {
 
 const mapStateToProps = ({ contractReducer }) => {
   return { contractState: contractReducer };
-};
+}
 
 export default connect(mapStateToProps)(ProjectManager)

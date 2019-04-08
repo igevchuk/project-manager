@@ -7,6 +7,7 @@ import * as theme from 'styled-theme'
 
 const StyledTable = styled(TableBase)`
   && {
+    margin-top: 0;
     font-family: ${theme.font('primary')};
     /* border: 1px solid ${theme.palette('grayscale', 5, true)};
      */

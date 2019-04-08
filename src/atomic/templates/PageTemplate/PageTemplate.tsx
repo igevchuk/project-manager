@@ -17,12 +17,10 @@ const Header = styled.header``
 
 const Content = styled(Grid.Column)``
 
-// const Sidebar = styled(Grid.Column)``
-
 interface IPageTemplateProps {
   children: any,
   header?: boolean,
-  sidebar?: boolean
+  sidebar?: React.ReactNode
 }
 
 const PageTemplate: React.SFC<IPageTemplateProps> = ({
@@ -35,7 +33,7 @@ const PageTemplate: React.SFC<IPageTemplateProps> = ({
         <Content width={12}>{children}</Content>
         { sidebar && (
           <Grid.Column width={4}>
-            <Sidebar />
+            { sidebar }
           </Grid.Column>
         ) }
       </Grid>

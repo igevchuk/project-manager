@@ -1,8 +1,9 @@
-// https://github.com/diegohaz/arc/wiki/Atomic-Design#templates
 import * as React from 'react'
 import styled from 'styled-components'
+import Doughnut from '@atomic/molecules/Doughnut/Doughnut'
 import Heading from '@atomic/atoms/Heading/Heading'
 import Search from '@atomic/organisms/Search/Search'
+import { contextWrapper } from './../../../app_modules/project-manager/ProjectManagerContext'
 
 const StyledSidebar = styled.div`
   position: relative;
@@ -37,8 +38,11 @@ const SidebarFooter = styled(SidebarBlock)`
   margin-top: 60px;
 `
 
+interface ISidebarProps {
+  content?: any
+}
 
-const Sidebar: React.SFC<{}> = ({...props}) => {
+const Sidebar: React.SFC<ISidebarProps> = ({ content, ...props }) => {
   return (
     <StyledSidebar {...props}>
       <SidebarBlock>
@@ -46,11 +50,11 @@ const Sidebar: React.SFC<{}> = ({...props}) => {
       </SidebarBlock>
 
       <SidebarBlock feature={true}>
-        <Search />
+        {/* <Search handleSearch={(e) => console.log(e)} /> */}
       </SidebarBlock>
 
       <SidebarBlock>
-        Content
+        { content && content }
       </SidebarBlock>
 
       <SidebarFooter feature={true}>
@@ -61,4 +65,5 @@ const Sidebar: React.SFC<{}> = ({...props}) => {
   )
 }
 
+// export default contextWrapper(Sidebar)
 export default Sidebar

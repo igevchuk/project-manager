@@ -3,25 +3,23 @@ import styled from 'styled-components'
 import { Button } from 'semantic-ui-react'
 
 const StyledSwitcher = styled(Button.Group)`
-  padding-top: 5px;
-  padding-bottom: 5px;
   background: white;
   border: 1px solid #CFD8DC;
   border-radius: 3px;
   && .ui.button {
-    padding-top: 0;
-    padding-bottom: 0;
-    height: 20px;
     color: #616161;
     background-color: #ffffff;
-    border-right: 1px solid #eeeeee;
-    &:hover {
+    &:hover, &.active {
+      margin: -1px 0;
       background-color: #1A237E;
       color: #ffffff;
     }
-    &:last-child {
-      border-right: none;
-    }
+  }
+  .divider {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+    border-right: 1px solid #eeeeee;
   }
 `
 

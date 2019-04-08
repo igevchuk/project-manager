@@ -2,8 +2,12 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { Button } from 'semantic-ui-react'
 
-const StyledButton = styled(Button)``
+const StyledButton = styled(Button)<{transparent?: boolean}>`
+  &&& {
+    background: ${p => p.transparent && 'none'};
+  }
+`
 
 export default ({children, ...props}) => (
-  <StyledButton> { children }</StyledButton>
+  <StyledButton {...props}> { children }</StyledButton>
 )

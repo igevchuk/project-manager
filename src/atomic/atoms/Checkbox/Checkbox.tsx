@@ -1,7 +1,28 @@
 import * as React from 'react'
-import styled from 'styled-components'
-import { Checkbox as CheckboxBase } from 'semantic-ui-react'
+import { withStyles } from '@material-ui/core/styles';
+import CheckboxBase from '@material-ui/core/Checkbox';
+import Favorite from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
-const Checkbox = styled(CheckboxBase)``
+const styles = {
+  root: {
+    padding: 0,
+    '&$checked': {
+      color: '#2E7D32',
+    },
+  },
+  checked: {},
+};
 
-export default Checkbox
+const Checkbox = ({classes, ...props}) => (
+  <CheckboxBase
+    disableRipple={true}
+    classes={{
+      root: classes.root,
+      checked: classes.checked,
+    }}
+    {...props}
+  />
+)
+
+export default withStyles(styles)(Checkbox)

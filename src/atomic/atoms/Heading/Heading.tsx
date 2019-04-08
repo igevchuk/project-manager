@@ -2,15 +2,16 @@ import * as React from 'react'
 import styled, { css } from 'styled-components'
 import * as theme from 'styled-theme'
 
-const fontSize = ({ level }) => `${0.75 + (1 * (1 / level))}rem`
+const fontSize = ({ level }) => level === 1 ? '36px' : `${0.75 + (1 * (1 / level))}rem`
 
 const styles = css`
   font-family: ${theme.font('primary')};
-  font-weight: 500;
+  font-weight: 300;
   font-size: ${fontSize};
+  line-height: 40px;
   margin: 0;
   margin-top: 0.85714em;
-  margin-bottom: 0.57142em;
+  margin-bottom: 21px;
   color: ${theme.palette({ grayscale: 0 }, 1)};
 `
 
