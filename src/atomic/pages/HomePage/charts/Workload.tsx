@@ -9,7 +9,7 @@ const StyledCharts = styled.div``
 const StyledChart = styled.div``
 
 const chartValues = {
-  'In Negotiation': {
+  'Under Review': {
     color: '#D45F17',
     label: 'Reviewing'
   },
