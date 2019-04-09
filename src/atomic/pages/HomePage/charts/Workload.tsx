@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Doughnut from '@atomic/molecules/Doughnut/Doughnut'
 import { contextWrapper } from '@app_modules/project-manager/ProjectManagerContext'
 import { workload as workloadModel } from '@app_modules/project-manager/redux/state'
+import { __values } from 'tslib';
 
 const StyledCharts = styled.div``
 
@@ -27,10 +28,15 @@ const chartValues = {
   }
 }
 
+function getRandomInt (min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 const Workload: React.SFC<{workload: workloadModel}> = ({ workload, ...props }) => {
   const { negotiator_workload } = workload
-  const doughnutData = { datasets: [] } 
+  const doughnutData = { datasets: [], labels: [] } 
   const datasets = []
+  const labels = []
   if(!negotiator_workload) {
     return null
   }
@@ -41,28 +47,21 @@ const Workload: React.SFC<{workload: workloadModel}> = ({ workload, ...props }) 
   negotiatorIds
     .map(negotiatorId => negotiator_workload[negotiatorId])
     .forEach(negotiator => {
-      const obj = {
-        data: [],
-        backgroundColor: []
-      }
+      const values = []
+      const colors = []
          
       Object.keys(negotiator.workload).forEach(workloadKey => {
-        obj.data.push(negotiator.workload[workloadKey] || 25)
         if(chartValues[workloadKey]) {
-          obj.backgroundColor.push(chartValues[workloadKey].color)
+          values.push(negotiator.workload[workloadKey] || getRandomInt(50, 200))
+          colors.push(chartValues[workloadKey].color)
+          labels.push(workloadKey)
         }
       })
-
-      datasets.push({ data: obj.data, backgroundColor: obj.backgroundColor })
+      datasets.push({ data: values, backgroundColor: colors, label: ['AAA'] })
+      
     })
-    
-    doughnutData.datasets = datasets
-  // const dataSet = negotiator_workload.map(
-  //   workload => Object.keys(workload)
-  //   .map(key => workload[key])
-  // )
-
-  // console.log(dataSet)
+    // doughnutData.labels = [...labels]
+    doughnutData.datasets = [...datasets]
 
   return (
     <StyledCharts>
@@ -71,5 +70,4 @@ const Workload: React.SFC<{workload: workloadModel}> = ({ workload, ...props }) 
   )
 }
 
-// export default contextWrapper(Workload)
 export default Workload

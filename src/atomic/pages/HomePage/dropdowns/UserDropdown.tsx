@@ -3,18 +3,41 @@ import styled from 'styled-components'
 import Dropdown, { DropdownMenu } from '@atomic/organisms/Dropdown/Dropdown'
 import MenuItem from '@atomic/atoms/MenuItem/MenuItem'
 
-const UserDropdown = ({users, onChange, getFullName, ...props}) => (
-  <Dropdown {...props}>
+const StyledDropdown = styled(Dropdown)`
+  &&& {
+    min-width: 172px;
+    padding-bottom: 7px;
+    margin-top: 7px;
+    border-bottom: 2px solid #9E9E9E;
+    font-family: Roboto;
+    & .text {
+      color: ${p => p.red && '#C62828'}
+    }
+    & .menu {
+      min-width: 172px;
+      margin-top: 2px;
+    }
+    & .dropdown.icon {
+      position: absolute;
+      right: 0;
+      line-height: 19px;
+      color: #9E9E9E;
+    }
+  }
+`
+
+const UserDropdown = ({contract, users, onChange, getFullName, ...props}) => (
+  <StyledDropdown {...props}>
     <DropdownMenu>
       {
         users.map(user => (
-          <MenuItem key={user.id} onClick={() => onChange(user.id)}>
+          <MenuItem key={user.id} onClick={() => onChange(contract.id, user.id)}>
             { getFullName(user) }
           </MenuItem>
         ))
       }
     </DropdownMenu>
-  </Dropdown> 
+  </StyledDropdown> 
 )
 
 export default UserDropdown

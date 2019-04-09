@@ -3,8 +3,11 @@ import styled from 'styled-components'
 import { Input as InputBase } from 'semantic-ui-react'
 
 const StyledInput = styled(InputBase)`
-  && input:focus {
-    border: 1px solid #1A237E;
+  && {
+    font-family: 'Roboto', 'Helvetica', sans-serif;
+    input:focus {
+      border: 1px solid #1A237E;
+    }
   }
 `
 

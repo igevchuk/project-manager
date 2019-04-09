@@ -7,10 +7,18 @@ const StyledIconLabel = styled(Label)`
     display: inline-flex;
     align-items: center;
     height: 32px;
+    font-family: Roboto;
     background: #FAFAFA;
-    border: 1px solid #D8D8D8;
+    border-color: #D8D8D8;
     border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
     cursor: pointer;
+    &&.active {
+      color: #1A237E;
+      border-color: #1A237E;
+      background-color: #FAFAFA;
+    }
     & .icon {
       width: 18px;
       height: 18px;

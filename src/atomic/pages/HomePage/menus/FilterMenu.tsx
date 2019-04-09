@@ -5,11 +5,23 @@ import Menu from '@atomic/organisms/Menu/Menu'
 import MenuItem from '@atomic/atoms/MenuItem/MenuItem'
 import { contextWrapper } from '@app_modules/project-manager/ProjectManagerContext'
 
-const FilterMenu = ({ checked, items, filters, multiSelect, handleItemClick, ...props}) => {
+const StyledMenu = styled(Menu)`
+  &&& {
+    width: 100%;
+    &.ui.vertical.text.menu .item {
+      padding-left: 1.5rem;
+    }
+    svg {
+      margin-right: 5px;
+    }
+  }
+`
+
+const FilterMenu = ({ checked, items, filter, filters, multiSelect, handleItemClick, ...props}) => {
   const isChecked = (id) => !!checked.find(item => item === id)
-  console.log(3535, checked)
+  
   return (
-    <Menu text={true} vertical={true} {...props}>
+    <StyledMenu text={true} vertical={true} {...props}>
       {
         items.map(item => (
           <MenuItem key={item.id} onClick={() => multiSelect ? false : handleItemClick(item.id)}>
@@ -22,7 +34,7 @@ const FilterMenu = ({ checked, items, filters, multiSelect, handleItemClick, ...
           </MenuItem>
         ))
       }
-    </Menu>
+    </StyledMenu>
   )
 }
 

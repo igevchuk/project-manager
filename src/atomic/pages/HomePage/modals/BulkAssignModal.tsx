@@ -17,6 +17,18 @@ const Header = styled(ModalBase.Header)`
   }
 `
 
+const StyledMenu = styled(Menu)`
+  &&& {
+    width: 100%;
+    &.ui.vertical.text.menu .item {
+      padding-left: 1.5rem;
+    }
+    svg {
+      margin-right: 5px;
+    }
+  }
+`
+
 const BulkAssignModal = ({ 
   children, 
   items, 
@@ -60,23 +72,19 @@ const BulkAssignModal = ({
           handleSearch={handleSearch} 
         />
       </Header>
-        <ModalBase.Content>
-          <ModalBase.Description>
-          <Menu text={true} vertical={true}>
-            {
-              items.map(item => (
-                <MenuItem 
-                  key={item.id} 
-                  link={true} 
-                  onClick={() => handleItemClick(item.id)}
-                >
-                  { `${item.first_name} ${item.last_name}` }
-                </MenuItem>
-              ))
-            }
-          </Menu>
-          </ModalBase.Description>
-        </ModalBase.Content>
+      <StyledMenu text={true} vertical={true}>
+        {
+          items.map(item => (
+            <MenuItem 
+              key={item.id} 
+              link={true} 
+              onClick={() => handleItemClick(item.id)}
+            >
+              { `${item.first_name} ${item.last_name}` }
+            </MenuItem>
+          ))
+        }
+      </StyledMenu>
     </Modal>
   )
 }

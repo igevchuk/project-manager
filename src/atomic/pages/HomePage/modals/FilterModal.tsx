@@ -15,10 +15,22 @@ const Header = styled(ModalBase.Header)`
   }
 `
 
+const Actions = styled(ModalBase.Actions)`
+  &&& {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 45px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+`
+
 const FilterModal = ({ 
   children, 
   items, 
   filter, 
+  filters,
   handleFilter, 
   onApply, 
   onClose, 
@@ -27,20 +39,10 @@ const FilterModal = ({
 
   const [ selectedItems, setSelectedItems ] = React.useState(
     Object.keys(items).reduce((accum, current) => {
-      accum[current] = []
+      accum[current] = [...filters[filter]]
       return accum
     }, {})
   )
-
-  // React.useEffect(() => {
-  //   React.useState(
-  //     Object.keys(items).reduce((accum, current) => {
-  //       accum[current] = []
-  //       return accum
-  //     }, {})
-  // }, [items])
-
-  console.log(45, selectedItems)
 
   const [search, setSearch] = React.useState('')
   const [searchResult, setSearchResult] = React.useState([...items[filter]])
@@ -94,20 +96,19 @@ const FilterModal = ({
           handleSearch={handleSearch} 
         />
       </Header>
-        <ModalBase.Content>
-          <ModalBase.Description>
-            <FilterMenu
-              checked={selectedItems[filter]}
-              items={searchResult} 
-              multiSelect={true}
-              handleItemClick={handleItemClick}
-            />
-          </ModalBase.Description>
-        </ModalBase.Content>
-        <ModalBase.Actions>
-          <Button transparent={true} onClick={handleCancel}>Cancel</Button>
-          <Button transparent={true} onClick={handleApply}>Apply</Button>
-        </ModalBase.Actions>
+
+      <FilterMenu
+        checked={selectedItems[filter]}
+        items={searchResult} 
+        filter={filter}
+        multiSelect={true}
+        handleItemClick={handleItemClick}
+      />
+
+        <Actions>
+          <Button transparent={true} onClick={handleCancel}>CLEAR</Button>
+          <Button transparent={true} text='green' onClick={handleApply}>APPLY</Button>
+        </Actions>
     </Modal>
   )
 }

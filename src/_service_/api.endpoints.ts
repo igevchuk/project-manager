@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs';
 import * as queryString from 'query-string';
 import { ApiBase } from './api.base';
-
 // api/v1/pm/contracts/?search=1&ordering=counterparty_name
 
 // POST: /api/v1/pm/contracts/

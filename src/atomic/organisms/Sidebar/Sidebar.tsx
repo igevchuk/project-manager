@@ -32,8 +32,8 @@ const SidebarContent = styled.div`
 `
 
 const SidebarFooter = styled(SidebarBlock)`
-  position: absolute;
-  /* min-height: 60px; */
+  /* position: absolute; */
+  min-height: 60px;
   bottom: 0;
   margin-top: 60px;
 `
@@ -58,7 +58,7 @@ const Sidebar: React.SFC<ISidebarProps> = ({ content, ...props }) => {
       </SidebarBlock>
 
       <SidebarFooter feature={true}>
-        Footer
+        &nbsp;
       </SidebarFooter>
        
     </StyledSidebar>

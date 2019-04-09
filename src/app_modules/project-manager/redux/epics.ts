@@ -57,7 +57,6 @@ export const fetchTemplatesEpic = action$ =>
     switchMap((action: any) => {
       return repo
         .getTemplates()
-          return action
             .pipe(
               map((results: any) => actions.fetchTemplatesSuccess(results)),
               // catchError(err => of({ type: actions.FETCH_TEMPLATES_FAILED }))

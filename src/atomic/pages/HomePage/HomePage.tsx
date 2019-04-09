@@ -1,5 +1,6 @@
 import * as React from 'react'
-import styled from 'styled-components';
+import styled from 'styled-components'
+import * as moment from 'moment'
 
 import { Grid, ItemDescription } from 'semantic-ui-react'
 import Workload from './charts/Workload'
@@ -14,8 +15,10 @@ import Checkbox from '@atomic/atoms/Checkbox/Checkbox'
 import Dropdown, { DropdownMenu } from '@atomic/organisms/Dropdown/Dropdown'
 import UserDropdown from './dropdowns/UserDropdown'
 import Icon from '@atomic/atoms/Icon/Icon'
+import IconButton from '@atomic/molecules/IconButton/IconButton'
 import LabelGroup from '@atomic/molecules/LabelGroup/LabelGroup'
 import Loader from '@atomic/atoms/Loader/Loader'
+import Message from '@atomic/atoms/Message/Message'
 import Metadata from '@atomic/atoms/Metadata/Metadata'
 import IconLabel from '@atomic/molecules/IconLabel/IconLabel'
 import MenuItem from '@atomic/atoms/MenuItem/MenuItem'
@@ -111,8 +114,8 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
     handleFilter(name, values)
   }
 
-  const handleAssignUser = userId => {
-    const data = { assigned_negotiator: userId, contracts: selectedContracts }
+  const handleAssignUser = (contractId, userId) => {
+    const data = { assigned_negotiator: userId, contracts: [contractId] }
     handleUpdate(data)
   }
 
@@ -140,14 +143,21 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
     return 'Unassigned'
   }
 
+  const getMetadataLabel = () => {
+    if(selectedContracts.length) {
+      return `${selectedContracts.length} ${ selectedContracts.length !== 1 ? 'records' : 'record' } selected`
+    }
+    return `Showing ${contracts.length} ${ contracts.length !== 1 ? 'records' : 'record' }`
+  }
+
   const handleOpenFilters = (name: string): void => {
     setOpenFilters(name)
   }
 
   const filterItems = {
     assigned_negotiator: users.map(user => ({ id: user.id, label: getFullName(user)})),
-    counterparty_name: counterparties.map((counterparty, index) => ({ id: index, label: counterparty})),
-    product_type: templates.map(template => ({ id: template.id, label: template.name}))
+    counterparty_name: counterparties.map((counterparty, index) => ({ id: counterparty, label: counterparty})),
+    product_type: templates.map(template => ({ id: template.name, label: template.name}))
   }
 
   const handleCloseFilters = () => {
@@ -156,8 +166,8 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
 
   return (
     <Provider value={{ ...props }}>
-      {/* <PageTemplate sidebar={<Sidebar content={<Workload workload={workload} />} />} > */}
-      <PageTemplate>
+      <PageTemplate sidebar={<Sidebar content={<Workload workload={workload} />} />} >
+      {/* <PageTemplate> */}
         {
           !!filterItems[openFilters] && filterItems[openFilters].length > 0 ? (
             <FilterModal 
@@ -181,9 +191,9 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
           ) : null
         }
         <Heading level={1} palette='grayscale'>
-          Assing Requests
+          Assign Documents
           <Subheading palette='grayscale'>
-            Use this page to assign documents requests for review.
+            Use this page to assign documents for review.
           </Subheading>
         </Heading>
 
@@ -192,8 +202,8 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
           {
             selectedContracts.length > 1 && (
               <div>
-                <Button onClick={() => setSelectedContracts([])}>Cancel</Button>
-                <Button onClick={() => setOpenBulkAssign(true)}>Assign</Button>
+                <IconButton icon='close' onClick={() => setSelectedContracts([])}>CANCEL</IconButton>
+                <IconButton icon='user plus' onClick={() => setOpenBulkAssign(true)}>ASSIGN</IconButton>
               </div>
             )
           }
@@ -212,50 +222,58 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
             isLoading ? <Loader /> : (
               <React.Fragment>
                 <Metadata>
-                  Showing {contracts.length} { contracts.length !== 1 ? 'records' : 'record' }
+                  { getMetadataLabel() }
                 </Metadata>
-                <Table>
-                    <TableRow palette='grayscale' key='heading'>
-                      <TableCell heading={true} key='check'>&nbsp;</TableCell>
-                      <TableCell heading={true} key='id'>Req. ID</TableCell>
-                      <TableCell heading={true} key='counterparty_name'>Counterparty</TableCell>
-                      <TableCell heading={true} key='product_type'>Prod. Type</TableCell>
-                      <TableCell heading={true} key='created'>Date Submitted</TableCell>
-                      <TableCell heading={true} key='document_request_id'>Status</TableCell>
-                      <TableCell heading={true} key='assigned_negotiator'>Assigned To</TableCell>
-                      <TableCell heading={true} key='more'>
-                        <Icon link={true} name='ellipsis vertical' />
-                      </TableCell>
-                    </TableRow>
-                    {
-                      contracts.map(contract => (
-                        <TableRow palette='grayscale' selected={true} key={contract.id}>
-                          <TableCell key='check'>
-                            <Checkbox 
-                              checked={isChecked(contract.id, selectedContracts)} 
-                              onChange={() => handleSelectContracts(contract.id)}
+
+                { contracts.length === 0 && <Message>No contracts found.</Message>}
+                
+                {
+                  contracts.length > 0 && (
+                    <Table>
+                      <TableRow palette='grayscale' key='heading' heading={true}>
+                        <TableCell heading={true} key='check'>&nbsp;</TableCell>
+                        <TableCell heading={true} key='id'>Doc. ID</TableCell>
+                        <TableCell heading={true} key='counterparty_name'>Counterparty</TableCell>
+                        <TableCell heading={true} key='product_type'>Prod. Type</TableCell>
+                        <TableCell heading={true} key='created'>Date Submitted</TableCell>
+                        <TableCell heading={true} key='document_request_id'>Status</TableCell>
+                        <TableCell heading={true} key='assigned_negotiator'>Assigned To</TableCell>
+                        <TableCell heading={true} key='more'>
+                          <Icon link={true} name='ellipsis vertical' />
+                        </TableCell>
+                      </TableRow>
+                      {
+                        contracts.map(contract => (
+                          <TableRow palette='grayscale' selected={true} key={contract.id}>
+                            <TableCell key='check'>
+                              <Checkbox 
+                                checked={isChecked(contract.id, selectedContracts)} 
+                                onChange={() => handleSelectContracts(contract.id)}
+                                />
+                            </TableCell>
+                            <TableCell key='id'>{ contract.id }</TableCell>
+                            <TableCell key='counterparty_name'>{ contract.counterparty_name }</TableCell>
+                            <TableCell key='product_type'>{ contract.product_type }</TableCell>
+                            <TableCell key='created'>{ moment(contract.created).format('YYYY-MM-DD h:ma') }</TableCell>
+                            <TableCell key='document_request_id'>{ contract.document_request_id }</TableCell>
+                            <TableCell key='assigned_negotiator'>
+                              <UserDropdown 
+                                red={!contract.assigned_negotiator}
+                                text={getNegotiatorLabel(contract)}
+                                onClose={() => setSelectedContracts([...selectedContracts.filter(item => item.id === contract.id)])}
+                                contract={contract}
+                                users={users}
+                                onChange={handleAssignUser}
+                                getFullName={getFullName}
                               />
-                          </TableCell>
-                          <TableCell key='id'>{ contract.id }</TableCell>
-                          <TableCell key='counterparty_name'>{ contract.counterparty_name }</TableCell>
-                          <TableCell key='product_type'>{ contract.product_type }</TableCell>
-                          <TableCell key='created'>{ contract.created }</TableCell>
-                          <TableCell key='document_request_id'>{ contract.document_request_id }</TableCell>
-                          <TableCell key='assigned_negotiator'>
-                            <UserDropdown 
-                              text={getNegotiatorLabel(contract)}
-                              onClose={() => setSelectedContracts([...selectedContracts.filter(item => item.id === contract.id)])}
-                              onOpen={() => setSelectedContracts([...selectedContracts, contract.id])}
-                              users={users}
-                              onChange={handleAssignUser}
-                              getFullName={getFullName}
-                            />
-                          </TableCell>
-                          <TableCell key='more'>&nbsp;</TableCell>
-                        </TableRow>
-                      ))
-                    }
-                  </Table>
+                            </TableCell>
+                            <TableCell key='more'>&nbsp;</TableCell>
+                          </TableRow>
+                        ))
+                      }
+                    </Table>
+                  )
+                }
               </React.Fragment>
             )
           }

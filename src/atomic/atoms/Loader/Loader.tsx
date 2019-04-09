@@ -1,9 +1,13 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Loader as LoaderBase } from 'semantic-ui-react'
+import { PulseLoader } from "react-spinners";
 
-const StyledLoader = styled(LoaderBase)``
+const Loader = styled.div`
+  text-align: center;
+`
 
-const Loader = ({...props}) => <StyledLoader active={true} inline='centered' {...props} />
-
-export default Loader
+export default ({...props}) => (
+  <Loader>
+    <PulseLoader color='#86bc25' loading={true} />
+  </Loader>
+)

@@ -72,7 +72,7 @@ export const fetchTemplates = () : {} => ({
   type: FETCH_TEMPLATES
 })
 
-export const fetchTemplatesSuccess = (payload: {}) : {} => ({
+export const fetchTemplatesSuccess = (payload: any) : {} => ({
   type: FETCH_TEMPLATES_SUCCESS,
   payload
 })

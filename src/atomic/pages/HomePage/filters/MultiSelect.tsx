@@ -1,8 +1,16 @@
 import * as React from 'react'
+import styled from 'styled-components'
 import Icon from '@atomic/atoms/Icon/Icon'
 import IconLabel from '@atomic/molecules/IconLabel/IconLabel'
 import LabelGroup from '@atomic/molecules/LabelGroup/LabelGroup'
 import { contextWrapper } from '@app_modules/project-manager/ProjectManagerContext'
+
+const Delete = styled(Icon)`
+  &&&& {
+    font-size: 12px;
+    opacity: 1;
+  }
+`
 
 const MultiSelect = ({ filters, onClick, onDelete, handleFilter, ...props}) => {
   const [ activeFilters, setActiveFilters ] = React.useState([])
@@ -25,16 +33,16 @@ const MultiSelect = ({ filters, onClick, onDelete, handleFilter, ...props}) => {
 
   return (
     <LabelGroup>
-      <IconLabel onClick={() => handleClick('assigned_negotiator')}>
-        Assigned to { isActive('assigned_negotiator') && <Icon name='delete' onClick={(e) => handleDelete(e, 'assigned_negotiator')} /> }
+      <IconLabel onClick={() => handleClick('assigned_negotiator')} active={isActive('assigned_negotiator')}>
+        Assigned to { isActive('assigned_negotiator') && <Delete name='delete' onClick={(e) => handleDelete(e, 'assigned_negotiator')} /> }
       </IconLabel>
 
-      <IconLabel onClick={() => handleClick('product_type')}>
-        Doc. Type { isActive('product_type') && <Icon name='delete' onClick={(e) => handleDelete(e, 'product_type')} /> }
+      <IconLabel onClick={() => handleClick('product_type')} active={isActive('product_type')}>
+        Doc. Type { isActive('product_type') && <Delete name='delete' onClick={(e) => handleDelete(e, 'product_type')} /> }
       </IconLabel>
 
-      <IconLabel onClick={() => handleClick('counterparty_name')}>
-        Counterparty { isActive('counterparty_name') && <Icon name='delete' onClick={(e) => handleDelete(e, 'counterparty')} /> }
+      <IconLabel onClick={() => handleClick('counterparty_name')} active={isActive('counterparty_name')}>
+        Counterparty { isActive('counterparty_name') && <Delete name='delete' onClick={(e) => handleDelete(e, 'counterparty')} /> }
       </IconLabel>
     </LabelGroup>
   )

@@ -6,8 +6,13 @@ const backgroundColor = ({ filled }) => theme.palette('grayscale', filled ? 6 : 
 const backgroundColorSelected = () => theme.palette('grayscale', 7, true)
 const hoverBackgroundColor = () => theme.palette('background', 6, true)
 
-const TableRow = styled(Table.Row)`
-  background-color: ${p => p.selected && backgroundColorSelected};
+interface ITableRowProps {
+  heading?: boolean,
+  selected?: boolean
+}
+
+const TableRow = styled(Table.Row)<ITableRowProps>`
+  background-color: ${p => p.heading && '#EEEEEE'};
   &:hover {
     background-color: ${hoverBackgroundColor};
   }

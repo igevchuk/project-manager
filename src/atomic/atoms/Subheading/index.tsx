@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components'
 import * as theme from 'styled-theme'
 
 const styles = css`
-  font-family: ${theme.font('primary')};
   font-weight: normal;
   font-size: 1rem;
   line-height: 20px;

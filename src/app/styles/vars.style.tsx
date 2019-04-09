@@ -27,7 +27,7 @@ export const theme = {
   },
   typography: {
     fontMono: "'Courier', 'monospace'",
-    fontFamilySans: "'Helvetica', 'Arial', sans-serif",
+    fontFamilySans: "'Roboto', 'Helvetica', 'Arial', sans-serif",
     fontSans: "'Roboto', 'Helvetica', 'Arial', 'Roboto', 'sans-serif'",
     roboto: "'Roboto', 'Helvetica', 'Arial', 'Roboto', 'sans-serif'",
     defaultFont: "'Roboto', 'Helvetica', 'Arial', 'Roboto', 'sans-serif'",
