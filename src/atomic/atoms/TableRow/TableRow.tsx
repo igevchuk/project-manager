@@ -12,7 +12,7 @@ interface ITableRowProps {
 }
 
 const TableRow = styled(Table.Row)<ITableRowProps>`
-  background-color: ${p => p.heading && '#EEEEEE'};
+  background-color: ${p => p.heading ? '#EEEEEE' : (p.selected ? '#E8EAF6' : 'none')};
   &:hover {
     background-color: ${hoverBackgroundColor};
   }

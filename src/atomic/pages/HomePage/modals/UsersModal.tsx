@@ -31,7 +31,7 @@ const UsersModal = ({ children, selectedContracts, users, handleUpdate, onClose,
 
   const handleApply = () => {
     const data = { assigned_negotiator: selectedUsers, contracts: selectedContracts }
-    console.log(data)
+    
     handleUpdate(data)
     onClose()
     setSelectedUsers([])

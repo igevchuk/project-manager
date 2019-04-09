@@ -15,5 +15,5 @@ export default ({ data, ...props }) => {
   //     ],
   //   }]
   // };
-  return <Doughnut data={data} {...props} width={100} height={50} />
+  return <Doughnut data={data} {...props} width={120} height={120} options={{ maintainAspectRatio: false }} />
 };

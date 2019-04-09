@@ -31,19 +31,28 @@ const MultiSelect = ({ filters, onClick, onDelete, handleFilter, ...props}) => {
     handleFilter(value, [])
   }
 
+  const isDisabled = (value) => {
+    const items = value === 'assigned_negotiator' ? [...props.users] : (
+      value === 'product_type' ? [...props.templates] : [...props.counterparties]
+    )
+
+    return items.length === 0
+  }
+
+  const renderLabel = (value, label) => {
+    
+    return (
+      <IconLabel onClick={() => handleClick(value)} active={isActive(value)} disabled={isDisabled(value)}>
+      { label } { isActive(value) && <Delete name='delete' onClick={(e) => handleDelete(e, value)} /> }
+      </IconLabel>
+    )
+  }
+
   return (
     <LabelGroup>
-      <IconLabel onClick={() => handleClick('assigned_negotiator')} active={isActive('assigned_negotiator')}>
-        Assigned to { isActive('assigned_negotiator') && <Delete name='delete' onClick={(e) => handleDelete(e, 'assigned_negotiator')} /> }
-      </IconLabel>
-
-      <IconLabel onClick={() => handleClick('product_type')} active={isActive('product_type')}>
-        Doc. Type { isActive('product_type') && <Delete name='delete' onClick={(e) => handleDelete(e, 'product_type')} /> }
-      </IconLabel>
-
-      <IconLabel onClick={() => handleClick('counterparty_name')} active={isActive('counterparty_name')}>
-        Counterparty { isActive('counterparty_name') && <Delete name='delete' onClick={(e) => handleDelete(e, 'counterparty')} /> }
-      </IconLabel>
+      { renderLabel('assigned_negotiator', 'Assigned to') }
+      { renderLabel('product_type', 'Doc. Type') }
+      { renderLabel('counterparty_name', 'Counterparty') }
     </LabelGroup>
   )
 }

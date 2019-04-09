@@ -16,7 +16,7 @@ export const fetchContractsEpic = action$ =>
         .pipe(
           map(response => response.results),
           map(results => actions.fetchContractsSuccess(results)),
-          // catchError(err => of(actions.fetchContractsFailed(err.toString())))
+          catchError(err => of(actions.fetchContractsFailed(err.toString())))
         )
     })
   )
@@ -30,7 +30,7 @@ export const fetchCounterpartiesEpic = action$ =>
         .pipe(
           map(({ counterparties }) => counterparties),
           map(counterparties => actions.fetchCounterpartiesSuccess(counterparties)),
-          // catchError(err => of(({ type: actions.FETCH_COUNTERPARTIES_FAILED })))
+          catchError(err => of(({ type: actions.FETCH_COUNTERPARTIES_FAILED })))
         )
     })
   )
@@ -46,7 +46,7 @@ export const searchContractsEpic = action$ =>
         .pipe(
           map(response => response.results),
           map(results => actions.fetchContractsSuccess(results)),
-          // catchError(err => of(actions.fetchContractsFailed(err.toString())))
+          catchError(err => of(actions.fetchContractsFailed(err.toString())))
         )
     })
   )
@@ -59,7 +59,7 @@ export const fetchTemplatesEpic = action$ =>
         .getTemplates()
             .pipe(
               map((results: any) => actions.fetchTemplatesSuccess(results)),
-              // catchError(err => of({ type: actions.FETCH_TEMPLATES_FAILED }))
+              catchError(err => of({ type: actions.FETCH_TEMPLATES_FAILED }))
             )
     })
   )
@@ -73,7 +73,7 @@ export const fetchUserGroupsEpic = action$ =>
         .pipe(
           map(response => response.results),
           map(results => actions.fetchUserGroupsSuccess(results)),
-          // catchError(err => of({ type: actions.FETCH_USER_GROUPS_FAILED }))
+          catchError(err => of({ type: actions.FETCH_USER_GROUPS_FAILED }))
         )
     })
   )
@@ -86,7 +86,7 @@ export const fetchWorkload= action$ =>
         .getWorkload()
         .pipe(
           map((results: any) => actions.fetchWorkloadSuccess(results)),
-          // catchError(err => of({ type: actions.FETCH_WORKLOAD_FAILED }))
+          catchError(err => of({ type: actions.FETCH_WORKLOAD_FAILED }))
         )
     })
   )
@@ -100,7 +100,7 @@ export const postContractsEpic= action$ =>
         .pipe(
           map(response => response),
           map(results => ({ type: actions.POST_CONTRACTS_SUCCESS })),
-          // catchError(err => of({ type: actions.POST_CONTRACTS_FAILED }))
+          catchError(err => of({ type: actions.POST_CONTRACTS_FAILED }))
         )
     })
   )

@@ -17,7 +17,8 @@ export type contract = {
   counterparty_name: string,
   created: string,
   document_request_id: number,
-  product_type: string
+  product_type: string,
+  status: string
 }
 
 export type user = {

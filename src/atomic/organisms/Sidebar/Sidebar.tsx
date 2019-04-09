@@ -17,9 +17,10 @@ const SidebarBlock = styled(Block)`
   padding: 12px 24px;
   background-color: ${p => p.feature ? '#F5F5F5' : '#FFFFFF'};
   border-top: 1px solid #E0E0E0;
+  && ${Heading} {
+    font-weight: bold;
+  }
 `
-
-const SidebarHeader = styled.div``
 
 const SidebarSearch = styled.div`
   background-color: #F5F5F5;
@@ -27,7 +28,7 @@ const SidebarSearch = styled.div`
 `
 
 const SidebarContent = styled.div`
-  max-height: 400px;
+  /* max-height: 400px; */
   overflow-y: auto;
 `
 
@@ -35,14 +36,15 @@ const SidebarFooter = styled(SidebarBlock)`
   /* position: absolute; */
   min-height: 60px;
   bottom: 0;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 `
 
 interface ISidebarProps {
-  content?: any
+  content?: any,
+  footer?: any
 }
 
-const Sidebar: React.SFC<ISidebarProps> = ({ content, ...props }) => {
+const Sidebar: React.SFC<ISidebarProps> = ({ content, footer, ...props }) => {
   return (
     <StyledSidebar {...props}>
       <SidebarBlock>
@@ -57,10 +59,13 @@ const Sidebar: React.SFC<ISidebarProps> = ({ content, ...props }) => {
         { content && content }
       </SidebarBlock>
 
-      <SidebarFooter feature={true}>
-        &nbsp;
-      </SidebarFooter>
-       
+      {
+        !!footer && (
+          <SidebarFooter feature={true}>
+            { footer }
+          </SidebarFooter>
+        )
+      }
     </StyledSidebar>
   )
 }

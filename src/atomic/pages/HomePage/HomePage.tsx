@@ -1,8 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import * as moment from 'moment'
+import * as _ from 'lodash'
 
 import { Grid, ItemDescription } from 'semantic-ui-react'
+import AverageWorkload from './charts/AverageWorkload'
 import Workload from './charts/Workload'
 import PageTemplate from '@atomic/templates/PageTemplate/PageTemplate'
 import Sidebar from '@atomic/organisms/Sidebar/Sidebar'
@@ -27,7 +29,6 @@ import TableRow from '@atomic/atoms/TableRow/TableRow'
 import TableCell from '@atomic/atoms/TableCell/TableCell'
 import MultiSelect from './filters/MultiSelect'
 import Switcher from './filters/Switcher';
-
 import { Provider, contextWrapper } from './../../../app_modules/project-manager/ProjectManagerContext'
 import contractReducer, { initialState } from './../../../app_modules/project-manager/redux/reducer'
 import { IState, contract, user, workload as workloadModel } from './../../../app_modules/project-manager/redux/state'
@@ -75,6 +76,9 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
   const [selectedContracts, setSelectedContracts] = React.useState([])
   const [selectedUsers, setSelectedUsers] = React.useState([])
   const [selectedColumns, setSelectedColumns] = React.useState([])
+  const [ ordering, setOrdering ] = React.useState({
+    column: null, direction: null
+  })
   // const [ filterItems, setFilterItems ] = React.useState(null)
 
   const { 
@@ -164,10 +168,46 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
     setOpenFilters('')
   }
 
+  const handleSort = clickedColumn => () => {
+    const { column, direction } = ordering
+    let newState
+    if (column !== clickedColumn) {
+      newState = {
+        column: clickedColumn,
+        direction: 'ascending',
+      }
+
+    } else {
+      newState = {
+        column: clickedColumn,
+        direction: direction === 'ascending' ? 'descending' : 'ascending',
+      }
+    }
+
+    setOrdering(newState)
+
+    const sortValue = newState.direction === 'ascending' ? `-${newState.column}` : newState.column
+    handleFilter('ordering', sortValue)
+  }
+
+  const renderSortIcon = sortedColumn => {
+    const { column, direction } = ordering
+
+    if(sortedColumn === column) {
+      const iconName = direction === 'ascending' ? 'triangle down' : 'triangle up'
+      return <Icon name={iconName} />
+    }
+
+    return null
+  }
+
+  const SidebarComponent = <Sidebar content={<Workload workload={workload} />} footer={<AverageWorkload workload={workload} />} />
+
   return (
     <Provider value={{ ...props }}>
-      <PageTemplate sidebar={<Sidebar content={<Workload workload={workload} />} />} >
-      {/* <PageTemplate> */}
+      <PageTemplate 
+        sidebar={SidebarComponent}
+      >
         {
           !!filterItems[openFilters] && filterItems[openFilters].length > 0 ? (
             <FilterModal 
@@ -229,22 +269,63 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
                 
                 {
                   contracts.length > 0 && (
-                    <Table>
+                    <Table sortable={true}>
                       <TableRow palette='grayscale' key='heading' heading={true}>
                         <TableCell heading={true} key='check'>&nbsp;</TableCell>
-                        <TableCell heading={true} key='id'>Doc. ID</TableCell>
-                        <TableCell heading={true} key='counterparty_name'>Counterparty</TableCell>
-                        <TableCell heading={true} key='product_type'>Prod. Type</TableCell>
-                        <TableCell heading={true} key='created'>Date Submitted</TableCell>
-                        <TableCell heading={true} key='document_request_id'>Status</TableCell>
-                        <TableCell heading={true} key='assigned_negotiator'>Assigned To</TableCell>
+                        <TableCell 
+                          heading={true} 
+                          key='id' 
+                          sorted={ordering.column === 'id' ? ordering.direction : null}
+                          onClick={handleSort('id')}
+                        >
+                          Doc. ID { renderSortIcon('id') }
+                        </TableCell>
+                        <TableCell 
+                          heading={true} 
+                          key='counterparty_name' 
+                          sorted={ordering.column === 'counterparty_name' ? ordering.direction : null}
+                          onClick={handleSort('counterparty_name')}
+                        >
+                          Counterparty { renderSortIcon('counterparty_name') }
+                        </TableCell>
+                        <TableCell 
+                          heading={true} 
+                          key='product_type' 
+                          sorted={ordering.column === 'product_type' ? ordering.direction : null}
+                          onClick={handleSort('product_type')}
+                        >
+                          Prod. Type { renderSortIcon('product_type') }
+                        </TableCell>
+                        <TableCell 
+                          heading={true} 
+                          key='created' 
+                          sorted={ordering.column === 'created' ? ordering.direction : null}
+                          onClick={handleSort('created')} 
+                        >
+                          Date Submitted { renderSortIcon('created') }
+                        </TableCell>
+                        <TableCell 
+                          heading={true} 
+                          key='status' 
+                          sorted={ordering.column === 'status' ? ordering.direction : null}
+                          onClick={handleSort('status')}
+                        >
+                          Status { renderSortIcon('status') }
+                        </TableCell>
+                        <TableCell 
+                          heading={true} 
+                          key='assigned_negotiator' 
+                          sorted={ordering.column === 'assigned_negotiator' ? ordering.direction : null}
+                          onClick={handleSort('assigned_negotiator')}>
+                          Assigned To { renderSortIcon('assigned_negotiator') }
+                        </TableCell>
                         <TableCell heading={true} key='more'>
                           <Icon link={true} name='ellipsis vertical' />
                         </TableCell>
                       </TableRow>
                       {
                         contracts.map(contract => (
-                          <TableRow palette='grayscale' selected={true} key={contract.id}>
+                          <TableRow palette='grayscale' selected={isChecked(contract.id, selectedContracts)} key={contract.id}>
                             <TableCell key='check'>
                               <Checkbox 
                                 checked={isChecked(contract.id, selectedContracts)} 
@@ -255,7 +336,7 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
                             <TableCell key='counterparty_name'>{ contract.counterparty_name }</TableCell>
                             <TableCell key='product_type'>{ contract.product_type }</TableCell>
                             <TableCell key='created'>{ moment(contract.created).format('YYYY-MM-DD h:ma') }</TableCell>
-                            <TableCell key='document_request_id'>{ contract.document_request_id }</TableCell>
+                            <TableCell key='status'>{ contract.status }</TableCell>
                             <TableCell key='assigned_negotiator'>
                               <UserDropdown 
                                 red={!contract.assigned_negotiator}

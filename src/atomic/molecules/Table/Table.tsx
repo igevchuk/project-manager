@@ -20,6 +20,7 @@ interface ITableProps {
   caption?: string,
   head?: React.ReactNodeArray,
   children: any,
+  sortable?: boolean
 }
 
 const Table: React.SFC<ITableProps> = ({

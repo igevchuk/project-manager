@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import * as _ from 'lodash'
+import { of } from 'rxjs'
 import { Provider } from './ProjectManagerContext'
 import ProjectManagerPage from '@atomic/pages/HomePage/HomePage';
 import { contract, user } from './redux/state'
@@ -48,7 +49,7 @@ class ProjectManager extends React.Component<IProjectManagerProps, IProjectManag
     this.getUsers()
     this.getWorkload()
     dispatch(actions.fetchCounterparties())
-    // dispatch(actions.fetchTemplates())
+    dispatch(actions.fetchTemplates())
   }
 
   public getData = () => {
@@ -89,13 +90,13 @@ class ProjectManager extends React.Component<IProjectManagerProps, IProjectManag
 
 
   public handleUpdateContracts = data => {
-    this.props.dispatch(actions.postContracts(data))
+    const observable = of(this.props.dispatch(actions.postContracts(data)))
+    observable.subscribe(() => this.getData())
   }
 
   public handleFilter = (key: string, value: number | string | any[]) => {
     const { dispatch } = this.props
     const state = {[key]: Array.isArray(value) ? [...value] : value }
-
     this.setState(state as any, () => {
       this.getData()
     })
