@@ -18,6 +18,7 @@ const StyledButton = styled(Button)`
       font-size: 15px;
     }
     &:last-child {
+      margin-top: 4px;
       margin-right: 0;
     }
     & svg {
