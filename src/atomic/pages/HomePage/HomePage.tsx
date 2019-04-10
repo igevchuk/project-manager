@@ -120,13 +120,9 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
     setSelectedContracts(nextValues)
   }
 
-  const handleSelectColumns = column => {
-    if(isChecked(column, selectedColumns)) {
-      setSelectedColumns([...selectedColumns.filter(value => value === column)])
-    } else {
-      setSelectedColumns([...selectedColumns, column])
-    }
-  }
+  // const handleSelectAllRecords = () => {
+  //   setSelectedContracts([...results.map(result => result.id)])
+  // }
 
   const handleApplyFilters = (name, values) => {
     handleFilter(name, values)
@@ -229,8 +225,6 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
 
   const SidebarComponent = <Sidebar content={<Workload workload={workload} />} footer={<AverageWorkload workload={workload} />} />
 
-  console.log(filterItems)
-
   return (
     <Provider value={{ ...props }}>
       <PageTemplate 
@@ -308,7 +302,12 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
                   results.length > 0 && (
                     <Table selectable={true} singleLine={true} sortable={true}>
                       <TableRow palette='grayscale' key='heading' heading={true}>
-                        <TableCell heading={true} key='check'>&nbsp;</TableCell>
+                        <TableCell heading={true} key='check'>
+                            {/* <Checkbox 
+                              checked={isChecked(contract.id, selectedContracts)} 
+                              onChange={() => handleSelectContracts(contract.id)}
+                              /> */}
+                        </TableCell>
                         <TableCell 
                           heading={true} 
                           key='id' 

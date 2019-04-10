@@ -1,19 +1,24 @@
 import * as React from 'react';
-import { Doughnut } from 'react-chartjs-2';
+import DonutChart from 'react-donut-chart';
 
+export default ({ data, colors, options: propOptions }) => {
+  const getDefaultOptions = () => ({
+    clickToggle: false,
+    innerRadius: 0.5,
+    height: 120,
+    legend: false,
+    onClick: false,
+    onMouseEnter: false,
+    outerRadius: 1,
+    selectedOffset: false,
+    startAngle: 0,
+    strokeColor: false,
+    width: 120
+  })
 
+  const options = {...getDefaultOptions(), ...propOptions}
 
-export default ({ data, ...props }) => {
-  console.log(data)
-  // const data = {
-  //   datasets: [{
-  //     data: [300, 50, 100],
-  //     backgroundColor: [
-  //     '#FF6384',
-  //     '#36A2EB',
-  //     '#FFCE56'
-  //     ],
-  //   }]
-  // };
-  return <Doughnut data={data} {...props} width={120} height={120} options={{ maintainAspectRatio: false }} />
+  return (
+    <DonutChart {...options} colors={colors} data={data} />
+  )
 };
