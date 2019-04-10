@@ -17,6 +17,7 @@ const styles = {
 const Checkbox = ({classes, ...props}) => (
   <CheckboxBase
     disableRipple={true}
+    className='checkbox'
     classes={{
       root: classes.root,
       checked: classes.checked,

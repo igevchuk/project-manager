@@ -11,6 +11,7 @@ import { dispatch } from 'rxjs/internal/observable/range';
 interface IProjectManagerProps {
   contractState: {
     contracts: contract[],
+    allResults: contract[],
     counterparties: string[],
     error: string,
     isLoading: boolean,
@@ -45,9 +46,10 @@ class ProjectManager extends React.Component<IProjectManagerProps, IProjectManag
 
   public componentDidMount() {
     const { dispatch } = this.props 
+
     this.getData()
-    this.getUsers()
-    this.getWorkload()
+    dispatch({ type: actions.FETCH_USER_GROUPS })
+    dispatch({ type: actions.FETCH_WORKLOAD })
     dispatch(actions.fetchCounterparties())
     dispatch(actions.fetchTemplates())
   }
@@ -56,14 +58,6 @@ class ProjectManager extends React.Component<IProjectManagerProps, IProjectManag
     const options = this.getQueryOptions()
 
     this.props.dispatch(actions.fetchContracts(options))
-  }
-
-  public getWorkload = () => {
-    this.props.dispatch({ type: actions.FETCH_WORKLOAD })
-  }
-
-  public getUsers = () => {
-    this.props.dispatch({ type: actions.FETCH_USER_GROUPS })
   }
 
   public getQueryOptions = () => {
@@ -90,13 +84,21 @@ class ProjectManager extends React.Component<IProjectManagerProps, IProjectManag
 
 
   public handleUpdateContracts = data => {
-    const observable = of(this.props.dispatch(actions.postContracts(data)))
-    observable.subscribe(() => this.getData())
+    const observer = of(this.props.dispatch(actions.postContracts(data)))
+    observer.subscribe(() => this.getData())
   }
 
   public handleFilter = (key: string, value: number | string | any[]) => {
     const { dispatch } = this.props
     const state = {[key]: Array.isArray(value) ? [...value] : value }
+    this.setState(state as any, () => {
+      this.getData()
+    })
+  }
+
+  public applyBulkFilters = (data: {}) => {
+    const { dispatch } = this.props
+    const state = {...data}
     this.setState(state as any, () => {
       this.getData()
     })
@@ -114,9 +116,10 @@ class ProjectManager extends React.Component<IProjectManagerProps, IProjectManag
 
   public render() {
     const { contractState } = this.props
-    const { contracts, error, isLoading, counterparties, templates, users, workload } = contractState
+    const { contracts, allResults, error, isLoading, counterparties, templates, users, workload } = contractState
     const { assigned_negotiator__isnull, assigned_negotiator, counterparty_name, product_type, ordering, search } = this.state
     const filters = { assigned_negotiator__isnull, assigned_negotiator, counterparty_name, product_type, ordering, search }
+    const applyBulkFilters = this.applyBulkFilters
     const handleFilter = this.handleFilter
     const handleSearch = this.handleSearch
     const handleUpdate = this.handleUpdateContracts
@@ -125,6 +128,7 @@ class ProjectManager extends React.Component<IProjectManagerProps, IProjectManag
       <Provider
         value={{ 
           contracts, 
+          allResults,
           counterparties,
           error, 
           isLoading,
@@ -132,6 +136,7 @@ class ProjectManager extends React.Component<IProjectManagerProps, IProjectManag
           templates,
           users,
           workload,
+          applyBulkFilters,
           handleFilter,
           handleSearch,
           handleUpdate,

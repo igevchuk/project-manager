@@ -1,8 +1,10 @@
 import * as types from './actions'
 import { IState, workload } from './state'
+import { type } from 'os';
 
 export const initialState: IState = {
   contracts: [],
+  allResults: null,
   templates: [],
   counterparties: [],
   error: '',
@@ -14,10 +16,17 @@ export const initialState: IState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case types.FETCH_CONTRACTS: {
+    case types.FETCH_CONTRACTS:
+    case types.POST_CONTRACTS: {
       return {
         ...state,
         isLoading: true
+      }
+    }
+    case types.POST_CONTRACTS_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false
       }
     }
     case types.FETCH_CONTRACTS_FAILED: {
@@ -28,12 +37,14 @@ export default function reducer(state = initialState, action) {
       }
     }
     case types.FETCH_CONTRACTS_SUCCESS: {
-      return {
+      const nextState = {
         ...state,
-        contracts: action.payload,
+        contracts: [...action.payload],
         error: '',
         isLoading: false
       }
+      nextState.allResults = nextState.allResults === null ? [...action.payload] : nextState.allResults
+      return nextState
     }
 
     case types.FETCH_COUNTERPARTIES: {

@@ -11,6 +11,7 @@ const Header = styled(ModalBase.Header)`
   &&& {
     padding-top: 5px;
     padding-bottom: 5px;
+    padding-left: 0.6em;
     height: 45px;
   }
 `

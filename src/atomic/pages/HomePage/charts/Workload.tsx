@@ -32,13 +32,13 @@ const Workload: React.SFC<{workload: workloadModel}> = ({ workload, ...props }) 
          
       Object.keys(negotiator.workload).forEach(workloadKey => {
         if(workloadValues[workloadKey]) {
-          // values.push(negotiator.workload[workloadKey] || getRandomInt(50, 200))
-          values.push(getRandomInt(50, 200))
+          values.push(negotiator.workload[workloadKey])
+          // values.push(getRandomInt(50, 200))
           colors.push(workloadValues[workloadKey].color)
           labels.push(workloadKey)
         }
       })
-      datasets.push({ data: values, backgroundColor: colors, label: ['AAA'] })
+      datasets.push({ data: values, backgroundColor: colors })
       
     })
     // doughnutData.labels = [...labels]

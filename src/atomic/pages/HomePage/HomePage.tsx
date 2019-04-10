@@ -5,6 +5,7 @@ import * as _ from 'lodash'
 
 import { Grid, ItemDescription } from 'semantic-ui-react'
 import AverageWorkload from './charts/AverageWorkload'
+import BulkActionButton from './buttons/BulkActionButton'
 import Workload from './charts/Workload'
 import PageTemplate from '@atomic/templates/PageTemplate/PageTemplate'
 import Sidebar from '@atomic/organisms/Sidebar/Sidebar'
@@ -38,16 +39,26 @@ import FilterMenu from './menus/FilterMenu';
 import UsersModal from './modals/UsersModal';
 import FilterModal from './modals/FilterModal';
 import BulkAssignModal from './modals/BulkAssignModal';
+import { Close } from '@material-ui/icons'
 
 const Block = styled.div`
   display: block;
   margin-bottom: 16px;
 `
 
-const Flex = styled.div`
+const Flex = styled('div')`
   display: flex;
-  margin-bottom: 16px;
   justify-content: space-between;
+`
+
+const HoverTableRow = styled(TableRow)`
+  & .checkbox {
+    opacity: ${p => !p.selected && 0};
+    transition: opacity 0.3s;
+  }
+  &:hover .checkbox {
+    opacity: 1;
+  }
 `
 
 interface IHomePageProps {
@@ -67,7 +78,6 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
     ...initialState,
     contracts: props.contracts,
     error: props.error,
-    // isLoading: props.isLoading
   });
 
   const [openBulkAssign, setOpenBulkAssign] = React.useState(false)
@@ -79,7 +89,7 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
   const [ ordering, setOrdering ] = React.useState({
     column: null, direction: null
   })
-  // const [ filterItems, setFilterItems ] = React.useState(null)
+  const [ results, setResults ] = React.useState([])
 
   const { 
     contracts, 
@@ -92,6 +102,10 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
     handleFilter, 
     handleUpdate
   } = props
+
+  React.useEffect(() => {
+    setResults([...contracts])
+  }, [contracts])
 
 
   const handleSearch = (value) => {
@@ -151,7 +165,7 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
     if(selectedContracts.length) {
       return `${selectedContracts.length} ${ selectedContracts.length !== 1 ? 'records' : 'record' } selected`
     }
-    return `Showing ${contracts.length} ${ contracts.length !== 1 ? 'records' : 'record' }`
+    return `Showing ${results.length} ${ results.length !== 1 ? 'records' : 'record' }`
   }
 
   const handleOpenFilters = (name: string): void => {
@@ -170,24 +184,36 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
 
   const handleSort = clickedColumn => () => {
     const { column, direction } = ordering
-    let newState
+    let newOrdering
+
     if (column !== clickedColumn) {
-      newState = {
+      newOrdering = {
         column: clickedColumn,
         direction: 'ascending',
       }
-
     } else {
-      newState = {
-        column: clickedColumn,
-        direction: direction === 'ascending' ? 'descending' : 'ascending',
+      newOrdering = {
+        column: direction === 'ascending' ? clickedColumn : null,
+        direction: direction === 'ascending' ? 'descending' : null,
       }
     }
 
-    setOrdering(newState)
+    setOrdering(newOrdering)
 
-    const sortValue = newState.direction === 'ascending' ? `-${newState.column}` : newState.column
+    const sortValue = newOrdering.direction === null ? null : 
+    ( newOrdering.direction === 'ascending' ? `-${newOrdering.column}` : newOrdering.column)
+    
     handleFilter('ordering', sortValue)
+  }
+
+  const toggleAssign = (assigned = null) => {
+    if(assigned) {
+      setResults(results.filter(item => !!item.assigned_negotiator))
+    } else if (assigned === false) {
+      setResults(results.filter(item => item.assigned_negotiator === null))
+    } else {
+      setResults([...contracts])
+    }
   }
 
   const renderSortIcon = sortedColumn => {
@@ -202,6 +228,8 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
   }
 
   const SidebarComponent = <Sidebar content={<Workload workload={workload} />} footer={<AverageWorkload workload={workload} />} />
+
+  console.log(results.length)
 
   return (
     <Provider value={{ ...props }}>
@@ -237,17 +265,26 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
           </Subheading>
         </Heading>
 
-        <Flex>
-          <Switcher />
-          {
-            selectedContracts.length > 1 && (
-              <div>
-                <IconButton icon='close' onClick={() => setSelectedContracts([])}>CANCEL</IconButton>
-                <IconButton icon='user plus' onClick={() => setOpenBulkAssign(true)}>ASSIGN</IconButton>
-              </div>
-            )
-          }
-        </Flex>
+        <Block>
+          <Flex>
+            <Switcher handleClick={toggleAssign} />
+            {
+              selectedContracts.length > 1 && (
+                <Flex>
+                  <BulkActionButton onClick={() => setSelectedContracts([])}>
+                    <Close /> CANCEL
+                  </BulkActionButton>
+                  {/* <BulkActionButton onClick={() => handleUpdate({ assigned_negotiator: null, contacts: [selectedContracts]})}>
+                    <Icon name='user x' flipped='horizontally' /> UNASSIGN
+                  </BulkActionButton> */}
+                  <BulkActionButton onClick={() => setOpenBulkAssign(true)}>
+                    <Icon name='user plus' flipped='horizontally' /> ASSIGN
+                  </BulkActionButton>
+                </Flex>
+              )
+            }
+          </Flex>
+        </Block>
 
         <Block>
           <Search iconPosition='left' placeholder='Search' size='large' handleSearch={handleSearch} />
@@ -265,11 +302,11 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
                   { getMetadataLabel() }
                 </Metadata>
 
-                { contracts.length === 0 && <Message>No contracts found.</Message>}
+                { results.length === 0 && <Message>No contracts found.</Message>}
                 
                 {
-                  contracts.length > 0 && (
-                    <Table sortable={true}>
+                  results.length > 0 && (
+                    <Table selectable={true} singleLine={true} sortable={true}>
                       <TableRow palette='grayscale' key='heading' heading={true}>
                         <TableCell heading={true} key='check'>&nbsp;</TableCell>
                         <TableCell 
@@ -324,8 +361,8 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
                         </TableCell>
                       </TableRow>
                       {
-                        contracts.map(contract => (
-                          <TableRow palette='grayscale' selected={isChecked(contract.id, selectedContracts)} key={contract.id}>
+                        results.map(contract => (
+                          <HoverTableRow palette='grayscale' selected={isChecked(contract.id, selectedContracts)} key={contract.id}>
                             <TableCell key='check'>
                               <Checkbox 
                                 checked={isChecked(contract.id, selectedContracts)} 
@@ -335,7 +372,7 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
                             <TableCell key='id'>{ contract.id }</TableCell>
                             <TableCell key='counterparty_name'>{ contract.counterparty_name }</TableCell>
                             <TableCell key='product_type'>{ contract.product_type }</TableCell>
-                            <TableCell key='created'>{ moment(contract.created).format('YYYY-MM-DD h:ma') }</TableCell>
+                            <TableCell key='created'>{ moment(contract.created).format('YYYY-MM-DD, h:ma') }</TableCell>
                             <TableCell key='status'>{ contract.status }</TableCell>
                             <TableCell key='assigned_negotiator'>
                               <UserDropdown 
@@ -349,7 +386,7 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
                               />
                             </TableCell>
                             <TableCell key='more'>&nbsp;</TableCell>
-                          </TableRow>
+                          </HoverTableRow>
                         ))
                       }
                     </Table>

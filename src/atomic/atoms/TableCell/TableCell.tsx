@@ -17,8 +17,10 @@ const Th = styled(Table.HeaderCell)`
 `
 
 const Td = styled(Table.Cell)`
-  color: #010101;	
-  ${styles}
+  &&& {
+    color: #010101;	
+    ${styles}
+  }
 `
 
 interface ITableCellProps {

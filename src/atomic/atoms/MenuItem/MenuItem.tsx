@@ -1,8 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Dropdown } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 
-const StyledMenuItem = styled(Dropdown.Item)`
+const StyledMenuItem = styled(Menu.Item)`
   font-family: 'Roboto', 'Helvetica', sans-serif;
 `
 

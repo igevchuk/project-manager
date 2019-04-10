@@ -12,6 +12,9 @@ const GlobalStyle = createGlobalStyle`
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto', 'Helvetica', sans-serif;
   }
+  body {
+    background-color: #F5F5F5;
+  }
 `
 
 class App extends React.Component<{}> {

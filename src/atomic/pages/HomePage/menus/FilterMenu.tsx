@@ -8,8 +8,16 @@ import { contextWrapper } from '@app_modules/project-manager/ProjectManagerConte
 const StyledMenu = styled(Menu)`
   &&& {
     width: 100%;
-    &.ui.vertical.text.menu .item {
-      padding-left: 1.5rem;
+    &.ui.vertical.text.menu {
+      margin: 0;
+      & .item {
+        padding: 1em 1.5em;
+        margin: 0;
+        border-top: 1px solid #F5F5F5;
+        &:first-child {
+          border-top: none;
+        }
+      }
     }
     svg {
       margin-right: 5px;
@@ -24,7 +32,7 @@ const FilterMenu = ({ checked, items, filter, filters, multiSelect, handleItemCl
     <StyledMenu text={true} vertical={true} {...props}>
       {
         items.map(item => (
-          <MenuItem key={item.id} onClick={() => multiSelect ? false : handleItemClick(item.id)}>
+          <MenuItem key={item.id} link={true} onClick={() => multiSelect ? false : handleItemClick(item.id)}>
             {
               multiSelect && (
                 <Checkbox checked={isChecked(item.id)} onChange={() => handleItemClick(item.id)} />

@@ -17,7 +17,7 @@ const StyledIconLabel = styled(Label)`
     &&.active {
       color: #1A237E;
       border-color: #1A237E;
-      background-color: #FAFAFA;
+      background-color: transparent;
     }
     & .icon {
       width: 18px;

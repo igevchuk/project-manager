@@ -16,6 +16,7 @@ const StyledDropdown = styled(Dropdown)`
     & .menu {
       min-width: 172px;
       margin-top: 2px;
+      border-radius: 0;
     }
     & .dropdown.icon {
       position: absolute;
@@ -30,11 +31,13 @@ const UserDropdown = ({contract, users, onChange, getFullName, ...props}) => (
   <StyledDropdown {...props}>
     <DropdownMenu>
       {
-        users.map(user => (
-          <MenuItem key={user.id} onClick={() => onChange(contract.id, user.id)}>
-            { getFullName(user) }
-          </MenuItem>
-        ))
+        users
+          // .filter(user => user.id !== contract.assigned_negotiator)
+          .map(user => (
+            <MenuItem key={user.id} onClick={() => onChange(contract.id, user.id)}>
+              { getFullName(user) }
+            </MenuItem>
+          ))
       }
     </DropdownMenu>
   </StyledDropdown> 

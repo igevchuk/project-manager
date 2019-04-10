@@ -90,7 +90,7 @@
     "window-fetch": "0.0.9"
   },
   "scripts": {
-    "start": "concurrently \"node scripts/start.js\" \"npm run json\" ",
+    "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "postinstall": "link-module-alias"

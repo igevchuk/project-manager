@@ -2,6 +2,7 @@ import { first } from 'rxjs/operators';
 
 export type IState = {
   contracts: contract[],
+  allResults: contract[],
   counterparties: string[],
   isLoading: boolean,
   error: string,

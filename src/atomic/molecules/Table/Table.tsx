@@ -20,6 +20,8 @@ interface ITableProps {
   caption?: string,
   head?: React.ReactNodeArray,
   children: any,
+  singleLine?: boolean,
+  selectable?: boolean,
   sortable?: boolean
 }
 
