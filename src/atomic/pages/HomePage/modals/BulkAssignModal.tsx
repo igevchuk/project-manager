@@ -107,14 +107,14 @@ const BulkAssignModal = ({
       </Header>
       <StyledMenu text={true} vertical={true}>
         {
-          items.map(item => (
+          searchResult.map(item => (
             <MenuItem 
               active={item.id === selected}
               key={item.id} 
               link={true} 
               onClick={() => handleItemClick(item.id)}
             >
-              { `${item.first_name} ${item.last_name}` }
+              { item.label }
             </MenuItem>
           ))
         }

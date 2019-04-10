@@ -13,9 +13,15 @@ const StyledSearch = styled('div')<{noBorder?: boolean, size?: string}>`
       font-size: 14px;
       border-radius: 0;
       border: ${p => p.noBorder && 'none'};
+      color: #616161;
+      &::-webkit-input-placeholder {
+        color: #616161;
+      }
     }
     i {
       font-size: 14px;
+      color: #616161;
+      opacity: 1;
     }
   }
 `

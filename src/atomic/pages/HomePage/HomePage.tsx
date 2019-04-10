@@ -229,7 +229,7 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
 
   const SidebarComponent = <Sidebar content={<Workload workload={workload} />} footer={<AverageWorkload workload={workload} />} />
 
-  console.log(results.length)
+  console.log(filterItems)
 
   return (
     <Provider value={{ ...props }}>
@@ -252,7 +252,7 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
           !!users && users.length > 0 ? (
             <BulkAssignModal 
               open={openBulkAssign}
-              items={users}
+              items={filterItems.assigned_negotiator}
               selectedContracts={selectedContracts}
               onClose={() => setOpenBulkAssign(false)}
             />

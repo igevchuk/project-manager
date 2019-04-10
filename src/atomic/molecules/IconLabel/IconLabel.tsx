@@ -13,6 +13,7 @@ const StyledIconLabel = styled(Label)`
     border-radius: 4px;
     border-style: solid;
     border-width: 1px;
+    color: #616161;
     cursor: ${p => p.disabled ? 'default' : 'pointer'};
     &&.active {
       color: #1A237E;

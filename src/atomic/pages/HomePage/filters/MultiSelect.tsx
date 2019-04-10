@@ -78,7 +78,7 @@ const MultiSelect = ({ filters, onClick, onDelete, applyBulkFilters, handleFilte
     <StyledLabelGroup>
       <div>
         { renderLabel('assigned_negotiator', 'Assigned to') }
-        { renderLabel('product_type', 'Doc. Type') }
+        { renderLabel('product_type', 'Prod. Type') }
         { renderLabel('counterparty_name', 'Counterparty') }
       </div>
       {

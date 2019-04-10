@@ -13,11 +13,15 @@ const StyledButton = styled(Button)`
     font-family: Roboto;
     margin-right: 22px;
     max-height: 40px;
+    & .icon {
+      opacity: 1;
+      font-size: 15px;
+    }
     &:last-child {
       margin-right: 0;
     }
     & svg {
-      font-size: 20px;
+      font-size: 22px;
     }
   }
 `

@@ -11,7 +11,8 @@ const styles = css`
   margin: 0;
   margin-top: 0.85714em;
   margin-bottom: 21px;
-  /* color: ${theme.palette({ grayscale: 0 }, 1)}; */
+  color: #212121;
+  letter-spacing: normal;
 `
 
 interface IHeadingProps {

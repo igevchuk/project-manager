@@ -12,6 +12,7 @@ const Th = styled(Table.HeaderCell)`
   text-transform: uppercase;
   color: #616161;	
   font-size: 12px;	
+  font-weight: 500;
   cursor: ${p => !!p.onClick && 'pointer' };
   ${styles}
 `
