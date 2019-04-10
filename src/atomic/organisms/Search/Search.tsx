@@ -9,7 +9,7 @@ const StyledSearch = styled('div')<{noBorder?: boolean, size?: string}>`
     height: ${p => p.size === 'large' ? '48px' : '36px'};
     line-height: ${p => p.size === 'large' ? '48px' : '36px'};
     input {
-      font-family: Roboto;
+      font-family: inherit;
       font-size: 14px;
       border-radius: 0;
       border: ${p => p.noBorder && 'none'};

@@ -9,7 +9,7 @@ const StyledDropdown = styled(Dropdown)`
     padding-bottom: 7px;
     margin-top: 7px;
     border-bottom: 2px solid #9E9E9E;
-    font-family: Roboto;
+    font-family: inherit;
     & .text {
       color: ${p => p.red && '#C62828'}
     }

@@ -10,9 +10,9 @@ const StyledButton = styled(Button)`
     font-size: 14px;	
     font-weight: 500;	
     background: transparent;
-    font-family: Roboto;
     margin-right: 22px;
     max-height: 40px;
+    font-family: inherit;
     & .icon {
       opacity: 1;
       font-size: 15px;

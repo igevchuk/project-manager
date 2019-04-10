@@ -8,7 +8,8 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto';
     src: url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
   }
-  body,
+  body, body > *,
+  table, th, td, p, 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto', 'Helvetica', sans-serif;
   }

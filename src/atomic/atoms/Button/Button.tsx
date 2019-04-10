@@ -4,7 +4,7 @@ import { Button } from 'semantic-ui-react'
 
 const StyledButton = styled(Button)<{transparent?: boolean, text?: string}>`
   &&& {
-    font-family: 'Roboto', 'Helvetica', sans-serif;
+    font-family: inherit;
     font-weight: normal;
     color: ${p => p.text === 'green' && '#2E7D32'};
     background: ${p => p.transparent && 'none'};

@@ -10,7 +10,7 @@ const StyledButton = styled(Button)`
     font-weight: 500;	
     line-height: 16px;
     background: transparent;
-    font-family: Roboto;
+    font-family: inherit;
   }
 `
 

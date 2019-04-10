@@ -7,7 +7,7 @@ const StyledIconLabel = styled(Label)`
     display: inline-flex;
     align-items: center;
     height: 32px;
-    font-family: Roboto;
+    font-family: inherit;
     background: #FAFAFA;
     border-color: #D8D8D8;
     border-radius: 4px;
