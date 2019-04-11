@@ -8,8 +8,10 @@ import { workloadValues } from '@app_modules/project-manager/redux/constants'
 
 const StyledAverageWorkload = styled.div`
   && h6 {
+    margin: 0 0 9px;
     font-weight: bold;
-    margin: 0;
+    color: #010101;
+    line-height: 14px;
   }
 `
 
@@ -25,7 +27,9 @@ const StyledLabel = styled('div')<{bgColor?: string}>`
   line-height: 14px;
   color: #161616;
   & .icon.circle {
-    color: ${p => p.bgColor && p.bgColor}
+    width: 14px;
+    height: 14px;
+    color: ${p => p.bgColor && p.bgColor};
   }
 `
 

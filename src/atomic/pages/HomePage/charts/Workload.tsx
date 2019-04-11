@@ -12,6 +12,9 @@ const StyledCharts = styled.div`
 const StyledChart = styled.div`
   flex: 0 50%;
   margin-bottom: 1rem;
+  &:nth-child(odd) {
+    padding-right: 15px;
+  }
   &:last-child, &:nth-last-child(2) {
     margin-bottom: 0;
   }
@@ -25,9 +28,10 @@ const StyledChart = styled.div`
   }
 `
 const StyledChartLabel = styled.div`
-  font-size: 18px;
+  font-size: 16px;
   color: #616161;
-  line-height: 36px;
+  margin: 1em 0;
+  text-align: center;
 `
 
 function getRandomInt (min, max) {
