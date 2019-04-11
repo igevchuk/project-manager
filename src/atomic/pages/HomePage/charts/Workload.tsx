@@ -11,7 +11,7 @@ const StyledCharts = styled.div`
 
 const StyledChart = styled.div`
   flex: 0 50%;
-  margin-bottom: 50px;
+  margin-bottom: 1rem;
   &:last-child, &:nth-last-child(2) {
     margin-bottom: 0;
   }
@@ -23,6 +23,11 @@ const StyledChart = styled.div`
     color: #616161;
     transform: translateY(-5%);
   }
+`
+const StyledChartLabel = styled.div`
+  font-size: 18px;
+  color: #616161;
+  line-height: 36px;
 `
 
 function getRandomInt (min, max) {
@@ -36,38 +41,49 @@ const Workload: React.SFC<{workload: workloadModel}> = ({ workload, ...props }) 
     return null
   }
 
-  const negotiatorIds = Object.keys(negotiator_workload)
-  const chartKeys = Object.keys(workloadValues)
-  const doughnuts = []
-  const data = [] 
-  const colors = []
-  const options = {
+  const chartOptions = {
     className: 'workload',
     formatValues: (values, total) => `${(total)}`
   }
+  const negotiatorIds = Object.keys(negotiator_workload)
+  const charts = []
+  const chartData = [] 
+  const colors = []
 
   negotiatorIds
     .map(negotiatorId => negotiator_workload[negotiatorId])
     .forEach(negotiator => {
       Object.keys(negotiator.workload).forEach(workloadKey => {
         if(workloadValues[workloadKey]) {
-          // data.push({ value: negotiator.workload[workloadKey] })
-          data.push({ value: getRandomInt(50, 200) })
+          // chartData.push({ value: negotiator.workload[workloadKey] })
+          chartData.push({ value: getRandomInt(50, 200) })
           colors.push(workloadValues[workloadKey].color)
         }
       })
-      doughnuts.push({
-        data,
-        colors
+      charts.push({
+        chartData,
+        colors,
+        name: negotiator.name
+      })
+      charts.push({
+        chartData,
+        colors,
+        name: negotiator.name
+      })
+      charts.push({
+        chartData,
+        colors,
+        name: negotiator.name
       })
     })
 
   return (
     <StyledCharts>
       {
-        doughnuts.map(({ data, colors }) => (
+        charts.map(({ data, colors, name }) => (
           <StyledChart>
-            <Doughnut colors={colors} data={data} options={options} />
+            <Doughnut colors={colors} data={chartData} options={chartOptions} />
+            <StyledChartLabel>{ name }</StyledChartLabel>
           </StyledChart>
         ))
       }
