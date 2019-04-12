@@ -7,7 +7,7 @@ const Loader = styled.div`
 `
 
 export default ({...props}) => (
-  <Loader>
+  <Loader className='loader'>
     <PulseLoader color='#86bc25' loading={true} />
   </Loader>
 )

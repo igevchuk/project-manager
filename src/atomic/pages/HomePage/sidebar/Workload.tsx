@@ -13,6 +13,7 @@ const Header = styled('div')`
   padding: 8px 24px;
   background-color: #F5F5F5;
   border-top: 1px solid #E0E0E0;
+  border-bottom: 1px solid #E0E0E0;
   & .search {
     margin-bottom: 8px;
   }
@@ -28,6 +29,9 @@ const Charts = styled.div`
   max-height: 400px;
   overflow-y: auto;
   background-color: #FFFFFF;
+  & .loader {
+    width: 100%;
+  }
 `
 
 const Chart = styled.div`
@@ -57,34 +61,29 @@ const ChartLabel = styled.div`
 
 const Workload: React.SFC<{workload: workloadModel}> = ({ workload, ...props }) => {
   const [ allCharts, setAllCharts ] = React.useState(null)
-  const [ charts, setCharts ] = React.useState([])
+  const [ charts, setCharts ] = React.useState(null)
   const [ isLoading, setIsLoading ] = React.useState(true)
 
   React.useEffect(() => {
-    setAllCharts(getCharts(workload.negotiator_workload))
-    if(!!allCharts) {
-      setCharts([...allCharts])
+    const { negotiator_workload } = workload
+
+    if(!!negotiator_workload) {
+      setAllCharts(getCharts(negotiator_workload))
+      setCharts(getCharts(negotiator_workload))
       setIsLoading(false)
     }
   }, [workload])
 
-  function mapWorkload(data) {
-    return Object.keys(data)
+  const getCharts = (data) => {
+    const charts = []
+    const chartData = [] 
+    const colors = []
+    const mappedData = Object.keys(data)
       .reduce((accum, curr) => {
         const {...rest} = data[curr]
         accum.push({ id: curr, under_review: rest.workload['Under Review'], ...rest })
         return accum
-    }, [])
-  }
-
-  function getCharts(data) {
-    if(!data) {
-      return 
-    }
-    const charts = []
-    const chartData = [] 
-    const colors = []
-    const mappedData = mapWorkload(data)
+      }, [])
 
     mappedData.forEach(({workload, ...rest}) => {
       Object.keys(workload).forEach(workloadKey => {
@@ -105,8 +104,8 @@ const Workload: React.SFC<{workload: workloadModel}> = ({ workload, ...props }) 
 
   const handleSearch = (search: string): void => {
     const re = new RegExp(search, 'gi')
-
-    setCharts([...charts.filter(item => !!~item.name.search(re))])
+    const result = allCharts.filter(item => !!~item.name.search(re))
+    setCharts(result)
   }
 
   const handleSort = (sorting: string):void => {
@@ -114,6 +113,7 @@ const Workload: React.SFC<{workload: workloadModel}> = ({ workload, ...props }) 
       return (a[sorting] < b[sorting]) ? -1 : ((a[sorting] > b[sorting]) ? 1 : 0)
     })
     setCharts([...sortedResult])
+    setAllCharts([...sortedResult])
   }
 
   const chartOptions = () => ({
