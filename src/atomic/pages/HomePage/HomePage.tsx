@@ -119,8 +119,8 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
     handleFilter(name, values)
   }
 
-  const handleAssignUser = (contractId, userId) => {
-    const data = { assigned_negotiator: userId, contracts: [contractId] }
+  const handleAssignUser = (contractId, userId, unassign = false) => {
+    const data = { assigned_negotiator: userId, contracts: [contractId], unassign }
     handleUpdate(data)
   }
 
@@ -255,9 +255,9 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
                   <BulkActionButton onClick={() => setSelectedContracts([])}>
                     <Close /> CANCEL
                   </BulkActionButton>
-                  {/* <BulkActionButton onClick={() => handleUpdate({ assigned_negotiator: null, contacts: [selectedContracts]})}>
+                  <BulkActionButton onClick={() => handleUpdate({ assigned_negotiator: null, contacts: [selectedContracts], unassign: true })}>
                     <Icon name='user x' flipped='horizontally' /> UNASSIGN
-                  </BulkActionButton> */}
+                  </BulkActionButton>
                   <BulkActionButton onClick={() => setOpenBulkAssign(true)}>
                     <Icon name='user plus' flipped='horizontally' /> ASSIGN
                   </BulkActionButton>
@@ -362,7 +362,6 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
                             <TableCell key='status'>{ contract.status }</TableCell>
                             <TableCell key='assigned_negotiator'>
                               <UserDropdown 
-                                red={!contract.assigned_negotiator}
                                 text={getNegotiatorLabel(contract)}
                                 onClose={() => setSelectedContracts([...selectedContracts.filter(item => item.id === contract.id)])}
                                 contract={contract}

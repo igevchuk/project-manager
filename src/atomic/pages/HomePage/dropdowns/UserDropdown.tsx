@@ -11,7 +11,10 @@ const StyledDropdown = styled(Dropdown)`
     border-bottom: 2px solid #9E9E9E;
     font-family: inherit;
     & .text {
-      color: ${p => p.red && '#C62828'}
+      color: ${p => p.unassigned && '#C62828'}
+    }
+    & .unassigned {
+      color: #C62828;
     }
     & .menu {
       min-width: 172px;
@@ -27,20 +30,39 @@ const StyledDropdown = styled(Dropdown)`
   }
 `
 
-const UserDropdown = ({contract, users, onChange, getFullName, ...props}) => (
-  <StyledDropdown {...props}>
-    <DropdownMenu>
-      {
-        users
-          // .filter(user => user.id !== contract.assigned_negotiator)
-          .map(user => (
-            <MenuItem key={user.id} onClick={() => onChange(contract.id, user.id)}>
-              { getFullName(user) }
-            </MenuItem>
-          ))
-      }
-    </DropdownMenu>
-  </StyledDropdown> 
-)
+const UserDropdown = ({contract, users, onChange, getFullName, ...props}) => {
+  const assignableUsers = users.filter(user => user.id !== contract.assigned_negotiator)
+  const unassigned = !contract.assigned_negotiator
+
+  const renderDropdown = () => {
+    return !unassigned || assignableUsers.length 
+  }
+
+  if(!renderDropdown()) {
+    return null
+  }
+
+
+  return (
+    <StyledDropdown unassigned={unassigned} {...props}>
+      <DropdownMenu>
+        { contract.assigned_negotiator && (
+          <MenuItem key='unassign' onClick={() => onChange(contract.id, contract.assigned_negotiator, true)}>
+           <span className='unassigned'>Unassign</span>
+          </MenuItem>)
+        }
+        {
+          users
+            .filter(user => user.id !== contract.assigned_negotiator)
+            .map(user => (
+              <MenuItem key={user.id} onClick={() => onChange(contract.id, user.id)}>
+                { getFullName(user) }
+              </MenuItem>
+            ))
+        }
+      </DropdownMenu>
+    </StyledDropdown> 
+  )
+}
 
 export default UserDropdown
