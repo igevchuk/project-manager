@@ -1,8 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import Switcher from '@atomic/molecules/Switcher/Switcher'
-import Button from '@atomic/atoms/Button/Button'
-import { contextWrapper } from '@app_modules/project-manager/ProjectManagerContext'
+import Switcher from 'src/atomic/molecules/Switcher/Switcher'
+import Button from 'src/atomic/atoms/Button/Button'
+import { contextWrapper } from 'src/app_modules/project-manager/ProjectManagerContext'
 
 const StyledSwitcher = styled(Switcher)`
 `

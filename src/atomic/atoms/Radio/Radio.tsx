@@ -1,27 +1,29 @@
 import * as React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import CheckboxBase from '@material-ui/core/Checkbox'
+import RadioBase from '@material-ui/core/Radio'
 
 const styles = {
   root: {
     padding: 0,
+    fontSize: '20px',
     '&$checked': {
       color: '#2E7D32',
+      fontSize: '20px'
     },
   },
   checked: {},
 }
 
-const Checkbox = ({classes, ...props}) => (
-  <CheckboxBase
+const Radio = ({classes, ...props}) => (
+  <RadioBase
     disableRipple={true}
-    className='checkbox'
+    className='radio'
     classes={{
       root: classes.root,
-      checked: classes.checked,
+      checked: classes.checked
     }}
     {...props}
   />
 )
 
-export default withStyles(styles)(Checkbox)
+export default withStyles(styles)(Radio)

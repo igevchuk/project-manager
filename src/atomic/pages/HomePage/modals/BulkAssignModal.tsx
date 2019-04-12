@@ -1,13 +1,13 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { Modal as ModalBase } from 'semantic-ui-react'
-import Button from '@atomic/atoms/Button/Button'
+import Button from 'src/atomic/atoms/Button/Button'
 import FilterMenu from './../menus/FilterMenu'
-import Menu from '@atomic/organisms/Menu/Menu'
-import MenuItem from '@atomic/atoms/MenuItem/MenuItem'
-import Modal from '@atomic/organisms/Modal/Modal'
-import Search from '@atomic/organisms/Search/Search'
-import { contextWrapper } from '@app_modules/project-manager/ProjectManagerContext'
+import Menu from 'src/atomic/organisms/Menu/Menu'
+import MenuItem from 'src/atomic/atoms/MenuItem/MenuItem'
+import Modal from 'src/atomic/organisms/Modal/Modal'
+import Search from 'src/atomic/organisms/Search/Search'
+import { contextWrapper } from 'src/app_modules/project-manager/ProjectManagerContext'
 
 const Header = styled(ModalBase.Header)`
   &&& {

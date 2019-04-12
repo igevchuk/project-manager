@@ -1,9 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import Checkbox from '@atomic/atoms/Checkbox/Checkbox'
-import Menu from '@atomic/organisms/Menu/Menu'
-import MenuItem from '@atomic/atoms/MenuItem/MenuItem'
-import { contextWrapper } from '@app_modules/project-manager/ProjectManagerContext'
+import Checkbox from 'src/atomic/atoms/Checkbox/Checkbox'
+import Menu from 'src/atomic/organisms/Menu/Menu'
+import MenuItem from 'src/atomic/atoms/MenuItem/MenuItem'
+import { contextWrapper } from 'src/app_modules/project-manager/ProjectManagerContext'
 
 const StyledMenu = styled(Menu)`
   &&& {

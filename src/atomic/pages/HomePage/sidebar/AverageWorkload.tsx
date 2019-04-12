@@ -1,10 +1,11 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import Icon from '@atomic/atoms/Icon/Icon'
-import Heading from '@atomic/atoms/Heading/Heading'
-import { workload as workloadModel } from '@app_modules/project-manager/redux/state'
-import { workloadValues } from '@app_modules/project-manager/redux/constants'
+import Icon from 'src/atomic/atoms/Icon/Icon'
+import Heading from 'src/atomic/atoms/Heading/Heading'
+import { workload as workloadModel } from 'src/app_modules/project-manager/redux/state'
+import { workloadValues } from 'src/app_modules/project-manager/redux/constants'
+import { contextWrapper } from 'src/app_modules/project-manager/ProjectManagerContext'
 
 const StyledAverageWorkload = styled.div`
   && h6 {
@@ -60,4 +61,4 @@ const AverageWorkload: React.SFC<{workload: workloadModel}> = ({ workload, ...pr
   ) : null
 }
 
-export default AverageWorkload
+export default contextWrapper(AverageWorkload)

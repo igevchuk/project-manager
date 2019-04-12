@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import Icon from '@atomic/atoms/Icon/Icon'
-import Input from '@atomic/atoms/Input/Input'
+import Icon from 'src/atomic/atoms/Icon/Icon'
+import Input from 'src/atomic/atoms/Input/Input'
 
 const StyledIconInput = styled(Input)``
 

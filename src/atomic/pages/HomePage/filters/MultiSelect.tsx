@@ -1,10 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import Icon from '@atomic/atoms/Icon/Icon'
-import IconLabel from '@atomic/molecules/IconLabel/IconLabel'
-import LabelGroup from '@atomic/molecules/LabelGroup/LabelGroup'
+import Icon from 'src/atomic/atoms/Icon/Icon'
+import IconLabel from 'src/atomic/molecules/IconLabel/IconLabel'
+import LabelGroup from 'src/atomic/molecules/LabelGroup/LabelGroup'
 import { Cancel } from '@material-ui/icons'
-import { contextWrapper } from '@app_modules/project-manager/ProjectManagerContext'
+import { contextWrapper } from 'src/app_modules/project-manager/ProjectManagerContext'
 
 const StyledLabelGroup = styled(LabelGroup)`
   display: flex;

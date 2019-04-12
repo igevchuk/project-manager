@@ -52,6 +52,7 @@ export default function reducer(state = initialState, action) {
         ...state
       }
     }
+
     case types.FETCH_COUNTERPARTIES_SUCCESS: {
       return {
         ...state,

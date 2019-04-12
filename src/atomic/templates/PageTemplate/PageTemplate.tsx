@@ -2,8 +2,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { Grid } from 'semantic-ui-react';
-import { Provider, contextWrapper } from './../../../app_modules/project-manager/ProjectManagerContext'
-import Sidebar from '@atomic/organisms/Sidebar/Sidebar'
+import { Provider, contextWrapper } from 'src/app_modules/project-manager/ProjectManagerContext'
 
 const Wrapper = styled.div`
   width: 1295px;

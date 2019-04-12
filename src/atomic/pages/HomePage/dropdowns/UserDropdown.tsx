@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import Dropdown, { DropdownMenu } from '@atomic/organisms/Dropdown/Dropdown'
-import MenuItem from '@atomic/atoms/MenuItem/MenuItem'
+import Dropdown, { DropdownMenu } from 'src/atomic/organisms/Dropdown/Dropdown'
+import MenuItem from 'src/atomic/atoms/MenuItem/MenuItem'
 
 const StyledDropdown = styled(Dropdown)`
   &&& {

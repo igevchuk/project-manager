@@ -4,34 +4,31 @@ import * as moment from 'moment'
 import * as _ from 'lodash'
 
 import { Grid, ItemDescription } from 'semantic-ui-react'
-import AverageWorkload from './charts/AverageWorkload'
 import BulkActionButton from './buttons/BulkActionButton'
-import Workload from './charts/Workload'
-import PageTemplate from '@atomic/templates/PageTemplate/PageTemplate'
-import Sidebar from '@atomic/organisms/Sidebar/Sidebar'
-import Heading from '@atomic/atoms/Heading/Heading'
-import Subheading from '@atomic/atoms/Subheading'
-import Search from '@atomic/organisms/Search/Search'
-import Button from '@atomic/atoms/Button/Button';
-import ButtonGroup from '@atomic/molecules/ButtonGroup/ButtonGroup'
-import Checkbox from '@atomic/atoms/Checkbox/Checkbox'
-import Dropdown, { DropdownMenu } from '@atomic/organisms/Dropdown/Dropdown'
+import PageTemplate from 'src/atomic/templates/PageTemplate/PageTemplate'
+import Sidebar from './sidebar/Sidebar'
+import Heading from 'src/atomic/atoms/Heading/Heading'
+import Subheading from 'src/atomic/atoms/Subheading'
+import Search from 'src/atomic/organisms/Search/Search'
+import Button from 'src/atomic/atoms/Button/Button';
+import ButtonGroup from 'src/atomic/molecules/ButtonGroup/ButtonGroup'
+import Checkbox from 'src/atomic/atoms/Checkbox/Checkbox'
+import Dropdown, { DropdownMenu } from 'src/atomic/organisms/Dropdown/Dropdown'
 import UserDropdown from './dropdowns/UserDropdown'
-import Icon from '@atomic/atoms/Icon/Icon'
-import IconButton from '@atomic/molecules/IconButton/IconButton'
-import LabelGroup from '@atomic/molecules/LabelGroup/LabelGroup'
-import Loader from '@atomic/atoms/Loader/Loader'
-import Message from '@atomic/atoms/Message/Message'
-import Metadata from '@atomic/atoms/Metadata/Metadata'
-import IconLabel from '@atomic/molecules/IconLabel/IconLabel'
-import MenuItem from '@atomic/atoms/MenuItem/MenuItem'
-import Table from '@atomic/molecules/Table/Table'
-import TableRow from '@atomic/atoms/TableRow/TableRow'
-import TableCell from '@atomic/atoms/TableCell/TableCell'
+import Icon from 'src/atomic/atoms/Icon/Icon'
+import IconButton from 'src/atomic/molecules/IconButton/IconButton'
+import LabelGroup from 'src/atomic/molecules/LabelGroup/LabelGroup'
+import Loader from 'src/atomic/atoms/Loader/Loader'
+import Message from 'src/atomic/molecules/Message/Message'
+import Metadata from 'src/atomic/atoms/Metadata/Metadata'
+import IconLabel from 'src/atomic/molecules/IconLabel/IconLabel'
+import MenuItem from 'src/atomic/atoms/MenuItem/MenuItem'
+import Table from 'src/atomic/molecules/Table/Table'
+import TableRow from 'src/atomic/atoms/TableRow/TableRow'
+import TableCell from 'src/atomic/atoms/TableCell/TableCell'
 import MultiSelect from './filters/MultiSelect'
 import Switcher from './filters/Switcher';
 import { Provider, contextWrapper } from './../../../app_modules/project-manager/ProjectManagerContext'
-import contractReducer, { initialState } from './../../../app_modules/project-manager/redux/reducer'
 import { IState, contract, user, workload as workloadModel } from './../../../app_modules/project-manager/redux/state'
 import * as actions from './../../../app_modules/project-manager/redux/actions'
 import { object } from 'prop-types';
@@ -74,12 +71,6 @@ interface IHomePageProps {
 }
 
 const HomePage: React.SFC<IHomePageProps> = (props) => {
-  const [contractState, contractDispatch] = React.useReducer(contractReducer, {
-    ...initialState,
-    contracts: props.contracts,
-    error: props.error,
-  });
-
   const [openBulkAssign, setOpenBulkAssign] = React.useState(false)
   const [openUserMenu, setOpenUserMenu] = React.useState(false)
   const [openFilters, setOpenFilters] = React.useState('')
@@ -223,13 +214,9 @@ const HomePage: React.SFC<IHomePageProps> = (props) => {
     return null
   }
 
-  const SidebarComponent = <Sidebar content={<Workload workload={workload} />} footer={<AverageWorkload workload={workload} />} />
-
   return (
     <Provider value={{ ...props }}>
-      <PageTemplate 
-        sidebar={SidebarComponent}
-      >
+      <PageTemplate sidebar={<Sidebar />}>
         {
           !!filterItems[openFilters] && filterItems[openFilters].length > 0 ? (
             <FilterModal 

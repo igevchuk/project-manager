@@ -1,8 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import IconInput from '@atomic/molecules/IconInput/IconInput';
-import Icon from '@atomic/atoms/Icon/Icon';
-import { contextWrapper } from './../../../app_modules/project-manager/ProjectManagerContext'
+import IconInput from 'src/atomic/molecules/IconInput/IconInput';
+import Icon from 'src/atomic/atoms/Icon/Icon';
+import { contextWrapper } from 'src/app_modules/project-manager/ProjectManagerContext'
 
 const StyledSearch = styled('div')<{noBorder?: boolean, size?: string}>`
   &&& .ui.icon.input {

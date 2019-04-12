@@ -3,10 +3,9 @@ import { connect } from 'react-redux'
 import * as _ from 'lodash'
 import { of } from 'rxjs'
 import { Provider } from './ProjectManagerContext'
-import ProjectManagerPage from '@atomic/pages/HomePage/HomePage';
+import ProjectManagerPage from 'src/atomic/pages/HomePage/HomePage';
 import { contract, user } from './redux/state'
 import * as actions from './redux/actions'
-import { dispatch } from 'rxjs/internal/observable/range';
 
 interface IProjectManagerProps {
   contractState: {
